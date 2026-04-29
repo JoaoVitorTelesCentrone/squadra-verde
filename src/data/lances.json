@@ -1,0 +1,40 @@
+{
+  "lances": [
+    {
+      "id": 1,
+      "titulo": "Smash Decisivo",
+      "rodada": 1,
+      "jogador": "Wagner Santos",
+      "tipo": "Smash",
+      "midia_tipo": "video",
+      "midia_url": "/videos/lance-1.mp4",
+      "descricao": "Cortada no contrapé que fechou o game decisivo da rodada 1",
+      "data": "03/05/2026",
+      "curtidas": 0
+    },
+    {
+      "id": 2,
+      "titulo": "Defesa Impossível",
+      "rodada": 1,
+      "jogador": "Miguel Centrone",
+      "tipo": "Defesa",
+      "midia_tipo": "video",
+      "midia_url": "/videos/lance-2.mp4",
+      "descricao": "Salvou a bola na linha em momento decisivo do jogo",
+      "data": "03/05/2026",
+      "curtidas": 0
+    },
+    {
+      "id": 3,
+      "titulo": "Voleio Certeiro",
+      "rodada": 1,
+      "jogador": "Alexandre Castro",
+      "tipo": "Voleio",
+      "midia_tipo": "video",
+      "midia_url": "/videos/lance-3.mp4",
+      "descricao": "Finalização em voleio que encantou a galera na quadra",
+      "data": "03/05/2026",
+      "curtidas": 0
+    }
+  ]
+}

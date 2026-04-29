@@ -1,0 +1,37 @@
+{
+  "resultados": [
+    {
+      "id": 1,
+      "rodada": 1,
+      "jogo_id": 2,
+      "data": "03/05",
+      "horario": "08:00",
+      "dupla1": ["Wagner Santos", "Miguel Centrone"],
+      "dupla2": ["Alexandre Castro", "William Silva"],
+      "realizado": true,
+      "data_realizada": "03/05/2026"
+    },
+    {
+      "id": 2,
+      "rodada": 1,
+      "jogo_id": 5,
+      "data": "03/05",
+      "horario": "10:30",
+      "dupla1": ["João Centrone", "Gustavo Machado"],
+      "dupla2": ["Rodrigo Lolato", "Felippi Cordeiro"],
+      "realizado": true,
+      "data_realizada": "03/05/2026"
+    },
+    {
+      "id": 3,
+      "rodada": 1,
+      "jogo_id": 8,
+      "data": "03/05",
+      "horario": "11:45",
+      "dupla1": ["Guilherme Machado", "José Resende"],
+      "dupla2": ["Ricardo Biagioni", "Augusto Oazi"],
+      "realizado": true,
+      "data_realizada": "03/05/2026"
+    }
+  ]
+}

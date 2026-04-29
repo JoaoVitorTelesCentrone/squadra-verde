@@ -1,0 +1,119 @@
+{
+  "temporada": "2026",
+  "nome": "Ranking Masculino Geral",
+  "periodo": "03/05 a 21/06",
+  "rodadas": [
+    {
+      "rodada": 1,
+      "data": "03/05",
+      "jogos": [
+        { "id": 1,  "horario": "08:00", "dupla1": ["Riccardo Voso", "Adriano Marchioreto"],      "dupla2": ["Rafael Madi", "Fausto Moretti"] },
+        { "id": 2,  "horario": "08:00", "dupla1": ["Wagner Santos", "Miguel Centrone"],           "dupla2": ["Alexandre Castro", "William Silva"] },
+        { "id": 3,  "horario": "09:15", "dupla1": ["Renato Santoro", "Diego Rinaldi"],            "dupla2": ["Osmar Vendramel", "Tiago Carioca"] },
+        { "id": 4,  "horario": "09:15", "dupla1": ["Márcio Junqueira", "João Paulo Fiacadori"],  "dupla2": ["Reginaldo Teiji", "Rafael Carioca"] },
+        { "id": 5,  "horario": "10:30", "dupla1": ["João Centrone", "Gustavo Machado"],          "dupla2": ["Rodrigo Lolato", "Felippi Cordeiro"] },
+        { "id": 6,  "horario": "10:30", "dupla1": ["Dudu Batista", "Zenon Barcelos"],            "dupla2": ["Sylvano Appoloni", "Thiago Amaral"] },
+        { "id": 7,  "horario": "11:45", "dupla1": ["Renato Cima", "Julio Castilho"],             "dupla2": ["Fábio Lodi", "João Pedro Viberti"] },
+        { "id": 8,  "horario": "11:45", "dupla1": ["Guilherme Machado", "José Resende"],         "dupla2": ["Ricardo Biagioni", "Augusto Oazi"] }
+      ]
+    },
+    {
+      "rodada": 2,
+      "data": "10/05",
+      "jogos": [
+        { "id": 9,  "horario": "08:00", "dupla1": ["Guilherme Machado", "Renato Cima"],          "dupla2": ["Márcio Junqueira", "Osmar Vendramel"] },
+        { "id": 10, "horario": "08:00", "dupla1": ["Wagner Santos", "William Silva"],             "dupla2": ["Augusto Oazi", "Diego Rinaldi"] },
+        { "id": 11, "horario": "09:15", "dupla1": ["Dudu Batista", "Renato Santoro"],            "dupla2": ["Alexandre Castro", "João Paulo Fiacadori"] },
+        { "id": 12, "horario": "09:15", "dupla1": ["Thiago Amaral", "Miguel Centrone"],          "dupla2": ["João Centrone", "Julio Castilho"] },
+        { "id": 13, "horario": "10:30", "dupla1": ["Fábio Lodi", "José Resende"],                "dupla2": ["Reginaldo Teiji", "Riccardo Voso"] },
+        { "id": 14, "horario": "10:30", "dupla1": ["João Pedro Viberti", "Rodrigo Lolato"],      "dupla2": ["Ricardo Biagioni", "Fausto Moretti"] },
+        { "id": 15, "horario": "11:45", "dupla1": ["Felippi Cordeiro", "Sylvano Appoloni"],      "dupla2": ["Rafael Madi", "Rafael Carioca"] },
+        { "id": 16, "horario": "11:45", "dupla1": ["Gustavo Machado", "Adriano Marchioreto"],    "dupla2": ["Tiago Carioca", "Zenon Barcelos"] }
+      ]
+    },
+    {
+      "rodada": 3,
+      "data": "17/05",
+      "jogos": [
+        { "id": 17, "horario": "08:00", "dupla1": ["Fábio Lodi", "Fausto Moretti"],              "dupla2": ["Wagner Santos", "Zenon Barcelos"] },
+        { "id": 18, "horario": "08:00", "dupla1": ["Rafael Carioca", "Guilherme Machado"],       "dupla2": ["Adriano Marchioreto", "Rodrigo Lolato"] },
+        { "id": 19, "horario": "09:15", "dupla1": ["Osmar Vendramel", "Alexandre Castro"],       "dupla2": ["Riccardo Voso", "Felippi Cordeiro"] },
+        { "id": 20, "horario": "09:15", "dupla1": ["Renato Santoro", "Sylvano Appoloni"],        "dupla2": ["João Pedro Viberti", "Márcio Junqueira"] },
+        { "id": 21, "horario": "10:30", "dupla1": ["Thiago Amaral", "Rafael Madi"],              "dupla2": ["José Resende", "Diego Rinaldi"] },
+        { "id": 22, "horario": "10:30", "dupla1": ["Reginaldo Teiji", "Renato Cima"],            "dupla2": ["João Centrone", "William Silva"] },
+        { "id": 23, "horario": "11:45", "dupla1": ["Julio Castilho", "Tiago Carioca"],           "dupla2": ["Dudu Batista", "Augusto Oazi"] },
+        { "id": 24, "horario": "11:45", "dupla1": ["Miguel Centrone", "João Paulo Fiacadori"],   "dupla2": ["Ricardo Biagioni", "Gustavo Machado"] }
+      ]
+    },
+    {
+      "rodada": 4,
+      "data": "24/05",
+      "jogos": [
+        { "id": 25, "horario": "08:00", "dupla1": ["Ricardo Biagioni", "Riccardo Voso"],         "dupla2": ["João Centrone", "Márcio Junqueira"] },
+        { "id": 26, "horario": "08:00", "dupla1": ["Wagner Santos", "Thiago Amaral"],            "dupla2": ["Felippi Cordeiro", "João Pedro Viberti"] },
+        { "id": 27, "horario": "09:15", "dupla1": ["Miguel Centrone", "Rafael Carioca"],         "dupla2": ["José Resende", "Zenon Barcelos"] },
+        { "id": 28, "horario": "09:15", "dupla1": ["Gustavo Machado", "Rafael Madi"],            "dupla2": ["Renato Santoro", "Reginaldo Teiji"] },
+        { "id": 29, "horario": "10:30", "dupla1": ["Guilherme Machado", "William Silva"],        "dupla2": ["Sylvano Appoloni", "Tiago Carioca"] },
+        { "id": 30, "horario": "10:30", "dupla1": ["Fausto Moretti", "Diego Rinaldi"],           "dupla2": ["Renato Cima", "Dudu Batista"] },
+        { "id": 31, "horario": "11:45", "dupla1": ["Alexandre Castro", "Fábio Lodi"],            "dupla2": ["Augusto Oazi", "Rodrigo Lolato"] },
+        { "id": 32, "horario": "11:45", "dupla1": ["João Paulo Fiacadori", "Osmar Vendramel"],   "dupla2": ["Julio Castilho", "Adriano Marchioreto"] }
+      ]
+    },
+    {
+      "rodada": 5,
+      "data": "31/05",
+      "jogos": [
+        { "id": 33, "horario": "08:00", "dupla1": ["Sylvano Appoloni", "Ricardo Biagioni"],      "dupla2": ["Reginaldo Teiji", "Wagner Santos"] },
+        { "id": 34, "horario": "08:00", "dupla1": ["Augusto Oazi", "Zenon Barcelos"],            "dupla2": ["João Paulo Fiacadori", "Riccardo Voso"] },
+        { "id": 35, "horario": "09:15", "dupla1": ["Julio Castilho", "Diego Rinaldi"],           "dupla2": ["Márcio Junqueira", "Felippi Cordeiro"] },
+        { "id": 36, "horario": "09:15", "dupla1": ["Rodrigo Lolato", "Rafael Madi"],             "dupla2": ["Miguel Centrone", "Tiago Carioca"] },
+        { "id": 37, "horario": "10:30", "dupla1": ["Fábio Lodi", "Dudu Batista"],                "dupla2": ["Gustavo Machado", "Osmar Vendramel"] },
+        { "id": 38, "horario": "10:30", "dupla1": ["Alexandre Castro", "Rafael Carioca"],        "dupla2": ["João Centrone", "Renato Cima"] },
+        { "id": 39, "horario": "11:45", "dupla1": ["Guilherme Machado", "Thiago Amaral"],        "dupla2": ["Fausto Moretti", "Renato Santoro"] },
+        { "id": 40, "horario": "11:45", "dupla1": ["José Resende", "Adriano Marchioreto"],       "dupla2": ["João Pedro Viberti", "William Silva"] }
+      ]
+    },
+    {
+      "rodada": 6,
+      "data": "07/06",
+      "jogos": [
+        { "id": 41, "horario": "08:00", "dupla1": ["Guilherme Machado", "Dudu Batista"],         "dupla2": ["Riccardo Voso", "Wagner Santos"] },
+        { "id": 42, "horario": "08:00", "dupla1": ["Zenon Barcelos", "Rafael Madi"],             "dupla2": ["Ricardo Biagioni", "Renato Cima"] },
+        { "id": 43, "horario": "09:15", "dupla1": ["João Pedro Viberti", "Tiago Carioca"],       "dupla2": ["João Paulo Fiacadori", "João Centrone"] },
+        { "id": 44, "horario": "09:15", "dupla1": ["Augusto Oazi", "Gustavo Machado"],           "dupla2": ["Márcio Junqueira", "Thiago Amaral"] },
+        { "id": 45, "horario": "10:30", "dupla1": ["Julio Castilho", "Sylvano Appoloni"],        "dupla2": ["José Resende", "Rodrigo Lolato"] },
+        { "id": 46, "horario": "10:30", "dupla1": ["Fausto Moretti", "Osmar Vendramel"],         "dupla2": ["Rafael Carioca", "William Silva"] },
+        { "id": 47, "horario": "11:45", "dupla1": ["Felippi Cordeiro", "Miguel Centrone"],       "dupla2": ["Renato Santoro", "Fábio Lodi"] },
+        { "id": 48, "horario": "11:45", "dupla1": ["Adriano Marchioreto", "Reginaldo Teiji"],    "dupla2": ["Diego Rinaldi", "Alexandre Castro"] }
+      ]
+    },
+    {
+      "rodada": 7,
+      "data": "14/06",
+      "jogos": [
+        { "id": 49, "horario": "08:00", "dupla1": ["Fausto Moretti", "Márcio Junqueira"],        "dupla2": ["Alexandre Castro", "José Resende"] },
+        { "id": 50, "horario": "08:00", "dupla1": ["Wagner Santos", "Rafael Carioca"],           "dupla2": ["Julio Castilho", "Gustavo Machado"] },
+        { "id": 51, "horario": "09:15", "dupla1": ["João Paulo Fiacadori", "Fábio Lodi"],        "dupla2": ["Sylvano Appoloni", "Diego Rinaldi"] },
+        { "id": 52, "horario": "09:15", "dupla1": ["Guilherme Machado", "Miguel Centrone"],      "dupla2": ["João Pedro Viberti", "Reginaldo Teiji"] },
+        { "id": 53, "horario": "10:30", "dupla1": ["Dudu Batista", "Felippi Cordeiro"],          "dupla2": ["Adriano Marchioreto", "Ricardo Biagioni"] },
+        { "id": 54, "horario": "10:30", "dupla1": ["João Centrone", "Osmar Vendramel"],          "dupla2": ["Rafael Madi", "Augusto Oazi"] },
+        { "id": 55, "horario": "11:45", "dupla1": ["Zenon Barcelos", "William Silva"],           "dupla2": ["Renato Santoro", "Rodrigo Lolato"] },
+        { "id": 56, "horario": "11:45", "dupla1": ["Renato Cima", "Tiago Carioca"],             "dupla2": ["Thiago Amaral", "Riccardo Voso"] }
+      ]
+    },
+    {
+      "rodada": 8,
+      "data": "21/06",
+      "jogos": [
+        { "id": 57, "horario": "08:00", "dupla1": ["Rafael Madi", "William Silva"],              "dupla2": ["Márcio Junqueira", "Dudu Batista"] },
+        { "id": 58, "horario": "08:00", "dupla1": ["Wagner Santos", "João Centrone"],            "dupla2": ["Adriano Marchioreto", "Renato Santoro"] },
+        { "id": 59, "horario": "09:15", "dupla1": ["Fábio Lodi", "Ricardo Biagioni"],            "dupla2": ["Rafael Carioca", "Tiago Carioca"] },
+        { "id": 60, "horario": "09:15", "dupla1": ["Julio Castilho", "Alexandre Castro"],        "dupla2": ["Guilherme Machado", "Zenon Barcelos"] },
+        { "id": 61, "horario": "10:30", "dupla1": ["Thiago Amaral", "Osmar Vendramel"],          "dupla2": ["Reginaldo Teiji", "Rodrigo Lolato"] },
+        { "id": 62, "horario": "10:30", "dupla1": ["Renato Cima", "Felippi Cordeiro"],           "dupla2": ["João Paulo Fiacadori", "José Resende"] },
+        { "id": 63, "horario": "11:45", "dupla1": ["Fausto Moretti", "Sylvano Appoloni"],        "dupla2": ["Miguel Centrone", "Augusto Oazi"] },
+        { "id": 64, "horario": "11:45", "dupla1": ["Gustavo Machado", "João Pedro Viberti"],     "dupla2": ["Riccardo Voso", "Diego Rinaldi"] }
+      ]
+    }
+  ]
+}
