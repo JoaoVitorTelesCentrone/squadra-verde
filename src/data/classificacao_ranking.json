@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "27/04",
+  "atualizado_em": "29/04",
   "legenda": {
     "J": "Jogos",
     "V": "Vitórias",
@@ -23,17 +23,28 @@
     },
     {
       "posicao": 2,
-      "nome": "Rodrigo Lolato",
+      "nome": "Riccardo Voso",
       "jogos": 3,
       "vitorias": 3,
       "derrotas": 0,
       "percentual_vitorias": 100,
       "games_vencidos": 18,
-      "games_perdidos": 9,
-      "saldo_games": 9
+      "games_perdidos": 7,
+      "saldo_games": 11
     },
     {
       "posicao": 3,
+      "nome": "João Paulo Fiacadori",
+      "jogos": 3,
+      "vitorias": 3,
+      "derrotas": 0,
+      "percentual_vitorias": 100,
+      "games_vencidos": 18,
+      "games_perdidos": 8,
+      "saldo_games": 10
+    },
+    {
+      "posicao": 4,
       "nome": "Wagner Santos",
       "jogos": 3,
       "vitorias": 3,
@@ -44,18 +55,40 @@
       "saldo_games": 7
     },
     {
-      "posicao": 4,
-      "nome": "Augusto Oazi",
-      "jogos": 3,
-      "vitorias": 1,
-      "derrotas": 2,
-      "percentual_vitorias": 33,
-      "games_vencidos": 13,
-      "games_perdidos": 12,
-      "saldo_games": 1
+      "posicao": 5,
+      "nome": "Rodrigo Lolato",
+      "jogos": 6,
+      "vitorias": 5,
+      "derrotas": 1,
+      "percentual_vitorias": 83,
+      "games_vencidos": 34,
+      "games_perdidos": 24,
+      "saldo_games": 10
     },
     {
-      "posicao": 5,
+      "posicao": 6,
+      "nome": "Augusto Oazi",
+      "jogos": 6,
+      "vitorias": 3,
+      "derrotas": 3,
+      "percentual_vitorias": 50,
+      "games_vencidos": 29,
+      "games_perdidos": 21,
+      "saldo_games": 8
+    },
+    {
+      "posicao": 7,
+      "nome": "Alexandre Castro",
+      "jogos": 6,
+      "vitorias": 3,
+      "derrotas": 3,
+      "percentual_vitorias": 50,
+      "games_vencidos": 30,
+      "games_perdidos": 34,
+      "saldo_games": -4
+    },
+    {
+      "posicao": 8,
       "nome": "Miguel Centrone",
       "jogos": 3,
       "vitorias": 1,
@@ -66,7 +99,29 @@
       "saldo_games": 1
     },
     {
-      "posicao": 6,
+      "posicao": 9,
+      "nome": "Reginaldo Teiji",
+      "jogos": 3,
+      "vitorias": 1,
+      "derrotas": 2,
+      "percentual_vitorias": 33,
+      "games_vencidos": 15,
+      "games_perdidos": 15,
+      "saldo_games": 0
+    },
+    {
+      "posicao": 10,
+      "nome": "Fausto Moretti",
+      "jogos": 3,
+      "vitorias": 1,
+      "derrotas": 2,
+      "percentual_vitorias": 33,
+      "games_vencidos": 14,
+      "games_perdidos": 15,
+      "saldo_games": -1
+    },
+    {
+      "posicao": 11,
       "nome": "Felippi Cordeiro",
       "jogos": 3,
       "vitorias": 1,
@@ -77,7 +132,7 @@
       "saldo_games": -3
     },
     {
-      "posicao": 7,
+      "posicao": 12,
       "nome": "Gustavo Machado",
       "jogos": 3,
       "vitorias": 1,
@@ -88,7 +143,7 @@
       "saldo_games": -3
     },
     {
-      "posicao": 8,
+      "posicao": 13,
       "nome": "João Centrone",
       "jogos": 3,
       "vitorias": 1,
@@ -99,7 +154,7 @@
       "saldo_games": -3
     },
     {
-      "posicao": 9,
+      "posicao": 14,
       "nome": "William Silva",
       "jogos": 3,
       "vitorias": 1,
@@ -110,18 +165,18 @@
       "saldo_games": -3
     },
     {
-      "posicao": 10,
-      "nome": "Alexandre Castro",
+      "posicao": 15,
+      "nome": "Rafael Madi",
       "jogos": 3,
       "vitorias": 1,
       "derrotas": 2,
       "percentual_vitorias": 33,
-      "games_vencidos": 14,
-      "games_perdidos": 19,
-      "saldo_games": -5
+      "games_vencidos": 12,
+      "games_perdidos": 15,
+      "saldo_games": -3
     },
     {
-      "posicao": 11,
+      "posicao": 16,
       "nome": "Guilherme Machado",
       "jogos": 3,
       "vitorias": 1,
@@ -132,7 +187,18 @@
       "saldo_games": -5
     },
     {
-      "posicao": 12,
+      "posicao": 17,
+      "nome": "Rafael Carioca",
+      "jogos": 3,
+      "vitorias": 1,
+      "derrotas": 2,
+      "percentual_vitorias": 33,
+      "games_vencidos": 9,
+      "games_perdidos": 15,
+      "saldo_games": -6
+    },
+    {
+      "posicao": 18,
       "nome": "Ricardo Biagioni",
       "jogos": 3,
       "vitorias": 1,
@@ -143,18 +209,29 @@
       "saldo_games": -7
     },
     {
-      "posicao": 13,
+      "posicao": 19,
       "nome": "Adriano Marchioreto",
-      "jogos": 0,
-      "vitorias": 0,
-      "derrotas": 0,
-      "percentual_vitorias": 0,
-      "games_vencidos": 0,
-      "games_perdidos": 0,
-      "saldo_games": 0
+      "jogos": 3,
+      "vitorias": 1,
+      "derrotas": 2,
+      "percentual_vitorias": 33,
+      "games_vencidos": 9,
+      "games_perdidos": 16,
+      "saldo_games": -7
     },
     {
-      "posicao": 14,
+      "posicao": 20,
+      "nome": "Fábio Lodi",
+      "jogos": 3,
+      "vitorias": 0,
+      "derrotas": 3,
+      "percentual_vitorias": 0,
+      "games_vencidos": 9,
+      "games_perdidos": 18,
+      "saldo_games": -9
+    },
+    {
+      "posicao": 21,
       "nome": "Diego Rinaldi",
       "jogos": 0,
       "vitorias": 0,
@@ -165,7 +242,7 @@
       "saldo_games": 0
     },
     {
-      "posicao": 15,
+      "posicao": 22,
       "nome": "Dudu Batista",
       "jogos": 0,
       "vitorias": 0,
@@ -176,40 +253,7 @@
       "saldo_games": 0
     },
     {
-      "posicao": 16,
-      "nome": "Fábio Lodi",
-      "jogos": 0,
-      "vitorias": 0,
-      "derrotas": 0,
-      "percentual_vitorias": 0,
-      "games_vencidos": 0,
-      "games_perdidos": 0,
-      "saldo_games": 0
-    },
-    {
-      "posicao": 17,
-      "nome": "Fausto Moretti",
-      "jogos": 0,
-      "vitorias": 0,
-      "derrotas": 0,
-      "percentual_vitorias": 0,
-      "games_vencidos": 0,
-      "games_perdidos": 0,
-      "saldo_games": 0
-    },
-    {
-      "posicao": 18,
-      "nome": "João Paulo Fiacadori",
-      "jogos": 0,
-      "vitorias": 0,
-      "derrotas": 0,
-      "percentual_vitorias": 0,
-      "games_vencidos": 0,
-      "games_perdidos": 0,
-      "saldo_games": 0
-    },
-    {
-      "posicao": 19,
+      "posicao": 23,
       "nome": "João Pedro Viberti",
       "jogos": 0,
       "vitorias": 0,
@@ -220,7 +264,7 @@
       "saldo_games": 0
     },
     {
-      "posicao": 20,
+      "posicao": 24,
       "nome": "Julio Castilho",
       "jogos": 0,
       "vitorias": 0,
@@ -231,7 +275,7 @@
       "saldo_games": 0
     },
     {
-      "posicao": 21,
+      "posicao": 25,
       "nome": "Márcio Junqueira",
       "jogos": 0,
       "vitorias": 0,
@@ -242,7 +286,7 @@
       "saldo_games": 0
     },
     {
-      "posicao": 22,
+      "posicao": 26,
       "nome": "Osmar Vendramel",
       "jogos": 0,
       "vitorias": 0,
@@ -253,29 +297,7 @@
       "saldo_games": 0
     },
     {
-      "posicao": 23,
-      "nome": "Rafael Carioca",
-      "jogos": 0,
-      "vitorias": 0,
-      "derrotas": 0,
-      "percentual_vitorias": 0,
-      "games_vencidos": 0,
-      "games_perdidos": 0,
-      "saldo_games": 0
-    },
-    {
-      "posicao": 24,
-      "nome": "Rafael Madi",
-      "jogos": 0,
-      "vitorias": 0,
-      "derrotas": 0,
-      "percentual_vitorias": 0,
-      "games_vencidos": 0,
-      "games_perdidos": 0,
-      "saldo_games": 0
-    },
-    {
-      "posicao": 25,
+      "posicao": 27,
       "nome": "Renato Cima",
       "jogos": 0,
       "vitorias": 0,
@@ -286,30 +308,8 @@
       "saldo_games": 0
     },
     {
-      "posicao": 26,
-      "nome": "Renato Santoro",
-      "jogos": 0,
-      "vitorias": 0,
-      "derrotas": 0,
-      "percentual_vitorias": 0,
-      "games_vencidos": 0,
-      "games_perdidos": 0,
-      "saldo_games": 0
-    },
-    {
-      "posicao": 27,
-      "nome": "Reginaldo Teiji",
-      "jogos": 0,
-      "vitorias": 0,
-      "derrotas": 0,
-      "percentual_vitorias": 0,
-      "games_vencidos": 0,
-      "games_perdidos": 0,
-      "saldo_games": 0
-    },
-    {
       "posicao": 28,
-      "nome": "Riccardo Voso",
+      "nome": "Renato Santoro",
       "jogos": 0,
       "vitorias": 0,
       "derrotas": 0,

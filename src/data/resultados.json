@@ -32,6 +32,28 @@
       "dupla2": ["Ricardo Biagioni", "Augusto Oazi"],
       "realizado": true,
       "data_realizada": "03/05/2026"
+    },
+    {
+      "id": 4,
+      "rodada": 1,
+      "jogo_id": 1,
+      "data": "29/04",
+      "horario": "08:00",
+      "dupla1": ["Riccardo Voso", "Adriano Marchioreto"],
+      "dupla2": ["Rafael Madi", "Fausto Moretti"],
+      "realizado": true,
+      "data_realizada": "29/04/2026"
+    },
+    {
+      "id": 5,
+      "rodada": 1,
+      "jogo_id": 4,
+      "data": "29/04",
+      "horario": "09:15",
+      "dupla1": ["João Paulo Fiacadori", "Reginaldo Teiji"],
+      "dupla2": ["Rafael Carioca", "Fábio Lodi"],
+      "realizado": true,
+      "data_realizada": "29/04/2026"
     }
   ]
 }
