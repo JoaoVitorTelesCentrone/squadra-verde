@@ -90,7 +90,7 @@ export default async function AtletaPage({ params }: { params: Promise<{ slug: s
             backgroundSize: '22px 22px',
           }}
         />
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '48px 32px 40px', position: 'relative' }}>
+        <div className="page-header-inner" style={{ position: 'relative' }}>
           {/* Back link */}
           <Link
             href="/atletas"
@@ -199,7 +199,7 @@ export default async function AtletaPage({ params }: { params: Promise<{ slug: s
         </div>
       </section>
 
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '40px 32px' }}>
+      <div className="page-body-inner">
 
         {/* ── STATS ── */}
         {ativo && (

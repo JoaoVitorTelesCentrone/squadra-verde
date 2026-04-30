@@ -38,7 +38,7 @@ export default function AtletasPage() {
     <div>
       {/* ── PAGE HEADER ── */}
       <div style={{ background: '#ffffff', borderBottom: '1px solid #e7e9e4' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '48px 32px 32px' }}>
+        <div className="page-header-inner">
           <p className="section-label" style={{ marginBottom: 10 }}>Beach Tennis · Temporada 2026</p>
           <h1
             style={{
@@ -58,21 +58,10 @@ export default function AtletasPage() {
         </div>
       </div>
 
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '32px 32px' }}>
+      <div className="page-body-inner">
 
         {/* ── FILTROS ── */}
-        <div
-          style={{
-            background: '#ffffff',
-            border: '1px solid #e7e9e4',
-            padding: '16px 20px',
-            marginBottom: 28,
-            display: 'flex',
-            gap: 16,
-            flexWrap: 'wrap',
-            alignItems: 'center',
-          }}
-        >
+        <div className="filter-bar" style={{ marginBottom: 28 }}>
           <div style={{ display: 'flex', gap: 0, border: '1px solid #191c19' }}>
             {([
               { key: 'todos', label: `Todos (${jogadores.length})` },
@@ -223,7 +212,7 @@ export default function AtletasPage() {
 
                   {/* Stats ou status */}
                   {ativo ? (
-                    <div style={{ display: 'flex', gap: 20, alignItems: 'center', flexShrink: 0 }}>
+                    <div className="atleta-row-stats" style={{ display: 'flex', gap: 20, alignItems: 'center', flexShrink: 0 }}>
                       <div style={{ textAlign: 'center' }}>
                         <div style={{ fontFamily: "'DM Mono', monospace", fontWeight: 500, fontSize: 18, color: '#00361a', lineHeight: 1 }}>
                           {j.percentual_vitorias}%

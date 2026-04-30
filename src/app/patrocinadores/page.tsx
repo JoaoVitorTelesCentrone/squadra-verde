@@ -25,7 +25,7 @@ export default function PatrocinadoresPage() {
           background: '#00361a',
           position: 'relative',
           overflow: 'hidden',
-          padding: '72px 32px',
+          padding: 'clamp(32px, 6vw, 72px) clamp(16px, 4vw, 32px)',
         }}
       >
         <div
@@ -148,7 +148,7 @@ export default function PatrocinadoresPage() {
         </div>
       </section>
 
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '56px 32px' }}>
+      <div className="page-body-inner">
 
         {/* ── TÍTULO DA SEÇÃO ── */}
         <div

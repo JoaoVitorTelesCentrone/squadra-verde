@@ -11,6 +11,7 @@ const navLinks = [
   { href: '/lances', label: 'Lances' },
   { href: '/atletas', label: 'Atletas' },
   { href: '/patrocinadores', label: 'Patrocinadores' },
+  { href: '/sobre', label: 'Sobre' },
 ];
 
 export default function Header() {
@@ -31,7 +32,7 @@ export default function Header() {
         style={{
           maxWidth: 1200,
           margin: '0 auto',
-          padding: '0 32px',
+          padding: '0 24px',
           height: 64,
           display: 'flex',
           alignItems: 'center',
@@ -39,7 +40,7 @@ export default function Header() {
         }}
       >
         {/* Logo */}
-        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
+        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
           <div
             style={{
               width: 40,
@@ -85,7 +86,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav style={{ display: 'flex', gap: 20, alignItems: 'center' }} className="hidden md:flex">
+        <nav className="nav-desktop">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -99,50 +100,76 @@ export default function Header() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden"
+          className="nav-mobile-btn"
           onClick={() => setMenuOpen(!menuOpen)}
-          style={{
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            padding: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 5,
-          }}
           aria-label="Menu"
         >
-          <span style={{ display: 'block', width: 24, height: 2, background: '#191c19', transition: 'all 0.2s' }} />
-          <span style={{ display: 'block', width: 24, height: 2, background: '#191c19', transition: 'all 0.2s' }} />
-          <span style={{ display: 'block', width: 18, height: 2, background: '#191c19', transition: 'all 0.2s' }} />
+          <span
+            style={{
+              display: 'block',
+              width: 24,
+              height: 2,
+              background: '#191c19',
+              transition: 'all 0.2s',
+              transform: menuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none',
+            }}
+          />
+          <span
+            style={{
+              display: 'block',
+              width: 24,
+              height: 2,
+              background: '#191c19',
+              transition: 'all 0.2s',
+              opacity: menuOpen ? 0 : 1,
+            }}
+          />
+          <span
+            style={{
+              display: 'block',
+              width: menuOpen ? 24 : 18,
+              height: 2,
+              background: '#191c19',
+              transition: 'all 0.2s',
+              transform: menuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none',
+            }}
+          />
         </button>
       </div>
 
       {/* Mobile menu */}
-      {menuOpen && (
-        <div
-          style={{
-            background: '#ffffff',
-            borderTop: '1px solid #e7e9e4',
-            padding: '16px 32px 24px',
-          }}
-        >
+      <div
+        style={{
+          background: '#ffffff',
+          borderTop: menuOpen ? '1px solid #e7e9e4' : 'none',
+          maxHeight: menuOpen ? 600 : 0,
+          overflow: 'hidden',
+          transition: 'max-height 0.28s ease, border-top 0.1s',
+        }}
+      >
+        <div style={{ padding: '8px 0 16px' }}>
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={`nav-link ${pathname === link.href ? 'active' : ''}`}
-              style={{ display: 'block', padding: '12px 0', borderBottom: '1px solid #e7e9e4' }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                padding: '14px 24px',
+                borderBottom: '1px solid #f3f4ef',
+                fontSize: 13,
+              }}
               onClick={() => setMenuOpen(false)}
             >
               {link.label}
             </Link>
           ))}
-          <div style={{ marginTop: 16 }}>
+          <div style={{ padding: '12px 24px 0' }}>
             <span className="chip">Temporada 2026</span>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }

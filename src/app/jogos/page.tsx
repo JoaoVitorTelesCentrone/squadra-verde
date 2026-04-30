@@ -44,7 +44,7 @@ export default function JogosPage() {
     <div>
       {/* Header */}
       <div style={{ background: '#ffffff', borderBottom: '1px solid #e7e9e4' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '48px 32px 32px' }}>
+        <div className="page-header-inner">
           <p className="section-label" style={{ marginBottom: 10 }}>Match Day Central</p>
           <h1
             style={{
@@ -70,20 +70,9 @@ export default function JogosPage() {
         </div>
       </div>
 
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '32px 32px' }}>
+      <div className="page-body-inner">
         {/* Filtros */}
-        <div
-          style={{
-            background: '#ffffff',
-            border: '1px solid #e7e9e4',
-            padding: '20px 20px',
-            marginBottom: 32,
-            display: 'flex',
-            gap: 16,
-            flexWrap: 'wrap',
-            alignItems: 'center',
-          }}
-        >
+        <div className="filter-bar">
           {/* Status */}
           <div style={{ display: 'flex', gap: 0, border: '1px solid #191c19' }}>
             {(['todos', 'realizados', 'pendentes'] as FiltroStatus[]).map(f => (
@@ -418,7 +407,7 @@ export default function JogosPage() {
           marginTop: 48,
         }}
       >
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '32px 32px' }}>
+        <div className="footer-inner">
           <p className="section-label" style={{ marginBottom: 16 }}>Formato Rei da Quadra</p>
           <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
             {[

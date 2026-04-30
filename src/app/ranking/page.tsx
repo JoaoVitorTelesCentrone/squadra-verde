@@ -49,7 +49,7 @@ export default function RankingPage() {
     <div>
       {/* Page Header */}
       <div style={{ background: '#ffffff', borderBottom: '1px solid #e7e9e4' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '48px 32px 32px' }}>
+        <div className="page-header-inner">
           <p className="section-label" style={{ marginBottom: 10 }}>Temporada 2026</p>
           <h1
             style={{
@@ -86,9 +86,9 @@ export default function RankingPage() {
         </div>
       </div>
 
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '32px 32px' }}>
+      <div className="page-body-inner">
         {/* Top 3 cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, marginBottom: 40 }}>
+        <div className="top3-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, marginBottom: 40 }}>
           {jogadores.slice(0, 3).map((j) => (
             <div
               key={j.posicao}
@@ -183,7 +183,7 @@ export default function RankingPage() {
 
         {/* Table */}
         <div style={{ border: '1px solid #191c19', overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <table className="rank-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
               <tr style={{ background: '#2e312e' }}>
                 {[

@@ -22,11 +22,9 @@ export default function Footer() {
     >
       {/* Patrocinadores */}
       <div
+        className="footer-inner"
         style={{
           borderBottom: '1px solid rgba(255,255,255,0.1)',
-          padding: '32px 32px',
-          maxWidth: 1200,
-          margin: '0 auto',
         }}
       >
         <p
@@ -74,18 +72,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom */}
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: '0 auto',
-          padding: '24px 32px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          gap: 16,
-        }}
-      >
+      <div className="footer-bottom">
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div
             style={{

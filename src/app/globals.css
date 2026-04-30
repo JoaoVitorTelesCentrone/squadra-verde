@@ -238,24 +238,104 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-track { background: #f3f4ef; }
 ::-webkit-scrollbar-thumb { background: #1a4d2e; }
 
-/* Responsive media queries */
+/* ── RESPONSIVE LAYOUT ── */
+
+/* Nav */
+.nav-desktop { display: flex; gap: 20px; align-items: center; }
+.nav-mobile-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; min-width: 40px; min-height: 40px; justify-content: center; align-items: center; }
+
+/* Page containers */
+.page-header-inner { max-width: 1200px; margin: 0 auto; padding: 48px 32px 32px; }
+.page-body-inner   { max-width: 1200px; margin: 0 auto; padding: 40px 32px; }
+.hero-inner        { max-width: 1200px; margin: 0 auto; padding: 80px 32px; position: relative; }
+
+/* Table wrapper */
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* Homepage lances mini-grid (2 cols desktop → 1 col mobile) */
+.lances-mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+/* CTA banner responsive */
+.cta-section { max-width: 1200px; margin: 64px auto 0; padding: 0 32px; }
+
+/* Footer inner sections */
+.footer-inner { max-width: 1200px; margin: 0 auto; padding: 32px 32px; }
+.footer-bottom { max-width: 1200px; margin: 0 auto; padding: 24px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+
+/* Filter bar responsive layout */
+.filter-bar { background: #ffffff; border: 1px solid #e7e9e4; padding: 20px; margin-bottom: 32px; display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+
+/* Foto grupo responsive */
+.foto-grupo-img { width: 100%; height: 480px; object-fit: cover; object-position: center 30%; display: block; filter: saturate(0.9); transform: scale(1.08); transform-origin: center 40%; }
+
 @media (max-width: 768px) {
-  .grid-cols-responsive {
-    grid-template-columns: 1fr !important;
-  }
+  .nav-desktop    { display: none; }
+  .nav-mobile-btn { display: flex; }
+
+  .page-header-inner { padding: 28px 16px 20px; }
+  .page-body-inner   { padding: 24px 16px; }
+  .hero-inner        { padding: 40px 16px; }
+
+  /* Grids → single column */
+  .grid-cols-responsive,
   .featured-grid {
     grid-template-columns: 1fr !important;
   }
+
+  /* Top-3 ranking cards */
+  .top3-grid { grid-template-columns: 1fr !important; }
+
+  /* Stats bar on sobre/hero */
+  .stats-bar { flex-direction: column; gap: 16px !important; }
+  .stats-bar > div { border-right: none !important; padding-right: 0 !important; margin-right: 0 !important; border-bottom: 1px solid rgba(157,211,170,0.15); padding-bottom: 16px; }
+  .stats-bar > div:last-child { border-bottom: none; }
+
+  /* Atletas list row: hide stats col */
+  .atleta-row-stats { display: none !important; }
+
+  /* Jogos card duplas: stack on very small */
+  .foto-grid { grid-template-columns: 1fr !important; }
+  .sponsors-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Lances mini-grid → single column */
+  .lances-mini-grid { grid-template-columns: 1fr; }
+
+  /* CTA section → reduce padding */
+  .cta-section { padding: 0 16px; margin-top: 48px; }
+
+  /* Footer inner → reduce padding */
+  .footer-inner { padding: 24px 16px; }
+  .footer-bottom { padding: 20px 16px; flex-direction: column; align-items: flex-start; gap: 12px; }
+
+  /* Filter bar → stack vertically */
+  .filter-bar { padding: 16px; flex-direction: column; align-items: stretch; gap: 12px; }
+  .filter-bar > div:first-child { display: flex !important; width: 100%; }
+  .filter-bar > div:first-child > button { flex: 1 !important; }
+  .filter-bar > input { width: 100% !important; min-width: 0 !important; flex: none !important; }
+
+  /* Foto grupo → reduce height on mobile */
+  .foto-grupo-img { height: 260px; transform: none; }
+
+  /* Sobre stats bar items */
+  .sobre-stat { padding-right: 0 !important; margin-right: 0 !important; border-right: none !important; border-bottom: 1px solid rgba(157,211,170,0.15) !important; padding-bottom: 16px !important; }
+  .sobre-stat:last-child { border-bottom: none !important; padding-bottom: 0 !important; }
 }
 
 @media (max-width: 600px) {
-  .rank-table th:nth-child(n+6),
-  .rank-table td:nth-child(n+6) {
-    display: none;
-  }
+  /* Ranking table: hide less important columns */
+  .rank-table th:nth-child(n+5),
+  .rank-table td:nth-child(n+5) { display: none; }
 }
 
-@media (max-width: 640px) {
-  .foto-grid { grid-template-columns: 1fr !important; }
-  .sponsors-grid { grid-template-columns: repeat(2, 1fr) !important; }
+@media (max-width: 480px) {
+  .page-header-inner { padding: 20px 12px 16px; }
+  .page-body-inner   { padding: 20px 12px; }
+  .hero-inner        { padding: 32px 12px; }
+  .sponsors-grid { grid-template-columns: 1fr !important; }
+
+  /* CTA inner content vertical on very small */
+  .cta-section { padding: 0 12px; }
+
+  /* Lances mini-grid gap */
+  .lances-mini-grid { gap: 8px; }
 }

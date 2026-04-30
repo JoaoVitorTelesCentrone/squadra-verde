@@ -87,10 +87,8 @@ export default function HomePage() {
         />
 
         <div
+          className="hero-inner"
           style={{
-            maxWidth: 1200,
-            margin: '0 auto',
-            padding: '80px 32px',
             position: 'relative',
             zIndex: 1,
             width: '100%',
@@ -215,7 +213,7 @@ export default function HomePage() {
       </section>
 
       {/* ── TOP 3 ── */}
-      <section style={{ maxWidth: 1200, margin: '0 auto', padding: '64px 32px 0' }}>
+      <section className="page-body-inner" style={{ paddingBottom: 0 }}>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 32 }}>
           <div>
             <p className="section-label" style={{ marginBottom: 8 }}>Classificação</p>
@@ -401,7 +399,7 @@ export default function HomePage() {
       </section>
 
       {/* ── PRÓXIMO JOGO + ÚLTIMOS LANCES ── */}
-      <section style={{ maxWidth: 1200, margin: '0 auto', padding: '64px 32px 0' }}>
+      <section className="page-body-inner" style={{ paddingBottom: 0 }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }} className="grid-cols-responsive">
 
           {/* Próximo Jogo */}
@@ -557,7 +555,7 @@ export default function HomePage() {
               Últimos Lances
             </h2>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+            <div className="lances-mini-grid">
               {ultimosLances.map((lance) => (
                 <Link
                   key={lance.id}
@@ -658,13 +656,7 @@ export default function HomePage() {
       </section>
 
       {/* ── CTA BANNER ── */}
-      <section
-        style={{
-          maxWidth: 1200,
-          margin: '64px auto 0',
-          padding: '0 32px',
-        }}
-      >
+      <section className="cta-section">
         <div
           style={{
             background: '#2e312e',

@@ -342,7 +342,7 @@ export default function LancesPage() {
     <div>
       {/* ── HEADER ── */}
       <div style={{ background: '#ffffff', borderBottom: '1px solid #e7e9e4' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '48px 32px 32px' }}>
+        <div className="page-header-inner">
           <p className="section-label" style={{ marginBottom: 10 }}>Temporada 2026</p>
           <h1
             style={{
@@ -362,7 +362,7 @@ export default function LancesPage() {
         </div>
       </div>
 
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '40px 32px' }}>
+      <div className="page-body-inner">
         {lances.length > 0 ? (
           <div
             style={{
