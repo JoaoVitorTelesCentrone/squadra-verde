@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Squadra Verde — Carrossel Fim de Rodada</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #1a3a2a;
+    --verde-mid: #2d5c3f;
+    --verde-light: #3d7a54;
+    --creme: #e8e8d8;
+    --creme-dark: #d0d0bc;
+    --off-white: #f4f4ec;
+    --gold: #c8a84b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #111;
+    font-family: 'Barlow', sans-serif;
+    color: var(--verde);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+
+  /* TOP BAR */
+  .topbar {
+    width: 100%;
+    background: #0a0a0a;
+    border-bottom: 1px solid #222;
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .topbar-brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 16px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--creme);
+  }
+
+  .topbar-brand span { color: var(--verde-light); }
+
+  .topbar-info {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: #555;
+    letter-spacing: 0.2em;
+  }
+
+  /* EDITOR PANEL */
+  .editor-wrap {
+    width: 100%;
+    max-width: 1400px;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    min-height: calc(100vh - 53px);
+  }
+
+  .editor-panel {
+    background: #0f0f0f;
+    border-right: 1px solid #1e1e1e;
+    padding: 28px 20px;
+    overflow-y: auto;
+    position: sticky;
+    top: 53px;
+    height: calc(100vh - 53px);
+  }
+
+  .editor-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: #444;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .field-group {
+    margin-bottom: 20px;
+  }
+
+  .field-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: #555;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .field-input {
+    width: 100%;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    color: var(--creme);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    padding: 9px 12px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .field-input:focus { border-color: var(--verde-mid); }
+
+  .field-input::placeholder { color: #333; }
+
+  textarea.field-input {
+    resize: vertical;
+    min-height: 70px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .section-divider {
+    height: 1px;
+    background: #1e1e1e;
+    margin: 24px 0;
+  }
+
+  .section-head {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--verde-light);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-head::before {
+    content: '';
+    width: 16px;
+    height: 1px;
+    background: var(--verde-light);
+    opacity: 0.4;
+  }
+
+  /* NAV SLIDES */
+  .slide-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 24px;
+  }
+
+  .slide-nav-btn {
+    background: #1a1a1a;
+    border: 1px solid #222;
+    color: #555;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .slide-nav-btn:hover { background: #222; color: var(--creme); border-color: #333; }
+  .slide-nav-btn.active { background: var(--verde); color: var(--creme); border-color: var(--verde-mid); }
+
+  .slide-nav-btn .num {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    opacity: 0.5;
+    min-width: 16px;
+  }
+
+  /* PREVIEW AREA */
+  .preview-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 60px;
+    gap: 32px;
+    background: #151515;
+  }
+
+  .preview-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: #333;
+    text-transform: uppercase;
+    align-self: flex-start;
+  }
+
+  /* SLIDE FRAME — proporção Instagram 1:1 */
+  .slide-frame {
+    width: 500px;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 1px #222, 0 24px 80px rgba(0,0,0,0.6);
+  }
+
+  .slide { display: none; width: 100%; height: 100%; }
+  .slide.active { display: flex; }
+
+  /* ========== SLIDE 1 — CHAMADA ========== */
+  .s1 {
+    background: var(--verde);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .s1::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg,transparent,transparent 29px,rgba(232,232,216,0.03) 29px,rgba(232,232,216,0.03) 30px),
+                repeating-linear-gradient(90deg,transparent,transparent 29px,rgba(232,232,216,0.03) 29px,rgba(232,232,216,0.03) 30px);
+  }
+
+  .s1-shield-bg {
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    opacity: 0.06;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .s1-border {
+    position: absolute;
+    inset: 16px;
+    border: 1.5px solid rgba(232,232,216,0.12);
+    pointer-events: none;
+  }
+
+  .s1-content {
+    position: relative;
+    text-align: center;
+    padding: 40px;
+    z-index: 2;
+  }
+
+  .s1-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    color: var(--creme);
+    opacity: 0.4;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .s1-headline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 72px;
+    color: var(--creme);
+    text-transform: uppercase;
+    line-height: 0.88;
+    letter-spacing: -0.01em;
+    margin-bottom: 32px;
+  }
+
+  .s1-headline .ghost {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--creme);
+    opacity: 0.25;
+  }
+
+  .s1-cta {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--creme);
+    opacity: 0.35;
+    text-transform: uppercase;
+  }
+
+  .s1-shield-small {
+    position: absolute;
+    bottom: 28px;
+    right: 28px;
+    width: 32px;
+    opacity: 0.3;
+  }
+
+  /* ========== SLIDE 2 — RESULTADOS ========== */
+  .s2 {
+    background: var(--off-white);
+    flex-direction: column;
+  }
+
+  .s2-header {
+    background: var(--verde);
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .s2-header-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    color: var(--creme);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .s2-header-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--creme);
+    opacity: 0.4;
+    letter-spacing: 0.2em;
+  }
+
+  .s2-champion {
+    background: var(--verde-mid);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .s2-champion-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--creme);
+    opacity: 0.5;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+
+  .s2-champion-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    color: var(--creme);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .s2-matches {
+    flex: 1;
+    overflow: hidden;
+    padding: 8px 0;
+  }
+
+  .s2-match {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 10px 24px;
+    border-bottom: 1px solid rgba(26,58,42,0.08);
+    gap: 8px;
+  }
+
+  .s2-match:last-child { border-bottom: none; }
+
+  .s2-team {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--verde);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .s2-team.winner { color: var(--verde); font-weight: 900; }
+  .s2-team.loser { opacity: 0.45; }
+  .s2-team.right { text-align: right; }
+
+  .s2-score {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    color: var(--verde);
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .s2-footer {
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(26,58,42,0.08);
+    flex-shrink: 0;
+  }
+
+  .s2-footer-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--verde);
+    opacity: 0.3;
+    letter-spacing: 0.2em;
+  }
+
+  /* ========== SLIDE 3 — LANCE DA RODADA ========== */
+  .s3 {
+    background: var(--verde-mid);
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .s3::before {
+    content: '"';
+    position: absolute;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 400px;
+    color: rgba(232,232,216,0.04);
+    top: -80px;
+    left: -20px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .s3-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .s3-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--creme);
+    opacity: 0.4;
+    text-transform: uppercase;
+  }
+
+  .s3-shield {
+    width: 36px;
+    opacity: 0.35;
+  }
+
+  .s3-middle {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+  }
+
+  .s3-quote {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 52px;
+    color: var(--creme);
+    text-transform: uppercase;
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    position: relative;
+    z-index: 2;
+  }
+
+  .s3-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .s3-athlete {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--creme);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+  }
+
+  .s3-cta {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--creme);
+    opacity: 0.35;
+    letter-spacing: 0.2em;
+    text-align: right;
+  }
+
+  .s3-border {
+    position: absolute;
+    inset: 14px;
+    border: 1px solid rgba(232,232,216,0.08);
+    pointer-events: none;
+  }
+
+  /* ========== SLIDE 4 — CLASSIFICAÇÃO ========== */
+  .s4 {
+    background: var(--verde);
+    flex-direction: column;
+  }
+
+  .s4-header {
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid rgba(232,232,216,0.08);
+    flex-shrink: 0;
+  }
+
+  .s4-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 13px;
+    color: var(--creme);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    opacity: 0.5;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .s4-subtitle {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    color: var(--creme);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+
+  .s4-list {
+    flex: 1;
+    padding: 8px 0;
+    overflow: hidden;
+  }
+
+  .s4-item {
+    display: grid;
+    grid-template-columns: 32px 1fr auto;
+    align-items: center;
+    padding: 11px 24px;
+    border-bottom: 1px solid rgba(232,232,216,0.05);
+    transition: background 0.15s;
+  }
+
+  .s4-item:first-child {
+    background: rgba(232,232,216,0.06);
+  }
+
+  .s4-pos {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--creme);
+    opacity: 0.3;
+    letter-spacing: 0.1em;
+  }
+
+  .s4-item:first-child .s4-pos { opacity: 0.6; }
+
+  .s4-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--creme);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: 0.7;
+  }
+
+  .s4-item:first-child .s4-name { opacity: 1; font-weight: 900; font-size: 18px; }
+  .s4-item:nth-child(2) .s4-name { opacity: 0.85; }
+  .s4-item:nth-child(3) .s4-name { opacity: 0.75; }
+
+  .s4-pts {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    color: var(--creme);
+    opacity: 0.5;
+    letter-spacing: 0.02em;
+  }
+
+  .s4-item:first-child .s4-pts { opacity: 1; color: var(--creme); }
+
+  .s4-footer {
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(232,232,216,0.06);
+    flex-shrink: 0;
+  }
+
+  .s4-footer-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--creme);
+    opacity: 0.25;
+    letter-spacing: 0.2em;
+  }
+
+  /* ========== SLIDE 5 — PRÓXIMA RODADA ========== */
+  .s5 {
+    background: var(--creme);
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .s5-border {
+    position: absolute;
+    inset: 12px;
+    border: 2px solid rgba(26,58,42,0.12);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .s5-border-inner {
+    position: absolute;
+    inset: 18px;
+    border: 1px solid rgba(26,58,42,0.06);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .s5-bg-number {
+    position: absolute;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 300px;
+    color: rgba(26,58,42,0.04);
+    right: -30px;
+    bottom: -60px;
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -0.05em;
+  }
+
+  .s5-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 44px 40px;
+    position: relative;
+    z-index: 3;
+  }
+
+  .s5-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    color: var(--verde);
+    opacity: 0.4;
+    text-transform: uppercase;
+  }
+
+  .s5-mid {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .s5-coming {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--verde);
+    opacity: 0.4;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .s5-round {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 88px;
+    color: var(--verde);
+    text-transform: uppercase;
+    line-height: 0.88;
+    letter-spacing: -0.02em;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .s5-date {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--verde);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    opacity: 0.7;
+    display: block;
+  }
+
+  .s5-cta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--off-white);
+    background: var(--verde);
+    padding: 12px 20px;
+    display: inline-block;
+    margin-top: 24px;
+    align-self: flex-start;
+  }
+
+  .s5-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .s5-phrase {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--verde);
+    opacity: 0.45;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    max-width: 200px;
+    line-height: 1.2;
+  }
+
+  /* ========== SHIELD SVG HELPER ========== */
+  .shield-svg-inline { display: block; }
+
+  /* ========== CONTROLS ========== */
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 500px;
+  }
+
+  .ctrl-btn {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    color: var(--creme);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.15s;
+    flex: 1;
+  }
+
+  .ctrl-btn:hover { background: var(--verde); border-color: var(--verde-mid); }
+
+  .dots {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    flex: 1;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    background: #333;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .dot.active { background: var(--verde-light); width: 20px; border-radius: 3px; }
+
+  .slide-counter {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: #444;
+    letter-spacing: 0.2em;
+    text-align: right;
+    min-width: 40px;
+  }
+
+  /* ========== SCROLLBAR ========== */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #0a0a0a; }
+  ::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-brand">Squadra <span>Verde</span> · Carrossel</div>
+  <div class="topbar-info">Template · Fim de Rodada · 5 slides</div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="editor-wrap">
+
+  <!-- PAINEL ESQUERDO: EDITOR -->
+  <div class="editor-panel">
+    <div class="editor-title">Editar conteúdo</div>
+
+    <!-- Navegação de slides -->
+    <div class="slide-nav">
+      <button class="slide-nav-btn active" onclick="goTo(0)">
+        <span class="num">01</span> Chamada
+      </button>
+      <button class="slide-nav-btn" onclick="goTo(1)">
+        <span class="num">02</span> Resultados
+      </button>
+      <button class="slide-nav-btn" onclick="goTo(2)">
+        <span class="num">03</span> Lance da Rodada
+      </button>
+      <button class="slide-nav-btn" onclick="goTo(3)">
+        <span class="num">04</span> Classificação
+      </button>
+      <button class="slide-nav-btn" onclick="goTo(4)">
+        <span class="num">05</span> Próxima Rodada
+      </button>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- CAMPOS GLOBAIS -->
+    <div class="section-head">Geral</div>
+
+    <div class="field-group">
+      <label class="field-label">Número da Rodada</label>
+      <input class="field-input" id="f-round" type="text" value="07" oninput="update()" placeholder="ex: 07">
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Data da Rodada</label>
+      <input class="field-input" id="f-date" type="text" value="10 de maio" oninput="update()" placeholder="ex: 10 de maio">
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- SLIDE 1 -->
+    <div class="section-head">Slide 1 · Chamada</div>
+
+    <div class="field-group">
+      <label class="field-label">Headline (linha 1)</label>
+      <input class="field-input" id="f-h1" type="text" value="A Rodada" oninput="update()" placeholder="A Rodada">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Headline (linha 2)</label>
+      <input class="field-input" id="f-h2" type="text" value="Que Vai" oninput="update()" placeholder="Que Vai">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Headline (linha 3 — fantasma)</label>
+      <input class="field-input" id="f-h3" type="text" value="Dar o que falar" oninput="update()" placeholder="Dar o que falar">
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- SLIDE 2 -->
+    <div class="section-head">Slide 2 · Resultados</div>
+
+    <div class="field-group">
+      <label class="field-label">Campeão da rodada</label>
+      <input class="field-input" id="f-champ" type="text" value="Centrone / Fox" oninput="update()" placeholder="Dupla / Dupla">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Partidas (uma por linha: A / B · 6×4)</label>
+      <textarea class="field-input" id="f-matches" oninput="update()" placeholder="Silva/Ramos · 6×4 · Costa/Mendes">Silva / Ramos · 6×4 · Costa / Mendes
+Centrone / Fox · 7×5 · Torres / Braga
+Ferreira / Lins · 6×3 · Pinto / Melo
+Lemos / Costa · 6×2 · Alves / Neves</textarea>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- SLIDE 3 -->
+    <div class="section-head">Slide 3 · Lance</div>
+
+    <div class="field-group">
+      <label class="field-label">Frase do lance</label>
+      <textarea class="field-input" id="f-lance" oninput="update()" style="min-height:80px">O voleio que ninguém viu chegar</textarea>
+    </div>
+    <div class="field-group">
+      <label class="field-label">Atleta destaque</label>
+      <input class="field-input" id="f-athlete" type="text" value="Centrone · Rodada 07" oninput="update()">
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- SLIDE 4 -->
+    <div class="section-head">Slide 4 · Classificação</div>
+
+    <div class="field-group">
+      <label class="field-label">Top 5 (uma por linha: Nome / Nome · pts)</label>
+      <textarea class="field-input" id="f-ranking" oninput="update()" style="min-height:110px">Centrone / Fox · 480
+Silva / Prado · 420
+Lemos / Braga · 390
+Torres / Neves · 350
+Ferreira / Lins · 320</textarea>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- SLIDE 5 -->
+    <div class="section-head">Slide 5 · Próxima Rodada</div>
+
+    <div class="field-group">
+      <label class="field-label">Data próxima rodada</label>
+      <input class="field-input" id="f-nextdate" type="text" value="24 de maio" oninput="update()">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Frase de encerramento</label>
+      <input class="field-input" id="f-phrase" type="text" value="Quem para a dupla 1?" oninput="update()">
+    </div>
+  </div>
+
+  <!-- ÁREA DE PREVIEW -->
+  <div class="preview-area">
+    <div class="preview-label">Preview · 1:1 · Instagram</div>
+
+    <!-- SLIDE FRAME -->
+    <div class="slide-frame">
+
+      <!-- SLIDE 1: CHAMADA -->
+      <div class="slide s1 active" id="slide-0">
+        <div class="s1-border"></div>
+        <svg class="s1-shield-bg" viewBox="0 0 200 230" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100 10 L185 45 L185 130 Q185 185 100 220 Q15 185 15 130 L15 45 Z" fill="none" stroke="var(--creme)" stroke-width="5"/>
+          <ellipse cx="72" cy="108" rx="26" ry="36" fill="none" stroke="var(--creme)" stroke-width="4" transform="rotate(-18 72 108)"/>
+          <ellipse cx="128" cy="108" rx="26" ry="36" fill="none" stroke="var(--creme)" stroke-width="4" transform="rotate(18 128 108)"/>
+          <line x1="62" y1="52" x2="138" y2="52" stroke="var(--creme)" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        <div class="s1-content">
+          <span class="s1-eyebrow" id="s1-eyebrow">TEMPORADA 2025 · RODADA 07</span>
+          <div class="s1-headline">
+            <span id="s1-h1">A Rodada</span><br>
+            <span id="s1-h2">Que Vai</span><br>
+            <span class="ghost" id="s1-h3">Dar o que falar</span>
+          </div>
+          <div class="s1-cta">Arrasta pra ver os resultados →</div>
+        </div>
+        <svg class="s1-shield-small" viewBox="0 0 200 230" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100 10 L185 45 L185 130 Q185 185 100 220 Q15 185 15 130 L15 45 Z" fill="none" stroke="var(--creme)" stroke-width="8"/>
+          <text x="100" y="140" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="900" font-size="80" fill="var(--creme)">SV</text>
+        </svg>
+      </div>
+
+      <!-- SLIDE 2: RESULTADOS -->
+      <div class="slide s2" id="slide-1">
+        <div class="s2-header">
+          <span class="s2-header-title" id="s2-title">Resultados · Rodada 07</span>
+          <span class="s2-header-meta" id="s2-meta">10 DE MAIO</span>
+        </div>
+        <div class="s2-champion">
+          <span style="font-size:16px">🏆</span>
+          <div>
+            <div class="s2-champion-label">Campeão da rodada</div>
+            <div class="s2-champion-name" id="s2-champ">Centrone / Fox</div>
+          </div>
+        </div>
+        <div class="s2-matches" id="s2-matches">
+          <!-- gerado via JS -->
+        </div>
+        <div class="s2-footer">
+          <span class="s2-footer-text">Ver classificação →</span>
+          <svg width="22" height="26" viewBox="0 0 200 230">
+            <path d="M100 10 L185 45 L185 130 Q185 185 100 220 Q15 185 15 130 L15 45 Z" fill="none" stroke="var(--verde)" stroke-width="8" opacity="0.2"/>
+            <text x="100" y="140" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="900" font-size="80" fill="var(--verde)" opacity="0.2">SV</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- SLIDE 3: LANCE -->
+      <div class="slide s3" id="slide-2">
+        <div class="s3-border"></div>
+        <div class="s3-top">
+          <span class="s3-tag" id="s3-tag">LANCE DA RODADA 07</span>
+          <svg class="s3-shield" viewBox="0 0 200 230">
+            <path d="M100 10 L185 45 L185 130 Q185 185 100 220 Q15 185 15 130 L15 45 Z" fill="none" stroke="var(--creme)" stroke-width="7"/>
+            <text x="100" y="140" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="900" font-size="80" fill="var(--creme)">SV</text>
+          </svg>
+        </div>
+        <div class="s3-middle">
+          <div class="s3-quote" id="s3-quote">O voleio que ninguém viu chegar</div>
+        </div>
+        <div class="s3-bottom">
+          <span class="s3-athlete" id="s3-athlete">Centrone · Rodada 07</span>
+          <span class="s3-cta">Você viu ao vivo?<br>Comenta aqui 👇</span>
+        </div>
+      </div>
+
+      <!-- SLIDE 4: CLASSIFICAÇÃO -->
+      <div class="slide s4" id="slide-3">
+        <div class="s4-header">
+          <span class="s4-title">Classificação</span>
+          <span class="s4-subtitle" id="s4-subtitle">Após Rodada 07</span>
+        </div>
+        <div class="s4-list" id="s4-list">
+          <!-- gerado via JS -->
+        </div>
+        <div class="s4-footer">
+          <span class="s4-footer-text" id="s4-footer-text">Atualizado após 10 de maio · Temporada 2025</span>
+          <svg width="22" height="26" viewBox="0 0 200 230">
+            <path d="M100 10 L185 45 L185 130 Q185 185 100 220 Q15 185 15 130 L15 45 Z" fill="none" stroke="var(--creme)" stroke-width="8" opacity="0.2"/>
+            <text x="100" y="140" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="900" font-size="80" fill="var(--creme)" opacity="0.2">SV</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- SLIDE 5: PRÓXIMA RODADA -->
+      <div class="slide s5" id="slide-4">
+        <div class="s5-border"></div>
+        <div class="s5-border-inner"></div>
+        <div class="s5-bg-number" id="s5-bg-num">08</div>
+        <div class="s5-content">
+          <span class="s5-eyebrow">Squadra Verde · 2025</span>
+          <div class="s5-mid">
+            <span class="s5-coming">Próxima rodada</span>
+            <span class="s5-round" id="s5-round">Rodada<br>08</span>
+            <span class="s5-date" id="s5-date">24 de maio</span>
+            <div class="s5-cta">Confirma sua presença 👇</div>
+          </div>
+          <div class="s5-bottom">
+            <span class="s5-phrase" id="s5-phrase">"Quem para a dupla 1?"</span>
+            <svg width="36" height="42" viewBox="0 0 200 230">
+              <path d="M100 10 L185 45 L185 130 Q185 185 100 220 Q15 185 15 130 L15 45 Z" fill="none" stroke="var(--verde)" stroke-width="5" opacity="0.2"/>
+              <ellipse cx="72" cy="108" rx="26" ry="36" fill="none" stroke="var(--verde)" stroke-width="3" transform="rotate(-18 72 108)" opacity="0.2"/>
+              <ellipse cx="128" cy="108" rx="26" ry="36" fill="none" stroke="var(--verde)" stroke-width="3" transform="rotate(18 128 108)" opacity="0.2"/>
+              <path id="a_s5" d="M42 172 Q100 208 158 172" fill="none"/>
+              <text font-family="'Barlow Condensed',sans-serif" font-weight="900" font-size="17" fill="var(--verde)" letter-spacing="6" opacity="0.3"><textPath href="#a_s5" startOffset="50%" text-anchor="middle">VERDE</textPath></text>
+              <text x="100" y="38" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="700" font-size="12" fill="var(--verde)" letter-spacing="4" opacity="0.2">SQUADRA</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /slide-frame -->
+
+    <!-- CONTROLS -->
+    <div class="controls">
+      <button class="ctrl-btn" onclick="prev()">← Anterior</button>
+      <div class="dots" id="dots">
+        <div class="dot active" onclick="goTo(0)"></div>
+        <div class="dot" onclick="goTo(1)"></div>
+        <div class="dot" onclick="goTo(2)"></div>
+        <div class="dot" onclick="goTo(3)"></div>
+        <div class="dot" onclick="goTo(4)"></div>
+      </div>
+      <div class="slide-counter" id="counter">1 / 5</div>
+      <button class="ctrl-btn" onclick="next()">Próximo →</button>
+    </div>
+
+  </div><!-- /preview-area -->
+</div><!-- /editor-wrap -->
+
+<script>
+  let current = 0;
+  const total = 5;
+
+  function goTo(n) {
+    document.querySelectorAll('.slide').forEach((s, i) => s.classList.toggle('active', i === n));
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === n));
+    document.querySelectorAll('.slide-nav-btn').forEach((b, i) => b.classList.toggle('active', i === n));
+    document.getElementById('counter').textContent = `${n + 1} / ${total}`;
+    current = n;
+  }
+
+  function next() { goTo((current + 1) % total); }
+  function prev() { goTo((current - 1 + total) % total); }
+
+  function g(id) { return document.getElementById(id); }
+  function val(id) { return g(id) ? g(id).value : ''; }
+
+  function update() {
+    const round = val('f-round') || '07';
+    const date = val('f-date') || '10 de maio';
+    const nextRound = String(parseInt(round) + 1).padStart(2, '0');
+
+    // SLIDE 1
+    g('s1-eyebrow').textContent = `TEMPORADA 2025 · RODADA ${round}`;
+    g('s1-h1').textContent = val('f-h1') || 'A Rodada';
+    g('s1-h2').textContent = val('f-h2') || 'Que Vai';
+    g('s1-h3').textContent = val('f-h3') || 'Dar o que falar';
+
+    // SLIDE 2
+    g('s2-title').textContent = `Resultados · Rodada ${round}`;
+    g('s2-meta').textContent = date.toUpperCase();
+    g('s2-champ').textContent = val('f-champ') || 'Centrone / Fox';
+    const matchesRaw = val('f-matches') || '';
+    const matchLines = matchesRaw.split('\n').filter(l => l.trim());
+    const matchesHtml = matchLines.map(line => {
+      const parts = line.split('·').map(s => s.trim());
+      const teamA = parts[0] || '—';
+      const score = parts[1] || '6×4';
+      const teamB = parts[2] || '—';
+      const [sa, sb] = score.replace('×','x').split('x').map(Number);
+      const aWon = sa > sb;
+      return `<div class="s2-match">
+        <span class="s2-team ${aWon?'winner':'loser'}">${teamA}</span>
+        <span class="s2-score">${score}</span>
+        <span class="s2-team right ${!aWon?'winner':'loser'}">${teamB}</span>
+      </div>`;
+    }).join('');
+    g('s2-matches').innerHTML = matchesHtml;
+
+    // SLIDE 3
+    g('s3-tag').textContent = `LANCE DA RODADA ${round}`;
+    g('s3-quote').textContent = val('f-lance') || 'O voleio que ninguém viu chegar';
+    g('s3-athlete').textContent = val('f-athlete') || `Atleta Destaque · Rodada ${round}`;
+
+    // SLIDE 4
+    g('s4-subtitle').textContent = `Após Rodada ${round}`;
+    g('s4-footer-text').textContent = `Atualizado após ${date} · Temporada 2025`;
+    const rankRaw = val('f-ranking') || '';
+    const rankLines = rankRaw.split('\n').filter(l => l.trim());
+    const rankHtml = rankLines.slice(0,6).map((line, i) => {
+      const parts = line.split('·').map(s => s.trim());
+      const name = parts[0] || '—';
+      const pts = parts[1] || '—';
+      const pos = String(i + 1).padStart(2, '0');
+      return `<div class="s4-item">
+        <span class="s4-pos">${pos}</span>
+        <span class="s4-name">${name}</span>
+        <span class="s4-pts">${pts}</span>
+      </div>`;
+    }).join('');
+    g('s4-list').innerHTML = rankHtml;
+
+    // SLIDE 5
+    g('s5-bg-num').textContent = nextRound;
+    g('s5-round').innerHTML = `Rodada<br>${nextRound}`;
+    g('s5-date').textContent = val('f-nextdate') || '24 de maio';
+    g('s5-phrase').textContent = `"${val('f-phrase') || 'Quem para a dupla 1?'}"`;
+  }
+
+  // Init
+  update();
+
+  // Teclado
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
+  });
+</script>
+</body>
+</html>

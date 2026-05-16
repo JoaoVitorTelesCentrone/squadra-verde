@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Squadra Verde — Gerador de Carrossel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,900&family=Barlow:wght@400;500;600&family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    :root {
+      --bg:#0d0d0d; --surface:#111; --surface-2:#1a1a1a; --surface-hover:#1e1e1e;
+      --border:#1e1e1e; --border-strong:#2d2d2d;
+      --text:#e8e8d8; --text-muted:#888880; --text-faint:#444440;
+      --accent:#3d7a54; --accent-hover:#2d5c3f; --accent-dim:rgba(61,122,84,.12); --accent-light:rgba(61,122,84,.18);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;overflow:hidden}
+    body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font-size:13px;line-height:1.5;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column}
+
+    .hdr{display:flex;align-items:center;justify-content:space-between;padding:11px 20px;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0;gap:12px}
+    .hdr-brand{display:flex;align-items:center;gap:10px}
+    .hdr-title{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;letter-spacing:.15em;text-transform:uppercase;color:var(--text)}
+    .hdr-title span{color:var(--accent)}
+    .hdr-actions{display:flex;gap:8px}
+
+    .layout{display:flex;flex:1;overflow:hidden}
+
+    .sb{width:300px;flex-shrink:0;border-right:1px solid var(--border);background:var(--surface);overflow-y:auto;display:flex;flex-direction:column}
+    .ss{padding:14px 16px;border-bottom:1px solid var(--border)}
+    .ss-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--text-faint);margin-bottom:10px}
+
+    .fg{margin-bottom:10px}
+    .fl{display:block;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-faint);margin-bottom:5px}
+    .fi,.fta{width:100%;padding:8px 10px;background:var(--surface-2);border:1px solid var(--border-strong);color:var(--text);font-family:'Barlow Condensed',sans-serif;font-size:14px;outline:none;transition:border-color .15s}
+    .fi:focus,.fta:focus{border-color:var(--accent)}
+    .fta{resize:vertical;min-height:72px;font-size:12px;font-family:'Barlow',sans-serif;line-height:1.5}
+
+    .vt-row{display:flex;gap:5px;flex-wrap:wrap}
+    .vt-chip{display:flex;align-items:center;gap:6px;padding:5px 9px;border:1px solid var(--border-strong);background:var(--surface-2);cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);transition:all .15s}
+    .vt-chip:hover{border-color:var(--accent)}
+    .vt-chip.active{border-color:var(--accent);background:var(--accent-light);color:var(--text)}
+    .vt-dot{width:10px;height:10px;border:1px solid rgba(255,255,255,.12);flex-shrink:0}
+
+    .sl{display:flex;flex-direction:column;gap:4px}
+    .sli{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--border);background:var(--surface-2);cursor:pointer;transition:all .15s}
+    .sli:hover{border-color:var(--border-strong)}
+    .sli.active{border-color:var(--accent);background:var(--accent-light)}
+    .sli-n{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-faint);min-width:20px}
+    .sli.active .sli-n{color:var(--accent)}
+    .sli-info{flex:1;min-width:0}
+    .sli-type{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
+    .sli.active .sli-type{color:var(--accent)}
+    .sli-hl{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.04em;text-transform:uppercase}
+
+    .main{flex:1;display:flex;flex-direction:column;overflow:hidden;background:#0a0a0a}
+    .prev-bar{display:flex;align-items:center;justify-content:space-between;padding:8px 20px;border-bottom:1px solid var(--border);flex-shrink:0;background:var(--surface)}
+    .prev-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--text-faint)}
+    .cnt-tag{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-muted);background:var(--surface-2);padding:3px 10px;border:1px solid var(--border-strong)}
+    .prev-scroll{flex:1;overflow-x:auto;overflow-y:hidden;display:flex;align-items:center;padding:28px 36px;gap:20px}
+
+    .sc-wrap{position:relative;cursor:pointer;flex-shrink:0;transition:transform .15s}
+    .sc-wrap:hover{transform:translateY(-3px)}
+    .sc-wrap.active .sc{box-shadow:0 0 0 2px var(--accent),0 8px 40px rgba(0,0,0,.5)}
+    .sc{width:360px;height:360px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.5)}
+    .sc-num{position:absolute;top:-18px;left:0;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-faint)}
+    .sc-wrap.active .sc-num{color:var(--accent)}
+
+    .btn{padding:7px 14px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .15s;border:none;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-primary:hover{background:var(--accent-hover)}
+    .btn-ghost{background:transparent;border:1px solid var(--border-strong);color:var(--text-muted)}
+    .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+    .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:9px 18px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;z-index:9999;opacity:0;transition:opacity .2s;pointer-events:none}
+    .toast.show{opacity:1}
+
+    ::-webkit-scrollbar{width:4px;height:4px}
+    ::-webkit-scrollbar-track{background:transparent}
+    ::-webkit-scrollbar-thumb{background:var(--border-strong)}
+  </style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-brand">
+    <svg width="22" height="26" viewBox="0 0 200 230" fill="none">
+      <path d="M100 10 L185 45 L185 130 Q185 185 100 220 Q15 185 15 130 L15 45 Z" fill="none" stroke="#3d7a54" stroke-width="8"/>
+      <text x="100" y="140" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="900" font-size="80" fill="#3d7a54">SV</text>
+    </svg>
+    <span class="hdr-title">Squadra <span>Verde</span> — Gerador de Carrossel</span>
+  </div>
+  <div class="hdr-actions">
+    <button class="btn btn-ghost" onclick="exportAll()">⬇ Todos os Slides</button>
+    <button class="btn btn-primary" onclick="exportCurrent()">⬇ Slide Atual</button>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sb">
+
+    <div class="ss">
+      <div class="ss-lbl">Geral</div>
+      <div class="fg">
+        <label class="fl">Número da Rodada</label>
+        <input type="text" class="fi" id="f-round" value="07" oninput="syncGlobals();renderAll()" />
+      </div>
+      <div class="fg">
+        <label class="fl">Data da Rodada</label>
+        <input type="text" class="fi" id="f-date" value="10 de maio" oninput="syncGlobals();renderAll()" />
+      </div>
+      <div class="fg">
+        <label class="fl">Estilo Visual</label>
+        <div class="vt-row" id="vt-row"></div>
+      </div>
+    </div>
+
+    <div class="ss">
+      <div class="ss-lbl">Slides</div>
+      <div class="sl" id="sl"></div>
+    </div>
+
+    <div class="ss" id="editor" style="flex:1;overflow-y:auto">
+      <div class="ss-lbl">Editar — <span id="ed-name" style="color:var(--accent)">Slide 1</span></div>
+      <div id="ed-fields"></div>
+    </div>
+
+    <div class="ss">
+      <div class="ss-lbl">Imagem de Ranking</div>
+      <div class="fg">
+        <label class="fl">Atualizado em</label>
+        <input type="text" class="fi" id="f-rank-date" value="29/04" placeholder="ex: 29/04" />
+      </div>
+      <div class="fg">
+        <label class="fl">Temporada</label>
+        <input type="text" class="fi" id="f-rank-season" value="2026" placeholder="ex: 2026" />
+      </div>
+      <button class="btn btn-primary" onclick="exportRanking()" style="width:100%;justify-content:center;margin-top:2px;">⬇ Gerar Imagem do Ranking</button>
+    </div>
+
+  </aside>
+
+  <main class="main">
+    <div class="prev-bar">
+      <span class="prev-lbl">Prévia — 1080 × 1080 px (escala 1:3)</span>
+      <span class="cnt-tag">5 slides</span>
+    </div>
+    <div class="prev-scroll" id="prev-scroll"></div>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- Canvas oculto para exportar o ranking -->
+<div id="ranking-canvas" style="position:fixed;left:-9999px;top:0;width:360px;background:#f8faf5;font-family:'Space Grotesk',sans-serif;"></div>
+
+<script>
+// ─── THEMES ──────────────────────────────────────────────────────────────────
+const THEMES = [
+  { id:'padrao', name:'Padrão', dot:'#1a3a2a',
+    verde:'#1a3a2a', verdeMid:'#2d5c3f', verdeLight:'#3d7a54',
+    creme:'#e8e8d8', cremeDark:'#d0d0bc', offWhite:'#f4f4ec',
+    s1bg:'#1a3a2a', s2bg:'#f4f4ec', s3bg:'#2d5c3f', s4bg:'#1a3a2a', s5bg:'#e8e8d8',
+    s1t:'#e8e8d8', s2t:'#1a3a2a', s3t:'#e8e8d8', s4t:'#e8e8d8', s5t:'#1a3a2a' },
+  { id:'bold', name:'Bold', dot:'#0d2018',
+    verde:'#0d2018', verdeMid:'#1a3a2a', verdeLight:'#2d5c3f',
+    creme:'#ffffff', cremeDark:'#e8e8d8', offWhite:'#f4f4ec',
+    s1bg:'#0d2018', s2bg:'#f4f4ec', s3bg:'#1a3a2a', s4bg:'#0d2018', s5bg:'#e8e8d8',
+    s1t:'#ffffff', s2t:'#0d2018', s3t:'#ffffff', s4t:'#ffffff', s5t:'#0d2018' },
+  { id:'noite', name:'Noite', dot:'#080808',
+    verde:'#080808', verdeMid:'#0f0f0f', verdeLight:'#1a3a2a',
+    creme:'#e8e8d8', cremeDark:'#c8c8b8', offWhite:'#d4d4cc',
+    s1bg:'#080808', s2bg:'#111', s3bg:'#0f0f0f', s4bg:'#080808', s5bg:'#111',
+    s1t:'#e8e8d8', s2t:'#e8e8d8', s3t:'#e8e8d8', s4t:'#e8e8d8', s5t:'#e8e8d8' },
+];
+
+const SLIDES = [
+  { id:'chamada',       name:'Chamada',        num:'01' },
+  { id:'resultados',    name:'Resultados',      num:'02' },
+  { id:'lance',         name:'Lance da Rodada', num:'03' },
+  { id:'classificacao', name:'Classificação',   num:'04' },
+  { id:'proxima',       name:'Próxima Rodada',  num:'05' },
+];
+
+// ─── STATE ────────────────────────────────────────────────────────────────────
+let themeIdx  = 0;
+let activeSlide = 0;
+const data = {
+  round:'07', date:'10 de maio',
+  h1:'A Rodada', h2:'Que Vai', h3:'Dar o que falar',
+  champ:'Centrone / Fox',
+  matches:'Silva / Ramos · 6×4 · Costa / Mendes\nCentrone / Fox · 7×5 · Torres / Braga\nFerreira / Lins · 6×3 · Pinto / Melo\nLemos / Costa · 6×2 · Alves / Neves',
+  lance:'O voleio que ninguém viu chegar',
+  athlete:'Centrone · Rodada 07',
+  ranking:'Centrone / Fox · 480\nSilva / Prado · 420\nLemos / Braga · 390\nTorres / Neves · 350\nFerreira / Lins · 320',
+  nextDate:'24 de maio',
+  phrase:'Quem para a dupla 1?',
+};
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+function init() {
+  document.getElementById('vt-row').innerHTML = THEMES.map((t,i) =>
+    `<button class="vt-chip ${i===0?'active':''}" onclick="setTheme(${i})">
+      <span class="vt-dot" style="background:${t.dot}"></span>${t.name}
+    </button>`
+  ).join('');
+  renderSlideList();
+  selectSlide(0);
+  renderAll();
+}
+
+// ─── THEME ───────────────────────────────────────────────────────────────────
+function setTheme(i) {
+  themeIdx = i;
+  document.querySelectorAll('.vt-chip').forEach((c,j) => c.classList.toggle('active', j===i));
+  renderAll();
+}
+
+// ─── GLOBAL SYNC ─────────────────────────────────────────────────────────────
+function syncGlobals() {
+  const r = document.getElementById('f-round');
+  const d = document.getElementById('f-date');
+  if(r) data.round = r.value || '07';
+  if(d) data.date  = d.value || '10 de maio';
+}
+
+// ─── SLIDE LIST ──────────────────────────────────────────────────────────────
+function renderSlideList() {
+  const previews = [
+    data.h1 + ' ' + data.h2,
+    '🏆 ' + (data.champ||'—'),
+    (data.lance||'').substring(0,28) + ((data.lance||'').length>28?'…':''),
+    'Top: ' + ((data.ranking||'').split('\n')[0]||'—'),
+    data.nextDate||'—',
+  ];
+  document.getElementById('sl').innerHTML = SLIDES.map((s,i) =>
+    `<div class="sli ${i===activeSlide?'active':''}" onclick="selectSlide(${i})">
+      <div class="sli-n">${s.num}</div>
+      <div class="sli-info">
+        <div class="sli-type">${s.name}</div>
+        <div class="sli-hl">${previews[i]}</div>
+      </div>
+    </div>`
+  ).join('');
+}
+
+// ─── EDITOR ──────────────────────────────────────────────────────────────────
+function selectSlide(i) {
+  activeSlide = i;
+  document.getElementById('ed-name').textContent = SLIDES[i].name;
+  buildEditorFields(i);
+  renderSlideList();
+  document.querySelectorAll('.sc-wrap').forEach((w,j) => w.classList.toggle('active', j===i));
+  setTimeout(() => {
+    const nodes = document.querySelectorAll('.sc-wrap');
+    if(nodes[i]) nodes[i].scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  }, 50);
+}
+
+function buildEditorFields(i) {
+  const f = {
+    0: `
+      <div class="fg"><label class="fl">Headline — linha 1</label><input class="fi" value="${esc(data.h1)}" oninput="set('h1',this.value)"></div>
+      <div class="fg"><label class="fl">Headline — linha 2</label><input class="fi" value="${esc(data.h2)}" oninput="set('h2',this.value)"></div>
+      <div class="fg"><label class="fl">Headline — linha 3 (fantasma)</label><input class="fi" value="${esc(data.h3)}" oninput="set('h3',this.value)"></div>`,
+    1: `
+      <div class="fg"><label class="fl">Campeão da rodada</label><input class="fi" value="${esc(data.champ)}" oninput="set('champ',this.value)"></div>
+      <div class="fg"><label class="fl">Partidas (uma por linha: A · 6×4 · B)</label><textarea class="fta" oninput="set('matches',this.value)">${esc(data.matches)}</textarea></div>`,
+    2: `
+      <div class="fg"><label class="fl">Frase do lance</label><textarea class="fta" oninput="set('lance',this.value)">${esc(data.lance)}</textarea></div>
+      <div class="fg"><label class="fl">Atleta destaque</label><input class="fi" value="${esc(data.athlete)}" oninput="set('athlete',this.value)"></div>`,
+    3: `
+      <div class="fg"><label class="fl">Classificação (uma por linha: Nome · pts)</label><textarea class="fta" style="min-height:120px" oninput="set('ranking',this.value)">${esc(data.ranking)}</textarea></div>`,
+    4: `
+      <div class="fg"><label class="fl">Data da próxima rodada</label><input class="fi" value="${esc(data.nextDate)}" oninput="set('nextDate',this.value)"></div>
+      <div class="fg"><label class="fl">Frase de encerramento</label><input class="fi" value="${esc(data.phrase)}" oninput="set('phrase',this.value)"></div>`,
+  };
+  document.getElementById('ed-fields').innerHTML = f[i] || '';
+}
+
+function set(key, value) {
+  data[key] = value;
+  renderSlideAt(activeSlide);
+  renderSlideList();
+}
+
+// ─── RENDER ──────────────────────────────────────────────────────────────────
+function renderAll() {
+  syncGlobals();
+  const container = document.getElementById('prev-scroll');
+  container.innerHTML = '';
+  SLIDES.forEach((_,i) => {
+    const wrap = document.createElement('div');
+    wrap.className = `sc-wrap ${i===activeSlide?'active':''}`;
+    wrap.innerHTML = `<div class="sc-num">${SLIDES[i].num} / ${SLIDES.length}</div><div class="sc" id="sc-${i}">${slideHTML(i)}</div>`;
+    wrap.addEventListener('click', () => selectSlide(i));
+    container.appendChild(wrap);
+  });
+  renderSlideList();
+}
+
+function renderSlideAt(i) {
+  syncGlobals();
+  const el = document.getElementById(`sc-${i}`);
+  if(el) el.innerHTML = slideHTML(i);
+  document.querySelectorAll('.sc-wrap').forEach((w,j) => w.classList.toggle('active', j===activeSlide));
+}
+
+// ─── SLIDE HTML ──────────────────────────────────────────────────────────────
+function slideHTML(i) {
+  const th = THEMES[themeIdx];
+  const round = data.round || '07';
+  const date  = data.date  || '10 de maio';
+  const nextRound = String(parseInt(round,10)+1).padStart(2,'0');
+  switch(i) {
+    case 0: return s1(th, round);
+    case 1: return s2(th, round, date);
+    case 2: return s3(th, round);
+    case 3: return s4(th, round, date);
+    case 4: return s5(th, nextRound);
+    default: return '';
+  }
+}
+
+// ─── S1: CHAMADA ─────────────────────────────────────────────────────────────
+function s1(th, round) {
+  const h1 = esc(data.h1||'A Rodada');
+  const h2 = esc(data.h2||'Que Vai');
+  const h3 = esc(data.h3||'Dar o que falar');
+  return `
+<div style="width:100%;height:100%;position:relative;overflow:hidden;background:${th.s1bg};display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 19px,rgba(232,232,216,.03) 19px,rgba(232,232,216,.03) 20px),repeating-linear-gradient(90deg,transparent,transparent 19px,rgba(232,232,216,.03) 19px,rgba(232,232,216,.03) 20px);pointer-events:none;"></div>
+  <svg style="position:absolute;width:240px;height:240px;top:50%;left:50%;transform:translate(-50%,-50%);opacity:.06;" viewBox="0 0 200 230" fill="none">
+    <path d="M100 10 L185 45 L185 130 Q185 185 100 220 Q15 185 15 130 L15 45 Z" fill="none" stroke="${th.creme}" stroke-width="5"/>
+    <ellipse cx="72" cy="108" rx="26" ry="36" fill="none" stroke="${th.creme}" stroke-width="4" transform="rotate(-18 72 108)"/>
+    <ellipse cx="128" cy="108" rx="26" ry="36" fill="none" stroke="${th.creme}" stroke-width="4" transform="rotate(18 128 108)"/>
+    <line x1="62" y1="52" x2="138" y2="52" stroke="${th.creme}" stroke-width="6" stroke-linecap="round"/>
+  </svg>
+  <div style="position:absolute;inset:12px;border:1.5px solid rgba(232,232,216,.1);pointer-events:none;"></div>
+  <div style="position:relative;text-align:center;padding:30px;z-index:2;">
+    <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.3em;color:${th.s1t};opacity:.4;text-transform:uppercase;margin-bottom:20px;">TEMPORADA 2025 · RODADA ${round}</div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:52px;color:${th.s1t};text-transform:uppercase;line-height:.88;letter-spacing:-.01em;margin-bottom:22px;">
+      <div>${h1}</div>
+      <div>${h2}</div>
+      <div style="color:transparent;-webkit-text-stroke:1.5px ${th.s1t};opacity:.25;">${h3}</div>
+    </div>
+    <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.2em;color:${th.s1t};opacity:.35;text-transform:uppercase;">Arrasta pra ver os resultados →</div>
+  </div>
+  <svg style="position:absolute;bottom:18px;right:18px;width:24px;height:28px;opacity:.25;" viewBox="0 0 200 230">
+    <path d="M100 10 L185 45 L185 130 Q185 185 100 220 Q15 185 15 130 L15 45 Z" fill="none" stroke="${th.s1t}" stroke-width="8"/>
+    <text x="100" y="140" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="900" font-size="80" fill="${th.s1t}">SV</text>
+  </svg>
+</div>`;
+}
+
+// ─── S2: RESULTADOS ───────────────────────────────────────────────────────────
+function s2(th, round, date) {
+  const champ = esc(data.champ||'Campeão');
+  const lines = (data.matches||'').split('\n').filter(l=>l.trim());
+  const matchHtml = lines.map(line => {
+    const p = line.split('·').map(s=>s.trim());
+    const tA = esc(p[0]||'—'), sc = esc(p[1]||'6×4'), tB = esc(p[2]||'—');
+    const [sa,sb] = sc.replace('×','x').split('x').map(Number);
+    const aW = sa > sb;
+    return `<div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:7px 16px;border-bottom:1px solid rgba(26,58,42,.08);gap:5px;">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:${aW?900:700};font-size:11px;color:${th.s2t};text-transform:uppercase;letter-spacing:.03em;${!aW?'opacity:.4':''}">${tA}</span>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:16px;color:${th.s2t};text-align:center;white-space:nowrap;">${sc}</span>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:${!aW?900:700};font-size:11px;color:${th.s2t};text-transform:uppercase;letter-spacing:.03em;text-align:right;${aW?'opacity:.4':''}">${tB}</span>
+    </div>`;
+  }).join('');
+  return `
+<div style="width:100%;height:100%;background:${th.s2bg};display:flex;flex-direction:column;font-family:'Barlow Condensed',sans-serif;overflow:hidden;">
+  <div style="background:${th.verde};padding:13px 16px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;">
+    <span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;color:${th.creme};text-transform:uppercase;letter-spacing:.05em;">Resultados · Rodada ${round}</span>
+    <span style="font-family:'DM Mono',monospace;font-size:8px;color:${th.creme};opacity:.4;letter-spacing:.2em;">${date.toUpperCase()}</span>
+  </div>
+  <div style="background:${th.verdeMid};padding:10px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0;">
+    <span style="font-size:14px;">🏆</span>
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:8px;color:${th.creme};opacity:.5;letter-spacing:.2em;text-transform:uppercase;">Campeão da rodada</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:16px;color:${th.creme};text-transform:uppercase;letter-spacing:.05em;">${champ}</div>
+    </div>
+  </div>
+  <div style="flex:1;overflow:hidden;">${matchHtml}</div>
+  <div style="padding:9px 16px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(26,58,42,.08);flex-shrink:0;">
+    <span style="font-family:'DM Mono',monospace;font-size:8px;color:${th.s2t};opacity:.3;letter-spacing:.15em;">Ver classificação →</span>
+    <svg width="18" height="21" viewBox="0 0 200 230">
+      <path d="M100 10 L185 45 L185 130 Q185 185 100 220 Q15 185 15 130 L15 45 Z" fill="none" stroke="${th.verde}" stroke-width="8" opacity=".2"/>
+      <text x="100" y="140" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="900" font-size="80" fill="${th.verde}" opacity=".2">SV</text>
+    </svg>
+  </div>
+</div>`;
+}
+
+// ─── S3: LANCE ────────────────────────────────────────────────────────────────
+function s3(th, round) {
+  const lance   = esc(data.lance||'O lance da rodada').replace(/\n/g,'<br>');
+  const athlete = esc(data.athlete||'Atleta Destaque');
+  return `
+<div style="width:100%;height:100%;background:${th.s3bg};display:flex;flex-direction:column;justify-content:space-between;padding:26px 24px;position:relative;overflow:hidden;font-family:'Barlow Condensed',sans-serif;">
+  <div style="position:absolute;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:260px;color:rgba(232,232,216,.04);top:-55px;left:-12px;line-height:1;pointer-events:none;">"</div>
+  <div style="position:absolute;inset:10px;border:1px solid rgba(232,232,216,.08);pointer-events:none;"></div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:2;">
+    <span style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.28em;color:${th.s3t};opacity:.4;text-transform:uppercase;">LANCE DA RODADA ${round}</span>
+    <svg width="26" height="30" viewBox="0 0 200 230" style="opacity:.3;">
+      <path d="M100 10 L185 45 L185 130 Q185 185 100 220 Q15 185 15 130 L15 45 Z" fill="none" stroke="${th.s3t}" stroke-width="7"/>
+      <text x="100" y="140" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="900" font-size="80" fill="${th.s3t}">SV</text>
+    </svg>
+  </div>
+  <div style="flex:1;display:flex;align-items:center;padding:14px 0;position:relative;z-index:2;">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-style:italic;font-size:38px;color:${th.s3t};text-transform:uppercase;line-height:.92;letter-spacing:-.01em;">${lance}</div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;position:relative;z-index:2;">
+    <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:${th.s3t};text-transform:uppercase;letter-spacing:.1em;opacity:.65;">${athlete}</span>
+    <span style="font-family:'DM Mono',monospace;font-size:8px;color:${th.s3t};opacity:.3;letter-spacing:.12em;text-align:right;line-height:1.6;">Você viu ao vivo?<br>Comenta aqui 👇</span>
+  </div>
+</div>`;
+}
+
+// ─── S4: CLASSIFICAÇÃO ────────────────────────────────────────────────────────
+function s4(th, round, date) {
+  const lines = (data.ranking||'').split('\n').filter(l=>l.trim()).slice(0,6);
+  const ops = [1, .85, .75, .6, .5, .4];
+  const rankHtml = lines.map((line,i) => {
+    const p = line.split('·').map(s=>s.trim());
+    const name = esc(p[0]||'—'), pts = esc(p[1]||'—');
+    const pos  = String(i+1).padStart(2,'0');
+    const first = i===0;
+    return `<div style="display:grid;grid-template-columns:26px 1fr auto;align-items:center;padding:9px 16px;border-bottom:1px solid rgba(232,232,216,.05);${first?'background:rgba(232,232,216,.06);':''}">
+      <span style="font-family:'DM Mono',monospace;font-size:9px;color:${th.s4t};opacity:${first?.6:.3};letter-spacing:.1em;">${pos}</span>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:${first?900:700};font-size:${first?'15px':'13px'};color:${th.s4t};text-transform:uppercase;letter-spacing:.04em;opacity:${ops[i]||.4};">${name}</span>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:${first?'18px':'15px'};color:${th.s4t};opacity:${first?1:.45};letter-spacing:.02em;">${pts}</span>
+    </div>`;
+  }).join('');
+  return `
+<div style="width:100%;height:100%;background:${th.s4bg};display:flex;flex-direction:column;font-family:'Barlow Condensed',sans-serif;overflow:hidden;">
+  <div style="padding:15px 16px 11px;border-bottom:1px solid rgba(232,232,216,.08);flex-shrink:0;">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:10px;color:${th.s4t};text-transform:uppercase;letter-spacing:.3em;opacity:.5;margin-bottom:1px;">Classificação</div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:22px;color:${th.s4t};text-transform:uppercase;line-height:1;">Após Rodada ${round}</div>
+  </div>
+  <div style="flex:1;overflow:hidden;">${rankHtml}</div>
+  <div style="padding:9px 16px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(232,232,216,.06);flex-shrink:0;">
+    <span style="font-family:'DM Mono',monospace;font-size:8px;color:${th.s4t};opacity:.25;letter-spacing:.15em;">Atualizado após ${date} · Temporada 2025</span>
+    <svg width="18" height="21" viewBox="0 0 200 230">
+      <path d="M100 10 L185 45 L185 130 Q185 185 100 220 Q15 185 15 130 L15 45 Z" fill="none" stroke="${th.creme}" stroke-width="8" opacity=".2"/>
+      <text x="100" y="140" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="900" font-size="80" fill="${th.creme}" opacity=".2">SV</text>
+    </svg>
+  </div>
+</div>`;
+}
+
+// ─── S5: PRÓXIMA RODADA ───────────────────────────────────────────────────────
+function s5(th, nextRound) {
+  const nextDate = esc(data.nextDate||'24 de maio');
+  const phrase   = esc(data.phrase||'Quem para a dupla 1?');
+  return `
+<div style="width:100%;height:100%;background:${th.s5bg};display:flex;flex-direction:column;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:9px;border:2px solid rgba(26,58,42,.12);pointer-events:none;z-index:2;"></div>
+  <div style="position:absolute;inset:14px;border:1px solid rgba(26,58,42,.06);pointer-events:none;z-index:2;"></div>
+  <div style="position:absolute;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:210px;color:rgba(26,58,42,.04);right:-18px;bottom:-40px;line-height:1;pointer-events:none;letter-spacing:-.05em;">${nextRound}</div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:32px 28px;position:relative;z-index:3;">
+    <span style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.3em;color:${th.s5t};opacity:.4;text-transform:uppercase;">Squadra Verde · 2025</span>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:${th.s5t};opacity:.4;display:block;margin-bottom:4px;">Próxima rodada</span>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:62px;color:${th.s5t};text-transform:uppercase;line-height:.88;letter-spacing:-.02em;display:block;margin-bottom:12px;">Rodada<br>${nextRound}</span>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;color:${th.s5t};text-transform:uppercase;letter-spacing:.15em;opacity:.7;display:block;margin-bottom:16px;">${nextDate}</span>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:${th.offWhite};background:${th.verde};padding:8px 14px;display:inline-block;">Confirma sua presença 👇</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-style:italic;font-size:12px;color:${th.s5t};opacity:.45;text-transform:uppercase;letter-spacing:.05em;max-width:160px;line-height:1.25;">"${phrase}"</span>
+      <svg width="28" height="33" viewBox="0 0 200 230">
+        <path d="M100 10 L185 45 L185 130 Q185 185 100 220 Q15 185 15 130 L15 45 Z" fill="none" stroke="${th.s5t}" stroke-width="5" opacity=".2"/>
+        <ellipse cx="72" cy="108" rx="26" ry="36" fill="none" stroke="${th.s5t}" stroke-width="3" transform="rotate(-18 72 108)" opacity=".2"/>
+        <ellipse cx="128" cy="108" rx="26" ry="36" fill="none" stroke="${th.s5t}" stroke-width="3" transform="rotate(18 128 108)" opacity=".2"/>
+      </svg>
+    </div>
+  </div>
+</div>`;
+}
+
+// ─── ESCAPE ───────────────────────────────────────────────────────────────────
+function esc(str) {
+  if(!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ─── EXPORT ───────────────────────────────────────────────────────────────────
+async function exportCurrent() {
+  await document.fonts.ready;
+  const th = THEMES[themeIdx];
+  await doExport(activeSlide, `sv-${th.id}-slide-${String(activeSlide+1).padStart(2,'0')}.png`);
+}
+
+async function exportAll() {
+  await document.fonts.ready;
+  const th = THEMES[themeIdx];
+  toast(`Exportando 5 slides — tema ${th.name}...`);
+  for(let i=0; i<5; i++) {
+    await doExport(i, `sv-${th.id}-slide-${String(i+1).padStart(2,'0')}.png`);
+    await sleep(380);
+  }
+  toast('Todos os slides exportados!');
+}
+
+async function doExport(i, filename) {
+  const el = document.getElementById(`sc-${i}`);
+  if(!el) return;
+  try {
+    const canvas = await html2canvas(el, {
+      scale:3, useCORS:true, allowTaint:true,
+      backgroundColor:null, logging:false, width:360, height:360,
+    });
+    const a = document.createElement('a');
+    a.download = filename;
+    a.href = canvas.toDataURL('image/png');
+    a.click();
+  } catch(err) {
+    console.error(err);
+    toast('Erro ao exportar. Tente novamente.');
+  }
+}
+
+function sleep(ms){ return new Promise(r=>setTimeout(r,ms)); }
+
+// ─── RANKING DATA ─────────────────────────────────────────────────────────────
+const RANKING_DATA = {"atualizado_em":"29/04","ranking":[{"posicao":1,"nome":"José Resende","jogos":3,"vitorias":3,"derrotas":0,"percentual_vitorias":100,"games_vencidos":18,"games_perdidos":7,"saldo_games":11},{"posicao":2,"nome":"Riccardo Voso","jogos":3,"vitorias":3,"derrotas":0,"percentual_vitorias":100,"games_vencidos":18,"games_perdidos":7,"saldo_games":11},{"posicao":3,"nome":"João Paulo Fiacadori","jogos":3,"vitorias":3,"derrotas":0,"percentual_vitorias":100,"games_vencidos":18,"games_perdidos":8,"saldo_games":10},{"posicao":4,"nome":"Wagner Santos","jogos":3,"vitorias":3,"derrotas":0,"percentual_vitorias":100,"games_vencidos":20,"games_perdidos":13,"saldo_games":7},{"posicao":5,"nome":"Rodrigo Lolato","jogos":6,"vitorias":5,"derrotas":1,"percentual_vitorias":83,"games_vencidos":34,"games_perdidos":24,"saldo_games":10},{"posicao":6,"nome":"Augusto Oazi","jogos":6,"vitorias":3,"derrotas":3,"percentual_vitorias":50,"games_vencidos":29,"games_perdidos":21,"saldo_games":8},{"posicao":7,"nome":"Alexandre Castro","jogos":6,"vitorias":3,"derrotas":3,"percentual_vitorias":50,"games_vencidos":30,"games_perdidos":34,"saldo_games":-4},{"posicao":8,"nome":"Miguel Centrone","jogos":3,"vitorias":1,"derrotas":2,"percentual_vitorias":33,"games_vencidos":17,"games_perdidos":16,"saldo_games":1},{"posicao":9,"nome":"Reginaldo Teiji","jogos":3,"vitorias":1,"derrotas":2,"percentual_vitorias":33,"games_vencidos":15,"games_perdidos":15,"saldo_games":0},{"posicao":10,"nome":"Fausto Moretti","jogos":3,"vitorias":1,"derrotas":2,"percentual_vitorias":33,"games_vencidos":14,"games_perdidos":15,"saldo_games":-1},{"posicao":11,"nome":"Felippi Cordeiro","jogos":3,"vitorias":1,"derrotas":2,"percentual_vitorias":33,"games_vencidos":12,"games_perdidos":15,"saldo_games":-3},{"posicao":12,"nome":"Gustavo Machado","jogos":3,"vitorias":1,"derrotas":2,"percentual_vitorias":33,"games_vencidos":12,"games_perdidos":15,"saldo_games":-3},{"posicao":13,"nome":"João Centrone","jogos":3,"vitorias":1,"derrotas":2,"percentual_vitorias":33,"games_vencidos":12,"games_perdidos":15,"saldo_games":-3},{"posicao":14,"nome":"William Silva","jogos":3,"vitorias":1,"derrotas":2,"percentual_vitorias":33,"games_vencidos":15,"games_perdidos":18,"saldo_games":-3},{"posicao":15,"nome":"Rafael Madi","jogos":3,"vitorias":1,"derrotas":2,"percentual_vitorias":33,"games_vencidos":12,"games_perdidos":15,"saldo_games":-3},{"posicao":16,"nome":"Guilherme Machado","jogos":3,"vitorias":1,"derrotas":2,"percentual_vitorias":33,"games_vencidos":10,"games_perdidos":15,"saldo_games":-5},{"posicao":17,"nome":"Rafael Carioca","jogos":3,"vitorias":1,"derrotas":2,"percentual_vitorias":33,"games_vencidos":9,"games_perdidos":15,"saldo_games":-6},{"posicao":18,"nome":"Marcelo Cavalieri","jogos":3,"vitorias":1,"derrotas":2,"percentual_vitorias":33,"games_vencidos":9,"games_perdidos":16,"saldo_games":-7},{"posicao":19,"nome":"Adriano Marchioreto","jogos":3,"vitorias":1,"derrotas":2,"percentual_vitorias":33,"games_vencidos":9,"games_perdidos":16,"saldo_games":-7},{"posicao":20,"nome":"Fábio Lodi","jogos":3,"vitorias":0,"derrotas":3,"percentual_vitorias":0,"games_vencidos":9,"games_perdidos":18,"saldo_games":-9},{"posicao":21,"nome":"Diego Rinaldi","jogos":0,"vitorias":0,"derrotas":0,"percentual_vitorias":0,"games_vencidos":0,"games_perdidos":0,"saldo_games":0},{"posicao":22,"nome":"Dudu Batista","jogos":0,"vitorias":0,"derrotas":0,"percentual_vitorias":0,"games_vencidos":0,"games_perdidos":0,"saldo_games":0},{"posicao":23,"nome":"João Pedro Viberti","jogos":0,"vitorias":0,"derrotas":0,"percentual_vitorias":0,"games_vencidos":0,"games_perdidos":0,"saldo_games":0},{"posicao":24,"nome":"Julio Castilho","jogos":0,"vitorias":0,"derrotas":0,"percentual_vitorias":0,"games_vencidos":0,"games_perdidos":0,"saldo_games":0},{"posicao":25,"nome":"Márcio Junqueira","jogos":0,"vitorias":0,"derrotas":0,"percentual_vitorias":0,"games_vencidos":0,"games_perdidos":0,"saldo_games":0},{"posicao":26,"nome":"Osmar Vendramel","jogos":0,"vitorias":0,"derrotas":0,"percentual_vitorias":0,"games_vencidos":0,"games_perdidos":0,"saldo_games":0},{"posicao":27,"nome":"Renato Cima","jogos":0,"vitorias":0,"derrotas":0,"percentual_vitorias":0,"games_vencidos":0,"games_perdidos":0,"saldo_games":0},{"posicao":28,"nome":"Renato Santoro","jogos":0,"vitorias":0,"derrotas":0,"percentual_vitorias":0,"games_vencidos":0,"games_perdidos":0,"saldo_games":0},{"posicao":29,"nome":"Sylvano Appoloni","jogos":0,"vitorias":0,"derrotas":0,"percentual_vitorias":0,"games_vencidos":0,"games_perdidos":0,"saldo_games":0},{"posicao":30,"nome":"Pedro Vita","jogos":0,"vitorias":0,"derrotas":0,"percentual_vitorias":0,"games_vencidos":0,"games_perdidos":0,"saldo_games":0},{"posicao":31,"nome":"Tiago Carioca","jogos":0,"vitorias":0,"derrotas":0,"percentual_vitorias":0,"games_vencidos":0,"games_perdidos":0,"saldo_games":0},{"posicao":32,"nome":"Zenon Barcelos","jogos":0,"vitorias":0,"derrotas":0,"percentual_vitorias":0,"games_vencidos":0,"games_perdidos":0,"saldo_games":0}]};
+
+// ─── RANKING IMAGE ────────────────────────────────────────────────────────────
+const RANK_BG = {
+  1: { bg:'#00361a', color:'#9dd3aa' },
+  2: { bg:'#1a4d2e', color:'#aeeecb' },
+  3: { bg:'#2c694e', color:'#b1f0ce' },
+};
+const MEDALS = ['🥇','🥈','🥉'];
+
+function rankingHTML() {
+  const rd      = document.getElementById('f-rank-date')?.value   || RANKING_DATA.atualizado_em;
+  const season  = document.getElementById('f-rank-season')?.value || '2026';
+  const players = RANKING_DATA.ranking;
+  const podium  = players.slice(0, 3);
+  const rest    = players.slice(3);
+
+  const podiumHtml = podium.map(j => {
+    const rb = RANK_BG[j.posicao];
+    return `<div style="background:${rb.bg};padding:11px 9px;position:relative;overflow:hidden;flex:1;min-width:0;">
+      <div style="position:absolute;right:-5px;top:-10px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:58px;color:rgba(255,255,255,.05);line-height:1;pointer-events:none;">${j.posicao}</div>
+      <div style="font-family:'DM Mono',monospace;font-size:8px;color:${rb.color};letter-spacing:.08em;margin-bottom:4px;">#${j.posicao} ${MEDALS[j.posicao-1]}</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:10px;color:#fff;margin-bottom:7px;line-height:1.25;min-height:25px;">${j.nome}</div>
+      <div style="display:flex;gap:8px;">
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:13px;color:${rb.color};font-weight:500;">${j.percentual_vitorias}%</div>
+          <div style="font-family:'Inter',sans-serif;font-size:7px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:1px;">%V</div>
+        </div>
+        <div>
+          <div style="font-family:'DM Mono',monospace;font-size:13px;color:${j.saldo_games>=0?rb.color:'#ffdad6'};font-weight:500;">${j.saldo_games>0?'+':''}${j.saldo_games}</div>
+          <div style="font-family:'Inter',sans-serif;font-size:7px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:1px;">SG</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  const rowsHtml = rest.map((j, idx) => {
+    const isEven  = idx % 2 === 0;
+    const sgColor = j.saldo_games > 0 ? '#00361a' : j.saldo_games < 0 ? '#ba1a1a' : '#717971';
+    const pvColor = j.percentual_vitorias >= 67 ? '#00361a' : j.percentual_vitorias >= 33 ? '#414942' : '#ba1a1a';
+    return `<div style="display:grid;grid-template-columns:30px 1fr 26px 38px 36px;align-items:center;padding:6px 12px;background:${isEven?'#fff':'#f8faf5'};border-bottom:1px solid #e7e9e4;">
+      <span style="font-family:'DM Mono',monospace;font-size:11px;color:#717971;">${j.posicao}</span>
+      <span style="font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:500;color:#191c19;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${j.nome}</span>
+      <span style="font-family:'DM Mono',monospace;font-size:11px;color:#414942;text-align:center;">${j.jogos}</span>
+      <span style="font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:${pvColor};text-align:center;">${j.percentual_vitorias}%</span>
+      <span style="font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:${sgColor};text-align:right;">${j.saldo_games>0?'+':''}${j.saldo_games}</span>
+    </div>`;
+  }).join('');
+
+  return `
+    <div style="background:#1a3a2a;padding:16px 14px 12px;">
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.28em;color:rgba(232,232,216,.45);text-transform:uppercase;margin-bottom:5px;">SQUADRA VERDE · TEMPORADA ${season}</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:30px;color:#e8e8d8;text-transform:uppercase;line-height:.92;letter-spacing:-.01em;">Classificação<br>Geral</div>
+      <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;color:rgba(232,232,216,.35);margin-top:7px;">Atualizado em ${rd} · ${players.length} atletas</div>
+    </div>
+    <div style="display:flex;gap:1px;background:#0d2018;">${podiumHtml}</div>
+    <div style="display:grid;grid-template-columns:30px 1fr 26px 38px 36px;align-items:center;padding:7px 12px;background:#2e312e;border-bottom:1px solid rgba(255,255,255,.06);">
+      <span style="font-family:'Inter',sans-serif;font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9dd3aa;">POS</span>
+      <span style="font-family:'Inter',sans-serif;font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9dd3aa;">ATLETA</span>
+      <span style="font-family:'Inter',sans-serif;font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9dd3aa;text-align:center;">J</span>
+      <span style="font-family:'Inter',sans-serif;font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9dd3aa;text-align:center;">%V</span>
+      <span style="font-family:'Inter',sans-serif;font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#9dd3aa;text-align:right;">SG</span>
+    </div>
+    ${rowsHtml}
+    <div style="background:#1a3a2a;padding:9px 14px;display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;align-items:center;gap:7px;">
+        <svg width="14" height="16" viewBox="0 0 200 230" fill="none">
+          <path d="M100 10 L185 45 L185 130 Q185 185 100 220 Q15 185 15 130 L15 45 Z" fill="none" stroke="#3d7a54" stroke-width="10"/>
+          <text x="100" y="140" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="900" font-size="80" fill="#3d7a54">SV</text>
+        </svg>
+        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(232,232,216,.5);">SQUADRA VERDE</span>
+      </div>
+      <span style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(232,232,216,.28);letter-spacing:.1em;">rei-da-quadra.com</span>
+    </div>`;
+}
+
+async function exportRanking() {
+  await document.fonts.ready;
+  const canvas = document.getElementById('ranking-canvas');
+  canvas.innerHTML = rankingHTML();
+  await sleep(120);
+  try {
+    const img = await html2canvas(canvas, {
+      scale: 3,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: '#f8faf5',
+      logging: false,
+    });
+    const a = document.createElement('a');
+    const season = document.getElementById('f-rank-season')?.value || '2026';
+    a.download = `sv-classificacao-${season}.png`;
+    a.href = img.toDataURL('image/png');
+    a.click();
+    toast('Imagem do ranking exportada!');
+  } catch(err) {
+    console.error(err);
+    toast('Erro ao exportar. Tente novamente.');
+  }
+}
+
+let _tt;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  clearTimeout(_tt); _tt = setTimeout(()=>el.classList.remove('show'), 2800);
+}
+
+init();
+</script>
+</body>
+</html>
