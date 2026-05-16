@@ -135,7 +135,7 @@
   <main class="main">
     <div class="prev-bar">
       <span class="prev-lbl">Prévia — 1080 × 1080 px (escala 1:3)</span>
-      <span class="cnt-tag">3 slides</span>
+      <span class="cnt-tag">4 slides</span>
     </div>
     <div class="prev-scroll" id="prev-scroll"></div>
   </main>
@@ -167,9 +167,10 @@ const THEMES = [
 ];
 
 const SLIDES = [
-  { id:'resultado',     name:'Resultado',      num:'01' },
-  { id:'classificacao', name:'Classificação',   num:'02' },
-  { id:'proxima',       name:'Próxima Rodada',  num:'03' },
+  { id:'chamada',       name:'Chamada',         num:'01' },
+  { id:'resultado',     name:'Resultado',       num:'02' },
+  { id:'classificacao', name:'Classificação',   num:'03' },
+  { id:'proxima',       name:'Próxima Rodada',  num:'04' },
 ];
 
 // ─── STATE ────────────────────────────────────────────────────────────────────
@@ -177,6 +178,7 @@ let themeIdx   = 0;
 let activeSlide = 0;
 const data = {
   round:'07', date:'10 de maio', season:'2026',
+  h1:'A Rodada', h2:'Que Vai', h3:'Dar o que falar',
   champ:'Centrone / Fox',
   matches:'Silva / Ramos · 6×4 · Costa / Mendes\nCentrone / Fox · 7×5 · Torres / Braga\nFerreira / Lins · 6×3 · Pinto / Melo\nLemos / Costa · 6×2 · Alves / Neves',
   rankDate:'29/04',
@@ -216,6 +218,7 @@ function syncGlobals() {
 // ─── SLIDE LIST ───────────────────────────────────────────────────────────────
 function renderSlideList() {
   const previews = [
+    (data.h1||'—') + ' ' + (data.h2||''),
     '🏆 ' + (data.champ||'—'),
     `Após Rodada ${data.round}`,
     data.nextDate||'—',
@@ -247,12 +250,16 @@ function selectSlide(i) {
 function buildEditorFields(i) {
   const f = {
     0: `
+      <div class="fg"><label class="fl">Headline — linha 1</label><input class="fi" value="${esc(data.h1)}" oninput="set('h1',this.value)"></div>
+      <div class="fg"><label class="fl">Headline — linha 2</label><input class="fi" value="${esc(data.h2)}" oninput="set('h2',this.value)"></div>
+      <div class="fg"><label class="fl">Headline — linha 3 (fantasma)</label><input class="fi" value="${esc(data.h3)}" oninput="set('h3',this.value)"></div>`,
+    1: `
       <div class="fg"><label class="fl">Campeão da rodada</label><input class="fi" value="${esc(data.champ)}" oninput="set('champ',this.value)"></div>
       <div class="fg"><label class="fl">Partidas (uma por linha: A · 6×4 · B)</label><textarea class="fta" oninput="set('matches',this.value)">${esc(data.matches)}</textarea></div>`,
-    1: `
+    2: `
       <div class="fg"><label class="fl">Atualizado em</label><input class="fi" value="${esc(data.rankDate)}" oninput="set('rankDate',this.value)"></div>
       <p style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text-faint);line-height:1.5;margin-top:4px;">O ranking usa os dados embutidos no arquivo. Edite o JSON para atualizar os atletas.</p>`,
-    2: `
+    3: `
       <div class="fg"><label class="fl">Data da próxima rodada</label><input class="fi" value="${esc(data.nextDate)}" oninput="set('nextDate',this.value)"></div>
       <div class="fg"><label class="fl">Frase de encerramento</label><input class="fi" value="${esc(data.phrase)}" oninput="set('phrase',this.value)"></div>`,
   };
@@ -293,11 +300,43 @@ function slideHTML(i) {
   const round = data.round  || '07';
   const date  = data.date   || '10 de maio';
   switch(i) {
-    case 0: return s1_resultado(th, round, date);
-    case 1: return s2_classificacao(th, round);
-    case 2: return s3_proxima(th, round);
+    case 0: return s0_chamada(th, round);
+    case 1: return s1_resultado(th, round, date);
+    case 2: return s2_classificacao(th, round);
+    case 3: return s3_proxima(th, round);
     default: return '';
   }
+}
+
+// ─── S0: CHAMADA ─────────────────────────────────────────────────────────────
+function s0_chamada(th, round) {
+  const h1 = esc(data.h1||'A Rodada');
+  const h2 = esc(data.h2||'Que Vai');
+  const h3 = esc(data.h3||'Dar o que falar');
+  return `
+<div style="width:100%;height:100%;position:relative;overflow:hidden;background:${th.verde};display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;">
+  <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 19px,rgba(232,232,216,.03) 19px,rgba(232,232,216,.03) 20px),repeating-linear-gradient(90deg,transparent,transparent 19px,rgba(232,232,216,.03) 19px,rgba(232,232,216,.03) 20px);pointer-events:none;"></div>
+  <svg style="position:absolute;width:240px;height:240px;top:50%;left:50%;transform:translate(-50%,-50%);opacity:.06;" viewBox="0 0 200 230" fill="none">
+    <path d="M100 10 L185 45 L185 130 Q185 185 100 220 Q15 185 15 130 L15 45 Z" fill="none" stroke="${th.creme}" stroke-width="5"/>
+    <ellipse cx="72" cy="108" rx="26" ry="36" fill="none" stroke="${th.creme}" stroke-width="4" transform="rotate(-18 72 108)"/>
+    <ellipse cx="128" cy="108" rx="26" ry="36" fill="none" stroke="${th.creme}" stroke-width="4" transform="rotate(18 128 108)"/>
+    <line x1="62" y1="52" x2="138" y2="52" stroke="${th.creme}" stroke-width="6" stroke-linecap="round"/>
+  </svg>
+  <div style="position:absolute;inset:12px;border:1.5px solid rgba(232,232,216,.1);pointer-events:none;"></div>
+  <div style="position:relative;text-align:center;padding:30px;z-index:2;">
+    <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.3em;color:${th.creme};opacity:.4;text-transform:uppercase;margin-bottom:20px;">TEMPORADA ${esc(data.season||'2026')} · RODADA ${round}</div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:52px;color:${th.creme};text-transform:uppercase;line-height:.88;letter-spacing:-.01em;margin-bottom:22px;">
+      <div>${h1}</div>
+      <div>${h2}</div>
+      <div style="color:transparent;-webkit-text-stroke:1.5px ${th.creme};opacity:.25;">${h3}</div>
+    </div>
+    <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.2em;color:${th.creme};opacity:.35;text-transform:uppercase;">Arrasta pra ver os resultados →</div>
+  </div>
+  <svg style="position:absolute;bottom:18px;right:18px;width:24px;height:28px;opacity:.25;" viewBox="0 0 200 230">
+    <path d="M100 10 L185 45 L185 130 Q185 185 100 220 Q15 185 15 130 L15 45 Z" fill="none" stroke="${th.creme}" stroke-width="8"/>
+    <text x="100" y="140" text-anchor="middle" font-family="'Barlow Condensed',sans-serif" font-weight="900" font-size="80" fill="${th.creme}">SV</text>
+  </svg>
+</div>`;
 }
 
 // ─── S1: RESULTADO DA RODADA ──────────────────────────────────────────────────
@@ -424,9 +463,8 @@ function s3_proxima(th, round) {
     <span style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.3em;color:${th.s3t};opacity:.4;text-transform:uppercase;">Squadra Verde · ${season}</span>
     <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
       <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:${th.s3t};opacity:.4;display:block;margin-bottom:4px;">Próxima rodada</span>
-      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:62px;color:${th.s3t};text-transform:uppercase;line-height:.88;letter-spacing:-.02em;display:block;margin-bottom:12px;">Rodada<br>${nextRound}</span>
-      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;color:${th.s3t};text-transform:uppercase;letter-spacing:.15em;opacity:.7;display:block;margin-bottom:16px;">${nextDate}</span>
-      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:${th.offWhite};background:${th.verde};padding:8px 14px;display:inline-block;">Confirma sua presença 👇</span>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:62px;color:${th.s3t};text-transform:uppercase;line-height:.88;letter-spacing:-.02em;display:block;margin-bottom:14px;">Rodada<br>${nextRound}</span>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;color:${th.s3t};text-transform:uppercase;letter-spacing:.15em;opacity:.75;display:block;">${nextDate}</span>
     </div>
     <div style="display:flex;justify-content:space-between;align-items:flex-end;">
       <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-style:italic;font-size:12px;color:${th.s3t};opacity:.45;text-transform:uppercase;letter-spacing:.05em;max-width:160px;line-height:1.25;">"${phrase}"</span>
@@ -456,8 +494,8 @@ async function exportCurrent() {
 async function exportAll() {
   await document.fonts.ready;
   const th = THEMES[themeIdx];
-  toast(`Exportando 3 slides — tema ${th.name}...`);
-  for(let i = 0; i < 3; i++) {
+  toast(`Exportando 4 slides — tema ${th.name}...`);
+  for(let i = 0; i < 4; i++) {
     await doExport(i, `sv-rodada${data.round}-${SLIDES[i].id}-${th.id}.png`);
     await sleep(380);
   }
