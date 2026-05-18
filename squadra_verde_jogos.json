@@ -1,0 +1,1483 @@
+{
+  "torneio": "Masculino Squadra Verde",
+  "rodadas": [
+    {
+      "rodada": 15,
+      "data": "2025-08-23T08:00:00",
+      "jogos": [
+        {
+          "jogo": 225,
+          "dupla1": ["Gabriella Mattos", "Renata Salvestrini"],
+          "dupla2": ["Filomena Centrone", "Liliane Lodi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 224,
+          "dupla1": ["Gabriella Mattos", "Liliane Lodi"],
+          "dupla2": ["Filomena Centrone", "Renata Salvestrini"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 223,
+          "dupla1": ["Filomena Centrone", "Gabriella Mattos"],
+          "dupla2": ["Liliane Lodi", "Renata Salvestrini"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 222,
+          "dupla1": ["Janice Lotufo", "Luciana Madi"],
+          "dupla2": ["Luciana Pelegrino", "Neive Andrade"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 221,
+          "dupla1": ["Janice Lotufo", "Luciana Pelegrino"],
+          "dupla2": ["Luciana Madi", "Neive Andrade"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 220,
+          "dupla1": ["Janice Lotufo", "Neive Andrade"],
+          "dupla2": ["Luciana Madi", "Luciana Pelegrino"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 219,
+          "dupla1": ["Fernanda Bopp", "Tatiana Masui"],
+          "dupla2": ["Cristiane Kovacs", "Renata Novaes"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 218,
+          "dupla1": ["Fernanda Bopp", "Renata Novaes"],
+          "dupla2": ["Cristiane Kovacs", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 217,
+          "dupla1": ["Cristiane Kovacs", "Fernanda Bopp"],
+          "dupla2": ["Renata Novaes", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 216,
+          "dupla1": ["Hellen Rodrigues", "Raphaela Fiacadori"],
+          "dupla2": ["Alessandra Sandrini", "Carolina Honorato"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 215,
+          "dupla1": ["Carolina Honorato", "Raphaela Fiacadori"],
+          "dupla2": ["Alessandra Sandrini", "Hellen Rodrigues"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 214,
+          "dupla1": ["Alessandra Sandrini", "Raphaela Fiacadori"],
+          "dupla2": ["Carolina Honorato", "Hellen Rodrigues"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 213,
+          "dupla1": ["Joana Oliveira", "Juliana Magalhães"],
+          "dupla2": ["Ana Carioca", "Katia Schiavetti"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 212,
+          "dupla1": ["Juliana Magalhães", "Katia Schiavetti"],
+          "dupla2": ["Ana Carioca", "Joana Oliveira"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 211,
+          "dupla1": ["Ana Carioca", "Juliana Magalhães"],
+          "dupla2": ["Joana Oliveira", "Katia Schiavetti"],
+          "status": "Pendente"
+        }
+      ]
+    },
+    {
+      "rodada": 14,
+      "data": "2025-08-16T08:00:00",
+      "jogos": [
+        {
+          "jogo": 210,
+          "dupla1": ["Renata Salvestrini", "Tatiana Masui"],
+          "dupla2": ["Carolina Honorato", "Raphaela Fiacadori"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 209,
+          "dupla1": ["Raphaela Fiacadori", "Renata Salvestrini"],
+          "dupla2": ["Carolina Honorato", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 208,
+          "dupla1": ["Carolina Honorato", "Renata Salvestrini"],
+          "dupla2": ["Raphaela Fiacadori", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 207,
+          "dupla1": ["Alessandra Sandrini", "Janice Lotufo"],
+          "dupla2": ["Cristiane Kovacs", "Gabriella Mattos"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 206,
+          "dupla1": ["Cristiane Kovacs", "Janice Lotufo"],
+          "dupla2": ["Alessandra Sandrini", "Gabriella Mattos"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 205,
+          "dupla1": ["Gabriella Mattos", "Janice Lotufo"],
+          "dupla2": ["Alessandra Sandrini", "Cristiane Kovacs"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 204,
+          "dupla1": ["Ana Carioca", "Liliane Lodi"],
+          "dupla2": ["Fernanda Bopp", "Katia Schiavetti"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 203,
+          "dupla1": ["Ana Carioca", "Fernanda Bopp"],
+          "dupla2": ["Katia Schiavetti", "Liliane Lodi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 202,
+          "dupla1": ["Ana Carioca", "Katia Schiavetti"],
+          "dupla2": ["Fernanda Bopp", "Liliane Lodi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 201,
+          "dupla1": ["Hellen Rodrigues", "Renata Novaes"],
+          "dupla2": ["Joana Oliveira", "Luciana Madi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 200,
+          "dupla1": ["Hellen Rodrigues", "Joana Oliveira"],
+          "dupla2": ["Luciana Madi", "Renata Novaes"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 199,
+          "dupla1": ["Hellen Rodrigues", "Luciana Madi"],
+          "dupla2": ["Joana Oliveira", "Renata Novaes"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 198,
+          "dupla1": ["Filomena Centrone", "Luciana Pelegrino"],
+          "dupla2": ["Juliana Magalhães", "Neive Andrade"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 197,
+          "dupla1": ["Filomena Centrone", "Juliana Magalhães"],
+          "dupla2": ["Luciana Pelegrino", "Neive Andrade"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 196,
+          "dupla1": ["Filomena Centrone", "Neive Andrade"],
+          "dupla2": ["Juliana Magalhães", "Luciana Pelegrino"],
+          "status": "Pendente"
+        }
+      ]
+    },
+    {
+      "rodada": 13,
+      "data": "2025-08-09T08:00:00",
+      "jogos": [
+        {
+          "jogo": 195,
+          "dupla1": ["Ana Carioca", "Janice Lotufo"],
+          "dupla2": ["Carolina Honorato", "Renata Novaes"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 194,
+          "dupla1": ["Ana Carioca", "Carolina Honorato"],
+          "dupla2": ["Janice Lotufo", "Renata Novaes"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 193,
+          "dupla1": ["Ana Carioca", "Renata Novaes"],
+          "dupla2": ["Carolina Honorato", "Janice Lotufo"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 192,
+          "dupla1": ["Alessandra Sandrini", "Neive Andrade"],
+          "dupla2": ["Hellen Rodrigues", "Juliana Magalhães"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 191,
+          "dupla1": ["Alessandra Sandrini", "Hellen Rodrigues"],
+          "dupla2": ["Juliana Magalhães", "Neive Andrade"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 190,
+          "dupla1": ["Alessandra Sandrini", "Juliana Magalhães"],
+          "dupla2": ["Hellen Rodrigues", "Neive Andrade"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 189,
+          "dupla1": ["Cristiane Kovacs", "Liliane Lodi"],
+          "dupla2": ["Gabriella Mattos", "Raphaela Fiacadori"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 188,
+          "dupla1": ["Liliane Lodi", "Raphaela Fiacadori"],
+          "dupla2": ["Cristiane Kovacs", "Gabriella Mattos"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 187,
+          "dupla1": ["Gabriella Mattos", "Liliane Lodi"],
+          "dupla2": ["Cristiane Kovacs", "Raphaela Fiacadori"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 186,
+          "dupla1": ["Filomena Centrone", "Luciana Pelegrino"],
+          "dupla2": ["Katia Schiavetti", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 185,
+          "dupla1": ["Filomena Centrone", "Tatiana Masui"],
+          "dupla2": ["Katia Schiavetti", "Luciana Pelegrino"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 184,
+          "dupla1": ["Filomena Centrone", "Katia Schiavetti"],
+          "dupla2": ["Luciana Pelegrino", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 183,
+          "dupla1": ["Fernanda Bopp", "Renata Salvestrini"],
+          "dupla2": ["Joana Oliveira", "Luciana Madi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 182,
+          "dupla1": ["Fernanda Bopp", "Luciana Madi"],
+          "dupla2": ["Joana Oliveira", "Renata Salvestrini"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 181,
+          "dupla1": ["Fernanda Bopp", "Joana Oliveira"],
+          "dupla2": ["Luciana Madi", "Renata Salvestrini"],
+          "status": "Pendente"
+        }
+      ]
+    },
+    {
+      "rodada": 12,
+      "data": "2025-08-02T08:00:00",
+      "jogos": [
+        {
+          "jogo": 180,
+          "dupla1": ["Katia Schiavetti", "Renata Novaes"],
+          "dupla2": ["Cristiane Kovacs", "Filomena Centrone"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 179,
+          "dupla1": ["Cristiane Kovacs", "Katia Schiavetti"],
+          "dupla2": ["Filomena Centrone", "Renata Novaes"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 178,
+          "dupla1": ["Filomena Centrone", "Katia Schiavetti"],
+          "dupla2": ["Cristiane Kovacs", "Renata Novaes"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 177,
+          "dupla1": ["Luciana Madi", "Luciana Pelegrino"],
+          "dupla2": ["Hellen Rodrigues", "Liliane Lodi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 176,
+          "dupla1": ["Liliane Lodi", "Luciana Madi"],
+          "dupla2": ["Hellen Rodrigues", "Luciana Pelegrino"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 175,
+          "dupla1": ["Hellen Rodrigues", "Luciana Madi"],
+          "dupla2": ["Liliane Lodi", "Luciana Pelegrino"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 174,
+          "dupla1": ["Ana Carioca", "Joana Oliveira"],
+          "dupla2": ["Neive Andrade", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 173,
+          "dupla1": ["Joana Oliveira", "Neive Andrade"],
+          "dupla2": ["Ana Carioca", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 172,
+          "dupla1": ["Joana Oliveira", "Tatiana Masui"],
+          "dupla2": ["Ana Carioca", "Neive Andrade"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 171,
+          "dupla1": ["Gabriella Mattos", "Renata Salvestrini"],
+          "dupla2": ["Juliana Magalhães", "Raphaela Fiacadori"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 170,
+          "dupla1": ["Gabriella Mattos", "Juliana Magalhães"],
+          "dupla2": ["Raphaela Fiacadori", "Renata Salvestrini"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 169,
+          "dupla1": ["Gabriella Mattos", "Raphaela Fiacadori"],
+          "dupla2": ["Juliana Magalhães", "Renata Salvestrini"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 168,
+          "dupla1": ["Alessandra Sandrini", "Fernanda Bopp"],
+          "dupla2": ["Carolina Honorato", "Janice Lotufo"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 167,
+          "dupla1": ["Fernanda Bopp", "Janice Lotufo"],
+          "dupla2": ["Alessandra Sandrini", "Carolina Honorato"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 166,
+          "dupla1": ["Carolina Honorato", "Fernanda Bopp"],
+          "dupla2": ["Alessandra Sandrini", "Janice Lotufo"],
+          "status": "Pendente"
+        }
+      ]
+    },
+    {
+      "rodada": 11,
+      "data": "2025-07-26T08:00:00",
+      "jogos": [
+        {
+          "jogo": 165,
+          "dupla1": ["Janice Lotufo", "Neive Andrade"],
+          "dupla2": ["Cristiane Kovacs", "Joana Oliveira"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 164,
+          "dupla1": ["Janice Lotufo", "Joana Oliveira"],
+          "dupla2": ["Cristiane Kovacs", "Neive Andrade"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 163,
+          "dupla1": ["Cristiane Kovacs", "Janice Lotufo"],
+          "dupla2": ["Joana Oliveira", "Neive Andrade"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 162,
+          "dupla1": ["Juliana Magalhães", "Tatiana Masui"],
+          "dupla2": ["Hellen Rodrigues", "Renata Salvestrini"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 161,
+          "dupla1": ["Hellen Rodrigues", "Tatiana Masui"],
+          "dupla2": ["Juliana Magalhães", "Renata Salvestrini"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 160,
+          "dupla1": ["Renata Salvestrini", "Tatiana Masui"],
+          "dupla2": ["Hellen Rodrigues", "Juliana Magalhães"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 159,
+          "dupla1": ["Fernanda Bopp", "Katia Schiavetti"],
+          "dupla2": ["Carolina Honorato", "Luciana Pelegrino"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 158,
+          "dupla1": ["Carolina Honorato", "Katia Schiavetti"],
+          "dupla2": ["Fernanda Bopp", "Luciana Pelegrino"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 157,
+          "dupla1": ["Katia Schiavetti", "Luciana Pelegrino"],
+          "dupla2": ["Carolina Honorato", "Fernanda Bopp"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 156,
+          "dupla1": ["Alessandra Sandrini", "Filomena Centrone"],
+          "dupla2": ["Luciana Madi", "Raphaela Fiacadori"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 155,
+          "dupla1": ["Filomena Centrone", "Luciana Madi"],
+          "dupla2": ["Alessandra Sandrini", "Raphaela Fiacadori"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 154,
+          "dupla1": ["Filomena Centrone", "Raphaela Fiacadori"],
+          "dupla2": ["Alessandra Sandrini", "Luciana Madi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 153,
+          "dupla1": ["Gabriella Mattos", "Liliane Lodi"],
+          "dupla2": ["Ana Carioca", "Renata Novaes"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 152,
+          "dupla1": ["Ana Carioca", "Liliane Lodi"],
+          "dupla2": ["Gabriella Mattos", "Renata Novaes"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 151,
+          "dupla1": ["Liliane Lodi", "Renata Novaes"],
+          "dupla2": ["Ana Carioca", "Gabriella Mattos"],
+          "status": "Pendente"
+        }
+      ]
+    },
+    {
+      "rodada": 10,
+      "data": "2025-07-19T08:00:00",
+      "jogos": [
+        {
+          "jogo": 150,
+          "dupla1": ["Fernanda Bopp", "Janice Lotufo"],
+          "dupla2": ["Luciana Madi", "Raphaela Fiacadori"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 149,
+          "dupla1": ["Fernanda Bopp", "Luciana Madi"],
+          "dupla2": ["Janice Lotufo", "Raphaela Fiacadori"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 148,
+          "dupla1": ["Fernanda Bopp", "Raphaela Fiacadori"],
+          "dupla2": ["Janice Lotufo", "Luciana Madi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 147,
+          "dupla1": ["Gabriella Mattos", "Neive Andrade"],
+          "dupla2": ["Katia Schiavetti", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 146,
+          "dupla1": ["Katia Schiavetti", "Neive Andrade"],
+          "dupla2": ["Gabriella Mattos", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 145,
+          "dupla1": ["Neive Andrade", "Tatiana Masui"],
+          "dupla2": ["Gabriella Mattos", "Katia Schiavetti"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 144,
+          "dupla1": ["Juliana Magalhães", "Renata Salvestrini"],
+          "dupla2": ["Liliane Lodi", "Renata Novaes"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 143,
+          "dupla1": ["Liliane Lodi", "Renata Salvestrini"],
+          "dupla2": ["Juliana Magalhães", "Renata Novaes"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 142,
+          "dupla1": ["Renata Novaes", "Renata Salvestrini"],
+          "dupla2": ["Juliana Magalhães", "Liliane Lodi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 141,
+          "dupla1": ["Alessandra Sandrini", "Cristiane Kovacs"],
+          "dupla2": ["Joana Oliveira", "Luciana Pelegrino"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 140,
+          "dupla1": ["Cristiane Kovacs", "Luciana Pelegrino"],
+          "dupla2": ["Alessandra Sandrini", "Joana Oliveira"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 139,
+          "dupla1": ["Cristiane Kovacs", "Joana Oliveira"],
+          "dupla2": ["Alessandra Sandrini", "Luciana Pelegrino"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 138,
+          "dupla1": ["Ana Carioca", "Carolina Honorato"],
+          "dupla2": ["Filomena Centrone", "Hellen Rodrigues"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 137,
+          "dupla1": ["Ana Carioca", "Hellen Rodrigues"],
+          "dupla2": ["Carolina Honorato", "Filomena Centrone"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 136,
+          "dupla1": ["Ana Carioca", "Filomena Centrone"],
+          "dupla2": ["Carolina Honorato", "Hellen Rodrigues"],
+          "status": "Pendente"
+        }
+      ]
+    },
+    {
+      "rodada": 9,
+      "data": "2025-07-12T08:00:00",
+      "jogos": [
+        {
+          "jogo": 135,
+          "dupla1": ["Fernanda Bopp", "Tatiana Masui"],
+          "dupla2": ["Filomena Centrone", "Hellen Rodrigues"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 134,
+          "dupla1": ["Fernanda Bopp", "Filomena Centrone"],
+          "dupla2": ["Hellen Rodrigues", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 133,
+          "dupla1": ["Fernanda Bopp", "Hellen Rodrigues"],
+          "dupla2": ["Filomena Centrone", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 132,
+          "dupla1": ["Neive Andrade", "Raphaela Fiacadori"],
+          "dupla2": ["Joana Oliveira", "Liliane Lodi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 131,
+          "dupla1": ["Joana Oliveira", "Neive Andrade"],
+          "dupla2": ["Liliane Lodi", "Raphaela Fiacadori"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 130,
+          "dupla1": ["Liliane Lodi", "Neive Andrade"],
+          "dupla2": ["Joana Oliveira", "Raphaela Fiacadori"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 129,
+          "dupla1": ["Juliana Magalhães", "Renata Novaes"],
+          "dupla2": ["Janice Lotufo", "Luciana Pelegrino"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 128,
+          "dupla1": ["Juliana Magalhães", "Luciana Pelegrino"],
+          "dupla2": ["Janice Lotufo", "Renata Novaes"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 127,
+          "dupla1": ["Janice Lotufo", "Juliana Magalhães"],
+          "dupla2": ["Luciana Pelegrino", "Renata Novaes"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 126,
+          "dupla1": ["Katia Schiavetti", "Luciana Madi"],
+          "dupla2": ["Carolina Honorato", "Gabriella Mattos"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 125,
+          "dupla1": ["Gabriella Mattos", "Katia Schiavetti"],
+          "dupla2": ["Carolina Honorato", "Luciana Madi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 124,
+          "dupla1": ["Carolina Honorato", "Katia Schiavetti"],
+          "dupla2": ["Gabriella Mattos", "Luciana Madi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 123,
+          "dupla1": ["Alessandra Sandrini", "Cristiane Kovacs"],
+          "dupla2": ["Ana Carioca", "Renata Salvestrini"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 122,
+          "dupla1": ["Cristiane Kovacs", "Renata Salvestrini"],
+          "dupla2": ["Alessandra Sandrini", "Ana Carioca"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 121,
+          "dupla1": ["Ana Carioca", "Cristiane Kovacs"],
+          "dupla2": ["Alessandra Sandrini", "Renata Salvestrini"],
+          "status": "Pendente"
+        }
+      ]
+    },
+    {
+      "rodada": 8,
+      "data": "2025-07-05T08:00:00",
+      "jogos": [
+        {
+          "jogo": 120,
+          "dupla1": ["Luciana Madi", "Renata Salvestrini"],
+          "dupla2": ["Gabriella Mattos", "Janice Lotufo"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 119,
+          "dupla1": ["Gabriella Mattos", "Renata Salvestrini"],
+          "dupla2": ["Janice Lotufo", "Luciana Madi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 118,
+          "dupla1": ["Janice Lotufo", "Renata Salvestrini"],
+          "dupla2": ["Gabriella Mattos", "Luciana Madi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 117,
+          "dupla1": ["Carolina Honorato", "Juliana Magalhães"],
+          "dupla2": ["Filomena Centrone", "Joana Oliveira"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 116,
+          "dupla1": ["Carolina Honorato", "Joana Oliveira"],
+          "dupla2": ["Filomena Centrone", "Juliana Magalhães"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 115,
+          "dupla1": ["Carolina Honorato", "Filomena Centrone"],
+          "dupla2": ["Joana Oliveira", "Juliana Magalhães"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 114,
+          "dupla1": ["Cristiane Kovacs", "Hellen Rodrigues"],
+          "dupla2": ["Liliane Lodi", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 113,
+          "dupla1": ["Hellen Rodrigues", "Tatiana Masui"],
+          "dupla2": ["Cristiane Kovacs", "Liliane Lodi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 112,
+          "dupla1": ["Hellen Rodrigues", "Liliane Lodi"],
+          "dupla2": ["Cristiane Kovacs", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 111,
+          "dupla1": ["Luciana Pelegrino", "Raphaela Fiacadori"],
+          "dupla2": ["Ana Carioca", "Fernanda Bopp"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 110,
+          "dupla1": ["Fernanda Bopp", "Luciana Pelegrino"],
+          "dupla2": ["Ana Carioca", "Raphaela Fiacadori"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 109,
+          "dupla1": ["Ana Carioca", "Luciana Pelegrino"],
+          "dupla2": ["Fernanda Bopp", "Raphaela Fiacadori"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 108,
+          "dupla1": ["Neive Andrade", "Renata Novaes"],
+          "dupla2": ["Alessandra Sandrini", "Katia Schiavetti"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 107,
+          "dupla1": ["Alessandra Sandrini", "Neive Andrade"],
+          "dupla2": ["Katia Schiavetti", "Renata Novaes"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 106,
+          "dupla1": ["Katia Schiavetti", "Neive Andrade"],
+          "dupla2": ["Alessandra Sandrini", "Renata Novaes"],
+          "status": "Pendente"
+        }
+      ]
+    },
+    {
+      "rodada": 7,
+      "data": "2025-06-28T08:00:00",
+      "jogos": [
+        {
+          "jogo": 105,
+          "dupla1": ["Hellen Rodrigues", "Katia Schiavetti"],
+          "dupla2": ["Alessandra Sandrini", "Janice Lotufo"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 104,
+          "dupla1": ["Alessandra Sandrini", "Hellen Rodrigues"],
+          "dupla2": ["Janice Lotufo", "Katia Schiavetti"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 103,
+          "dupla1": ["Hellen Rodrigues", "Janice Lotufo"],
+          "dupla2": ["Alessandra Sandrini", "Katia Schiavetti"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 102,
+          "dupla1": ["Luciana Madi", "Tatiana Masui"],
+          "dupla2": ["Neive Andrade", "Renata Novaes"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 101,
+          "dupla1": ["Luciana Madi", "Renata Novaes"],
+          "dupla2": ["Neive Andrade", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 100,
+          "dupla1": ["Luciana Madi", "Neive Andrade"],
+          "dupla2": ["Renata Novaes", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 99,
+          "dupla1": ["Ana Carioca", "Filomena Centrone"],
+          "dupla2": ["Joana Oliveira", "Raphaela Fiacadori"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 98,
+          "dupla1": ["Ana Carioca", "Raphaela Fiacadori"],
+          "dupla2": ["Filomena Centrone", "Joana Oliveira"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 97,
+          "dupla1": ["Ana Carioca", "Joana Oliveira"],
+          "dupla2": ["Filomena Centrone", "Raphaela Fiacadori"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 96,
+          "dupla1": ["Gabriella Mattos", "Juliana Magalhães"],
+          "dupla2": ["Carolina Honorato", "Luciana Pelegrino"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 95,
+          "dupla1": ["Carolina Honorato", "Gabriella Mattos"],
+          "dupla2": ["Juliana Magalhães", "Luciana Pelegrino"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 94,
+          "dupla1": ["Gabriella Mattos", "Luciana Pelegrino"],
+          "dupla2": ["Carolina Honorato", "Juliana Magalhães"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 93,
+          "dupla1": ["Cristiane Kovacs", "Fernanda Bopp"],
+          "dupla2": ["Liliane Lodi", "Renata Salvestrini"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 92,
+          "dupla1": ["Cristiane Kovacs", "Renata Salvestrini"],
+          "dupla2": ["Fernanda Bopp", "Liliane Lodi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 91,
+          "dupla1": ["Cristiane Kovacs", "Liliane Lodi"],
+          "dupla2": ["Fernanda Bopp", "Renata Salvestrini"],
+          "status": "Pendente"
+        }
+      ]
+    },
+    {
+      "rodada": 6,
+      "data": "2025-06-21T08:00:00",
+      "jogos": [
+        {
+          "jogo": 90,
+          "dupla1": ["Luciana Madi", "Renata Salvestrini"],
+          "dupla2": ["Fernanda Bopp", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 89,
+          "dupla1": ["Renata Salvestrini", "Tatiana Masui"],
+          "dupla2": ["Fernanda Bopp", "Luciana Madi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 88,
+          "dupla1": ["Fernanda Bopp", "Renata Salvestrini"],
+          "dupla2": ["Luciana Madi", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 87,
+          "dupla1": ["Filomena Centrone", "Gabriella Mattos"],
+          "dupla2": ["Joana Oliveira", "Renata Novaes"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 86,
+          "dupla1": ["Gabriella Mattos", "Joana Oliveira"],
+          "dupla2": ["Filomena Centrone", "Renata Novaes"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 85,
+          "dupla1": ["Gabriella Mattos", "Renata Novaes"],
+          "dupla2": ["Filomena Centrone", "Joana Oliveira"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 84,
+          "dupla1": ["Alessandra Sandrini", "Luciana Pelegrino"],
+          "dupla2": ["Carolina Honorato", "Neive Andrade"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 83,
+          "dupla1": ["Alessandra Sandrini", "Carolina Honorato"],
+          "dupla2": ["Luciana Pelegrino", "Neive Andrade"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 82,
+          "dupla1": ["Alessandra Sandrini", "Neive Andrade"],
+          "dupla2": ["Carolina Honorato", "Luciana Pelegrino"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 81,
+          "dupla1": ["Cristiane Kovacs", "Hellen Rodrigues"],
+          "dupla2": ["Ana Carioca", "Juliana Magalhães"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 80,
+          "dupla1": ["Cristiane Kovacs", "Juliana Magalhães"],
+          "dupla2": ["Ana Carioca", "Hellen Rodrigues"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 79,
+          "dupla1": ["Ana Carioca", "Cristiane Kovacs"],
+          "dupla2": ["Hellen Rodrigues", "Juliana Magalhães"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 78,
+          "dupla1": ["Janice Lotufo", "Raphaela Fiacadori"],
+          "dupla2": ["Katia Schiavetti", "Liliane Lodi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 77,
+          "dupla1": ["Liliane Lodi", "Raphaela Fiacadori"],
+          "dupla2": ["Janice Lotufo", "Katia Schiavetti"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 76,
+          "dupla1": ["Katia Schiavetti", "Raphaela Fiacadori"],
+          "dupla2": ["Janice Lotufo", "Liliane Lodi"],
+          "status": "Pendente"
+        }
+      ]
+    },
+    {
+      "rodada": 5,
+      "data": "2025-06-14T08:00:00",
+      "jogos": [
+        {
+          "jogo": 75,
+          "dupla1": ["Raphaela Fiacadori", "Renata Salvestrini"],
+          "dupla2": ["Hellen Rodrigues", "Luciana Pelegrino"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 74,
+          "dupla1": ["Hellen Rodrigues", "Renata Salvestrini"],
+          "dupla2": ["Luciana Pelegrino", "Raphaela Fiacadori"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 73,
+          "dupla1": ["Luciana Pelegrino", "Renata Salvestrini"],
+          "dupla2": ["Hellen Rodrigues", "Raphaela Fiacadori"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 72,
+          "dupla1": ["Katia Schiavetti", "Tatiana Masui"],
+          "dupla2": ["Janice Lotufo", "Juliana Magalhães"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 71,
+          "dupla1": ["Juliana Magalhães", "Katia Schiavetti"],
+          "dupla2": ["Janice Lotufo", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 70,
+          "dupla1": ["Janice Lotufo", "Katia Schiavetti"],
+          "dupla2": ["Juliana Magalhães", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 69,
+          "dupla1": ["Carolina Honorato", "Joana Oliveira"],
+          "dupla2": ["Cristiane Kovacs", "Luciana Madi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 68,
+          "dupla1": ["Joana Oliveira", "Luciana Madi"],
+          "dupla2": ["Carolina Honorato", "Cristiane Kovacs"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 67,
+          "dupla1": ["Cristiane Kovacs", "Joana Oliveira"],
+          "dupla2": ["Carolina Honorato", "Luciana Madi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 66,
+          "dupla1": ["Liliane Lodi", "Renata Novaes"],
+          "dupla2": ["Alessandra Sandrini", "Fernanda Bopp"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 65,
+          "dupla1": ["Alessandra Sandrini", "Liliane Lodi"],
+          "dupla2": ["Fernanda Bopp", "Renata Novaes"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 64,
+          "dupla1": ["Fernanda Bopp", "Liliane Lodi"],
+          "dupla2": ["Alessandra Sandrini", "Renata Novaes"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 63,
+          "dupla1": ["Filomena Centrone", "Gabriella Mattos"],
+          "dupla2": ["Ana Carioca", "Neive Andrade"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 62,
+          "dupla1": ["Gabriella Mattos", "Neive Andrade"],
+          "dupla2": ["Ana Carioca", "Filomena Centrone"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 61,
+          "dupla1": ["Ana Carioca", "Gabriella Mattos"],
+          "dupla2": ["Filomena Centrone", "Neive Andrade"],
+          "status": "Pendente"
+        }
+      ]
+    },
+    {
+      "rodada": 4,
+      "data": "2025-06-07T08:00:00",
+      "jogos": [
+        {
+          "jogo": 60,
+          "dupla1": ["Janice Lotufo", "Renata Salvestrini"],
+          "dupla2": ["Filomena Centrone", "Luciana Pelegrino"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 59,
+          "dupla1": ["Luciana Pelegrino", "Renata Salvestrini"],
+          "dupla2": ["Filomena Centrone", "Janice Lotufo"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 58,
+          "dupla1": ["Filomena Centrone", "Renata Salvestrini"],
+          "dupla2": ["Janice Lotufo", "Luciana Pelegrino"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 57,
+          "dupla1": ["Alessandra Sandrini", "Renata Novaes"],
+          "dupla2": ["Ana Carioca", "Katia Schiavetti"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 56,
+          "dupla1": ["Katia Schiavetti", "Renata Novaes"],
+          "dupla2": ["Alessandra Sandrini", "Ana Carioca"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 55,
+          "dupla1": ["Ana Carioca", "Renata Novaes"],
+          "dupla2": ["Alessandra Sandrini", "Katia Schiavetti"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 54,
+          "dupla1": ["Carolina Honorato", "Raphaela Fiacadori"],
+          "dupla2": ["Cristiane Kovacs", "Neive Andrade"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 53,
+          "dupla1": ["Cristiane Kovacs", "Raphaela Fiacadori"],
+          "dupla2": ["Carolina Honorato", "Neive Andrade"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 52,
+          "dupla1": ["Neive Andrade", "Raphaela Fiacadori"],
+          "dupla2": ["Carolina Honorato", "Cristiane Kovacs"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 51,
+          "dupla1": ["Liliane Lodi", "Tatiana Masui"],
+          "dupla2": ["Juliana Magalhães", "Luciana Madi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 50,
+          "dupla1": ["Liliane Lodi", "Luciana Madi"],
+          "dupla2": ["Juliana Magalhães", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 49,
+          "dupla1": ["Juliana Magalhães", "Liliane Lodi"],
+          "dupla2": ["Luciana Madi", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 48,
+          "dupla1": ["Fernanda Bopp", "Hellen Rodrigues"],
+          "dupla2": ["Gabriella Mattos", "Joana Oliveira"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 47,
+          "dupla1": ["Hellen Rodrigues", "Joana Oliveira"],
+          "dupla2": ["Fernanda Bopp", "Gabriella Mattos"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 46,
+          "dupla1": ["Gabriella Mattos", "Hellen Rodrigues"],
+          "dupla2": ["Fernanda Bopp", "Joana Oliveira"],
+          "status": "Pendente"
+        }
+      ]
+    },
+    {
+      "rodada": 3,
+      "data": "2025-05-31T08:00:00",
+      "jogos": [
+        {
+          "jogo": 45,
+          "dupla1": ["Hellen Rodrigues", "Neive Andrade"],
+          "dupla2": ["Janice Lotufo", "Liliane Lodi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 44,
+          "dupla1": ["Liliane Lodi", "Neive Andrade"],
+          "dupla2": ["Hellen Rodrigues", "Janice Lotufo"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 43,
+          "dupla1": ["Janice Lotufo", "Neive Andrade"],
+          "dupla2": ["Hellen Rodrigues", "Liliane Lodi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 42,
+          "dupla1": ["Gabriella Mattos", "Juliana Magalhães"],
+          "dupla2": ["Alessandra Sandrini", "Fernanda Bopp"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 41,
+          "dupla1": ["Alessandra Sandrini", "Gabriella Mattos"],
+          "dupla2": ["Fernanda Bopp", "Juliana Magalhães"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 40,
+          "dupla1": ["Fernanda Bopp", "Gabriella Mattos"],
+          "dupla2": ["Alessandra Sandrini", "Juliana Magalhães"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 39,
+          "dupla1": ["Renata Novaes", "Tatiana Masui"],
+          "dupla2": ["Carolina Honorato", "Joana Oliveira"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 38,
+          "dupla1": ["Joana Oliveira", "Renata Novaes"],
+          "dupla2": ["Carolina Honorato", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 37,
+          "dupla1": ["Carolina Honorato", "Renata Novaes"],
+          "dupla2": ["Joana Oliveira", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 36,
+          "dupla1": ["Luciana Madi", "Raphaela Fiacadori"],
+          "dupla2": ["Filomena Centrone", "Katia Schiavetti"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 35,
+          "dupla1": ["Katia Schiavetti", "Luciana Madi"],
+          "dupla2": ["Filomena Centrone", "Raphaela Fiacadori"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 34,
+          "dupla1": ["Filomena Centrone", "Luciana Madi"],
+          "dupla2": ["Katia Schiavetti", "Raphaela Fiacadori"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 33,
+          "dupla1": ["Luciana Pelegrino", "Renata Salvestrini"],
+          "dupla2": ["Ana Carioca", "Cristiane Kovacs"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 32,
+          "dupla1": ["Cristiane Kovacs", "Luciana Pelegrino"],
+          "dupla2": ["Ana Carioca", "Renata Salvestrini"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 31,
+          "dupla1": ["Ana Carioca", "Luciana Pelegrino"],
+          "dupla2": ["Cristiane Kovacs", "Renata Salvestrini"],
+          "status": "Pendente"
+        }
+      ]
+    },
+    {
+      "rodada": 2,
+      "data": "2025-05-24T08:00:00",
+      "jogos": [
+        {
+          "jogo": 30,
+          "dupla1": ["Ana Carioca", "Tatiana Masui"],
+          "dupla2": ["Janice Lotufo", "Raphaela Fiacadori"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 29,
+          "dupla1": ["Ana Carioca", "Raphaela Fiacadori"],
+          "dupla2": ["Janice Lotufo", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 28,
+          "dupla1": ["Ana Carioca", "Janice Lotufo"],
+          "dupla2": ["Raphaela Fiacadori", "Tatiana Masui"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 27,
+          "dupla1": ["Alessandra Sandrini", "Juliana Magalhães"],
+          "dupla2": ["Joana Oliveira", "Liliane Lodi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 26,
+          "dupla1": ["Alessandra Sandrini", "Joana Oliveira"],
+          "dupla2": ["Juliana Magalhães", "Liliane Lodi"],
+          "status": "Concluído",
+          "placar": "7/6 8",
+          "vencedor": ["Alessandra Sandrini", "Joana Oliveira"]
+        },
+        {
+          "jogo": 25,
+          "dupla1": ["Alessandra Sandrini", "Liliane Lodi"],
+          "dupla2": ["Joana Oliveira", "Juliana Magalhães"],
+          "status": "Concluído",
+          "placar": "6/2",
+          "vencedor": ["Alessandra Sandrini", "Liliane Lodi"]
+        },
+        {
+          "jogo": 24,
+          "dupla1": ["Carolina Honorato", "Katia Schiavetti"],
+          "dupla2": ["Neive Andrade", "Renata Salvestrini"],
+          "status": "Concluído",
+          "placar": "6/4",
+          "vencedor": ["Carolina Honorato", "Katia Schiavetti"]
+        },
+        {
+          "jogo": 23,
+          "dupla1": ["Carolina Honorato", "Renata Salvestrini"],
+          "dupla2": ["Katia Schiavetti", "Neive Andrade"],
+          "status": "Concluído",
+          "placar": "4/6",
+          "vencedor": ["Katia Schiavetti", "Neive Andrade"]
+        },
+        {
+          "jogo": 22,
+          "dupla1": ["Carolina Honorato", "Neive Andrade"],
+          "dupla2": ["Katia Schiavetti", "Renata Salvestrini"],
+          "status": "Concluído",
+          "placar": "7/5",
+          "vencedor": ["Carolina Honorato", "Neive Andrade"]
+        },
+        {
+          "jogo": 21,
+          "dupla1": ["Gabriella Mattos", "Luciana Pelegrino"],
+          "dupla2": ["Cristiane Kovacs", "Luciana Madi"],
+          "status": "Concluído",
+          "placar": "2/6",
+          "vencedor": ["Cristiane Kovacs", "Luciana Madi"]
+        },
+        {
+          "jogo": 20,
+          "dupla1": ["Luciana Madi", "Luciana Pelegrino"],
+          "dupla2": ["Cristiane Kovacs", "Gabriella Mattos"],
+          "status": "Concluído",
+          "placar": "7/5",
+          "vencedor": ["Luciana Madi", "Luciana Pelegrino"]
+        },
+        {
+          "jogo": 19,
+          "dupla1": ["Cristiane Kovacs", "Luciana Pelegrino"],
+          "dupla2": ["Gabriella Mattos", "Luciana Madi"],
+          "status": "Concluído",
+          "placar": "63/7",
+          "vencedor": ["Gabriella Mattos", "Luciana Madi"]
+        },
+        {
+          "jogo": 18,
+          "dupla1": ["Fernanda Bopp", "Renata Novaes"],
+          "dupla2": ["Filomena Centrone", "Hellen Rodrigues"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 17,
+          "dupla1": ["Fernanda Bopp", "Hellen Rodrigues"],
+          "dupla2": ["Filomena Centrone", "Renata Novaes"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 16,
+          "dupla1": ["Fernanda Bopp", "Filomena Centrone"],
+          "dupla2": ["Hellen Rodrigues", "Renata Novaes"],
+          "status": "Pendente"
+        }
+      ]
+    },
+    {
+      "rodada": 1,
+      "data": "2025-05-17T08:00:00",
+      "jogos": [
+        {
+          "jogo": 15,
+          "dupla1": ["Alessandra Sandrini", "Gabriella Mattos"],
+          "dupla2": ["Ana Carioca", "Luciana Pelegrino"],
+          "status": "Concluído",
+          "placar": "4/6",
+          "vencedor": ["Ana Carioca", "Luciana Pelegrino"]
+        },
+        {
+          "jogo": 14,
+          "dupla1": ["Gabriella Mattos", "Luciana Pelegrino"],
+          "dupla2": ["Alessandra Sandrini", "Ana Carioca"],
+          "status": "Concluído",
+          "placar": "2/6",
+          "vencedor": ["Alessandra Sandrini", "Ana Carioca"]
+        },
+        {
+          "jogo": 13,
+          "dupla1": ["Ana Carioca", "Gabriella Mattos"],
+          "dupla2": ["Alessandra Sandrini", "Luciana Pelegrino"],
+          "status": "Concluído",
+          "placar": "5/7",
+          "vencedor": ["Alessandra Sandrini", "Luciana Pelegrino"]
+        },
+        {
+          "jogo": 12,
+          "dupla1": ["Filomena Centrone", "Tatiana Masui"],
+          "dupla2": ["Carolina Honorato", "Liliane Lodi"],
+          "status": "Concluído",
+          "placar": "6/3",
+          "vencedor": ["Filomena Centrone", "Tatiana Masui"]
+        },
+        {
+          "jogo": 11,
+          "dupla1": ["Liliane Lodi", "Tatiana Masui"],
+          "dupla2": ["Carolina Honorato", "Filomena Centrone"],
+          "status": "Concluído",
+          "placar": "1/6",
+          "vencedor": ["Carolina Honorato", "Filomena Centrone"]
+        },
+        {
+          "jogo": 10,
+          "dupla1": ["Carolina Honorato", "Tatiana Masui"],
+          "dupla2": ["Filomena Centrone", "Liliane Lodi"],
+          "status": "Concluído",
+          "placar": "2/6",
+          "vencedor": ["Filomena Centrone", "Liliane Lodi"]
+        },
+        {
+          "jogo": 9,
+          "dupla1": ["Hellen Rodrigues", "Renata Salvestrini"],
+          "dupla2": ["Coringa Ranking", "Joana Oliveira"],
+          "status": "Concluído",
+          "placar": "4/6",
+          "vencedor": ["Coringa Ranking", "Joana Oliveira"]
+        },
+        {
+          "jogo": 8,
+          "dupla1": ["Coringa Ranking", "Renata Salvestrini"],
+          "dupla2": ["Hellen Rodrigues", "Joana Oliveira"],
+          "status": "Concluído",
+          "placar": "6/2",
+          "vencedor": ["Coringa Ranking", "Renata Salvestrini"]
+        },
+        {
+          "jogo": 7,
+          "dupla1": ["Joana Oliveira", "Renata Salvestrini"],
+          "dupla2": ["Coringa Ranking", "Hellen Rodrigues"],
+          "status": "Concluído",
+          "placar": "6/0",
+          "vencedor": ["Joana Oliveira", "Renata Salvestrini"]
+        },
+        {
+          "jogo": 6,
+          "dupla1": ["Fernanda Bopp", "Raphaela Fiacadori"],
+          "dupla2": ["Juliana Magalhães", "Katia Schiavetti"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 5,
+          "dupla1": ["Katia Schiavetti", "Raphaela Fiacadori"],
+          "dupla2": ["Fernanda Bopp", "Juliana Magalhães"],
+          "status": "Concluído",
+          "placar": "6/2",
+          "vencedor": ["Katia Schiavetti", "Raphaela Fiacadori"]
+        },
+        {
+          "jogo": 4,
+          "dupla1": ["Juliana Magalhães", "Raphaela Fiacadori"],
+          "dupla2": ["Fernanda Bopp", "Katia Schiavetti"],
+          "status": "Concluído",
+          "placar": "3/6",
+          "vencedor": ["Fernanda Bopp", "Katia Schiavetti"]
+        },
+        {
+          "jogo": 3,
+          "dupla1": ["Neive Andrade", "Renata Novaes"],
+          "dupla2": ["Cristiane Kovacs", "Luciana Madi"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 2,
+          "dupla1": ["Cristiane Kovacs", "Renata Novaes"],
+          "dupla2": ["Luciana Madi", "Neive Andrade"],
+          "status": "Pendente"
+        },
+        {
+          "jogo": 1,
+          "dupla1": ["Luciana Madi", "Renata Novaes"],
+          "dupla2": ["Cristiane Kovacs", "Neive Andrade"],
+          "status": "Pendente"
+        }
+      ]
+    }
+  ]
+}
