@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import classificacao from '@/data/classificacao_ranking.json';
 import jogosData from '@/data/jogos_ranking.json';
-import resultados from '@/data/resultados.json';
+import resultadosRaw from '@/data/resultados.json';
+import type { Resultado } from '@/lib/types';
+const resultados = resultadosRaw as { resultados: Resultado[] };
 import lancesData from '@/data/lances.json';
 
 function getProximoJogo() {
@@ -132,9 +134,9 @@ export default function HomePage() {
             }}
             className="animate-fade-up anim-delay-2"
           >
-            Ranking<br />
-            <span style={{ color: '#9dd3aa' }}>Masculino</span><br />
-            Geral
+            Rankings<br />
+            <span style={{ color: '#9dd3aa' }}>Squadra Verde</span><br />
+            Temporada 2026
           </h1>
 
           <p
@@ -148,7 +150,7 @@ export default function HomePage() {
             }}
             className="animate-fade-up anim-delay-3"
           >
-            Formato Rei da Quadra · {jogosData.periodo} · 8 Rodadas · {classificacao.ranking.length} Atletas
+            Masculino · Feminino Bronze · Feminino Prata · {jogosData.periodo}
           </p>
 
           <div
@@ -156,10 +158,10 @@ export default function HomePage() {
             className="animate-fade-up anim-delay-4"
           >
             <Link href="/ranking" className="btn-primary" style={{ background: '#9dd3aa', color: '#00361a', borderColor: '#9dd3aa' }}>
-              Ver Ranking Completo
+              Ranking Masculino
             </Link>
-            <Link href="/jogos" className="btn-ghost" style={{ color: '#9dd3aa', borderColor: 'rgba(157,211,170,0.5)' }}>
-              Agenda de Jogos
+            <Link href="/feminino" className="btn-ghost" style={{ color: '#9dd3aa', borderColor: 'rgba(157,211,170,0.5)' }}>
+              Ranking Feminino
             </Link>
           </div>
 
@@ -176,9 +178,9 @@ export default function HomePage() {
             className="animate-fade-up anim-delay-5"
           >
             {[
-              { value: jogosData.rodadas.length, label: 'Rodadas' },
+              { value: '3', label: 'Rankings' },
               { value: resultados.resultados.filter(r => r.realizado).length, label: 'Jogos Realizados' },
-              { value: classificacao.ranking.length, label: 'Atletas' },
+              { value: 78, label: 'Atletas' },
               { value: classificacao.atualizado_em, label: 'Atualizado em' },
             ].map((stat) => (
               <div key={stat.label}>
@@ -216,7 +218,7 @@ export default function HomePage() {
       <section className="page-body-inner" style={{ paddingBottom: 0 }}>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 32 }}>
           <div>
-            <p className="section-label" style={{ marginBottom: 8 }}>Classificação</p>
+            <p className="section-label" style={{ marginBottom: 8 }}>Ranking Masculino</p>
             <h2
               style={{
                 fontFamily: "'Space Grotesk', sans-serif",
@@ -691,7 +693,7 @@ export default function HomePage() {
                 marginBottom: 8,
               }}
             >
-              Ranking Rei da Quadra
+              Squadra Verde · Temporada 2026
             </p>
             <h2
               style={{
@@ -702,18 +704,18 @@ export default function HomePage() {
                 letterSpacing: '-0.01em',
               }}
             >
-              Acompanhe cada rodada
+              Explore todos os rankings
             </h2>
           </div>
           <div style={{ display: 'flex', gap: 12, position: 'relative', flexWrap: 'wrap' }}>
             <Link href="/ranking" className="btn-primary" style={{ background: '#9dd3aa', color: '#00361a', borderColor: '#9dd3aa' }}>
-              Ver Ranking
+              Masculino
             </Link>
-            <Link href="/jogos" className="btn-ghost" style={{ color: '#9dd3aa', borderColor: 'rgba(157,211,170,0.4)' }}>
-              Ver Jogos
+            <Link href="/feminino" className="btn-ghost" style={{ color: '#9dd3aa', borderColor: 'rgba(157,211,170,0.4)' }}>
+              Feminino Bronze
             </Link>
-            <Link href="/lances" className="btn-ghost" style={{ color: '#9dd3aa', borderColor: 'rgba(157,211,170,0.4)' }}>
-              Ver Lances
+            <Link href="/feminino-prata" className="btn-ghost" style={{ color: '#9dd3aa', borderColor: 'rgba(157,211,170,0.4)' }}>
+              Feminino Prata
             </Link>
           </div>
         </div>

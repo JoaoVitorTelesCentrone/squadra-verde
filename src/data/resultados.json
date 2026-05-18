@@ -1,59 +1,26 @@
 {
   "resultados": [
-    {
-      "id": 1,
-      "rodada": 1,
-      "jogo_id": 2,
-      "data": "03/05",
-      "horario": "08:00",
-      "dupla1": ["Wagner Santos", "Miguel Centrone"],
-      "dupla2": ["Alexandre Castro", "William Silva"],
-      "realizado": true,
-      "data_realizada": "03/05/2026"
-    },
-    {
-      "id": 2,
-      "rodada": 1,
-      "jogo_id": 5,
-      "data": "03/05",
-      "horario": "10:30",
-      "dupla1": ["João Centrone", "Gustavo Machado"],
-      "dupla2": ["Rodrigo Lolato", "Felippi Cordeiro"],
-      "realizado": true,
-      "data_realizada": "03/05/2026"
-    },
-    {
-      "id": 3,
-      "rodada": 1,
-      "jogo_id": 8,
-      "data": "03/05",
-      "horario": "11:45",
-      "dupla1": ["Guilherme Machado", "José Resende"],
-      "dupla2": ["Marcelo Cavalieri", "Augusto Oazi"],
-      "realizado": true,
-      "data_realizada": "03/05/2026"
-    },
-    {
-      "id": 4,
-      "rodada": 1,
-      "jogo_id": 1,
-      "data": "29/04",
-      "horario": "08:00",
-      "dupla1": ["Riccardo Voso", "Adriano Marchioreto"],
-      "dupla2": ["Rafael Madi", "Fausto Moretti"],
-      "realizado": true,
-      "data_realizada": "29/04/2026"
-    },
-    {
-      "id": 5,
-      "rodada": 1,
-      "jogo_id": 4,
-      "data": "29/04",
-      "horario": "09:15",
-      "dupla1": ["João Paulo Fiacadori", "Reginaldo Teiji"],
-      "dupla2": ["Rafael Carioca", "Fábio Lodi"],
-      "realizado": true,
-      "data_realizada": "29/04/2026"
-    }
+    { "jogo_id": 1,  "realizado": true, "partidas": [{"games1":7,"games2":5},{"games1":6,"games2":2},{"games1":6,"games2":1}] },
+    { "jogo_id": 2,  "realizado": true, "partidas": [{"games1":6,"games2":2},{"games1":7,"games2":6},{"games1":7,"games2":5}] },
+    { "jogo_id": 3,  "realizado": true, "partidas": [{"games1":6,"games2":7},{"games1":2,"games2":6},{"games1":6,"games2":1}] },
+    { "jogo_id": 4,  "realizado": true, "partidas": [{"games1":6,"games2":3},{"games1":4,"games2":6},{"games1":1,"games2":6}] },
+    { "jogo_id": 5,  "realizado": true, "partidas": [{"games1":3,"games2":6},{"games1":6,"games2":3},{"games1":3,"games2":6}] },
+    { "jogo_id": 6,  "realizado": true, "partidas": [{"games1":4,"games2":6},{"games1":6,"games2":3},{"games1":5,"games2":7}] },
+    { "jogo_id": 7,  "realizado": true, "partidas": [{"games1":3,"games2":6},{"games1":6,"games2":3},{"games1":7,"games2":6}] },
+    { "jogo_id": 8,  "realizado": true, "partidas": [{"games1":6,"games2":3},{"games1":0,"games2":6},{"games1":4,"games2":6}] },
+    { "jogo_id": 9,  "realizado": true, "partidas": [{"games1":6,"games2":1},{"games1":6,"games2":1},{"games1":0,"games2":6}] },
+    { "jogo_id": 10, "realizado": true, "partidas": [{"games1":6,"games2":4},{"games1":6,"games2":1},{"games1":5,"games2":7}] },
+    { "jogo_id": 11, "realizado": true, "partidas": [{"games1":1,"games2":6},{"games1":1,"games2":6},{"games1":6,"games2":1}] },
+    { "jogo_id": 12, "realizado": true, "partidas": [{"games1":6,"games2":4},{"games1":7,"games2":5},{"games1":1,"games2":6}] },
+    { "jogo_id": 13, "realizado": true, "partidas": [{"games1":3,"games2":6},{"games1":6,"games2":7},{"games1":5,"games2":7}] },
+    { "jogo_id": 14, "realizado": true, "partidas": [{"games1":6,"games2":3},{"games1":3,"games2":6},{"games1":6,"games2":3}] },
+    { "jogo_id": 15, "realizado": true, "partidas": [{"games1":3,"games2":6},{"games1":2,"games2":6},{"games1":7,"games2":5}] },
+    { "jogo_id": 16, "realizado": true, "partidas": [{"games1":1,"games2":6},{"games1":6,"games2":0},{"games1":4,"games2":6}] },
+    { "jogo_id": 19, "realizado": true, "partidas": [{"games1":6,"games2":7},{"games1":3,"games2":6},{"games1":6,"games2":7}] },
+    { "jogo_id": 20, "realizado": true, "partidas": [{"games1":3,"games2":6},{"games1":2,"games2":6},{"games1":3,"games2":6}] },
+    { "jogo_id": 22, "realizado": true, "partidas": [{"games1":1,"games2":6},{"games1":5,"games2":7},{"games1":3,"games2":6}] },
+    { "jogo_id": 24, "realizado": true, "partidas": [{"games1":6,"games2":0},{"games1":2,"games2":6},{"games1":0,"games2":6}] },
+    { "jogo_id": 29, "realizado": true, "partidas": [{"games1":2,"games2":6},{"games1":6,"games2":4},{"games1":7,"games2":6}] },
+    { "jogo_id": 31, "realizado": true, "partidas": [{"games1":2,"games2":6},{"games1":6,"games2":2},{"games1":7,"games2":6}] }
   ]
 }

@@ -6,7 +6,8 @@ import { useState } from 'react';
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/ranking', label: 'Classificação' },
+  { href: '/ranking', label: 'Classificação M' },
+  { href: '/feminino', label: 'Classificação F' },
   { href: '/jogos', label: 'Jogos' },
   { href: '/lances', label: 'Lances' },
   { href: '/atletas', label: 'Atletas' },
@@ -56,32 +57,17 @@ export default function Header() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo-squadra.png" alt="Logo Squadra Verde" style={{ width: 40, height: 40, objectFit: 'cover' }} />
           </div>
-          <div>
-            <div
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontWeight: 700,
-                fontSize: 14,
-                letterSpacing: '0.05em',
-                color: '#00361a',
-                lineHeight: 1.1,
-                textTransform: 'uppercase',
-              }}
-            >
-              Squadra Verde
-            </div>
-            <div
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: 500,
-                fontSize: 10,
-                letterSpacing: '0.12em',
-                color: '#717971',
-                textTransform: 'uppercase',
-              }}
-            >
-              Beach Tennis · Masculino
-            </div>
+          <div
+            style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontWeight: 700,
+              fontSize: 14,
+              letterSpacing: '0.05em',
+              color: '#00361a',
+              textTransform: 'uppercase',
+            }}
+          >
+            Squadra Verde
           </div>
         </Link>
 

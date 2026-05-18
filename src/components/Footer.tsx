@@ -110,7 +110,7 @@ export default function Footer() {
             color: '#717971',
           }}
         >
-          © 2026 Masculino Squadra Verde · Ranking Rei da Quadra
+          © 2026 Squadra Verde · Temporada 2026
         </p>
 
         <p

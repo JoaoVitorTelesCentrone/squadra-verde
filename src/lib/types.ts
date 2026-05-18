@@ -23,16 +23,15 @@ export interface Rodada {
   jogos: Jogo[];
 }
 
+export interface Partida {
+  games1: number;
+  games2: number;
+}
+
 export interface Resultado {
-  id: number;
-  rodada: number;
   jogo_id: number;
-  data: string;
-  horario: string;
-  dupla1: string[];
-  dupla2: string[];
   realizado: boolean;
-  data_realizada?: string;
+  partidas?: Partida[] | null;
 }
 
 export interface Lance {

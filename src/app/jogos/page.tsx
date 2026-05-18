@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import jogosData from '@/data/jogos_ranking.json';
-import resultadosData from '@/data/resultados.json';
+import type { Resultado } from '@/lib/types';
 
 type FiltroStatus = 'todos' | 'realizados' | 'pendentes';
 
@@ -11,16 +11,27 @@ export default function JogosPage() {
   const [filtroStatus, setFiltroStatus] = useState<FiltroStatus>('todos');
   const [busca, setBusca] = useState('');
   const [exporting, setExporting] = useState(false);
+  const [resultados, setResultados] = useState<Resultado[]>([]);
   const exportRef = useRef<HTMLDivElement>(null);
 
-  const realizadosMap = useMemo(() => {
-    const map = new Map<number, boolean>();
-    resultadosData.resultados.forEach(r => map.set(r.jogo_id, r.realizado));
-    return map;
+  useEffect(() => {
+    fetch('/api/resultados')
+      .then(r => r.json())
+      .then(data => setResultados(data.resultados));
   }, []);
 
+  const realizadosMap = useMemo(() => {
+    const map = new Map<number, Resultado>();
+    resultados.forEach(r => map.set(r.jogo_id, r));
+    return map;
+  }, [resultados]);
+
   function isRealizado(jogoId: number) {
-    return realizadosMap.get(jogoId) === true;
+    return realizadosMap.get(jogoId)?.realizado === true;
+  }
+
+  function getPlacar(jogoId: number) {
+    return realizadosMap.get(jogoId)?.partidas ?? null;
   }
 
   const rodadasFiltradas = useMemo(() => {
@@ -39,7 +50,7 @@ export default function JogosPage() {
     }).filter(r => r.jogos.length > 0);
   }, [filtroStatus, busca]);
 
-  const totalRealizados = resultadosData.resultados.filter(r => r.realizado).length;
+  const totalRealizados = resultados.filter(r => r.realizado).length;
   const totalJogos = jogosData.rodadas.reduce((acc, r) => acc + r.jogos.length, 0);
 
   const exportRodadas = rodadaAtiva !== null
@@ -292,12 +303,13 @@ export default function JogosPage() {
                   <div
                     style={{
                       display: 'grid',
-                      gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+                      gridTemplateColumns: 'repeat(auto-fill, minmax(min(300px, 100%), 1fr))',
                       gap: 16,
                     }}
                   >
                     {rodada.jogos.map(jogo => {
                       const realizado = isRealizado(jogo.id);
+                      const placar = getPlacar(jogo.id);
                       return (
                         <div
                           key={jogo.id}
@@ -352,6 +364,7 @@ export default function JogosPage() {
 
                           {/* Duplas */}
                           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+
                             <div style={{ flex: 1 }}>
                               {jogo.dupla1.map(nome => (
                                 <p
@@ -412,6 +425,23 @@ export default function JogosPage() {
                               ))}
                             </div>
                           </div>
+
+                          {/* Placar */}
+                          {realizado && placar && (
+                            <div style={{ marginTop: 12, display: 'flex', flexDirection: 'column', gap: 4 }}>
+                              {placar.map((p, i) => {
+                                const p1Win = p.games1 > p.games2;
+                                const p2Win = p.games2 > p.games1;
+                                return (
+                                  <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+                                    <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: p1Win ? 700 : 400, color: p1Win ? '#00361a' : '#717971' }}>{p.games1}</span>
+                                    <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: '#c1c9bf' }}>×</span>
+                                    <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: p2Win ? 700 : 400, color: p2Win ? '#00361a' : '#717971' }}>{p.games2}</span>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          )}
 
                           {/* Footer info */}
                           <div

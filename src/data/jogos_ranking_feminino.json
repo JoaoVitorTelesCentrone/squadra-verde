@@ -1,0 +1,26 @@
+{
+  "temporada": "2026",
+  "nome": "1º Ranking Squadra Verde - Bronze (F)",
+  "periodo": "17/05 a 2026",
+  "rodadas": [
+    {
+      "rodada": 1,
+      "data": "17/05",
+      "jogos": [
+        { "id": 101, "horario": "08:00", "dupla1": ["Juliana Magalhães",                      "Raphaela Fiacadori"],                    "dupla2": ["Fernanda Bopp",                              "Katia Schiavetti"] },
+        { "id": 102, "horario": "08:00", "dupla1": ["Joana Oliveira",                         "Renata Corsi Monegaglia Salvestrini"],   "dupla2": ["Coringa Ranking",                            "Hellen Rodrigues"] },
+        { "id": 103, "horario": "08:00", "dupla1": ["Carolina Cherubini Silva Honorato",      "Liliane Sinhorini Lodi"],                "dupla2": ["Filomena Centrone",                          "Tatiana Masui"] },
+        { "id": 104, "horario": "08:00", "dupla1": ["Ana Carla Revuelta Dal Arosa Carioca",   "Gabriella Mattos"],                      "dupla2": ["Alessandra Sandrini",                        "Luciana Pelegrino"] }
+      ]
+    },
+    {
+      "rodada": 2,
+      "data": "24/05",
+      "jogos": [
+        { "id": 105, "horario": "07:00", "dupla1": ["Alessandra Sandrini",                    "Joana Oliveira"],                        "dupla2": ["Juliana Magalhães",                          "Liliane Sinhorini Lodi"] },
+        { "id": 106, "horario": "08:00", "dupla1": ["Cristiane Kovacs",                       "Luciana Pelegrino"],                     "dupla2": ["Gabriella Mattos",                           "Luciana Muniz Madi"] },
+        { "id": 107, "horario": "08:00", "dupla1": ["Carolina Cherubini Silva Honorato",      "Neive Andrade"],                         "dupla2": ["Katia Schiavetti",                           "Renata Corsi Monegaglia Salvestrini"] }
+      ]
+    }
+  ]
+}

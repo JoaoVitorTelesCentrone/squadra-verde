@@ -4,8 +4,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Squadra Verde · Ranking Masculino Beach Tennis",
-  description: "Acompanhe o ranking Rei da Quadra do Masculino Squadra Verde — Beach Tennis Temporada 2026",
+  title: "Squadra Verde · Beach Tennis 2026",
+  description: "Rankings de beach tennis Squadra Verde — Masculino, Feminino Bronze e Feminino Prata · Temporada 2026",
   icons: {
     icon: '/logo-squadra.png',
   },

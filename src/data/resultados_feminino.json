@@ -1,0 +1,11 @@
+{
+  "resultados": [
+    { "jogo_id": 101, "realizado": true, "partidas": [{"games1":3,"games2":6},{"games1":2,"games2":6},{"games1":5,"games2":7}] },
+    { "jogo_id": 102, "realizado": true, "partidas": [{"games1":6,"games2":0},{"games1":6,"games2":4},{"games1":2,"games2":6}] },
+    { "jogo_id": 103, "realizado": true, "partidas": [{"games1":3,"games2":6},{"games1":6,"games2":1},{"games1":2,"games2":6}] },
+    { "jogo_id": 104, "realizado": true, "partidas": [{"games1":5,"games2":7},{"games1":6,"games2":2},{"games1":6,"games2":4}] },
+    { "jogo_id": 105, "realizado": true, "partidas": [{"games1":7,"games2":6},{"games1":6,"games2":3},{"games1":6,"games2":2}] },
+    { "jogo_id": 106, "realizado": true, "partidas": [{"games1":6,"games2":7},{"games1":5,"games2":7},{"games1":6,"games2":2}] },
+    { "jogo_id": 107, "realizado": true, "partidas": [{"games1":7,"games2":5},{"games1":6,"games2":4},{"games1":4,"games2":6}] }
+  ]
+}
