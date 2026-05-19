@@ -4,81 +4,51 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
-const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/ranking', label: 'Classificação M' },
-  { href: '/feminino', label: 'Classificação F' },
-  { href: '/jogos', label: 'Jogos M' },
-  { href: '/feminino-jogos', label: 'Jogos F' },
-  { href: '/lances', label: 'Lances' },
-  { href: '/atletas', label: 'Atletas' },
-  { href: '/patrocinadores', label: 'Patrocinadores' },
-  { href: '/sobre', label: 'Sobre' },
+const NAV = [
+  { href: '/',           label: 'Home' },
+  { href: '/ranking',    label: 'Classificação' },
+  { href: '/jogos',      label: 'Jogos' },
+  { href: '/lances',     label: 'Lances' },
+  { href: '/atletas',    label: 'Atletas' },
+  { href: '/sobre',      label: 'Sobre' },
 ];
+
+const RANKING_PATHS = ['/ranking', '/feminino', '/feminino-prata'];
+const JOGOS_PATHS   = ['/jogos', '/feminino-jogos', '/feminino-prata-jogos'];
 
 export default function Header() {
   const pathname = usePathname();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  function isActive(href: string) {
+    if (href === '/') return pathname === '/';
+    if (href === '/ranking') return RANKING_PATHS.some(p => pathname.startsWith(p));
+    if (href === '/jogos')   return JOGOS_PATHS.some(p => pathname.startsWith(p));
+    return pathname.startsWith(href);
+  }
 
   return (
-    <header
-      style={{
-        borderBottom: '1px solid #191c19',
-        background: '#ffffff',
-        position: 'sticky',
-        top: 0,
-        zIndex: 50,
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: '0 auto',
-          padding: '0 24px',
-          height: 64,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
+    <header style={{ background: 'var(--verde-escuro)', borderBottom: '1px solid rgba(255,255,255,0.08)', position: 'sticky', top: 0, zIndex: 50 }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+
         {/* Logo */}
-        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-          <div
-            style={{
-              width: 40,
-              height: 40,
-              border: '1px solid #191c19',
-              overflow: 'hidden',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              background: '#f8faf5',
-            }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo-squadra.png" alt="Logo Squadra Verde" style={{ width: 40, height: 40, objectFit: 'cover' }} />
+        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }} onClick={() => setOpen(false)}>
+          <div style={{ width: 36, height: 36, background: 'var(--verde-campo)', border: '1.5px solid rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 900, fontSize: 13, color: 'var(--creme)', letterSpacing: '-0.04em' }}>SV</span>
           </div>
-          <div
-            style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontWeight: 700,
-              fontSize: 14,
-              letterSpacing: '0.05em',
-              color: '#00361a',
-              textTransform: 'uppercase',
-            }}
-          >
-            Squadra Verde
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+            <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 900, fontSize: 11, letterSpacing: '0.1em', color: 'var(--creme)', textTransform: 'uppercase', lineHeight: 1.1 }}>SQUADRA</span>
+            <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 900, fontSize: 11, letterSpacing: '0.1em', color: 'var(--verde-medio)', textTransform: 'uppercase', lineHeight: 1.1 }}>VERDE</span>
           </div>
         </Link>
 
-        {/* Desktop Nav */}
+        {/* Desktop nav */}
         <nav className="nav-desktop">
-          {navLinks.map((link) => (
+          {NAV.map(link => (
             <Link
               key={link.href}
               href={link.href}
-              className={`nav-link ${pathname === link.href ? 'active' : ''}`}
+              className={`nav-link${isActive(link.href) ? ' active' : ''}`}
             >
               {link.label}
             </Link>
@@ -88,72 +58,53 @@ export default function Header() {
         {/* Mobile hamburger */}
         <button
           className="nav-mobile-btn"
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={() => setOpen(v => !v)}
           aria-label="Menu"
+          style={{ flexShrink: 0 }}
         >
-          <span
-            style={{
-              display: 'block',
-              width: 24,
-              height: 2,
-              background: '#191c19',
-              transition: 'all 0.2s',
-              transform: menuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none',
-            }}
-          />
-          <span
-            style={{
-              display: 'block',
-              width: 24,
-              height: 2,
-              background: '#191c19',
-              transition: 'all 0.2s',
-              opacity: menuOpen ? 0 : 1,
-            }}
-          />
-          <span
-            style={{
-              display: 'block',
-              width: menuOpen ? 24 : 18,
-              height: 2,
-              background: '#191c19',
-              transition: 'all 0.2s',
-              transform: menuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none',
-            }}
-          />
+          {[0, 1, 2].map(i => (
+            <span
+              key={i}
+              style={{
+                display: 'block',
+                height: 2,
+                background: 'var(--creme)',
+                transition: 'all 0.2s',
+                width: i === 0 ? (open ? 24 : 24) : i === 1 ? (open ? 0 : 20) : (open ? 24 : 16),
+                opacity: i === 1 && open ? 0 : 1,
+                transform: i === 0 && open ? 'rotate(45deg) translate(5px, 5px)' : i === 2 && open ? 'rotate(-45deg) translate(4px, -4px)' : 'none',
+              }}
+            />
+          ))}
         </button>
       </div>
 
       {/* Mobile menu */}
-      <div
-        style={{
-          background: '#ffffff',
-          borderTop: menuOpen ? '1px solid #e7e9e4' : 'none',
-          maxHeight: menuOpen ? 600 : 0,
-          overflow: 'hidden',
-          transition: 'max-height 0.28s ease, border-top 0.1s',
-        }}
-      >
-        <div style={{ padding: '8px 0 16px' }}>
-          {navLinks.map((link) => (
+      <div style={{ background: 'var(--preto)', borderTop: open ? '1px solid rgba(255,255,255,0.06)' : 'none', maxHeight: open ? 500 : 0, overflow: 'hidden', transition: 'max-height 0.28s ease' }}>
+        <div style={{ padding: '8px 0 20px' }}>
+          {NAV.map(link => (
             <Link
               key={link.href}
               href={link.href}
-              className={`nav-link ${pathname === link.href ? 'active' : ''}`}
+              onClick={() => setOpen(false)}
               style={{
-                display: 'flex',
-                alignItems: 'center',
+                display: 'block',
                 padding: '14px 24px',
-                borderBottom: '1px solid #f3f4ef',
-                fontSize: 13,
+                fontFamily: "'DM Mono', monospace",
+                fontSize: 11,
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                color: isActive(link.href) ? 'var(--creme)' : 'rgba(245,239,230,0.45)',
+                textDecoration: 'none',
+                borderBottom: '1px solid rgba(255,255,255,0.05)',
+                borderLeft: isActive(link.href) ? '2px solid var(--amarelo)' : '2px solid transparent',
               }}
-              onClick={() => setMenuOpen(false)}
             >
               {link.label}
             </Link>
           ))}
-          <div style={{ padding: '12px 24px 0' }}>
-            <span className="chip">Temporada 2026</span>
+          <div style={{ padding: '14px 24px 0' }}>
+            <span className="chip">Temporada 2025</span>
           </div>
         </div>
       </div>

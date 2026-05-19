@@ -5,6 +5,7 @@ import jogosDataF from '@/data/jogos_ranking_feminino.json';
 import rankingPrata from '@/data/ranking_prata_feminino.json';
 import { calcularClassificacao } from '@/lib/calcularClassificacao';
 import type { Jogador, Resultado } from '@/lib/types';
+import SectionTabs, { RANKING_TABS } from '@/components/SectionTabs';
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -136,10 +137,11 @@ export default function FemininoPage() {
 
   return (
     <div>
+      <SectionTabs tabs={RANKING_TABS} section="Classificação" />
       {/* ── PAGE HEADER ── */}
-      <div style={{ background: '#ffffff', borderBottom: '1px solid #e7e9e4' }}>
+      <div style={{ background: 'var(--branco)', borderBottom: '1px solid rgba(26,58,26,0.12)' }}>
         <div className="page-header-inner">
-          <p className="section-label" style={{ marginBottom: 10, color: theme.primary }}>Temporada 2026 · Feminino</p>
+          <p className="section-label" style={{ marginBottom: 10, color: theme.primary }}>Temporada 2025 · Feminino</p>
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
             <div>
               <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 'clamp(32px, 5vw, 56px)', color: '#191c19', letterSpacing: '-0.02em', marginBottom: 16 }}>
@@ -258,15 +260,15 @@ export default function FemininoPage() {
                   <thead>
                     <tr style={{ background: BRONZE.dark }}>
                       {([
-                        { key: 'posicao' as SortKeyBronze,             label: 'POS' },
-                        { key: 'posicao' as SortKeyBronze,             label: 'ATLETA',  noSort: true },
-                        { key: 'jogos' as SortKeyBronze,               label: 'J' },
-                        { key: 'vitorias' as SortKeyBronze,            label: 'V' },
-                        { key: 'posicao' as SortKeyBronze,             label: 'D',        noSort: true },
-                        { key: 'percentual_vitorias' as SortKeyBronze, label: '%V' },
-                        { key: 'saldo_games' as SortKeyBronze,         label: 'SG' },
-                        { key: 'posicao' as SortKeyBronze,             label: 'BARRA',   noSort: true },
-                      ] as const).map((col, i) => (
+                        { key: 'posicao' as SortKeyBronze,             label: 'POS',    noSort: false },
+                        { key: 'posicao' as SortKeyBronze,             label: 'ATLETA', noSort: true  },
+                        { key: 'jogos' as SortKeyBronze,               label: 'J',      noSort: false },
+                        { key: 'vitorias' as SortKeyBronze,            label: 'V',      noSort: false },
+                        { key: 'posicao' as SortKeyBronze,             label: 'D',      noSort: true  },
+                        { key: 'percentual_vitorias' as SortKeyBronze, label: '%V',     noSort: false },
+                        { key: 'saldo_games' as SortKeyBronze,         label: 'SG',     noSort: false },
+                        { key: 'posicao' as SortKeyBronze,             label: 'BARRA',  noSort: true  },
+                      ] satisfies { key: SortKeyBronze; label: string; noSort: boolean }[]).map((col, i) => (
                         <th key={i} onClick={() => !col.noSort && handleSortBronze(col.key)}
                           style={{ padding: '14px 16px', fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: BRONZE.accent, textAlign: i === 1 ? 'left' : 'center', cursor: col.noSort ? 'default' : 'pointer', whiteSpace: 'nowrap', borderRight: i < 7 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
                           {col.label}{!col.noSort && <SortIconBronze col={col.key} />}
@@ -357,16 +359,16 @@ export default function FemininoPage() {
                 <thead>
                   <tr style={{ background: PRATA.dark }}>
                     {([
-                      { key: 'posicao' as SortKeyPrata,    label: 'POS' },
-                      { key: 'posicao' as SortKeyPrata,    label: 'ATLETA',    noSort: true },
-                      { key: 'jogos' as SortKeyPrata,      label: 'J' },
-                      { key: 'pontos' as SortKeyPrata,     label: 'PTS' },
-                      { key: 'posicao' as SortKeyPrata,    label: 'SETS V/D',  noSort: true },
-                      { key: 'saldo_sets' as SortKeyPrata, label: 'SS' },
-                      { key: 'posicao' as SortKeyPrata,    label: 'GAMES V/D', noSort: true },
-                      { key: 'saldo_games' as SortKeyPrata,label: 'SG' },
-                      { key: 'percentual' as SortKeyPrata, label: '%V' },
-                    ] as const).map((col, i) => (
+                      { key: 'posicao' as SortKeyPrata,     label: 'POS',      noSort: false },
+                      { key: 'posicao' as SortKeyPrata,     label: 'ATLETA',   noSort: true  },
+                      { key: 'jogos' as SortKeyPrata,       label: 'J',        noSort: false },
+                      { key: 'pontos' as SortKeyPrata,      label: 'PTS',      noSort: false },
+                      { key: 'posicao' as SortKeyPrata,     label: 'SETS V/D', noSort: true  },
+                      { key: 'saldo_sets' as SortKeyPrata,  label: 'SS',       noSort: false },
+                      { key: 'posicao' as SortKeyPrata,     label: 'GAMES V/D',noSort: true  },
+                      { key: 'saldo_games' as SortKeyPrata, label: 'SG',       noSort: false },
+                      { key: 'percentual' as SortKeyPrata,  label: '%V',       noSort: false },
+                    ] satisfies { key: SortKeyPrata; label: string; noSort: boolean }[]).map((col, i) => (
                       <th key={i} onClick={() => !col.noSort && handleSortPrata(col.key)}
                         style={{ padding: '14px 12px', fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: PRATA.accent, textAlign: i === 1 ? 'left' : 'center', cursor: col.noSort ? 'default' : 'pointer', whiteSpace: 'nowrap', borderRight: i < 8 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
                         {col.label}{!col.noSort && <SortIconPrata col={col.key} />}

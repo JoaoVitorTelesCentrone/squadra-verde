@@ -18,194 +18,82 @@ function getProximoJogo() {
   return null;
 }
 
-const MEDAL: Record<number, string> = { 1: '🥇', 2: '🥈', 3: '🥉' };
 const RANK_BG: Record<number, string> = {
-  1: '#00361a',
-  2: '#1a4d2e',
-  3: '#2c694e',
+  1: 'var(--verde-escuro)',
+  2: 'var(--verde-campo)',
+  3: '#3a5c3a',
 };
 
 export default function HomePage() {
   const top3 = classificacao.ranking.slice(0, 3);
   const proximoJogo = getProximoJogo();
   const ultimosLances = lancesData.lances.slice(0, 4);
+  const jogosRealizados = resultados.resultados.filter(r => r.realizado).length;
 
   return (
     <div>
-      {/* ── HERO ── */}
-      <section
-        style={{
-          position: 'relative',
-          minHeight: 380,
-          overflow: 'hidden',
-          background: '#00361a',
-          display: 'flex',
-          alignItems: 'center',
-        }}
-      >
-        {/* Background pattern */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: 'radial-gradient(circle, rgba(157,211,170,0.12) 1px, transparent 1px)',
-            backgroundSize: '24px 24px',
-          }}
-        />
-        {/* Diagonal accent */}
-        <div
-          style={{
-            position: 'absolute',
-            right: 0,
-            top: 0,
-            bottom: 0,
-            width: '45%',
-            backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(157,211,170,0.06) 8px, rgba(157,211,170,0.06) 9px)',
-          }}
-        />
-        {/* Court lines accent */}
-        <div
-          style={{
-            position: 'absolute',
-            right: '8%',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            width: 280,
-            height: 280,
-            border: '1px solid rgba(157,211,170,0.2)',
-            opacity: 0.6,
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            right: '10%',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            width: 200,
-            height: 200,
-            border: '1px solid rgba(157,211,170,0.15)',
-          }}
-        />
 
-        <div
-          className="hero-inner"
-          style={{
-            position: 'relative',
-            zIndex: 1,
-            width: '100%',
-          }}
-        >
-          {/* Label */}
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 8,
-              marginBottom: 24,
-            }}
-            className="animate-fade-up anim-delay-1"
-          >
-            <div style={{ width: 24, height: 1, background: '#9dd3aa' }} />
-            <span
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: 11,
-                fontWeight: 700,
-                letterSpacing: '0.2em',
-                textTransform: 'uppercase',
-                color: '#9dd3aa',
-              }}
-            >
-              Temporada 2026
+      {/* ── HERO ─────────────────────────────────────────────────────────────── */}
+      <section style={{ position: 'relative', overflow: 'hidden', background: 'var(--verde-escuro)', display: 'flex', alignItems: 'center' }}>
+        {/* Dot pattern */}
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)', backgroundSize: '28px 28px', pointerEvents: 'none' }} />
+        {/* Accent square */}
+        <div style={{ position: 'absolute', right: '6%', top: '50%', transform: 'translateY(-50%)', width: 280, height: 280, border: '1px solid rgba(79,140,79,0.2)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', right: '8%', top: '50%', transform: 'translateY(-50%)', width: 200, height: 200, border: '1px solid rgba(79,140,79,0.12)', pointerEvents: 'none' }} />
+
+        <div className="hero-inner" style={{ position: 'relative', zIndex: 1, width: '100%' }}>
+
+          {/* Eyebrow */}
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 28 }} className="animate-fade-up anim-delay-1">
+            <div style={{ width: 20, height: 1, background: 'var(--verde-medio)' }} />
+            <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, letterSpacing: '0.35em', textTransform: 'uppercase', color: 'var(--verde-medio)' }}>
+              Temporada 2025
             </span>
           </div>
 
+          {/* Headline */}
           <h1
-            style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontWeight: 700,
-              fontSize: 'clamp(40px, 6vw, 72px)',
-              lineHeight: 1.05,
-              color: '#ffffff',
-              letterSpacing: '-0.02em',
-              maxWidth: 640,
-              marginBottom: 16,
-            }}
+            style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 900, fontSize: 'clamp(36px, 7vw, 80px)', lineHeight: 0.88, color: 'var(--creme)', letterSpacing: '-0.03em', textTransform: 'uppercase', maxWidth: 600, marginBottom: 24 }}
             className="animate-fade-up anim-delay-2"
           >
-            Rankings<br />
-            <span style={{ color: '#9dd3aa' }}>Squadra Verde</span><br />
-            Temporada 2026
+            SQUADRA<br />
+            <span style={{ color: 'var(--verde-medio)' }}>VERDE</span>
           </h1>
 
+          {/* Sub */}
           <p
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: 16,
-              color: 'rgba(240,241,236,0.7)',
-              maxWidth: 480,
-              lineHeight: 1.6,
-              marginBottom: 40,
-            }}
+            style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, letterSpacing: '0.25em', color: 'rgba(245,239,230,0.45)', textTransform: 'uppercase', marginBottom: 40, lineHeight: 1.8 }}
             className="animate-fade-up anim-delay-3"
           >
-            Masculino · Feminino Bronze · Feminino Prata · {jogosData.periodo}
+            Beach Tênis · Masculino · Feminino Bronze · Feminino Prata
           </p>
 
-          <div
-            style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}
-            className="animate-fade-up anim-delay-4"
-          >
-            <Link href="/ranking" className="btn-primary" style={{ background: '#9dd3aa', color: '#00361a', borderColor: '#9dd3aa' }}>
-              Ranking Masculino
+          {/* CTAs */}
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }} className="animate-fade-up anim-delay-4">
+            <Link href="/ranking" className="btn-primary">
+              Classificação
             </Link>
-            <Link href="/feminino" className="btn-ghost" style={{ color: '#9dd3aa', borderColor: 'rgba(157,211,170,0.5)' }}>
-              Ranking Feminino
+            <Link href="/jogos" className="btn-ghost" style={{ color: 'var(--creme)', borderColor: 'rgba(245,239,230,0.25)' }}>
+              Ver Jogos
             </Link>
           </div>
 
           {/* Stats bar */}
           <div
-            style={{
-              display: 'flex',
-              gap: 32,
-              marginTop: 64,
-              paddingTop: 32,
-              borderTop: '1px solid rgba(157,211,170,0.2)',
-              flexWrap: 'wrap',
-            }}
-            className="animate-fade-up anim-delay-5"
+            style={{ display: 'flex', gap: 40, marginTop: 60, paddingTop: 28, borderTop: '1px solid rgba(79,140,79,0.2)', flexWrap: 'wrap' }}
+            className="animate-fade-up anim-delay-5 stats-bar"
           >
             {[
-              { value: '3', label: 'Rankings' },
-              { value: resultados.resultados.filter(r => r.realizado).length, label: 'Jogos Realizados' },
-              { value: 78, label: 'Atletas' },
+              { value: '3',               label: 'Rankings' },
+              { value: jogosRealizados,   label: 'Jogos Realizados' },
+              { value: 78,                label: 'Atletas' },
               { value: classificacao.atualizado_em, label: 'Atualizado em' },
-            ].map((stat) => (
+            ].map(stat => (
               <div key={stat.label}>
-                <div
-                  style={{
-                    fontFamily: "'DM Mono', monospace",
-                    fontWeight: 500,
-                    fontSize: 28,
-                    color: '#ffffff',
-                    lineHeight: 1,
-                  }}
-                >
+                <div style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 26, color: 'var(--creme)', lineHeight: 1 }}>
                   {stat.value}
                 </div>
-                <div
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: 11,
-                    fontWeight: 600,
-                    letterSpacing: '0.12em',
-                    textTransform: 'uppercase',
-                    color: 'rgba(157,211,170,0.7)',
-                    marginTop: 4,
-                  }}
-                >
+                <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 9, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--verde-medio)', marginTop: 6, opacity: 0.8 }}>
                   {stat.label}
                 </div>
               </div>
@@ -214,442 +102,148 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── TOP 3 ── */}
+      {/* ── TOP 3 ────────────────────────────────────────────────────────────── */}
       <section className="page-body-inner" style={{ paddingBottom: 0 }}>
-        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 32 }}>
+        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 28 }}>
           <div>
             <p className="section-label" style={{ marginBottom: 8 }}>Ranking Masculino</p>
-            <h2
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontWeight: 700,
-                fontSize: 32,
-                color: '#191c19',
-                letterSpacing: '-0.01em',
-              }}
-            >
-              Líderes do Ranking
+            <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 'clamp(20px, 3vw, 28px)', color: 'var(--preto)', letterSpacing: '-0.02em', textTransform: 'uppercase' }}>
+              Líderes
             </h2>
           </div>
-          <Link
-            href="/ranking"
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: 12,
-              fontWeight: 700,
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color: '#00361a',
-              textDecoration: 'none',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 6,
-            }}
-          >
+          <Link href="/ranking" style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--verde-campo)', textDecoration: 'none' }}>
             Ver Todos →
           </Link>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16 }}>
-          {top3.map((jogador) => (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 2 }}>
+          {top3.map(jogador => (
             <div
               key={jogador.posicao}
-              className="card-hard-shadow"
-              style={{
-                background: RANK_BG[jogador.posicao],
-                padding: '28px 24px',
-                position: 'relative',
-                overflow: 'hidden',
-              }}
+              style={{ background: RANK_BG[jogador.posicao], padding: '32px 28px', position: 'relative', overflow: 'hidden' }}
             >
-              {/* Background number */}
-              <div
-                style={{
-                  position: 'absolute',
-                  right: -12,
-                  top: -20,
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontWeight: 700,
-                  fontSize: 120,
-                  color: 'rgba(255,255,255,0.06)',
-                  lineHeight: 1,
-                  userSelect: 'none',
-                }}
-              >
+              {/* Ghost number */}
+              <div style={{ position: 'absolute', right: -8, top: -16, fontFamily: "'Unbounded', sans-serif", fontWeight: 900, fontSize: 110, color: 'rgba(255,255,255,0.05)', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>
                 {jogador.posicao}
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
-                <div
-                  style={{
-                    width: 40,
-                    height: 40,
-                    background: 'rgba(255,255,255,0.15)',
-                    border: '1px solid rgba(255,255,255,0.3)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontFamily: "'DM Mono', monospace",
-                    fontWeight: 500,
-                    fontSize: 18,
-                    color: '#ffffff',
-                  }}
-                >
-                  {jogador.posicao}
+              {/* Position badge */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
+                <div style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 14, color: 'var(--creme)' }}>{jogador.posicao}</span>
                 </div>
-                <span style={{ fontSize: 22 }}>{MEDAL[jogador.posicao]}</span>
+                <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 9, letterSpacing: '0.3em', color: 'var(--amarelo)', textTransform: 'uppercase', opacity: 0.8 }}>
+                  {jogador.posicao === 1 ? 'Líder' : jogador.posicao === 2 ? '2º lugar' : '3º lugar'}
+                </span>
               </div>
 
-              <h3
-                style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontWeight: 700,
-                  fontSize: 20,
-                  color: '#ffffff',
-                  letterSpacing: '-0.01em',
-                  marginBottom: 16,
-                }}
-              >
+              <h3 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 16, color: 'var(--creme)', textTransform: 'uppercase', letterSpacing: '-0.01em', marginBottom: 20, lineHeight: 1.2 }}>
                 {jogador.nome}
               </h3>
 
-              <div style={{ display: 'flex', gap: 20 }}>
-                <div>
-                  <div
-                    style={{
-                      fontFamily: "'DM Mono', monospace",
-                      fontWeight: 500,
-                      fontSize: 24,
-                      color: '#9dd3aa',
-                      lineHeight: 1,
-                    }}
-                  >
-                    {jogador.percentual_vitorias}%
+              <div style={{ display: 'flex', gap: 20, paddingTop: 16, borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+                {[
+                  { v: `${jogador.percentual_vitorias}%`, l: 'Vitórias' },
+                  { v: jogador.saldo_games > 0 ? `+${jogador.saldo_games}` : String(jogador.saldo_games), l: 'Saldo' },
+                  { v: `${jogador.vitorias}/${jogador.jogos}`, l: 'V/J' },
+                ].map(s => (
+                  <div key={s.l}>
+                    <div style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 18, color: 'var(--creme)', lineHeight: 1 }}>{s.v}</div>
+                    <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 8, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--verde-medio)', marginTop: 4, opacity: 0.7 }}>{s.l}</div>
                   </div>
-                  <div
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: 10,
-                      fontWeight: 700,
-                      letterSpacing: '0.12em',
-                      textTransform: 'uppercase',
-                      color: 'rgba(255,255,255,0.5)',
-                      marginTop: 4,
-                    }}
-                  >
-                    Vitórias
-                  </div>
-                </div>
-                <div style={{ width: 1, background: 'rgba(255,255,255,0.15)' }} />
-                <div>
-                  <div
-                    style={{
-                      fontFamily: "'DM Mono', monospace",
-                      fontWeight: 500,
-                      fontSize: 24,
-                      color: jogador.saldo_games >= 0 ? '#9dd3aa' : '#ffdad6',
-                      lineHeight: 1,
-                    }}
-                  >
-                    {jogador.saldo_games > 0 ? '+' : ''}{jogador.saldo_games}
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: 10,
-                      fontWeight: 700,
-                      letterSpacing: '0.12em',
-                      textTransform: 'uppercase',
-                      color: 'rgba(255,255,255,0.5)',
-                      marginTop: 4,
-                    }}
-                  >
-                    Saldo
-                  </div>
-                </div>
-                <div style={{ width: 1, background: 'rgba(255,255,255,0.15)' }} />
-                <div>
-                  <div
-                    style={{
-                      fontFamily: "'DM Mono', monospace",
-                      fontWeight: 500,
-                      fontSize: 24,
-                      color: '#ffffff',
-                      lineHeight: 1,
-                    }}
-                  >
-                    {jogador.vitorias}/{jogador.jogos}
-                  </div>
-                  <div
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: 10,
-                      fontWeight: 700,
-                      letterSpacing: '0.12em',
-                      textTransform: 'uppercase',
-                      color: 'rgba(255,255,255,0.5)',
-                      marginTop: 4,
-                    }}
-                  >
-                    V/J
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── PRÓXIMO JOGO + ÚLTIMOS LANCES ── */}
+      {/* ── PRÓXIMO JOGO + LANCES ────────────────────────────────────────────── */}
       <section className="page-body-inner" style={{ paddingBottom: 0 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }} className="grid-cols-responsive">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40 }} className="grid-cols-responsive">
 
           {/* Próximo Jogo */}
           <div>
-            <p className="section-label" style={{ marginBottom: 8 }}>Próximo Jogo</p>
-            <h2
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontWeight: 700,
-                fontSize: 28,
-                color: '#191c19',
-                marginBottom: 24,
-              }}
-            >
-              Na Quadra Em Breve
+            <p className="section-label" style={{ marginBottom: 8 }}>Agenda</p>
+            <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 'clamp(18px, 2.5vw, 24px)', color: 'var(--preto)', marginBottom: 24, textTransform: 'uppercase', letterSpacing: '-0.01em' }}>
+              Próximo Jogo
             </h2>
 
             {proximoJogo ? (
-              <div
-                style={{
-                  border: '1px solid #191c19',
-                  background: '#ffffff',
-                  padding: '28px 24px',
-                  position: 'relative',
-                }}
-              >
-                {/* Header da rodada */}
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    marginBottom: 20,
-                    paddingBottom: 16,
-                    borderBottom: '1px solid #e7e9e4',
-                  }}
-                >
+              <div style={{ border: '1px solid var(--preto)', background: 'var(--branco)', padding: '24px', boxShadow: '3px 3px 0 var(--preto)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 18, paddingBottom: 14, borderBottom: '1px solid var(--creme-escuro)' }}>
                   <span className="chip">Rodada {proximoJogo.rodada}</span>
-                  <span
-                    style={{
-                      fontFamily: "'DM Mono', monospace",
-                      fontSize: 13,
-                      fontWeight: 500,
-                      color: '#717971',
-                    }}
-                  >
+                  <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: 'rgba(15,26,15,0.45)', letterSpacing: '0.05em' }}>
                     {proximoJogo.data} · {proximoJogo.horario}
                   </span>
                 </div>
 
-                {/* Duplas */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                   <div style={{ flex: 1 }}>
-                    {proximoJogo.dupla1.map((nome) => (
-                      <p
-                        key={nome}
-                        style={{
-                          fontFamily: "'Space Grotesk', sans-serif",
-                          fontWeight: 600,
-                          fontSize: 15,
-                          color: '#191c19',
-                          marginBottom: 4,
-                        }}
-                      >
-                        {nome}
-                      </p>
+                    {proximoJogo.dupla1.map(nome => (
+                      <p key={nome} style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 12, color: 'var(--preto)', marginBottom: 4, letterSpacing: '-0.01em', textTransform: 'uppercase', lineHeight: 1.2 }}>{nome}</p>
                     ))}
                   </div>
-
-                  <div
-                    style={{
-                      padding: '8px 12px',
-                      background: '#00361a',
-                      border: '1px solid #191c19',
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontFamily: "'Space Grotesk', sans-serif",
-                        fontWeight: 700,
-                        fontSize: 13,
-                        color: '#9dd3aa',
-                        letterSpacing: '0.08em',
-                      }}
-                    >
-                      VS
-                    </span>
+                  <div style={{ padding: '8px 12px', background: 'var(--verde-escuro)' }}>
+                    <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 900, fontSize: 10, color: 'var(--creme)', letterSpacing: '0.08em' }}>VS</span>
                   </div>
-
                   <div style={{ flex: 1, textAlign: 'right' }}>
-                    {proximoJogo.dupla2.map((nome) => (
-                      <p
-                        key={nome}
-                        style={{
-                          fontFamily: "'Space Grotesk', sans-serif",
-                          fontWeight: 600,
-                          fontSize: 15,
-                          color: '#191c19',
-                          marginBottom: 4,
-                        }}
-                      >
-                        {nome}
-                      </p>
+                    {proximoJogo.dupla2.map(nome => (
+                      <p key={nome} style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 12, color: 'var(--preto)', marginBottom: 4, letterSpacing: '-0.01em', textTransform: 'uppercase', lineHeight: 1.2 }}>{nome}</p>
                     ))}
                   </div>
                 </div>
 
-                <div
-                  style={{
-                    marginTop: 20,
-                    paddingTop: 16,
-                    borderTop: '1px solid #e7e9e4',
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                  }}
-                >
-                  <span className="chip-pending">⏳ Aguardando</span>
+                <div style={{ marginTop: 16, paddingTop: 14, borderTop: '1px solid var(--creme-escuro)', display: 'flex', justifyContent: 'flex-end' }}>
+                  <span className="chip-pending">Aguardando</span>
                 </div>
               </div>
             ) : (
-              <div
-                style={{
-                  border: '1px solid #c1c9bf',
-                  padding: 24,
-                  background: '#f3f4ef',
-                  textAlign: 'center',
-                  color: '#717971',
-                }}
-              >
-                Temporada encerrada
+              <div style={{ border: '1px solid var(--creme-escuro)', padding: 24, background: 'var(--creme-escuro)', textAlign: 'center' }}>
+                <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: 'rgba(15,26,15,0.4)', letterSpacing: '0.2em', textTransform: 'uppercase' }}>Temporada Encerrada</span>
               </div>
             )}
 
-            <div style={{ marginTop: 16 }}>
-              <Link href="/jogos" className="btn-ghost" style={{ width: '100%', justifyContent: 'center' }}>
+            <div style={{ marginTop: 14 }}>
+              <Link href="/jogos" className="btn-ghost" style={{ display: 'flex', justifyContent: 'center' }}>
                 Ver Agenda Completa
               </Link>
             </div>
           </div>
 
-          {/* Últimos Lances */}
+          {/* Lances */}
           <div>
             <p className="section-label" style={{ marginBottom: 8 }}>Highlights</p>
-            <h2
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontWeight: 700,
-                fontSize: 28,
-                color: '#191c19',
-                marginBottom: 24,
-              }}
-            >
+            <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 'clamp(18px, 2.5vw, 24px)', color: 'var(--preto)', marginBottom: 24, textTransform: 'uppercase', letterSpacing: '-0.01em' }}>
               Últimos Lances
             </h2>
 
             <div className="lances-mini-grid">
-              {ultimosLances.map((lance) => (
+              {ultimosLances.map(lance => (
                 <Link
                   key={lance.id}
                   href="/lances"
-                  style={{
-                    textDecoration: 'none',
-                    display: 'block',
-                    position: 'relative',
-                    border: '1px solid #191c19',
-                    overflow: 'hidden',
-                    aspectRatio: '4/3',
-                    background: '#1a4d2e',
-                  }}
-                  className="card-hard-shadow"
+                  style={{ textDecoration: 'none', display: 'block', position: 'relative', border: '1px solid var(--preto)', overflow: 'hidden', aspectRatio: '4/3', background: 'var(--verde-escuro)', boxShadow: '2px 2px 0 var(--preto)' }}
                 >
-                  {/* Thumbnail placeholder */}
-                  <div
-                    style={{
-                      position: 'absolute',
-                      inset: 0,
-                      background: `linear-gradient(135deg, #1a4d2e, #00361a)`,
-                      backgroundImage: 'radial-gradient(circle at 30% 40%, rgba(157,211,170,0.15), transparent 60%)',
-                    }}
-                  />
-
-                  {/* Type badge */}
+                  <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle at 30% 40%, rgba(79,140,79,0.2), transparent 60%)' }} />
                   <div style={{ position: 'absolute', top: 8, left: 8 }}>
-                    <span className="chip-green" style={{ fontSize: 9 }}>{lance.tipo}</span>
+                    <span className="chip-green" style={{ fontSize: 8 }}>{lance.tipo}</span>
                   </div>
-
-                  {/* Play button for video */}
                   {lance.midia_tipo === 'video' && (
-                    <div
-                      style={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        width: 36,
-                        height: 36,
-                        background: 'rgba(0,0,0,0.5)',
-                        border: '1px solid rgba(255,255,255,0.3)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      <svg width="12" height="14" viewBox="0 0 12 14" fill="none">
-                        <path d="M1 1l10 6-10 6V1z" fill="white"/>
-                      </svg>
+                    <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 32, height: 32, background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <svg width="10" height="12" viewBox="0 0 12 14" fill="none"><path d="M1 1l10 6-10 6V1z" fill="white"/></svg>
                     </div>
                   )}
-
-                  {/* Info overlay */}
-                  <div
-                    style={{
-                      position: 'absolute',
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      padding: '8px 10px',
-                      background: 'rgba(0,0,0,0.7)',
-                    }}
-                  >
-                    <p
-                      style={{
-                        fontFamily: "'Space Grotesk', sans-serif",
-                        fontWeight: 600,
-                        fontSize: 11,
-                        color: '#ffffff',
-                        lineHeight: 1.2,
-                        marginBottom: 2,
-                      }}
-                    >
-                      {lance.titulo}
-                    </p>
-                    <p
-                      style={{
-                        fontFamily: "'Inter', sans-serif",
-                        fontSize: 10,
-                        color: 'rgba(255,255,255,0.6)',
-                      }}
-                    >
-                      {lance.jogador}
-                    </p>
+                  <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '8px 10px', background: 'rgba(15,26,15,0.75)' }}>
+                    <p style={{ fontFamily: "'DM Mono', monospace", fontWeight: 500, fontSize: 10, color: 'var(--creme)', lineHeight: 1.2, marginBottom: 2 }}>{lance.titulo}</p>
+                    <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 9, color: 'rgba(245,239,230,0.45)', letterSpacing: '0.05em' }}>{lance.jogador}</p>
                   </div>
                 </Link>
               ))}
             </div>
 
-            <div style={{ marginTop: 16 }}>
-              <Link href="/lances" className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
+            <div style={{ marginTop: 14 }}>
+              <Link href="/lances" className="btn-primary" style={{ display: 'flex', justifyContent: 'center' }}>
                 Todos os Lances
               </Link>
             </div>
@@ -657,65 +251,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── CTA BANNER ── */}
+      {/* ── CTA ──────────────────────────────────────────────────────────────── */}
       <section className="cta-section">
-        <div
-          style={{
-            background: '#2e312e',
-            border: '1px solid #191c19',
-            padding: '48px 40px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: 24,
-            position: 'relative',
-            overflow: 'hidden',
-          }}
-        >
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              backgroundImage: 'radial-gradient(circle, rgba(157,211,170,0.05) 1px, transparent 1px)',
-              backgroundSize: '20px 20px',
-            }}
-          />
+        <div style={{ background: 'var(--verde-escuro)', border: '1px solid rgba(255,255,255,0.06)', padding: '48px 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 24, position: 'relative', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize: '24px 24px', pointerEvents: 'none' }} />
           <div style={{ position: 'relative' }}>
-            <p
-              style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: 11,
-                fontWeight: 700,
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
-                color: '#9dd3aa',
-                marginBottom: 8,
-              }}
-            >
-              Squadra Verde · Temporada 2026
+            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, letterSpacing: '0.3em', textTransform: 'uppercase', color: 'var(--verde-medio)', marginBottom: 10, opacity: 0.8 }}>
+              Squadra Verde · Temporada 2025
             </p>
-            <h2
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontWeight: 700,
-                fontSize: 28,
-                color: '#ffffff',
-                letterSpacing: '-0.01em',
-              }}
-            >
-              Explore todos os rankings
+            <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 'clamp(20px, 3vw, 28px)', color: 'var(--creme)', letterSpacing: '-0.02em', textTransform: 'uppercase' }}>
+              Explore Todos os Rankings
             </h2>
           </div>
-          <div style={{ display: 'flex', gap: 12, position: 'relative', flexWrap: 'wrap' }}>
-            <Link href="/ranking" className="btn-primary" style={{ background: '#9dd3aa', color: '#00361a', borderColor: '#9dd3aa' }}>
+          <div style={{ display: 'flex', gap: 10, position: 'relative', flexWrap: 'wrap' }}>
+            <Link href="/ranking" className="btn-primary" style={{ background: 'var(--amarelo)', color: 'var(--preto)', borderColor: 'var(--amarelo)' }}>
               Masculino
             </Link>
-            <Link href="/feminino" className="btn-ghost" style={{ color: '#9dd3aa', borderColor: 'rgba(157,211,170,0.4)' }}>
-              Feminino Bronze
-            </Link>
-            <Link href="/feminino-prata" className="btn-ghost" style={{ color: '#9dd3aa', borderColor: 'rgba(157,211,170,0.4)' }}>
-              Feminino Prata
+            <Link href="/feminino" className="btn-ghost" style={{ color: 'var(--creme)', borderColor: 'rgba(245,239,230,0.25)' }}>
+              Feminino
             </Link>
           </div>
         </div>

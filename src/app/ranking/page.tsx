@@ -4,6 +4,7 @@ import { useState, useMemo, useRef, useEffect } from 'react';
 import jogosData from '@/data/jogos_ranking.json';
 import { calcularClassificacao } from '@/lib/calcularClassificacao';
 import type { Jogador, Resultado } from '@/lib/types';
+import SectionTabs, { RANKING_TABS } from '@/components/SectionTabs';
 
 type SortKey = 'posicao' | 'percentual_vitorias' | 'saldo_games' | 'vitorias' | 'jogos';
 type SortDir = 'asc' | 'desc';
@@ -91,10 +92,11 @@ export default function RankingPage() {
 
   return (
     <div>
+      <SectionTabs tabs={RANKING_TABS} section="Classificação" />
       {/* Page Header */}
-      <div style={{ background: '#ffffff', borderBottom: '1px solid #e7e9e4' }}>
+      <div style={{ background: 'var(--branco)', borderBottom: '1px solid rgba(26,58,26,0.12)' }}>
         <div className="page-header-inner">
-          <p className="section-label" style={{ marginBottom: 10 }}>Temporada 2026</p>
+          <p className="section-label" style={{ marginBottom: 10 }}>Temporada 2025</p>
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
             <div>
               <h1

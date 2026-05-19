@@ -1,20 +1,20 @@
 'use client';
 
 import { useState, useMemo, useRef } from 'react';
-import jogosData from '@/data/jogos_bronze_feminino.json';
+import jogosData from '@/data/jogos_prata_feminino.json';
 import SectionTabs, { JOGOS_TABS } from '@/components/SectionTabs';
 
 type FiltroStatus = 'todos' | 'realizados' | 'pendentes';
 
 const THEME = {
-  primary: '#6b2c4a',
-  dark: '#3d1a2c',
-  mid: '#8b3a5e',
-  accent: '#f2b8d0',
-  accentLight: '#fcd6e5',
+  primary: '#4a5c6b',
+  dark: '#1e3a4a',
+  mid: '#5a7a8e',
+  accent: '#b8d4e8',
+  accentLight: '#d6eaf5',
 };
 
-export default function FemininoJogosPage() {
+export default function FeminoPrataJogosPage() {
   const [rodadaAtiva, setRodadaAtiva] = useState<number | null>(null);
   const [filtroStatus, setFiltroStatus] = useState<FiltroStatus>('todos');
   const [busca, setBusca] = useState('');
@@ -23,14 +23,14 @@ export default function FemininoJogosPage() {
 
   const totalJogos = jogosData.rodadas.reduce((acc, r) => acc + r.jogos.length, 0);
   const totalRealizados = jogosData.rodadas.reduce(
-    (acc, r) => acc + r.jogos.filter(j => j.status === 'Concluído').length,
+    (acc, r) => acc + r.jogos.filter(j => j.status === 'Finalizado').length,
     0
   );
 
   const rodadasFiltradas = useMemo(() => {
     return jogosData.rodadas.map(rodada => {
       const jogosFiltrados = rodada.jogos.filter(jogo => {
-        const realizado = jogo.status === 'Concluído';
+        const realizado = jogo.status === 'Finalizado';
         if (filtroStatus === 'realizados' && !realizado) return false;
         if (filtroStatus === 'pendentes' && realizado) return false;
         if (busca) {
@@ -56,7 +56,7 @@ export default function FemininoJogosPage() {
       const canvas = await html2canvas(el, {
         scale: 2,
         useCORS: true,
-        backgroundColor: '#fdf5f8',
+        backgroundColor: '#f0f6fb',
         logging: false,
         width: el.offsetWidth,
         height: el.scrollHeight,
@@ -64,7 +64,7 @@ export default function FemininoJogosPage() {
         windowHeight: el.scrollHeight,
       });
       const a = document.createElement('a');
-      a.download = `sv-bronze-f${rodadaAtiva !== null ? `-r${rodadaAtiva}` : ''}.png`;
+      a.download = `sv-prata-f${rodadaAtiva !== null ? `-r${rodadaAtiva}` : ''}.png`;
       a.href = canvas.toDataURL('image/png');
       a.click();
     } catch (err) {
@@ -86,7 +86,7 @@ export default function FemininoJogosPage() {
       <div style={{ background: 'var(--branco)', borderBottom: '1px solid rgba(26,58,26,0.12)' }}>
         <div className="page-header-inner">
           <p className="section-label" style={{ marginBottom: 10, color: THEME.primary }}>
-            Temporada 2025 · Feminino Bronze
+            Temporada 2025 · Feminino Prata
           </p>
           <h1
             style={{
@@ -98,7 +98,7 @@ export default function FemininoJogosPage() {
               marginBottom: 8,
             }}
           >
-            Jogos Bronze Feminino
+            Jogos Prata Feminino
           </h1>
           <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', alignItems: 'center' }}>
@@ -242,7 +242,7 @@ export default function FemininoJogosPage() {
           {rodadasFiltradas
             .filter(r => rodadaAtiva === null || r.rodada === rodadaAtiva)
             .map(rodada => {
-              const jogosRealizados = rodada.jogos.filter(j => j.status === 'Concluído').length;
+              const jogosRealizados = rodada.jogos.filter(j => j.status === 'Finalizado').length;
               const completo = jogosRealizados === rodada.jogos.length;
 
               return (
@@ -304,13 +304,13 @@ export default function FemininoJogosPage() {
                     }}
                   >
                     {rodada.jogos.map(jogo => {
-                      const realizado = jogo.status === 'Concluído';
+                      const realizado = jogo.status === 'Finalizado';
                       const placar = 'placar' in jogo ? (jogo as { placar?: string }).placar : undefined;
-                      const vencedor = 'vencedor' in jogo ? (jogo as { vencedor?: string[] }).vencedor : undefined;
+                      const vencedoras = 'vencedoras' in jogo ? (jogo as { vencedoras?: string[] }).vencedoras : undefined;
 
                       return (
                         <div
-                          key={jogo.jogo}
+                          key={jogo.id}
                           style={{
                             background: '#ffffff',
                             border: `1px solid ${realizado ? THEME.mid : '#191c19'}`,
@@ -350,7 +350,7 @@ export default function FemininoJogosPage() {
                                 color: '#717971',
                               }}
                             >
-                              #{jogo.jogo}
+                              #{jogo.id}
                             </span>
                             {realizado ? (
                               <span className="chip-green">✅ Realizado</span>
@@ -367,14 +367,14 @@ export default function FemininoJogosPage() {
                                   key={nome}
                                   style={{
                                     fontFamily: "'Space Grotesk', sans-serif",
-                                    fontWeight: vencedor?.includes(nome) ? 700 : 600,
+                                    fontWeight: vencedoras?.includes(nome) ? 700 : 600,
                                     fontSize: 13,
-                                    color: vencedor?.includes(nome) ? THEME.dark : '#191c19',
+                                    color: vencedoras?.includes(nome) ? THEME.dark : '#191c19',
                                     marginBottom: 4,
                                     lineHeight: 1.2,
                                   }}
                                 >
-                                  {vencedor?.includes(nome) && <span style={{ marginRight: 4 }}>★</span>}
+                                  {vencedoras?.includes(nome) && <span style={{ marginRight: 4 }}>★</span>}
                                   {nome}
                                 </p>
                               ))}
@@ -410,15 +410,15 @@ export default function FemininoJogosPage() {
                                   key={nome}
                                   style={{
                                     fontFamily: "'Space Grotesk', sans-serif",
-                                    fontWeight: vencedor?.includes(nome) ? 700 : 600,
+                                    fontWeight: vencedoras?.includes(nome) ? 700 : 600,
                                     fontSize: 13,
-                                    color: vencedor?.includes(nome) ? THEME.dark : '#191c19',
+                                    color: vencedoras?.includes(nome) ? THEME.dark : '#191c19',
                                     marginBottom: 4,
                                     lineHeight: 1.2,
                                   }}
                                 >
                                   {nome}
-                                  {vencedor?.includes(nome) && <span style={{ marginLeft: 4 }}>★</span>}
+                                  {vencedoras?.includes(nome) && <span style={{ marginLeft: 4 }}>★</span>}
                                 </p>
                               ))}
                             </div>
@@ -466,7 +466,7 @@ export default function FemininoJogosPage() {
                                 color: '#717971',
                               }}
                             >
-                              #R{rodada.rodada}.{jogo.jogo}
+                              #R{rodada.rodada}.{jogo.id}
                             </span>
                           </div>
                         </div>
@@ -500,49 +500,49 @@ export default function FemininoJogosPage() {
       {/* Div oculta para exportação */}
       <div
         ref={exportRef}
-        style={{ position: 'fixed', left: '-9999px', top: 0, width: 800, background: '#fdf5f8', fontFamily: "'Inter', sans-serif" }}
+        style={{ position: 'fixed', left: '-9999px', top: 0, width: 800, background: '#f0f6fb', fontFamily: "'Inter', sans-serif" }}
       >
         {exportRodadas.map((rodada, ri) => {
-          const jogosRealizados = rodada.jogos.filter(j => j.status === 'Concluído');
+          const jogosRealizados = rodada.jogos.filter(j => j.status === 'Finalizado');
           if (jogosRealizados.length === 0) return null;
           const isFirst = ri === 0;
           return (
             <div key={rodada.rodada}>
               <div style={{ background: THEME.dark, padding: isFirst ? '28px 32px 22px' : '20px 32px 16px' }}>
                 {isFirst && (
-                  <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, letterSpacing: '0.28em', color: 'rgba(242,184,208,0.45)', textTransform: 'uppercase', marginBottom: 8 }}>
-                    SQUADRA VERDE · TEMPORADA 2025 · FEMININO BRONZE
+                  <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, letterSpacing: '0.28em', color: 'rgba(184,212,232,0.45)', textTransform: 'uppercase', marginBottom: 8 }}>
+                    SQUADRA VERDE · TEMPORADA 2025 · FEMININO PRATA
                   </p>
                 )}
-                <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: isFirst ? 42 : 28, color: '#fcd6e5', letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: 6 }}>
+                <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: isFirst ? 42 : 28, color: '#d6eaf5', letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: 6 }}>
                   {rodadaAtiva !== null ? 'Resultado da Rodada' : `Rodada ${rodada.rodada}`}
                 </h2>
-                <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: 'rgba(242,184,208,0.4)', letterSpacing: '0.1em' }}>
+                <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: 'rgba(184,212,232,0.4)', letterSpacing: '0.1em' }}>
                   {rodadaAtiva !== null ? `Rodada ${rodada.rodada}` : 'Temporada 2025'} · {formatData(rodada.data)}
                 </p>
               </div>
 
               {jogosRealizados.map((jogo, idx) => {
                 const placar = 'placar' in jogo ? (jogo as { placar?: string }).placar : undefined;
-                const vencedor = 'vencedor' in jogo ? (jogo as { vencedor?: string[] }).vencedor : undefined;
+                const vencedoras = 'vencedoras' in jogo ? (jogo as { vencedoras?: string[] }).vencedoras : undefined;
                 const isEven = idx % 2 === 0;
                 return (
                   <div
-                    key={jogo.jogo}
+                    key={jogo.id}
                     style={{
                       display: 'grid',
                       gridTemplateColumns: '1fr 80px 1fr',
                       alignItems: 'center',
                       padding: '14px 32px',
-                      background: isEven ? '#ffffff' : '#fdf5f8',
-                      borderBottom: '1px solid #f0e0ea',
+                      background: isEven ? '#ffffff' : '#f0f6fb',
+                      borderBottom: '1px solid #d6eaf5',
                       gap: 16,
                     }}
                   >
                     <div>
                       {jogo.dupla1.map(nome => (
-                        <p key={nome} style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: vencedor?.includes(nome) ? 700 : 600, fontSize: 13, color: vencedor?.includes(nome) ? THEME.dark : '#191c19', lineHeight: 1.35, marginBottom: 2 }}>
-                          {vencedor?.includes(nome) ? `★ ${nome}` : nome}
+                        <p key={nome} style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: vencedoras?.includes(nome) ? 700 : 600, fontSize: 13, color: vencedoras?.includes(nome) ? THEME.dark : '#191c19', lineHeight: 1.35, marginBottom: 2 }}>
+                          {vencedoras?.includes(nome) ? `★ ${nome}` : nome}
                         </p>
                       ))}
                     </div>
@@ -559,8 +559,8 @@ export default function FemininoJogosPage() {
 
                     <div style={{ textAlign: 'right' }}>
                       {jogo.dupla2.map(nome => (
-                        <p key={nome} style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: vencedor?.includes(nome) ? 700 : 600, fontSize: 13, color: vencedor?.includes(nome) ? THEME.dark : '#191c19', lineHeight: 1.35, marginBottom: 2 }}>
-                          {vencedor?.includes(nome) ? `${nome} ★` : nome}
+                        <p key={nome} style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: vencedoras?.includes(nome) ? 700 : 600, fontSize: 13, color: vencedoras?.includes(nome) ? THEME.dark : '#191c19', lineHeight: 1.35, marginBottom: 2 }}>
+                          {vencedoras?.includes(nome) ? `${nome} ★` : nome}
                         </p>
                       ))}
                     </div>
@@ -572,10 +572,10 @@ export default function FemininoJogosPage() {
         })}
 
         <div style={{ background: THEME.dark, padding: '14px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(242,184,208,0.6)' }}>
-            Squadra Verde · Feminino Bronze
+          <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(184,212,232,0.6)' }}>
+            Squadra Verde · Feminino Prata
           </span>
-          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: 'rgba(242,184,208,0.3)', letterSpacing: '0.1em' }}>
+          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: 'rgba(184,212,232,0.3)', letterSpacing: '0.1em' }}>
             Temporada 2025
           </span>
         </div>

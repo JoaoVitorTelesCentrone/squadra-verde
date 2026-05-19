@@ -4,8 +4,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Squadra Verde · Beach Tennis 2026",
-  description: "Rankings de beach tennis Squadra Verde — Masculino, Feminino Bronze e Feminino Prata · Temporada 2026",
+  title: "Squadra Verde · Beach Tênis",
+  description: "Rankings de beach tênis Squadra Verde — Masculino, Feminino Bronze e Feminino Prata · Temporada 2025",
   icons: {
     icon: '/logo-squadra.png',
   },
@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" style={{ scrollBehavior: 'smooth' }}>
-      <body style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#f8faf5', fontFamily: "'Inter', sans-serif" }}>
+      <body style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: '#f5efe6', fontFamily: "'DM Mono', monospace" }}>
         <Header />
         <main style={{ flex: 1 }}>
           {children}

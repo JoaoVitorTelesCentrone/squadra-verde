@@ -3,6 +3,7 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import jogosData from '@/data/jogos_ranking.json';
 import type { Resultado } from '@/lib/types';
+import SectionTabs, { JOGOS_TABS } from '@/components/SectionTabs';
 
 type FiltroStatus = 'todos' | 'realizados' | 'pendentes';
 
@@ -86,10 +87,11 @@ export default function JogosPage() {
 
   return (
     <div>
+      <SectionTabs tabs={JOGOS_TABS} section="Jogos" />
       {/* Header */}
-      <div style={{ background: '#ffffff', borderBottom: '1px solid #e7e9e4' }}>
+      <div style={{ background: 'var(--branco)', borderBottom: '1px solid rgba(26,58,26,0.12)' }}>
         <div className="page-header-inner">
-          <p className="section-label" style={{ marginBottom: 10 }}>Match Day Central</p>
+          <p className="section-label" style={{ marginBottom: 10 }}>Temporada 2025 · Masculino</p>
           <h1
             style={{
               fontFamily: "'Space Grotesk', sans-serif",

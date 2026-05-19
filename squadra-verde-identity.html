@@ -1,0 +1,2557 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Squadra Verde — Identidade Visual</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Mono:wght@400;500&family=Unbounded:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde-escuro: #1a3a1a;
+    --verde-campo: #3d6b3d;
+    --verde-medio: #4f8c4f;
+    --creme: #f5efe6;
+    --creme-escuro: #e8ddd0;
+    --amarelo-bola: #d4c85a;
+    --branco: #fafaf8;
+    --preto: #0f1a0f;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Mono', monospace;
+    background: var(--creme);
+    color: var(--verde-escuro);
+    overflow-x: hidden;
+  }
+
+  /* ─── SECTION LABELS ─── */
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--verde-medio);
+    opacity: 0.7;
+  }
+
+  /* ─── COVER ─── */
+  .cover {
+    min-height: 100vh;
+    background: var(--verde-escuro);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 60px 40px;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .cover-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--verde-medio);
+    text-transform: uppercase;
+    margin-bottom: 48px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .cover-logo-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    animation: fadeUp 0.9s 0.1s ease both;
+  }
+
+  .cover-sq {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: clamp(72px, 14vw, 160px);
+    color: var(--creme);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+  }
+
+  .cover-verde {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: clamp(72px, 14vw, 160px);
+    color: var(--verde-medio);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+  }
+
+  .cover-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.5em;
+    color: var(--creme);
+    opacity: 0.5;
+    margin-top: 32px;
+    text-transform: uppercase;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+
+  .cover-badge-row {
+    display: flex;
+    gap: 32px;
+    margin-top: 64px;
+    animation: fadeUp 1s 0.5s ease both;
+  }
+
+  .cover-pill {
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 8px 20px;
+    border-radius: 100px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--creme);
+    opacity: 0.6;
+    text-transform: uppercase;
+  }
+
+  .cover-year {
+    position: absolute;
+    bottom: 40px;
+    right: 48px;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.2em;
+  }
+
+  /* ─── SECTION BASE ─── */
+  .section {
+    padding: 80px 48px;
+    border-bottom: 1px solid rgba(26,58,26,0.12);
+    position: relative;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--verde-medio);
+    opacity: 0.5;
+  }
+
+  .section-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--verde-escuro);
+  }
+
+  /* ─── CORES ─── */
+  .cores-section { background: var(--branco); }
+
+  .cores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0;
+  }
+
+  .cor-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cor-swatch {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cor-swatch::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.08));
+  }
+
+  .cor-info {
+    padding: 20px;
+    background: var(--branco);
+    border: 1px solid rgba(26,58,26,0.08);
+  }
+
+  .cor-nome {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+    color: var(--verde-escuro);
+  }
+
+  .cor-hex {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--verde-medio);
+    opacity: 0.7;
+  }
+
+  .cor-uso {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--verde-escuro);
+    opacity: 0.4;
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  /* ─── TIPOGRAFIA ─── */
+  .tipo-section { background: var(--creme); }
+
+  .tipo-showcase {
+    display: grid;
+    gap: 48px;
+  }
+
+  .tipo-block {
+    border-left: 3px solid var(--verde-campo);
+    padding-left: 32px;
+  }
+
+  .tipo-specimen-xl {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: clamp(56px, 10vw, 120px);
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: var(--verde-escuro);
+    text-transform: uppercase;
+  }
+
+  .tipo-specimen-lg {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: clamp(40px, 7vw, 88px);
+    line-height: 1.0;
+    color: var(--verde-campo);
+  }
+
+  .tipo-specimen-mono {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 0.35em;
+    color: var(--verde-escuro);
+    opacity: 0.6;
+    text-transform: uppercase;
+    line-height: 2;
+  }
+
+  .tipo-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+
+  .tipo-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--verde-medio);
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border: 1px solid var(--verde-medio);
+    border-radius: 2px;
+    opacity: 0.6;
+  }
+
+  /* ─── LOGO SYSTEM ─── */
+  .logo-section { background: var(--verde-escuro); }
+  .logo-section .section-title { color: var(--creme); }
+  .logo-section .section-num { color: var(--verde-medio); }
+
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+  }
+
+  .logo-card {
+    padding: 56px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+    position: relative;
+  }
+
+  .logo-card-label {
+    position: absolute;
+    bottom: 20px;
+    left: 24px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    opacity: 0.4;
+  }
+
+  .bg-creme { background: var(--creme); }
+  .bg-branco { background: var(--branco); }
+  .bg-verde { background: var(--verde-campo); }
+  .bg-escuro { background: rgba(255,255,255,0.04); }
+
+  /* SVG Logo renderings */
+  .logo-svg {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+  }
+
+  /* ─── LOGO PRIMARY SVG ─── */
+  .logotype-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .lm-top {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .lm-divider {
+    width: 100%;
+    height: 2px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .lm-line { flex: 1; height: 2px; }
+
+  .lm-icon {
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .lm-bot {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
+  }
+
+  /* ─── MOTION BADGE VARIANT ─── */
+  .badge-logo {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* ─── APLICAÇÕES ─── */
+  .app-section { background: var(--creme-escuro); }
+
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  /* Cartão de jogador */
+  .player-card {
+    background: var(--verde-escuro);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 2/3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px;
+  }
+
+  .player-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .player-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background: linear-gradient(0deg, var(--verde-escuro) 30%, transparent);
+  }
+
+  .pc-number {
+    position: absolute;
+    top: 24px;
+    right: 28px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: 80px;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+    z-index: 1;
+  }
+
+  .pc-badge {
+    position: absolute;
+    top: 24px;
+    left: 28px;
+    z-index: 2;
+  }
+
+  .pc-badge-inner {
+    background: var(--verde-campo);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--creme);
+    text-transform: uppercase;
+  }
+
+  .pc-info {
+    position: relative;
+    z-index: 2;
+  }
+
+  .pc-name {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    color: var(--creme);
+    text-transform: uppercase;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .pc-pos {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    color: var(--verde-medio);
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  .pc-stats {
+    display: flex;
+    gap: 20px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .pc-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .pc-stat-val {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--creme);
+  }
+
+  .pc-stat-lbl {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    color: var(--verde-medio);
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  /* Pôster Torneio */
+  .poster-torneio {
+    background: var(--verde-campo);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    min-height: 460px;
+  }
+
+  .pt-lines {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .pt-line {
+    position: absolute;
+    background: rgba(255,255,255,0.06);
+    left: 0; right: 0;
+    height: 1px;
+  }
+
+  .pt-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.45em;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+  }
+
+  .pt-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: clamp(40px, 8vw, 72px);
+    color: var(--creme);
+    line-height: 0.85;
+    text-transform: uppercase;
+    margin-top: 16px;
+    letter-spacing: -0.03em;
+    position: relative;
+    z-index: 2;
+  }
+
+  .pt-title span {
+    color: var(--amarelo-bola);
+  }
+
+  .pt-date {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: rgba(255,255,255,0.7);
+    margin-top: auto;
+    padding-top: 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .pt-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 12px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .pt-edition {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+  }
+
+  .pt-court {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    text-align: right;
+  }
+
+  /* Placar */
+  .scoreboard {
+    background: var(--branco);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(26,58,26,0.12);
+  }
+
+  .sb-header {
+    background: var(--verde-escuro);
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .sb-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--verde-medio);
+    text-transform: uppercase;
+  }
+
+  .sb-live {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--amarelo-bola);
+    text-transform: uppercase;
+  }
+
+  .sb-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--amarelo-bola);
+    animation: pulse 1.4s ease infinite;
+  }
+
+  .sb-body { padding: 0; }
+
+  .sb-row {
+    display: flex;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(26,58,26,0.06);
+    gap: 16px;
+  }
+
+  .sb-row:last-child { border-bottom: none; }
+
+  .sb-player {
+    flex: 1;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--verde-escuro);
+  }
+
+  .sb-sets {
+    display: flex;
+    gap: 8px;
+  }
+
+  .sb-set {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: 14px;
+    border-radius: 4px;
+    color: var(--verde-escuro);
+  }
+
+  .sb-set.win { background: var(--verde-campo); color: var(--creme); }
+  .sb-set.lose { background: rgba(26,58,26,0.06); color: rgba(26,58,26,0.3); }
+
+  /* ─── REGRAS DE USO ─── */
+  .rules-section { background: var(--branco); }
+
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+  }
+
+  .rule-card {
+    padding: 36px 32px;
+    background: var(--creme);
+  }
+
+  .rule-icon {
+    font-size: 24px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .rule-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--verde-escuro);
+    margin-bottom: 12px;
+  }
+
+  .rule-body {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    line-height: 1.8;
+    color: var(--verde-escuro);
+    opacity: 0.6;
+  }
+
+  .rule-samples {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+
+  .rs-yes {
+    padding: 4px 12px;
+    background: var(--verde-campo);
+    color: var(--creme);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border-radius: 2px;
+  }
+
+  .rs-no {
+    padding: 4px 12px;
+    background: rgba(26,58,26,0.08);
+    color: var(--verde-escuro);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+
+  /* ─── FOOTER ─── */
+  .id-footer {
+    background: var(--preto);
+    padding: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+    gap: 24px;
+  }
+
+  .footer-brand {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: 28px;
+    color: var(--verde-campo);
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .footer-brand span { color: rgba(255,255,255,0.2); display: block; font-size: 11px; letter-spacing: 0.3em; font-weight: 400; margin-bottom: 6px; }
+
+  .footer-meta {
+    text-align: right;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.25);
+    text-transform: uppercase;
+    line-height: 2;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* ─── LOGO SVG INLINE ─── */
+  .logo-sv-inline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+  }
+
+  .l-squadra {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: 26px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .l-verde {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: 26px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .l-bar {
+    width: 100%;
+    height: 3px;
+    margin: 8px 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .l-bar-line { flex: 1; height: 2px; }
+  .l-ball { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+  .l-bt {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.55em;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1;
+  }
+
+  /* Monogram */
+  .monogram {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .mono-sv {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: 32px;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  /* Horizontal lockup */
+  .lockup-h {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .lockup-divider {
+    width: 2px;
+    height: 40px;
+  }
+
+  .lockup-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .lt-top {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .lt-bot {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════ COVER -->
+<section class="cover">
+  <div class="cover-eyebrow">Identidade Visual Completa</div>
+  <div class="cover-logo-wrap">
+    <div class="cover-sq">SQUADRA</div>
+    <div class="cover-verde">VERDE</div>
+  </div>
+  <div class="cover-sub">Beach Tênis · Masculino</div>
+  <div class="cover-badge-row">
+    <div class="cover-pill">Marca</div>
+    <div class="cover-pill">Tipografia</div>
+    <div class="cover-pill">Aplicações</div>
+    <div class="cover-pill">Regras</div>
+  </div>
+  <div class="cover-year">2025</div>
+</section>
+
+<!-- ══════════════════════════════════════════ CORES -->
+<section class="section cores-section">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <span class="section-title">Paleta de Cores</span>
+  </div>
+  <div class="cores-grid">
+    <div class="cor-card">
+      <div class="cor-swatch" style="background:#1a3a1a;"></div>
+      <div class="cor-info">
+        <div class="cor-nome">Verde Floresta</div>
+        <div class="cor-hex">#1A3A1A</div>
+        <div class="cor-uso">Primária · fundos, textos de destaque</div>
+      </div>
+    </div>
+    <div class="cor-card">
+      <div class="cor-swatch" style="background:#3d6b3d;"></div>
+      <div class="cor-info">
+        <div class="cor-nome">Verde Campo</div>
+        <div class="cor-hex">#3D6B3D</div>
+        <div class="cor-uso">Secundária · botões, badges, divisores</div>
+      </div>
+    </div>
+    <div class="cor-card">
+      <div class="cor-swatch" style="background:#4f8c4f;"></div>
+      <div class="cor-info">
+        <div class="cor-nome">Verde Médio</div>
+        <div class="cor-hex">#4F8C4F</div>
+        <div class="cor-uso">Apoio · destaques suaves, ícones</div>
+      </div>
+    </div>
+    <div class="cor-card">
+      <div class="cor-swatch" style="background:#f5efe6;"></div>
+      <div class="cor-info">
+        <div class="cor-nome">Creme</div>
+        <div class="cor-hex">#F5EFE6</div>
+        <div class="cor-uso">Fundo principal · papel, cartões</div>
+      </div>
+    </div>
+    <div class="cor-card">
+      <div class="cor-swatch" style="background:#d4c85a;"></div>
+      <div class="cor-info">
+        <div class="cor-nome">Amarelo Bola</div>
+        <div class="cor-hex">#D4C85A</div>
+        <div class="cor-uso">Acento · alertas, destaques críticos</div>
+      </div>
+    </div>
+    <div class="cor-card">
+      <div class="cor-swatch" style="background:#0f1a0f;"></div>
+      <div class="cor-info">
+        <div class="cor-nome">Quase Preto</div>
+        <div class="cor-hex">#0F1A0F</div>
+        <div class="cor-uso">Textos sobre fundo claro</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ TIPOGRAFIA -->
+<section class="section tipo-section">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <span class="section-title">Sistema Tipográfico</span>
+  </div>
+  <div class="tipo-showcase">
+
+    <div class="tipo-block">
+      <div class="tipo-specimen-xl">SQUADRA</div>
+      <div class="tipo-meta">
+        <span class="tipo-tag">Unbounded</span>
+        <span class="tipo-tag">900 Weight</span>
+        <span class="tipo-tag">Display / Títulos</span>
+      </div>
+      <div class="rule-body" style="margin-top:12px;">Headlines, nome da equipe, números de jogador, placares. Toda em caixa alta. Tracking negativo.</div>
+    </div>
+
+    <div class="tipo-block">
+      <div class="tipo-specimen-lg">Jogo perfeito.</div>
+      <div class="tipo-meta">
+        <span class="tipo-tag">Playfair Display</span>
+        <span class="tipo-tag">Italic 700</span>
+        <span class="tipo-tag">Editorial / Citações</span>
+      </div>
+      <div class="rule-body" style="margin-top:12px;">Frases de impacto, citações, subtítulos em pôsteres, captions de fotos. Sempre em itálico.</div>
+    </div>
+
+    <div class="tipo-block">
+      <div class="tipo-specimen-mono">TEMPORADA 2025 · MASCULINO SQUADRA VERDE · BEACH TÊNIS</div>
+      <div class="tipo-meta">
+        <span class="tipo-tag">DM Mono</span>
+        <span class="tipo-tag">400/500</span>
+        <span class="tipo-tag">Labels / Corpo / UI</span>
+      </div>
+      <div class="rule-body" style="margin-top:12px;">Datas, códigos, etiquetas, textos de apoio, metadados. Tracking alto (0.3–0.5em).</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ LOGO SYSTEM -->
+<section class="section logo-section">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <span class="section-title" style="color:var(--creme);">Sistema de Logo</span>
+  </div>
+
+  <div class="logo-grid">
+
+    <!-- Logo principal: sobre creme -->
+    <div class="logo-card bg-creme">
+      <div class="logo-sv-inline">
+        <div class="l-squadra" style="color:var(--verde-escuro);">SQUADRA</div>
+        <div class="l-bar">
+          <div class="l-bar-line" style="background:var(--verde-campo);"></div>
+          <div class="l-ball" style="background:var(--amarelo-bola);"></div>
+          <div class="l-bar-line" style="background:var(--verde-campo);"></div>
+        </div>
+        <div class="l-verde" style="color:var(--verde-campo);">VERDE</div>
+        <div class="l-bt" style="color:var(--verde-escuro); margin-top:8px;">Beach Tênis</div>
+      </div>
+      <span class="logo-card-label" style="color:var(--verde-escuro);">Versão Principal · Fundo Claro</span>
+    </div>
+
+    <!-- Logo invertida: sobre verde escuro -->
+    <div class="logo-card bg-escuro">
+      <div class="logo-sv-inline">
+        <div class="l-squadra" style="color:var(--creme);">SQUADRA</div>
+        <div class="l-bar">
+          <div class="l-bar-line" style="background:var(--verde-medio);"></div>
+          <div class="l-ball" style="background:var(--amarelo-bola);"></div>
+          <div class="l-bar-line" style="background:var(--verde-medio);"></div>
+        </div>
+        <div class="l-verde" style="color:var(--verde-medio);">VERDE</div>
+        <div class="l-bt" style="color:rgba(255,255,255,0.4); margin-top:8px;">Beach Tênis</div>
+      </div>
+      <span class="logo-card-label" style="color:rgba(255,255,255,0.3);">Versão Invertida · Fundo Escuro</span>
+    </div>
+
+    <!-- Monograma -->
+    <div class="logo-card bg-verde">
+      <div class="monogram" style="background:var(--verde-escuro); border: 3px solid rgba(255,255,255,0.15);">
+        <div class="mono-sv" style="color:var(--creme);">SV</div>
+      </div>
+      <span class="logo-card-label" style="color:rgba(255,255,255,0.4);">Monograma · Avatar / Ícone</span>
+    </div>
+
+    <!-- Lockup horizontal -->
+    <div class="logo-card bg-branco">
+      <div class="lockup-h">
+        <div class="monogram" style="background:var(--verde-escuro); width:56px; height:56px; border-radius:8px;">
+          <div class="mono-sv" style="color:var(--creme); font-size:20px;">SV</div>
+        </div>
+        <div class="lockup-divider" style="background:rgba(26,58,26,0.12);"></div>
+        <div class="lockup-text">
+          <div class="lt-top" style="color:var(--verde-escuro);">SQUADRA VERDE</div>
+          <div class="lt-bot" style="color:var(--verde-medio);">Beach Tênis · Masculino</div>
+        </div>
+      </div>
+      <span class="logo-card-label" style="color:rgba(26,58,26,0.35);">Lockup Horizontal · Email / Docs</span>
+    </div>
+
+    <!-- Logo com raquete — sobre creme (PRINCIPAL COM RAQUETE) -->
+    <div class="logo-card bg-creme" style="min-height:320px;">
+      <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+        <svg width="88" height="140" viewBox="0 0 100 162" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="50" cy="46" rx="38" ry="40" stroke="#1a3a1a" stroke-width="3.5" fill="none"/>
+  <circle cx="38" cy="23" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="47" cy="23" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="56" cy="23" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="65" cy="23" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="29" cy="32" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="38" cy="32" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="47" cy="32" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="56" cy="32" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="65" cy="32" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="74" cy="32" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="29" cy="41" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="38" cy="41" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="47" cy="41" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="56" cy="41" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="65" cy="41" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="74" cy="41" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="29" cy="50" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="38" cy="50" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="47" cy="50" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="56" cy="50" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="65" cy="50" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="74" cy="50" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="29" cy="59" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="38" cy="59" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="47" cy="59" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="56" cy="59" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="65" cy="59" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="74" cy="59" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="29" cy="68" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="38" cy="68" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="47" cy="68" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="56" cy="68" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="65" cy="68" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="47" cy="77" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="56" cy="77" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <path d="M 36 86 C 40 94 45.5 98 45.5 102" stroke="#1a3a1a" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  <path d="M 64 86 C 60 94 54.5 98 54.5 102" stroke="#1a3a1a" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  <rect x="45.5" y="102" width="9.0" height="52" rx="2.5" stroke="#1a3a1a" stroke-width="3.5" fill="none"/>
+  <line x1="46.5" y1="107" x2="53.5" y2="110.5" stroke="#1a3a1a" stroke-width="1.2" opacity="0.4"/>
+  <line x1="46.5" y1="114" x2="53.5" y2="117.5" stroke="#1a3a1a" stroke-width="1.2" opacity="0.4"/>
+  <line x1="46.5" y1="121" x2="53.5" y2="124.5" stroke="#1a3a1a" stroke-width="1.2" opacity="0.4"/>
+  <line x1="46.5" y1="128" x2="53.5" y2="131.5" stroke="#1a3a1a" stroke-width="1.2" opacity="0.4"/>
+  <line x1="46.5" y1="135" x2="53.5" y2="138.5" stroke="#1a3a1a" stroke-width="1.2" opacity="0.4"/>
+  <line x1="46.5" y1="142" x2="53.5" y2="145.5" stroke="#1a3a1a" stroke-width="1.2" opacity="0.4"/>
+  <rect x="43.5" y="154" width="13.0" height="6" rx="3" stroke="#1a3a1a" stroke-width="2.5" fill="none"/>
+</svg>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:2px; margin-top:4px;">
+          <div style="font-family:'Unbounded',sans-serif; font-weight:900; font-size:20px; letter-spacing:0.08em; color:var(--verde-escuro); text-transform:uppercase; line-height:1;">SQUADRA</div>
+          <div style="width:100%; height:2px; background:var(--verde-campo); margin:4px 0;"></div>
+          <div style="font-family:'Unbounded',sans-serif; font-weight:900; font-size:20px; letter-spacing:0.08em; color:var(--verde-campo); text-transform:uppercase; line-height:1;">VERDE</div>
+          <div style="font-family:'DM Mono',monospace; font-size:7px; letter-spacing:0.5em; color:var(--verde-escuro); opacity:0.4; text-transform:uppercase; margin-top:6px;">Beach Tênis</div>
+        </div>
+      </div>
+      <span class="logo-card-label" style="color:var(--verde-escuro);">Logo + Raquete BT · Versão Principal</span>
+    </div>
+
+    <!-- Logo com raquete — sobre verde escuro (invertida) -->
+    <div class="logo-card bg-escuro" style="min-height:320px;">
+      <div style="display:flex; flex-direction:column; align-items:center; gap:12px;">
+        <svg width="88" height="140" viewBox="0 0 100 162" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="50" cy="46" rx="38" ry="40" stroke="#f5efe6" stroke-width="3.5" fill="none"/>
+  <circle cx="38" cy="23" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="47" cy="23" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="56" cy="23" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="65" cy="23" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="29" cy="32" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="38" cy="32" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="47" cy="32" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="56" cy="32" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="65" cy="32" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="74" cy="32" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="29" cy="41" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="38" cy="41" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="47" cy="41" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="56" cy="41" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="65" cy="41" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="74" cy="41" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="29" cy="50" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="38" cy="50" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="47" cy="50" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="56" cy="50" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="65" cy="50" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="74" cy="50" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="29" cy="59" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="38" cy="59" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="47" cy="59" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="56" cy="59" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="65" cy="59" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="74" cy="59" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="29" cy="68" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="38" cy="68" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="47" cy="68" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="56" cy="68" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="65" cy="68" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="47" cy="77" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="56" cy="77" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <path d="M 36 86 C 40 94 45.5 98 45.5 102" stroke="#f5efe6" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  <path d="M 64 86 C 60 94 54.5 98 54.5 102" stroke="#f5efe6" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  <rect x="45.5" y="102" width="9.0" height="52" rx="2.5" stroke="#f5efe6" stroke-width="3.5" fill="none"/>
+  <line x1="46.5" y1="107" x2="53.5" y2="110.5" stroke="#f5efe6" stroke-width="1.2" opacity="0.4"/>
+  <line x1="46.5" y1="114" x2="53.5" y2="117.5" stroke="#f5efe6" stroke-width="1.2" opacity="0.4"/>
+  <line x1="46.5" y1="121" x2="53.5" y2="124.5" stroke="#f5efe6" stroke-width="1.2" opacity="0.4"/>
+  <line x1="46.5" y1="128" x2="53.5" y2="131.5" stroke="#f5efe6" stroke-width="1.2" opacity="0.4"/>
+  <line x1="46.5" y1="135" x2="53.5" y2="138.5" stroke="#f5efe6" stroke-width="1.2" opacity="0.4"/>
+  <line x1="46.5" y1="142" x2="53.5" y2="145.5" stroke="#f5efe6" stroke-width="1.2" opacity="0.4"/>
+  <rect x="43.5" y="154" width="13.0" height="6" rx="3" stroke="#f5efe6" stroke-width="2.5" fill="none"/>
+</svg>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:2px; margin-top:4px;">
+          <div style="font-family:'Unbounded',sans-serif; font-weight:900; font-size:20px; letter-spacing:0.08em; color:var(--creme); text-transform:uppercase; line-height:1;">SQUADRA</div>
+          <div style="width:100%; height:2px; background:var(--verde-medio); margin:4px 0;"></div>
+          <div style="font-family:'Unbounded',sans-serif; font-weight:900; font-size:20px; letter-spacing:0.08em; color:var(--verde-medio); text-transform:uppercase; line-height:1;">VERDE</div>
+          <div style="font-family:'DM Mono',monospace; font-size:7px; letter-spacing:0.5em; color:rgba(255,255,255,0.35); text-transform:uppercase; margin-top:6px;">Beach Tênis</div>
+        </div>
+      </div>
+      <span class="logo-card-label" style="color:rgba(255,255,255,0.3);">Logo + Raquete BT · Fundo Escuro</span>
+    </div>
+
+    <!-- Badge circular com raquete beach tennis -->
+    <div class="logo-card bg-creme" style="min-height:320px;">
+      <div style="width:188px; height:188px; border-radius:50%; background:var(--verde-escuro); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0; border: 3px solid var(--verde-campo); position:relative; overflow:hidden;">
+        <div style="font-family:'DM Mono',monospace; font-size:7px; letter-spacing:0.45em; color:var(--verde-medio); text-transform:uppercase; position:absolute; top:26px;">· Beach Tênis ·</div>
+        <svg width="52" height="84" viewBox="0 0 100 162" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-top:8px;">
+  <ellipse cx="50" cy="46" rx="38" ry="40" stroke="#f5efe6" stroke-width="3.5" fill="none"/>
+  <circle cx="38" cy="23" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="47" cy="23" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="56" cy="23" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="65" cy="23" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="29" cy="32" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="38" cy="32" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="47" cy="32" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="56" cy="32" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="65" cy="32" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="74" cy="32" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="29" cy="41" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="38" cy="41" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="47" cy="41" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="56" cy="41" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="65" cy="41" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="74" cy="41" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="29" cy="50" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="38" cy="50" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="47" cy="50" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="56" cy="50" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="65" cy="50" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="74" cy="50" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="29" cy="59" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="38" cy="59" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="47" cy="59" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="56" cy="59" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="65" cy="59" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="74" cy="59" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="29" cy="68" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="38" cy="68" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="47" cy="68" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="56" cy="68" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="65" cy="68" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="47" cy="77" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <circle cx="56" cy="77" r="2.6" fill="#f5efe6" opacity="0.9"/>
+  <path d="M 36 86 C 40 94 45.5 98 45.5 102" stroke="#f5efe6" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  <path d="M 64 86 C 60 94 54.5 98 54.5 102" stroke="#f5efe6" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  <rect x="45.5" y="102" width="9.0" height="52" rx="2.5" stroke="#f5efe6" stroke-width="3.5" fill="none"/>
+  <line x1="46.5" y1="107" x2="53.5" y2="110.5" stroke="#f5efe6" stroke-width="1.2" opacity="0.4"/>
+  <line x1="46.5" y1="114" x2="53.5" y2="117.5" stroke="#f5efe6" stroke-width="1.2" opacity="0.4"/>
+  <line x1="46.5" y1="121" x2="53.5" y2="124.5" stroke="#f5efe6" stroke-width="1.2" opacity="0.4"/>
+  <line x1="46.5" y1="128" x2="53.5" y2="131.5" stroke="#f5efe6" stroke-width="1.2" opacity="0.4"/>
+  <line x1="46.5" y1="135" x2="53.5" y2="138.5" stroke="#f5efe6" stroke-width="1.2" opacity="0.4"/>
+  <line x1="46.5" y1="142" x2="53.5" y2="145.5" stroke="#f5efe6" stroke-width="1.2" opacity="0.4"/>
+  <rect x="43.5" y="154" width="13.0" height="6" rx="3" stroke="#f5efe6" stroke-width="2.5" fill="none"/>
+</svg>
+        <div style="font-family:'Unbounded',sans-serif; font-weight:900; font-size:11px; letter-spacing:0.08em; color:var(--creme); text-transform:uppercase; line-height:1; margin-top:4px;">SQUADRA VERDE</div>
+        <div style="font-family:'DM Mono',monospace; font-size:7px; letter-spacing:0.35em; color:var(--verde-medio); text-transform:uppercase; position:absolute; bottom:24px;">· Masculino ·</div>
+      </div>
+      <span class="logo-card-label" style="color:var(--verde-escuro);">Badge Circular · Camisas / Bolas</span>
+    </div>
+
+    <!-- Wordmark minimal amarelo com raquete BT -->
+    <div class="logo-card" style="background:var(--amarelo-bola);">
+      <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+        <svg width="40" height="64" viewBox="0 0 100 162" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="50" cy="46" rx="38" ry="40" stroke="#1a3a1a" stroke-width="3.5" fill="none"/>
+  <circle cx="38" cy="23" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="47" cy="23" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="56" cy="23" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="65" cy="23" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="29" cy="32" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="38" cy="32" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="47" cy="32" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="56" cy="32" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="65" cy="32" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="74" cy="32" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="29" cy="41" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="38" cy="41" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="47" cy="41" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="56" cy="41" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="65" cy="41" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="74" cy="41" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="29" cy="50" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="38" cy="50" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="47" cy="50" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="56" cy="50" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="65" cy="50" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="74" cy="50" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="29" cy="59" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="38" cy="59" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="47" cy="59" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="56" cy="59" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="65" cy="59" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="74" cy="59" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="29" cy="68" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="38" cy="68" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="47" cy="68" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="56" cy="68" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="65" cy="68" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="47" cy="77" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <circle cx="56" cy="77" r="2.6" fill="#1a3a1a" opacity="0.9"/>
+  <path d="M 36 86 C 40 94 45.5 98 45.5 102" stroke="#1a3a1a" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  <path d="M 64 86 C 60 94 54.5 98 54.5 102" stroke="#1a3a1a" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  <rect x="45.5" y="102" width="9.0" height="52" rx="2.5" stroke="#1a3a1a" stroke-width="3.5" fill="none"/>
+  <line x1="46.5" y1="107" x2="53.5" y2="110.5" stroke="#1a3a1a" stroke-width="1.2" opacity="0.4"/>
+  <line x1="46.5" y1="114" x2="53.5" y2="117.5" stroke="#1a3a1a" stroke-width="1.2" opacity="0.4"/>
+  <line x1="46.5" y1="121" x2="53.5" y2="124.5" stroke="#1a3a1a" stroke-width="1.2" opacity="0.4"/>
+  <line x1="46.5" y1="128" x2="53.5" y2="131.5" stroke="#1a3a1a" stroke-width="1.2" opacity="0.4"/>
+  <line x1="46.5" y1="135" x2="53.5" y2="138.5" stroke="#1a3a1a" stroke-width="1.2" opacity="0.4"/>
+  <line x1="46.5" y1="142" x2="53.5" y2="145.5" stroke="#1a3a1a" stroke-width="1.2" opacity="0.4"/>
+  <rect x="43.5" y="154" width="13.0" height="6" rx="3" stroke="#1a3a1a" stroke-width="2.5" fill="none"/>
+</svg>
+        <div style="font-family:'Unbounded',sans-serif; font-weight:900; font-size:14px; letter-spacing:0.2em; color:var(--verde-escuro); text-transform:uppercase;">SQUADRA</div>
+        <div style="font-family:'Unbounded',sans-serif; font-weight:900; font-size:40px; letter-spacing:-0.03em; color:var(--verde-escuro); text-transform:uppercase; line-height:0.9;">VERDE</div>
+        <div style="font-family:'DM Mono',monospace; font-size:8px; letter-spacing:0.5em; color:var(--verde-escuro); opacity:0.5; text-transform:uppercase; margin-top:6px;">Beach Tênis</div>
+      </div>
+      <span class="logo-card-label" style="color:var(--verde-escuro); opacity:0.4;">Versão Amarela · Merch</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ APLICAÇÕES -->
+<section class="section app-section">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <span class="section-title">Aplicações</span>
+  </div>
+  <div class="apps-grid">
+
+    <!-- Cartão de Jogador -->
+    <div class="player-card">
+      <div class="pc-number">07</div>
+      <div class="pc-badge"><div class="pc-badge-inner">Temporada 2025</div></div>
+      <div class="pc-info">
+        <div class="pc-name">João<br>Centrone</div>
+        <div class="pc-pos">· Masculino Squadra Verde ·</div>
+        <div class="pc-stats">
+          <div class="pc-stat">
+            <div class="pc-stat-val">12</div>
+            <div class="pc-stat-lbl">Vitórias</div>
+          </div>
+          <div class="pc-stat">
+            <div class="pc-stat-val">3</div>
+            <div class="pc-stat-lbl">Títulos</div>
+          </div>
+          <div class="pc-stat">
+            <div class="pc-stat-val">#2</div>
+            <div class="pc-stat-lbl">Ranking</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pôster torneio -->
+    <div class="poster-torneio">
+      <div class="pt-lines">
+        <div class="pt-line" style="top:25%"></div>
+        <div class="pt-line" style="top:50%"></div>
+        <div class="pt-line" style="top:75%"></div>
+      </div>
+      <div class="pt-eyebrow">Campeonato Interno · 2025</div>
+      <div class="pt-title">
+        TOR<br>
+        <span>NEI</span><br>
+        O
+      </div>
+      <div class="pt-date">Masculino Squadra Verde</div>
+      <div class="pt-bottom">
+        <div class="pt-edition">Edição I</div>
+        <div class="pt-court">Arena · Quadra 3</div>
+      </div>
+    </div>
+
+    <!-- Placar ao vivo -->
+    <div class="scoreboard">
+      <div class="sb-header">
+        <div class="sb-title">Placar · Ao Vivo</div>
+        <div class="sb-live"><div class="sb-dot"></div>Live</div>
+      </div>
+      <div class="sb-body">
+        <div class="sb-row">
+          <div class="sb-player">Centrone</div>
+          <div class="sb-sets">
+            <div class="sb-set win">6</div>
+            <div class="sb-set win">7</div>
+            <div class="sb-set" style="opacity:0.2;">–</div>
+          </div>
+        </div>
+        <div class="sb-row">
+          <div class="sb-player" style="opacity:0.5;">Oliveira</div>
+          <div class="sb-sets">
+            <div class="sb-set lose">3</div>
+            <div class="sb-set lose">5</div>
+            <div class="sb-set" style="opacity:0.2;">–</div>
+          </div>
+        </div>
+        <div style="padding:16px 24px; border-top:1px solid rgba(26,58,26,0.06); display:flex; justify-content:space-between; align-items:center;">
+          <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.25em; text-transform:uppercase; color:var(--verde-medio); opacity:0.6;">Oitavas · Q3</div>
+          <div style="font-family:'Unbounded',monospace; font-size:10px; font-weight:700; color:var(--verde-escuro); opacity:0.3;">30–40</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ REGRAS DE USO -->
+<section class="section rules-section">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <span class="section-title">Regras de Uso</span>
+  </div>
+  <div class="rules-grid">
+    <div class="rule-card">
+      <span class="rule-icon">🎨</span>
+      <div class="rule-title">Combinações de Cor</div>
+      <div class="rule-body">Use sempre as combinações aprovadas. Nunca aplique logo sobre fundo colorido fora da paleta.</div>
+      <div class="rule-samples">
+        <span class="rs-yes">Creme / Verde</span>
+        <span class="rs-yes">Preto / Creme</span>
+        <span class="rs-yes">Verde / Amarelo</span>
+        <span class="rs-no">Rosa / Verde</span>
+        <span class="rs-no">Azul / Creme</span>
+      </div>
+    </div>
+    <div class="rule-card">
+      <span class="rule-icon">🔡</span>
+      <div class="rule-title">Tipografia</div>
+      <div class="rule-body">Nunca use Unbounded em caixa baixa para o nome da marca. Playfair sempre em itálico.</div>
+      <div class="rule-samples">
+        <span class="rs-yes">UNBOUNDED</span>
+        <span class="rs-yes">Playfair Italic</span>
+        <span class="rs-no">Arial</span>
+        <span class="rs-no">Inter</span>
+        <span class="rs-no">unbounded lower</span>
+      </div>
+    </div>
+    <div class="rule-card">
+      <span class="rule-icon">📐</span>
+      <div class="rule-title">Área de Proteção</div>
+      <div class="rule-body">Mantenha espaço mínimo equivalente à altura da letra "S" do monograma em todos os lados do logo.</div>
+      <div class="rule-samples">
+        <span class="rs-yes">1× altura S</span>
+        <span class="rs-no">Sem margem</span>
+        <span class="rs-no">Esticado</span>
+      </div>
+    </div>
+    <div class="rule-card">
+      <span class="rule-icon">🚫</span>
+      <div class="rule-title">Usos Proibidos</div>
+      <div class="rule-body">Não distorcer proporções, não adicionar sombra, não alterar cores individuais, não rotacionar o logotipo.</div>
+      <div class="rule-samples">
+        <span class="rs-no">Distorção</span>
+        <span class="rs-no">Sombra drop</span>
+        <span class="rs-no">Gradiente</span>
+        <span class="rs-no">Rotação</span>
+      </div>
+    </div>
+    <div class="rule-card">
+      <span class="rule-icon">📱</span>
+      <div class="rule-title">Digital</div>
+      <div class="rule-body">Para redes sociais use o monograma SV ou badge circular. Para posts use o lockup completo. Tamanho mínimo: 48px.</div>
+      <div class="rule-samples">
+        <span class="rs-yes">Monograma</span>
+        <span class="rs-yes">Badge</span>
+        <span class="rs-yes">Lockup H</span>
+      </div>
+    </div>
+    <div class="rule-card">
+      <span class="rule-icon">👕</span>
+      <div class="rule-title">Vestuário</div>
+      <div class="rule-body">Em camisas use o badge circular bordado. Em bonés, o monograma SV. No uniforme: fundo verde, logotipo em creme.</div>
+      <div class="rule-samples">
+        <span class="rs-yes">Badge circular</span>
+        <span class="rs-yes">Monograma SV</span>
+        <span class="rs-no">Wordmark em camisa</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ FEMININO: DIVISOR -->
+<section style="background:var(--verde-escuro); padding:80px 48px; position:relative; overflow:hidden;">
+  <div style="position:absolute; inset:0; background-image: radial-gradient(circle, rgba(255,255,255,0.025) 1px, transparent 1px); background-size:24px 24px;"></div>
+  <div style="position:absolute; right:80px; top:50%; transform:translateY(-50%) rotate(18deg); opacity:0.07; pointer-events:none;">
+    <svg width="200" height="320" viewBox="0 0 100 162" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="50" cy="46" rx="38" ry="40" stroke="white" stroke-width="3.5" fill="none"/>
+  <circle cx="38" cy="23" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="47" cy="23" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="56" cy="23" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="65" cy="23" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="29" cy="32" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="38" cy="32" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="47" cy="32" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="56" cy="32" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="65" cy="32" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="74" cy="32" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="29" cy="41" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="38" cy="41" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="47" cy="41" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="56" cy="41" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="65" cy="41" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="74" cy="41" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="29" cy="50" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="38" cy="50" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="47" cy="50" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="56" cy="50" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="65" cy="50" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="74" cy="50" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="29" cy="59" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="38" cy="59" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="47" cy="59" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="56" cy="59" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="65" cy="59" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="74" cy="59" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="29" cy="68" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="38" cy="68" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="47" cy="68" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="56" cy="68" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="65" cy="68" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="47" cy="77" r="2.6" fill="white" opacity="0.9"/>
+  <circle cx="56" cy="77" r="2.6" fill="white" opacity="0.9"/>
+  <path d="M 36 86 C 40 94 45.5 98 45.5 102" stroke="white" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  <path d="M 64 86 C 60 94 54.5 98 54.5 102" stroke="white" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+  <rect x="45.5" y="102" width="9.0" height="52" rx="2.5" stroke="white" stroke-width="3.5" fill="none"/>
+  <rect x="43.5" y="154" width="13.0" height="6" rx="3" stroke="white" stroke-width="2.5" fill="none"/>
+</svg>
+  </div>
+  <div style="position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; gap:24px; text-align:center;">
+    <div style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.5em; color:var(--verde-medio); text-transform:uppercase; opacity:0.7;">Seção 06</div>
+    <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(48px,8vw,96px); color:var(--creme); line-height:0.9; letter-spacing:-0.02em;">Feminino</div>
+    <div style="width:80px; height:2px; background:#a8c8d8;"></div>
+    <div style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.35em; color:var(--creme); opacity:0.4; text-transform:uppercase;">Ranking · Visual Identity</div>
+  </div>
+</section>
+
+<style>
+  /* ── FEMININO TOKENS ── */
+  :root {
+    --fem-creme:      #f4f0eb;
+    --fem-verde:      #1a3a1a;
+    --fem-sage:       #7a9e7e;
+    --fem-azul:       #a8c8d8;
+    --fem-azul-esc:   #3d7a9a;
+    --fem-azul-bg:    #d8eaf2;
+    --fem-nude:       #e8ddd0;
+    --fem-escuro:     #0f1a0f;
+    /* alias de compatibilidade com código abaixo */
+    --fem-rose:       #a8c8d8;
+  }
+
+  /* ── FEMININO COVER ── */
+  .fem-cover {
+    background: var(--fem-creme);
+    padding: 80px 48px 64px;
+    border-bottom: 1px solid rgba(26,58,26,0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .fem-cover::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 340px; height: 340px;
+    border-radius: 50%;
+    border: 1px solid rgba(168,200,216,0.25);
+    pointer-events: none;
+  }
+  .fem-cover::after {
+    content: '';
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    border: 1px solid rgba(168,200,216,0.15);
+    pointer-events: none;
+  }
+
+  .fem-cover-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: end;
+    max-width: 900px;
+  }
+
+  @media (max-width: 640px) {
+    .fem-cover-grid { grid-template-columns: 1fr; }
+  }
+
+  .fem-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--fem-azul-esc);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .fem-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--fem-azul-esc);
+  }
+
+  .fem-title-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: clamp(56px, 9vw, 100px);
+    color: var(--fem-verde);
+    line-height: 0.88;
+    letter-spacing: -0.02em;
+  }
+
+  .fem-title-sub {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: clamp(14px, 2vw, 22px);
+    color: var(--fem-azul-esc);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-top: 16px;
+  }
+
+  .fem-desc {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    line-height: 1.9;
+    color: var(--fem-verde);
+    opacity: 0.55;
+    margin-top: 24px;
+    max-width: 340px;
+  }
+
+  .fem-badge-oval {
+    width: 200px;
+    height: 120px;
+    border: 2px solid var(--fem-azul-esc);
+    border-radius: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin-left: auto;
+    background: var(--fem-azul-bg);
+    position: relative;
+  }
+
+  .fem-badge-oval .fbo-top {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--fem-azul-esc);
+    opacity: 0.7;
+  }
+
+  .fem-badge-oval .fbo-sv {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 32px;
+    color: var(--fem-verde);
+    line-height: 1;
+  }
+
+  .fem-badge-oval .fbo-bot {
+    font-family: 'DM Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--fem-azul-esc);
+    opacity: 0.7;
+  }
+
+  /* ── RANKING TABLE ── */
+  .fem-ranking-section {
+    background: var(--fem-creme);
+    padding: 72px 48px;
+    border-bottom: 1px solid rgba(26,58,26,0.08);
+  }
+
+  .fem-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .fem-section-left {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+
+  .fem-sh-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 48px;
+    color: var(--fem-azul);
+    opacity: 0.4;
+    line-height: 1;
+  }
+
+  .fem-sh-title {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--fem-verde);
+  }
+
+  .fem-season-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--fem-azul-esc);
+    border: 1px solid var(--fem-azul);
+    padding: 6px 16px;
+    border-radius: 100px;
+    opacity: 0.8;
+  }
+
+  /* Ranking table */
+  .fem-rank-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .fem-rank-table thead tr {
+    border-bottom: 2px solid var(--fem-verde);
+  }
+
+  .fem-rank-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--fem-verde);
+    opacity: 0.4;
+    padding: 0 16px 16px 0;
+    text-align: left;
+    font-weight: 400;
+  }
+
+  .fem-rank-table th:first-child { padding-left: 0; }
+
+  .fem-rank-table tbody tr {
+    border-bottom: 1px solid rgba(26,58,26,0.07);
+    transition: background 0.2s;
+  }
+
+  .fem-rank-table tbody tr:hover {
+    background: rgba(168,200,216,0.06);
+  }
+
+  .fem-rank-table td {
+    padding: 18px 16px 18px 0;
+    vertical-align: middle;
+  }
+
+  .fem-rank-table td:first-child { padding-left: 0; }
+
+  .rank-pos {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 28px;
+    color: var(--fem-verde);
+    opacity: 0.25;
+    line-height: 1;
+    width: 48px;
+    text-align: right;
+    padding-right: 24px !important;
+  }
+
+  .rank-pos.top1 { opacity: 1; color: var(--fem-azul-esc); }
+  .rank-pos.top2 { opacity: 0.7; }
+  .rank-pos.top3 { opacity: 0.5; }
+
+  .rank-name-cell { min-width: 160px; }
+
+  .rank-name {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--fem-verde);
+    line-height: 1.2;
+  }
+
+  .rank-since {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--fem-sage);
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+
+  .rank-pts {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    color: var(--fem-verde);
+    letter-spacing: -0.02em;
+  }
+
+  .rank-pts-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    color: var(--fem-verde);
+    opacity: 0.35;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .rank-w { 
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--fem-sage);
+    opacity: 0.8;
+  }
+
+  .rank-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+
+  .rb-lider { background: rgba(61,122,154,0.1); color: var(--fem-azul-esc); border: 1px solid rgba(61,122,154,0.3); }
+  .rb-subindo { background: rgba(122,158,126,0.1); color: var(--fem-sage); border: 1px solid rgba(122,158,126,0.25); }
+  .rb-novo { background: rgba(26,58,26,0.06); color: var(--fem-verde); opacity: 0.5; border: 1px solid rgba(26,58,26,0.12); }
+
+  /* ── PODIUM VISUAL ── */
+  .fem-podium-section {
+    background: var(--fem-verde);
+    padding: 72px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .fem-podium-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .fem-podium-section .fem-sh-title { color: var(--fem-creme); }
+  .fem-podium-section .fem-sh-num { color: var(--fem-azul); opacity: 0.5; }
+
+  .fem-podium-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 48px;
+    align-items: end;
+  }
+
+  .fem-podium-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 20px 0;
+    position: relative;
+    cursor: default;
+  }
+
+  .fpc-crown {
+    font-size: 20px;
+    margin-bottom: 12px;
+    opacity: 0;
+  }
+  .fpc-crown.visible { opacity: 1; }
+
+  .fpc-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 16px;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    color: var(--fem-verde);
+  }
+
+  .fpc-avatar.place1 { background: var(--fem-azul); width: 88px; height: 88px; font-size: 26px; }
+  .fpc-avatar.place2 { background: var(--fem-creme); }
+  .fpc-avatar.place3 { background: var(--fem-nude); }
+
+  .fpc-name {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--fem-creme);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .fpc-pts {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 32px;
+    color: var(--fem-azul);
+    margin-top: 8px;
+  }
+
+  .fpc-pts-lbl {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  .fpc-bar {
+    width: 100%;
+    margin-top: 24px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .fpc-bar-inner {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border-radius: 4px 4px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fpc-place-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 80px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.05);
+    line-height: 1;
+    padding: 12px 0;
+  }
+
+  /* ── CARTÃO FEMININO ── */
+  .fem-card-section {
+    background: var(--fem-azul-bg);
+    padding: 72px 48px;
+    border-bottom: 1px solid rgba(26,58,26,0.1);
+  }
+
+  .fem-player-card {
+    background: var(--fem-creme);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(26,58,26,0.1);
+    max-width: 340px;
+    position: relative;
+  }
+
+  .fcard-header {
+    background: var(--fem-verde);
+    padding: 28px 28px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .fcard-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .fcard-header::after {
+    content: '';
+    position: absolute;
+    right: -30px; bottom: -40px;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    border: 2px solid rgba(168,200,216,0.15);
+  }
+
+  .fcard-season {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.45em;
+    color: var(--fem-azul);
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+    opacity: 0.85;
+  }
+
+  .fcard-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 44px;
+    color: var(--fem-creme);
+    line-height: 0.95;
+    margin-top: 10px;
+    position: relative;
+    z-index: 2;
+    letter-spacing: -0.01em;
+  }
+
+  .fcard-rank-badge {
+    position: absolute;
+    top: 24px; right: 24px;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--fem-azul);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+  }
+
+  .fcard-rank-badge span {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: 16px;
+    color: var(--fem-verde);
+    line-height: 1;
+  }
+
+  .fcard-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(26,58,26,0.08);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .fcard-stat {
+    background: var(--fem-creme);
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .fcs-val {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    color: var(--fem-verde);
+    letter-spacing: -0.02em;
+  }
+
+  .fcs-lbl {
+    font-family: 'DM Mono', monospace;
+    font-size: 7px;
+    letter-spacing: 0.25em;
+    color: var(--fem-sage);
+    text-transform: uppercase;
+  }
+
+  .fcard-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .fcard-team {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--fem-verde);
+    opacity: 0.5;
+    text-transform: uppercase;
+  }
+
+  .fcard-pts-big {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 36px;
+    color: var(--fem-azul-esc);
+    line-height: 1;
+  }
+
+  .fcard-pts-big small {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--fem-verde);
+    opacity: 0.4;
+    font-style: normal;
+    display: block;
+    text-transform: uppercase;
+    text-align: right;
+  }
+
+  /* ── POSTER FEMININO ── */
+  .fem-poster {
+    background: var(--fem-creme);
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 340px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 460px;
+    border: 1px solid rgba(26,58,26,0.1);
+  }
+
+  .fp-top {
+    background: var(--fem-azul-bg);
+    padding: 28px 28px 20px;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .fp-top-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.5em;
+    color: rgba(26,58,26,0.6);
+    text-transform: uppercase;
+  }
+
+  .fp-top-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 52px;
+    color: var(--fem-verde);
+    line-height: 0.88;
+    letter-spacing: -0.02em;
+    margin-top: 8px;
+  }
+
+  .fp-body {
+    padding: 28px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fp-list {
+    list-style: none;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .fp-list li {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(26,58,26,0.07);
+  }
+
+  .fp-li-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 24px;
+    color: var(--fem-azul);
+    width: 28px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .fp-li-name {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--fem-verde);
+    flex: 1;
+    letter-spacing: 0.03em;
+  }
+
+  .fp-li-pts {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--fem-sage);
+  }
+
+  .fp-bottom {
+    padding: 20px 28px;
+    background: var(--fem-verde);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .fp-bt-brand {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--fem-creme);
+  }
+
+  .fp-bt-season {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    color: var(--fem-azul);
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  /* cards flex layout */
+  .fem-cards-flex {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .fem-cards-flex > * { flex: 1 1 300px; }
+
+  /* cor feminino grid */
+  .fem-cores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0;
+    margin-top: 40px;
+  }
+
+  .fem-cor-card { display: flex; flex-direction: column; }
+
+  .fem-cor-swatch { height: 120px; }
+
+  .fem-cor-info {
+    padding: 14px 16px;
+    background: var(--fem-creme);
+    border: 1px solid rgba(26,58,26,0.07);
+  }
+
+  .fem-cor-nome {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--fem-verde);
+    margin-bottom: 4px;
+  }
+
+  .fem-cor-hex {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--fem-azul);
+  }
+</style>
+
+<!-- GOOGLE FONT: Cormorant for fem -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+
+<!-- ══════════════════════════════════════════ FEM: COVER -->
+<section class="fem-cover">
+  <div class="fem-cover-grid">
+    <div>
+      <div class="fem-eyebrow">Seção Feminino</div>
+      <div class="fem-title-main">Squadra<br>Verde</div>
+      <div class="fem-title-sub">Feminino</div>
+      <div class="fem-desc">Identidade visual dedicada ao ranking feminino. Mantém o DNA verde da marca com uma camada editorial — tipografia serifada itálica, paleta verde/creme/azul-céu.</div>
+    </div>
+    <div style="display:flex; flex-direction:column; align-items:flex-end; gap:24px;">
+      <div class="fem-badge-oval">
+        <div class="fbo-top">Feminino</div>
+        <div class="fbo-sv">SV</div>
+        <div class="fbo-bot">Beach Tênis</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:48px; color:var(--fem-azul-esc); line-height:0.9; letter-spacing:-0.02em;">2025</div>
+        <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.4em; color:var(--fem-verde); opacity:0.4; text-transform:uppercase; margin-top:6px;">Temporada</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Paleta feminino -->
+  <div class="fem-cores-grid">
+    <div class="fem-cor-card">
+      <div class="fem-cor-swatch" style="background:#f4f0eb;"></div>
+      <div class="fem-cor-info"><div class="fem-cor-nome">Creme</div><div class="fem-cor-hex">#F4F0EB</div></div>
+    </div>
+    <div class="fem-cor-card">
+      <div class="fem-cor-swatch" style="background:#1a3a1a;"></div>
+      <div class="fem-cor-info"><div class="fem-cor-nome">Verde</div><div class="fem-cor-hex">#1A3A1A</div></div>
+    </div>
+    <div class="fem-cor-card">
+      <div class="fem-cor-swatch" style="background:#a8c8d8;"></div>
+      <div class="fem-cor-info"><div class="fem-cor-nome" style="color:var(--fem-azul-esc);">Azul Céu</div><div class="fem-cor-hex" style="color:var(--fem-azul-esc);">#A8C8D8</div></div>
+    </div>
+    <div class="fem-cor-card">
+      <div class="fem-cor-swatch" style="background:#d8eaf2;"></div>
+      <div class="fem-cor-info"><div class="fem-cor-nome" style="color:var(--fem-azul-esc);">Azul Claro</div><div class="fem-cor-hex" style="color:var(--fem-azul-esc);">#D8EAF2</div></div>
+    </div>
+    <div class="fem-cor-card">
+      <div class="fem-cor-swatch" style="background:#7a9e7e;"></div>
+      <div class="fem-cor-info"><div class="fem-cor-nome">Sage</div><div class="fem-cor-hex">#7A9E7E</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ FEM: RANKING TABLE -->
+<section class="fem-ranking-section">
+  <div class="fem-section-header">
+    <div class="fem-section-left">
+      <div class="fem-sh-num">06</div>
+      <div class="fem-sh-title">Ranking Feminino</div>
+    </div>
+    <div class="fem-season-pill">Temporada 2025</div>
+  </div>
+
+  <table class="fem-rank-table">
+    <thead>
+      <tr>
+        <th style="width:48px; text-align:right; padding-right:24px;">#</th>
+        <th>Jogadora</th>
+        <th>Pontos</th>
+        <th>Vitórias</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="rank-pos top1">1</td>
+        <td class="rank-name-cell">
+          <div class="rank-name">Ana Silva</div>
+          <div class="rank-since">desde 2022</div>
+        </td>
+        <td>
+          <div class="rank-pts">248</div>
+          <div class="rank-pts-label">pts</div>
+        </td>
+        <td class="rank-w">18–4</td>
+        <td><span class="rank-badge rb-lider">★ Líder</span></td>
+      </tr>
+      <tr>
+        <td class="rank-pos top2">2</td>
+        <td class="rank-name-cell">
+          <div class="rank-name">Caro Matos</div>
+          <div class="rank-since">desde 2023</div>
+        </td>
+        <td>
+          <div class="rank-pts">214</div>
+          <div class="rank-pts-label">pts</div>
+        </td>
+        <td class="rank-w">15–6</td>
+        <td><span class="rank-badge rb-subindo">▲ +3</span></td>
+      </tr>
+      <tr>
+        <td class="rank-pos top3">3</td>
+        <td class="rank-name-cell">
+          <div class="rank-name">Ju Ferreira</div>
+          <div class="rank-since">desde 2023</div>
+        </td>
+        <td>
+          <div class="rank-pts">197</div>
+          <div class="rank-pts-label">pts</div>
+        </td>
+        <td class="rank-w">13–7</td>
+        <td><span class="rank-badge rb-subindo">▲ +1</span></td>
+      </tr>
+      <tr>
+        <td class="rank-pos">4</td>
+        <td class="rank-name-cell">
+          <div class="rank-name">Bea Costa</div>
+          <div class="rank-since">desde 2024</div>
+        </td>
+        <td>
+          <div class="rank-pts">163</div>
+          <div class="rank-pts-label">pts</div>
+        </td>
+        <td class="rank-w">11–9</td>
+        <td><span class="rank-badge rb-novo">Novo</span></td>
+      </tr>
+      <tr>
+        <td class="rank-pos">5</td>
+        <td class="rank-name-cell">
+          <div class="rank-name">Mari Lima</div>
+          <div class="rank-since">desde 2024</div>
+        </td>
+        <td>
+          <div class="rank-pts">141</div>
+          <div class="rank-pts-label">pts</div>
+        </td>
+        <td class="rank-w">9–10</td>
+        <td><span class="rank-badge rb-novo">Novo</span></td>
+      </tr>
+      <tr>
+        <td class="rank-pos">6</td>
+        <td class="rank-name-cell">
+          <div class="rank-name">Rafa Torres</div>
+          <div class="rank-since">desde 2024</div>
+        </td>
+        <td>
+          <div class="rank-pts">118</div>
+          <div class="rank-pts-label">pts</div>
+        </td>
+        <td class="rank-w">8–11</td>
+        <td><span class="rank-badge rb-subindo">▲ +2</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════════════════════════════════════ FEM: PODIUM -->
+<section class="fem-podium-section">
+  <div style="position:relative; z-index:2;">
+    <div class="fem-section-header">
+      <div class="fem-section-left">
+        <div class="fem-sh-num">07</div>
+        <div class="fem-sh-title">Pódio</div>
+      </div>
+      <div class="fem-season-pill" style="color:var(--fem-azul); border-color:var(--fem-azul); opacity:0.6;">Top 3 · 2025</div>
+    </div>
+    <div class="fem-podium-grid">
+      <!-- 2nd -->
+      <div class="fem-podium-card" style="order:1;">
+        <div class="fpc-avatar place2">CM</div>
+        <div class="fpc-name">Caro<br>Matos</div>
+        <div class="fpc-pts">214</div>
+        <div class="fpc-pts-lbl">pontos</div>
+        <div class="fpc-bar"><div class="fpc-bar-inner" style="height:120px;"><div class="fpc-place-num">2</div></div></div>
+      </div>
+      <!-- 1st -->
+      <div class="fem-podium-card" style="order:0;">
+        <div class="fpc-crown visible">✦</div>
+        <div class="fpc-avatar place1">AS</div>
+        <div class="fpc-name" style="color:var(--fem-azul);">Ana<br>Silva</div>
+        <div class="fpc-pts" style="color:var(--fem-azul); font-size:42px;">248</div>
+        <div class="fpc-pts-lbl">pontos</div>
+        <div class="fpc-bar"><div class="fpc-bar-inner" style="height:160px;"><div class="fpc-place-num">1</div></div></div>
+      </div>
+      <!-- 3rd -->
+      <div class="fem-podium-card" style="order:2;">
+        <div class="fpc-avatar place3">JF</div>
+        <div class="fpc-name">Ju<br>Ferreira</div>
+        <div class="fpc-pts">197</div>
+        <div class="fpc-pts-lbl">pontos</div>
+        <div class="fpc-bar"><div class="fpc-bar-inner" style="height:88px;"><div class="fpc-place-num">3</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ FEM: CARDS + POSTER -->
+<section class="fem-card-section">
+  <div class="fem-section-header">
+    <div class="fem-section-left">
+      <div class="fem-sh-num" style="color:var(--fem-azul); opacity:0.5;">08</div>
+      <div class="fem-sh-title">Aplicações Feminino</div>
+    </div>
+  </div>
+  <div class="fem-cards-flex">
+
+    <!-- Player card feminino -->
+    <div class="fem-player-card">
+      <div class="fcard-header">
+        <div class="fcard-season">· Temporada 2025 ·</div>
+        <div class="fcard-name">Ana<br>Silva</div>
+        <div class="fcard-rank-badge"><span>#1</span></div>
+      </div>
+      <div class="fcard-body">
+        <div class="fcard-stats">
+          <div class="fcard-stat">
+            <div class="fcs-val">18</div>
+            <div class="fcs-lbl">Vitórias</div>
+          </div>
+          <div class="fcard-stat">
+            <div class="fcs-val">4</div>
+            <div class="fcs-lbl">Derrotas</div>
+          </div>
+          <div class="fcard-stat">
+            <div class="fcs-val">82%</div>
+            <div class="fcs-lbl">Aproveit.</div>
+          </div>
+        </div>
+        <div class="fcard-footer">
+          <div class="fcard-team">Squadra Verde</div>
+          <div class="fcard-pts-big">248<small>Pontos</small></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Poster ranking -->
+    <div class="fem-poster">
+      <div class="fp-top">
+        <div class="fp-top-label">Classificação Geral</div>
+        <div class="fp-top-title">Ranking<br>Feminino</div>
+      </div>
+      <div class="fp-body">
+        <ul class="fp-list">
+          <li><div class="fp-li-num">1</div><div class="fp-li-name">Ana Silva</div><div class="fp-li-pts">248 pts</div></li>
+          <li><div class="fp-li-num">2</div><div class="fp-li-name">Caro Matos</div><div class="fp-li-pts">214 pts</div></li>
+          <li><div class="fp-li-num">3</div><div class="fp-li-name">Ju Ferreira</div><div class="fp-li-pts">197 pts</div></li>
+          <li><div class="fp-li-num">4</div><div class="fp-li-name">Bea Costa</div><div class="fp-li-pts">163 pts</div></li>
+          <li><div class="fp-li-num">5</div><div class="fp-li-name">Mari Lima</div><div class="fp-li-pts">141 pts</div></li>
+          <li><div class="fp-li-num">6</div><div class="fp-li-name">Rafa Torres</div><div class="fp-li-pts">118 pts</div></li>
+        </ul>
+      </div>
+      <div class="fp-bottom">
+        <div class="fp-bt-brand">Squadra Verde</div>
+        <div class="fp-bt-season">Temporada 2025</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ FOOTER -->
+<footer class="id-footer">
+  <div class="footer-brand">
+    <span>Identidade Visual Completa</span>
+    SQUADRA<br>VERDE
+  </div>
+  <div class="footer-meta">
+    Beach Tênis · Masculino + Feminino<br>
+    Temporada 2025<br>
+    Versão 1.1
+  </div>
+</footer>
+
+</body>
+</html>
