@@ -94,7 +94,7 @@ function VideoModal({ lance, curtidas, onCurtir, isLiked, onClose }: {
         >
           <span
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
+              fontFamily: "'Unbounded', sans-serif",
               fontWeight: 700,
               fontSize: 15,
               color: '#ffffff',
@@ -115,7 +115,7 @@ function VideoModal({ lance, curtidas, onCurtir, isLiked, onClose }: {
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
-              fontFamily: "'Space Grotesk', sans-serif",
+              fontFamily: "'Unbounded', sans-serif",
               fontWeight: 700,
               fontSize: 18,
               lineHeight: 1,
@@ -138,14 +138,14 @@ function VideoModal({ lance, curtidas, onCurtir, isLiked, onClose }: {
 
         <div style={{ padding: '16px 20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap' }}>
           <div>
-            <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: 14, color: '#9dd3aa', marginBottom: 3 }}>
+            <p style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 600, fontSize: 14, color: '#9dd3aa', marginBottom: 3 }}>
               {lance.jogador}
             </p>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: '#717971' }}>
+            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: '#717971' }}>
               Rodada {lance.rodada} · {lance.data}
             </p>
             {lance.descricao && (
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: 'rgba(240,241,236,0.6)', marginTop: 6, lineHeight: 1.5 }}>
+              <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: 'rgba(240,241,236,0.6)', marginTop: 6, lineHeight: 1.5 }}>
                 {lance.descricao}
               </p>
             )}
@@ -161,7 +161,7 @@ function VideoModal({ lance, curtidas, onCurtir, isLiked, onClose }: {
               border: `1px solid ${isLiked ? '#2c694e' : '#414942'}`,
               color: '#9dd3aa',
               padding: '8px 16px',
-              fontFamily: "'Space Grotesk', sans-serif",
+              fontFamily: "'Unbounded', sans-serif",
               fontSize: 14,
               fontWeight: 600,
               cursor: isLiked ? 'default' : 'pointer',
@@ -262,7 +262,7 @@ function LanceCard({ lance, curtidas, onCurtir, isLiked, onClick }: {
       <div style={{ padding: '16px 16px 14px', flex: 1, display: 'flex', flexDirection: 'column', gap: 6 }}>
         <h3
           style={{
-            fontFamily: "'Space Grotesk', sans-serif",
+            fontFamily: "'Unbounded', sans-serif",
             fontWeight: 700,
             fontSize: 15,
             color: '#191c19',
@@ -274,7 +274,7 @@ function LanceCard({ lance, curtidas, onCurtir, isLiked, onClick }: {
         </h3>
         <p
           style={{
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'DM Mono', monospace",
             fontWeight: 600,
             fontSize: 13,
             color: '#2c694e',
@@ -285,7 +285,7 @@ function LanceCard({ lance, curtidas, onCurtir, isLiked, onClick }: {
         {lance.descricao && (
           <p
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'DM Mono', monospace",
               fontSize: 12,
               color: '#717971',
               lineHeight: 1.5,
@@ -306,7 +306,7 @@ function LanceCard({ lance, curtidas, onCurtir, isLiked, onClick }: {
           justifyContent: 'space-between',
         }}
       >
-        <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, color: '#c1c9bf' }}>
+        <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: '#c1c9bf' }}>
           {lance.data}
         </span>
         <button
@@ -318,7 +318,7 @@ function LanceCard({ lance, curtidas, onCurtir, isLiked, onClick }: {
             background: isLiked ? '#f0f9f4' : 'none',
             border: `1px solid ${isLiked ? '#2c694e' : '#e7e9e4'}`,
             padding: '4px 10px',
-            fontFamily: "'Inter', sans-serif",
+            fontFamily: "'DM Mono', monospace",
             fontSize: 12,
             fontWeight: 600,
             color: isLiked ? '#00361a' : '#717971',
@@ -346,7 +346,7 @@ export default function LancesPage() {
           <p className="section-label" style={{ marginBottom: 10 }}>Temporada 2026</p>
           <h1
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
+              fontFamily: "'Unbounded', sans-serif",
               fontWeight: 700,
               fontSize: 'clamp(32px, 5vw, 56px)',
               color: '#191c19',
@@ -356,7 +356,7 @@ export default function LancesPage() {
           >
             Melhores Lances
           </h1>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#717971' }}>
+          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 14, color: '#717971' }}>
             Os melhores momentos da temporada · Clique para assistir
           </p>
         </div>
@@ -408,7 +408,7 @@ export default function LancesPage() {
             </div>
             <p
               style={{
-                fontFamily: "'Space Grotesk', sans-serif",
+                fontFamily: "'Unbounded', sans-serif",
                 fontWeight: 700,
                 fontSize: 20,
                 color: '#191c19',
@@ -417,7 +417,7 @@ export default function LancesPage() {
             >
               Em breve
             </p>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#717971' }}>
+            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 14, color: '#717971' }}>
               Os melhores lances da temporada serão publicados aqui
             </p>
           </div>

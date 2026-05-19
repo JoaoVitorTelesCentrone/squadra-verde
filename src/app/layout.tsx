@@ -5,9 +5,9 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Squadra Verde · Beach Tênis",
-  description: "Rankings de beach tênis Squadra Verde — Masculino, Feminino Bronze e Feminino Prata · Temporada 2025",
+  description: "Rankings de beach tênis Squadra Verde — Masculino, Feminino Bronze e Feminino Prata · Temporada 2026",
   icons: {
-    icon: '/logo-squadra.png',
+    icon: '/icon.svg',
   },
 };
 

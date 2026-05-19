@@ -89,7 +89,7 @@ export default function AtletasPage() {
           <p className="section-label" style={{ marginBottom: 10 }}>Beach Tennis · Temporada 2026</p>
           <h1
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
+              fontFamily: "'Unbounded', sans-serif",
               fontWeight: 700,
               fontSize: 'clamp(32px, 5vw, 56px)',
               color: '#191c19',
@@ -99,7 +99,7 @@ export default function AtletasPage() {
           >
             Atletas
           </h1>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#717971' }}>
+          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 14, color: '#717971' }}>
             {todos.length} atletas inscritos · Masculino, Feminino Bronze e Feminino Prata
           </p>
         </div>
@@ -108,7 +108,7 @@ export default function AtletasPage() {
       <div className="page-body-inner">
 
         {/* ── TABS ── */}
-        <div style={{ display: 'flex', gap: 4, marginBottom: 20, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: 4, marginBottom: 20, flexWrap: 'wrap', alignItems: 'stretch' }}>
           {TABS.map(t => (
             <button
               key={t.key}
@@ -119,7 +119,7 @@ export default function AtletasPage() {
                 borderColor: tab === t.key ? '#191c19' : '#c1c9bf',
                 background: tab === t.key ? '#191c19' : '#ffffff',
                 color: tab === t.key ? '#ffffff' : '#414942',
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'DM Mono', monospace",
                 fontWeight: 700,
                 fontSize: 11,
                 letterSpacing: '0.1em',
@@ -134,34 +134,35 @@ export default function AtletasPage() {
         </div>
 
         {/* ── BUSCA ── */}
-        <div style={{ marginBottom: 28, display: 'flex', gap: 12, alignItems: 'center' }}>
+        <div style={{ marginBottom: 28, display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
           <input
             type="text"
             placeholder="Buscar atleta..."
             value={busca}
             onChange={e => setBusca(e.target.value)}
             style={{
-              flex: 1,
-              maxWidth: 400,
+              flex: '1 1 200px',
+              width: 'min(100%, 400px)',
               padding: '10px 16px',
               border: '1px solid #c1c9bf',
               background: '#f8faf5',
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'DM Mono', monospace",
               fontSize: 14,
               color: '#191c19',
               outline: 'none',
             }}
           />
-          <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: '#717971', whiteSpace: 'nowrap' }}>
+          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: '#717971', whiteSpace: 'nowrap' }}>
             {filtrados.length} de {total}
           </span>
         </div>
 
         {/* ── GRID ── */}
         <div
+          className="atletas-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(min(180px, 100%), 1fr))',
             gap: 12,
           }}
         >
@@ -206,7 +207,7 @@ export default function AtletasPage() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontFamily: "'Unbounded', sans-serif",
                     fontWeight: 700,
                     fontSize: 18,
                     color: CATEGORIA_ACCENT[j.categoria],
@@ -219,7 +220,7 @@ export default function AtletasPage() {
                 {/* Nome */}
                 <p
                   style={{
-                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontFamily: "'Unbounded', sans-serif",
                     fontWeight: 700,
                     fontSize: 14,
                     color: '#191c19',
@@ -237,7 +238,7 @@ export default function AtletasPage() {
                     background: j.avatarBg + '18',
                     border: `1px solid ${j.avatarBg}55`,
                     color: j.avatarBg,
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'DM Mono', monospace",
                     fontWeight: 700,
                     fontSize: 9,
                     letterSpacing: '0.1em',
@@ -253,7 +254,7 @@ export default function AtletasPage() {
 
         {filtrados.length === 0 && (
           <div style={{ padding: 60, textAlign: 'center', border: '1px solid #e7e9e4', background: '#ffffff' }}>
-            <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 18, color: '#717971' }}>
+            <p style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 18, color: '#717971' }}>
               Nenhum atleta encontrado
             </p>
           </div>

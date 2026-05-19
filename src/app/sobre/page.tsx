@@ -18,38 +18,38 @@ export default function SobrePage() {
   return (
     <div>
       {/* ── HERO ── */}
-      <div style={{ background: '#00361a', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ background: 'var(--verde-escuro)', position: 'relative', overflow: 'hidden' }}>
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            backgroundImage: 'radial-gradient(circle, rgba(157,211,170,0.10) 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(circle, rgba(79,140,79,0.12) 1px, transparent 1px)',
             backgroundSize: '22px 22px',
           }}
         />
         <div className="page-header-inner" style={{ position: 'relative' }}>
-          <p className="section-label" style={{ marginBottom: 12, color: 'rgba(157,211,170,0.6)' }}>
+          <p className="section-label" style={{ marginBottom: 12, color: 'var(--verde-medio)' }}>
             Beach Tennis · Temporada 2026
           </p>
           <h1
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
+              fontFamily: "'Unbounded', sans-serif",
               fontWeight: 700,
               fontSize: 'clamp(36px, 5vw, 64px)',
-              color: '#ffffff',
+              color: 'var(--creme)',
               letterSpacing: '-0.02em',
               lineHeight: 1.05,
               marginBottom: 20,
             }}
           >
             Squadra Verde<br />
-            <span style={{ color: '#9dd3aa' }}>Temporada 2026</span>
+            <span style={{ color: 'var(--amarelo)' }}>Temporada 2026</span>
           </h1>
           <p
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'DM Mono', monospace",
               fontSize: 16,
-              color: 'rgba(240,241,236,0.65)',
+              color: 'rgba(245,239,230,0.55)',
               maxWidth: 560,
               lineHeight: 1.7,
             }}
@@ -66,7 +66,7 @@ export default function SobrePage() {
               gap: 0,
               marginTop: 40,
               flexWrap: 'wrap',
-              borderTop: '1px solid rgba(157,211,170,0.2)',
+              borderTop: '1px solid rgba(245,239,230,0.1)',
               paddingTop: 32,
             }}
           >
@@ -82,7 +82,7 @@ export default function SobrePage() {
                 style={{
                   paddingRight: 40,
                   marginRight: 40,
-                  borderRight: i < arr.length - 1 ? '1px solid rgba(157,211,170,0.15)' : 'none',
+                  borderRight: i < arr.length - 1 ? '1px solid rgba(245,239,230,0.08)' : 'none',
                 }}
               >
                 <div
@@ -90,7 +90,7 @@ export default function SobrePage() {
                     fontFamily: "'DM Mono', monospace",
                     fontWeight: 500,
                     fontSize: 28,
-                    color: '#ffffff',
+                    color: 'var(--creme)',
                     lineHeight: 1,
                     marginBottom: 6,
                   }}
@@ -99,12 +99,12 @@ export default function SobrePage() {
                 </div>
                 <div
                   style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: 11,
                     fontWeight: 700,
                     letterSpacing: '0.12em',
                     textTransform: 'uppercase',
-                    color: 'rgba(157,211,170,0.5)',
+                    color: 'rgba(245,239,230,0.35)',
                   }}
                 >
                   {s.label}
@@ -145,7 +145,7 @@ export default function SobrePage() {
           >
             <p
               style={{
-                fontFamily: "'Space Grotesk', sans-serif",
+                fontFamily: "'Unbounded', sans-serif",
                 fontWeight: 700,
                 fontSize: 18,
                 color: '#ffffff',
@@ -154,7 +154,7 @@ export default function SobrePage() {
             >
               Squadra Verde · Temporada 2026
             </p>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: '#9dd3aa' }}>
+            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: '#9dd3aa' }}>
               {totalAtletas} atletas · 3 rankings · Masculino, Feminino Bronze e Feminino Prata
             </p>
           </div>
@@ -173,22 +173,22 @@ export default function SobrePage() {
             {
               titulo: 'Masculino',
               badge: `${totalM} atletas`,
-              cor: '#00361a',
-              accent: '#9dd3aa',
+              cor: 'var(--verde-escuro)',
+              accent: 'var(--verde-medio)',
               texto: `${totalM} atletas competindo no formato Rei da Quadra. Confrontos rotacionados a cada rodada garantem que todos enfrentem todos ao longo das ${totalRodasM} rodadas da temporada.`,
             },
             {
               titulo: 'Feminino Bronze',
               badge: `${totalBF} atletas`,
-              cor: '#3d1a2c',
-              accent: '#e8b4c8',
+              cor: '#2a1f14',
+              accent: '#e8ddd0',
               texto: `${totalBF} atletas na categoria Feminino Bronze. A classificação usa pontuação baseada em sets, games e tiebreaks disputados em cada rodada do torneio.`,
             },
             {
               titulo: 'Feminino Prata',
               badge: `${totalPF} atletas`,
-              cor: '#0f1e35',
-              accent: '#b8cff2',
+              cor: '#1a3055',
+              accent: '#a8c8d8',
               texto: `${totalPF} atletas na categoria Feminino Prata. Assim como no Bronze, a classificação leva em conta pontos, sets, games e tiebreaks para determinar a ordem de cada atleta.`,
             },
           ].map(cat => (
@@ -214,7 +214,7 @@ export default function SobrePage() {
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
                   <h2
                     style={{
-                      fontFamily: "'Space Grotesk', sans-serif",
+                      fontFamily: "'Unbounded', sans-serif",
                       fontWeight: 700,
                       fontSize: 16,
                       color: '#ffffff',
@@ -234,7 +234,7 @@ export default function SobrePage() {
                     {cat.badge}
                   </span>
                 </div>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: 'rgba(240,241,236,0.6)', lineHeight: 1.6 }}>
+                <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: 'rgba(240,241,236,0.6)', lineHeight: 1.6 }}>
                   {cat.texto}
                 </p>
               </div>
@@ -267,13 +267,13 @@ export default function SobrePage() {
           ].map(bloco => (
             <div
               key={bloco.titulo}
-              style={{ background: '#ffffff', border: '1px solid #e7e9e4', padding: '28px 24px' }}
+              style={{ background: 'var(--creme)', border: '1px solid rgba(26,58,26,0.12)', padding: '28px 24px' }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
-                <div style={{ width: 3, height: 20, background: '#00361a', flexShrink: 0 }} />
+                <div style={{ width: 3, height: 20, background: 'var(--verde-campo)', flexShrink: 0 }} />
                 <h2
                   style={{
-                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontFamily: "'Unbounded', sans-serif",
                     fontWeight: 700,
                     fontSize: 16,
                     color: '#191c19',
@@ -283,7 +283,7 @@ export default function SobrePage() {
                   {bloco.titulo}
                 </h2>
               </div>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#414942', lineHeight: 1.7 }}>
+              <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 14, color: '#414942', lineHeight: 1.7 }}>
                 {bloco.texto}
               </p>
             </div>
@@ -293,25 +293,24 @@ export default function SobrePage() {
         {/* ── LEGENDA ── */}
         <div
           style={{
-            background: '#2e312e',
-            border: '1px solid #191c19',
-            boxShadow: '4px 4px 0 #191c19',
+            background: 'var(--preto)',
+            border: '1px solid rgba(255,255,255,0.06)',
             padding: '32px 28px',
           }}
         >
           <h2
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
+              fontFamily: "'Unbounded', sans-serif",
               fontWeight: 700,
               fontSize: 18,
-              color: '#ffffff',
+              color: 'var(--creme)',
               letterSpacing: '-0.01em',
               marginBottom: 8,
             }}
           >
             Legenda dos Rankings
           </h2>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: 'rgba(240,241,236,0.45)', marginBottom: 24 }}>
+          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: 'rgba(245,239,230,0.35)', marginBottom: 24 }}>
             Masculino (M) · Feminino Bronze e Prata (F)
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(160px, 100%), 1fr))', gap: 12 }}>
@@ -331,8 +330,8 @@ export default function SobrePage() {
               <div
                 key={item.sigla}
                 style={{
-                  background: 'rgba(255,255,255,0.05)',
-                  border: '1px solid rgba(255,255,255,0.08)',
+                  background: 'rgba(245,239,230,0.04)',
+                  border: '1px solid rgba(245,239,230,0.08)',
                   padding: '12px 14px',
                 }}
               >
@@ -342,7 +341,7 @@ export default function SobrePage() {
                       fontFamily: "'DM Mono', monospace",
                       fontWeight: 500,
                       fontSize: 18,
-                      color: '#9dd3aa',
+                      color: 'var(--amarelo)',
                       lineHeight: 1,
                     }}
                   >
@@ -350,18 +349,18 @@ export default function SobrePage() {
                   </span>
                   <span
                     style={{
-                      fontFamily: "'Inter', sans-serif",
+                      fontFamily: "'DM Mono', monospace",
                       fontSize: 9,
                       fontWeight: 700,
                       letterSpacing: '0.08em',
                       textTransform: 'uppercase',
-                      color: 'rgba(157,211,170,0.4)',
+                      color: 'rgba(245,239,230,0.25)',
                     }}
                   >
                     {item.cat}
                   </span>
                 </div>
-                <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: 'rgba(240,241,236,0.5)', lineHeight: 1.4 }}>
+                <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: 'rgba(245,239,230,0.45)', lineHeight: 1.4 }}>
                   {item.desc}
                 </div>
               </div>

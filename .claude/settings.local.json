@@ -4,7 +4,12 @@
       "Bash(npm install *)",
       "Bash(npx tsc *)",
       "Bash(npx next *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(copy *)",
+      "Bash(node *)",
+      "PowerShell(Set-Content *)",
+      "Bash(git checkout *)"
     ]
   }
 }

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Playfair+Display:ital,wght@1,700&family=DM+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Cormorant+Garamond:ital,wght@1,400;1,700&family=Playfair+Display:ital,wght@1,700&family=DM+Mono:wght@400;500&display=swap');
 
 @import "tailwindcss";
 
@@ -12,6 +12,15 @@
   --amarelo:       #d4c85a;
   --branco:        #fafaf8;
   --preto:         #0f1a0f;
+
+  /* Feminino */
+  --fem-creme:    #f4f0eb;
+  --fem-verde:    #1a3a1a;
+  --fem-sage:     #7a9e7e;
+  --fem-azul:     #a8c8d8;
+  --fem-azul-esc: #3d7a9a;
+  --fem-azul-bg:  #d8eaf2;
+  --fem-nude:     #e8ddd0;
 }
 
 @theme {
@@ -174,7 +183,7 @@ h1, h2, h3, h4, h5, h6 {
 /* ── Section label ───────────────────────────────────────────────────────────── */
 .section-label {
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.3em;
   text-transform: uppercase;
@@ -185,9 +194,9 @@ h1, h2, h3, h4, h5, h6 {
 /* ── Nav links ───────────────────────────────────────────────────────────────── */
 .nav-link {
   font-family: 'DM Mono', monospace;
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: rgba(245,239,230,0.55);
   text-decoration: none;
@@ -209,7 +218,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ── Page layout containers ──────────────────────────────────────────────────── */
-.page-header-inner { max-width: 1200px; margin: 0 auto; padding: 56px 40px 36px; }
+.page-header-inner { max-width: 1200px; margin: 0 auto; padding: 84px 40px 54px; }
 .page-body-inner   { max-width: 1200px; margin: 0 auto; padding: 40px 40px; }
 .hero-inner        { max-width: 1200px; margin: 0 auto; padding: 80px 40px; position: relative; }
 .footer-inner      { max-width: 1200px; margin: 0 auto; padding: 40px 40px; }
@@ -238,6 +247,16 @@ h1, h2, h3, h4, h5, h6 {
 /* ── Nav responsive ──────────────────────────────────────────────────────────── */
 .nav-desktop    { display: flex; gap: 24px; align-items: center; }
 .nav-mobile-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; min-width: 40px; min-height: 40px; justify-content: center; align-items: center; }
+
+/* ── Header inner container ──────────────────────────────────────────────────── */
+.header-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 0 32px; height: 96px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+/* ── Rodada filter scroll wrapper ────────────────────────────────────────────── */
+.rodada-filter-row { display: flex; gap: 4px; flex-wrap: wrap; }
 
 /* ── Animations ──────────────────────────────────────────────────────────────── */
 @keyframes fadeSlideUp {
@@ -268,6 +287,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
+  .header-inner      { padding: 0 16px; height: 72px; }
   .page-header-inner { padding: 28px 20px 20px; }
   .page-body-inner   { padding: 24px 20px; }
   .hero-inner        { padding: 40px 20px; }
@@ -292,14 +312,28 @@ h1, h2, h3, h4, h5, h6 {
   .foto-grupo-img { height: 260px; transform: none; }
   .sobre-stat { padding-right: 0 !important; margin-right: 0 !important; border-right: none !important; border-bottom: 1px solid rgba(26,58,26,0.1) !important; padding-bottom: 16px !important; }
   .sobre-stat:last-child { border-bottom: none !important; padding-bottom: 0 !important; }
+
+  .hero-decorative { display: none !important; }
+
+  /* Proximos jogos & header actions stack */
+  .header-actions { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
+
+  /* Search inputs full width on mobile */
+  .rank-search  { width: 100% !important; max-width: 100% !important; }
+  .busca-input  { width: 100% !important; max-width: 100% !important; }
 }
 
 @media (max-width: 600px) {
   .rank-table th:nth-child(n+5),
   .rank-table td:nth-child(n+5) { display: none; }
+
+  /* Feminino tab buttons full width */
+  .fem-tabs { flex-direction: column !important; }
+  .fem-tabs button { width: 100% !important; }
 }
 
 @media (max-width: 480px) {
+  .header-inner      { padding: 0 12px; height: 64px; }
   .page-header-inner { padding: 20px 14px 16px; }
   .page-body-inner   { padding: 20px 14px; }
   .hero-inner        { padding: 32px 14px; }
@@ -307,4 +341,13 @@ h1, h2, h3, h4, h5, h6 {
   .cta-section       { padding: 0 14px; }
   .lances-mini-grid  { gap: 8px; }
   .top3-grid         { grid-template-columns: 1fr !important; }
+
+  /* Atletas grid: 2 columns on small phones */
+  .atletas-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Reduce rank table further: hide D, %V, SG, bar — keep POS ATLETA J V */
+  .rank-table th:nth-child(n+3),
+  .rank-table td:nth-child(n+3) { display: none; }
+  .rank-table th:nth-child(1), .rank-table td:nth-child(1),
+  .rank-table th:nth-child(2), .rank-table td:nth-child(2) { display: table-cell; }
 }

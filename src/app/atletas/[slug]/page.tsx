@@ -170,7 +170,7 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
               display: 'inline-flex',
               alignItems: 'center',
               gap: 6,
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'DM Mono', monospace",
               fontSize: 12,
               fontWeight: 700,
               letterSpacing: '0.08em',
@@ -193,7 +193,7 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                fontFamily: "'Space Grotesk', sans-serif",
+                fontFamily: "'Unbounded', sans-serif",
                 fontWeight: 700,
                 fontSize: 32,
                 color: accent,
@@ -218,7 +218,7 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
               </div>
               <h1
                 style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
+                  fontFamily: "'Unbounded', sans-serif",
                   fontWeight: 700,
                   fontSize: 'clamp(28px, 4vw, 48px)',
                   color: '#ffffff',
@@ -233,7 +233,7 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
                 <span
                   style={{
                     display: 'inline-block',
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: 11,
                     fontWeight: 700,
                     letterSpacing: '0.12em',
@@ -250,7 +250,7 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
                 <span
                   style={{
                     display: 'inline-block',
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: 11,
                     fontWeight: 700,
                     letterSpacing: '0.12em',
@@ -276,7 +276,7 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
           <div style={{ marginBottom: 48 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20 }}>
               <div style={{ width: 3, height: 24, background: accentBar }} />
-              <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 18, color: '#191c19', letterSpacing: '-0.01em' }}>
+              <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 18, color: '#191c19', letterSpacing: '-0.01em' }}>
                 Estatísticas
               </h2>
             </div>
@@ -299,7 +299,7 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
                   >
                     {s.value}
                   </div>
-                  <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#717971' }}>
+                  <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#717971' }}>
                     {s.label}
                   </div>
                 </div>
@@ -313,7 +313,7 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20 }}>
               <div style={{ width: 3, height: 24, background: accentBar }} />
-              <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 18, color: '#191c19', letterSpacing: '-0.01em' }}>
+              <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 18, color: '#191c19', letterSpacing: '-0.01em' }}>
                 Agenda de Jogos
               </h2>
               <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: '#717971' }}>
@@ -340,14 +340,14 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
                     <div style={{ fontFamily: "'DM Mono', monospace", fontWeight: 500, fontSize: 13, color: '#191c19', lineHeight: 1 }}>
                       R{jogo.rodada}
                     </div>
-                    <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, color: '#717971', marginTop: 3 }}>{jogo.data}</div>
-                    <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, color: '#717971' }}>{jogo.horario}</div>
+                    <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: '#717971', marginTop: 3 }}>{jogo.data}</div>
+                    <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: '#717971' }}>{jogo.horario}</div>
                   </div>
 
                   <div style={{ width: 1, height: 44, background: '#e7e9e4', flexShrink: 0 }} />
 
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 14, color: accentBar, lineHeight: 1.2 }}>
+                    <p style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 14, color: accentBar, lineHeight: 1.2 }}>
                       {nome}
                     </p>
                   </div>
@@ -359,14 +359,14 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
                       display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                     }}
                   >
-                    <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 11, color: accent, letterSpacing: '0.05em' }}>
+                    <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 11, color: accent, letterSpacing: '0.05em' }}>
                       VS
                     </span>
                   </div>
 
                   <div style={{ flex: 2, minWidth: 0, textAlign: 'right' }}>
                     {[jogo.parceiro, ...jogo.adversarios].map(n => (
-                      <p key={n} style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: 13, color: '#191c19', marginBottom: 3, lineHeight: 1.2 }}>
+                      <p key={n} style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 600, fontSize: 13, color: '#191c19', marginBottom: 3, lineHeight: 1.2 }}>
                         {n}
                       </p>
                     ))}
@@ -386,7 +386,7 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
 
         {agenda.length === 0 && !ativo && (
           <div style={{ padding: 40, textAlign: 'center', border: '1px solid #e7e9e4', background: '#ffffff' }}>
-            <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 16, color: '#717971' }}>
+            <p style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 16, color: '#717971' }}>
               Nenhum jogo registrado ainda
             </p>
           </div>

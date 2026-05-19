@@ -86,7 +86,7 @@ export default function FeminoPrataJogosPage() {
       <div style={{ background: 'var(--branco)', borderBottom: '1px solid rgba(26,58,26,0.12)' }}>
         <div className="page-header-inner">
           <p className="section-label" style={{ marginBottom: 10, color: THEME.primary }}>
-            Temporada 2025 · Feminino Prata
+            Temporada 2026 · Feminino Prata
           </p>
           <h1
             style={{
@@ -100,7 +100,7 @@ export default function FeminoPrataJogosPage() {
           >
             Jogos Prata Feminino
           </h1>
-          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div className="header-actions" style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', alignItems: 'center' }}>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#717971' }}>
                 {jogosData.torneio} · {jogosData.rodadas.length} rodadas
@@ -518,7 +518,7 @@ export default function FeminoPrataJogosPage() {
                   {rodadaAtiva !== null ? 'Resultado da Rodada' : `Rodada ${rodada.rodada}`}
                 </h2>
                 <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: 'rgba(184,212,232,0.4)', letterSpacing: '0.1em' }}>
-                  {rodadaAtiva !== null ? `Rodada ${rodada.rodada}` : 'Temporada 2025'} · {formatData(rodada.data)}
+                  {rodadaAtiva !== null ? `Rodada ${rodada.rodada}` : 'Temporada 2026'} · {formatData(rodada.data)}
                 </p>
               </div>
 
@@ -576,7 +576,7 @@ export default function FeminoPrataJogosPage() {
             Squadra Verde · Feminino Prata
           </span>
           <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: 'rgba(184,212,232,0.3)', letterSpacing: '0.1em' }}>
-            Temporada 2025
+            Temporada 2026
           </span>
         </div>
       </div>

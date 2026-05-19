@@ -10,9 +10,9 @@ type SortKey = 'posicao' | 'percentual_vitorias' | 'saldo_games' | 'vitorias' | 
 type SortDir = 'asc' | 'desc';
 
 const RANK_BG: Record<number, { bg: string; color: string }> = {
-  1: { bg: '#00361a', color: '#9dd3aa' },
-  2: { bg: '#1a4d2e', color: '#aeeecb' },
-  3: { bg: '#2c694e', color: '#b1f0ce' },
+  1: { bg: 'var(--verde-escuro)', color: 'var(--amarelo)' },
+  2: { bg: 'var(--verde-campo)',  color: 'var(--amarelo)' },
+  3: { bg: '#3a5c3a',             color: 'var(--amarelo)' },
 };
 
 const allJogos = jogosData.rodadas.flatMap(r => r.jogos);
@@ -94,17 +94,18 @@ export default function RankingPage() {
     <div>
       <SectionTabs tabs={RANKING_TABS} section="Classificação" />
       {/* Page Header */}
-      <div style={{ background: 'var(--branco)', borderBottom: '1px solid rgba(26,58,26,0.12)' }}>
-        <div className="page-header-inner">
-          <p className="section-label" style={{ marginBottom: 10 }}>Temporada 2025</p>
-          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
+      <div style={{ background: 'var(--verde-escuro)', borderBottom: '1px solid rgba(255,255,255,0.08)', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)', backgroundSize: '28px 28px', pointerEvents: 'none' }} />
+        <div className="page-header-inner" style={{ position: 'relative' }}>
+          <p className="section-label" style={{ marginBottom: 10, color: 'var(--verde-medio)' }}>Temporada 2026</p>
+          <div className="header-actions" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
             <div>
               <h1
                 style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
+                  fontFamily: "'Unbounded', sans-serif",
                   fontWeight: 700,
                   fontSize: 'clamp(32px, 5vw, 56px)',
-                  color: '#191c19',
+                  color: 'var(--creme)',
                   letterSpacing: '-0.02em',
                   marginBottom: 8,
                 }}
@@ -113,15 +114,15 @@ export default function RankingPage() {
               </h1>
               <p
                 style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'DM Mono', monospace",
                   fontSize: 14,
-                  color: '#717971',
+                  color: 'rgba(245,239,230,0.45)',
                   display: 'flex',
                   alignItems: 'center',
                   gap: 8,
                 }}
               >
-                <span style={{ width: 8, height: 8, background: '#2c694e', display: 'inline-block' }} />
+                <span style={{ width: 8, height: 8, background: 'var(--verde-medio)', display: 'inline-block' }} />
                 {resultados === null
                   ? 'Carregando...'
                   : `Atualizado em ${hoje} · ${jogadores.length} atletas · ${jogosComPlacar} jogos com placar`}
@@ -136,11 +137,11 @@ export default function RankingPage() {
                 alignItems: 'center',
                 gap: 8,
                 padding: '10px 18px',
-                background: (exporting || !resultados) ? '#e7e9e4' : '#1a3a2a',
-                color: (exporting || !resultados) ? '#717971' : '#e8e8d8',
-                border: '1px solid #191c19',
-                boxShadow: (exporting || !resultados) ? 'none' : '3px 3px 0 #191c19',
-                fontFamily: "'Inter', sans-serif",
+                background: (exporting || !resultados) ? 'rgba(255,255,255,0.06)' : 'var(--amarelo)',
+                color: (exporting || !resultados) ? 'rgba(245,239,230,0.3)' : 'var(--verde-escuro)',
+                border: '1px solid rgba(255,255,255,0.15)',
+                boxShadow: 'none',
+                fontFamily: "'DM Mono', monospace",
                 fontSize: 13,
                 fontWeight: 700,
                 letterSpacing: '0.04em',
@@ -148,8 +149,8 @@ export default function RankingPage() {
                 transition: 'all 0.15s',
                 whiteSpace: 'nowrap',
               }}
-              onMouseEnter={e => { if (!exporting && resultados) (e.currentTarget.style.background = '#2d5c3f'); }}
-              onMouseLeave={e => { if (!exporting && resultados) (e.currentTarget.style.background = '#1a3a2a'); }}
+              onMouseEnter={e => { if (!exporting && resultados) (e.currentTarget.style.opacity = '0.85'); }}
+              onMouseLeave={e => { if (!exporting && resultados) (e.currentTarget.style.opacity = '1'); }}
             >
               {exporting ? (
                 <>
@@ -190,25 +191,25 @@ export default function RankingPage() {
                     overflow: 'hidden',
                   }}
                 >
-                  <div style={{ position: 'absolute', right: -8, top: -16, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 100, color: 'rgba(255,255,255,0.05)', lineHeight: 1, userSelect: 'none' }}>
+                  <div style={{ position: 'absolute', right: -8, top: -16, fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 100, color: 'rgba(255,255,255,0.05)', lineHeight: 1, userSelect: 'none' }}>
                     {j.posicao}
                   </div>
                   <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: RANK_BG[j.posicao]?.color || '#9dd3aa', marginBottom: 8, letterSpacing: '0.1em' }}>
                     #{j.posicao} {j.posicao === 1 ? '🥇' : j.posicao === 2 ? '🥈' : '🥉'}
                   </div>
-                  <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 16, color: '#ffffff', marginBottom: 12 }}>
+                  <div style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 16, color: '#ffffff', marginBottom: 12 }}>
                     {j.nome}
                   </div>
                   <div style={{ display: 'flex', gap: 16 }}>
                     <div>
                       <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 20, color: RANK_BG[j.posicao]?.color || '#9dd3aa', fontWeight: 500 }}>{j.percentual_vitorias}%</div>
-                      <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginTop: 2 }}>Vitórias</div>
+                      <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginTop: 2 }}>Vitórias</div>
                     </div>
                     <div>
                       <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 20, color: j.saldo_games >= 0 ? '#9dd3aa' : '#ffdad6', fontWeight: 500 }}>
                         {j.saldo_games > 0 ? '+' : ''}{j.saldo_games}
                       </div>
-                      <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginTop: 2 }}>Saldo</div>
+                      <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginTop: 2 }}>Saldo</div>
                     </div>
                   </div>
                 </div>
@@ -223,12 +224,11 @@ export default function RankingPage() {
                 value={busca}
                 onChange={e => setBusca(e.target.value)}
                 style={{
-                  width: '100%',
-                  maxWidth: 400,
+                  width: 'min(100%, 400px)',
                   padding: '12px 16px',
                   border: '1px solid #191c19',
                   background: '#ffffff',
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'DM Mono', monospace",
                   fontSize: 14,
                   color: '#191c19',
                   outline: 'none',
@@ -256,7 +256,7 @@ export default function RankingPage() {
                         onClick={() => !col.noSort && handleSort(col.key)}
                         style={{
                           padding: '14px 16px',
-                          fontFamily: "'Inter', sans-serif",
+                          fontFamily: "'DM Mono', monospace",
                           fontSize: 11,
                           fontWeight: 700,
                           letterSpacing: '0.12em',
@@ -296,7 +296,7 @@ export default function RankingPage() {
                           )}
                         </td>
                         <td style={{ padding: '14px 16px', borderRight: '1px solid #e7e9e4' }}>
-                          <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: isPodio ? 700 : 500, fontSize: 14, color: '#191c19' }}>{j.nome}</span>
+                          <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: isPodio ? 700 : 500, fontSize: 14, color: '#191c19' }}>{j.nome}</span>
                         </td>
                         <td style={{ padding: '14px 16px', textAlign: 'center', borderRight: '1px solid #e7e9e4' }}>
                           <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 14, color: '#414942' }}>{j.jogos}</span>
@@ -329,7 +329,7 @@ export default function RankingPage() {
               </table>
 
               {filtered.length === 0 && (
-                <div style={{ padding: 40, textAlign: 'center', color: '#717971', fontFamily: "'Inter', sans-serif" }}>
+                <div style={{ padding: 40, textAlign: 'center', color: '#717971', fontFamily: "'DM Mono', monospace" }}>
                   Nenhum jogador encontrado.
                 </div>
               )}
@@ -341,14 +341,14 @@ export default function RankingPage() {
       {/* ── DIV OCULTA PARA EXPORTAÇÃO ── */}
       <div
         ref={exportRef}
-        style={{ position: 'fixed', left: '-9999px', top: 0, width: 800, background: '#f8faf5', fontFamily: "'Inter', sans-serif" }}
+        style={{ position: 'fixed', left: '-9999px', top: 0, width: 800, background: '#f8faf5', fontFamily: "'DM Mono', monospace" }}
       >
         {/* Header */}
         <div style={{ background: '#1a3a2a', padding: '28px 32px 22px' }}>
           <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, letterSpacing: '0.28em', color: 'rgba(232,232,216,0.45)', textTransform: 'uppercase', marginBottom: 8 }}>
             SQUADRA VERDE · TEMPORADA 2026
           </p>
-          <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 42, color: '#e8e8d8', letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: 6 }}>
+          <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 42, color: '#e8e8d8', letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: 6 }}>
             Classificação Geral
           </h2>
           <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: 'rgba(232,232,216,0.4)', letterSpacing: '0.1em' }}>
@@ -366,7 +366,7 @@ export default function RankingPage() {
           const ColHeader = () => (
             <div style={{ display: 'grid', gridTemplateColumns: colGrid, background: '#2e312e', padding: '10px 14px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
               {colHeaders.map((h, i) => (
-                <span key={h} style={{ fontFamily: "'Inter', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#9dd3aa', textAlign: i === 1 ? 'left' : 'center' }}>{h}</span>
+                <span key={h} style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#9dd3aa', textAlign: i === 1 ? 'left' : 'center' }}>{h}</span>
               ))}
             </div>
           );
@@ -384,7 +384,7 @@ export default function RankingPage() {
                     return (
                       <div key={j.posicao} style={{ display: 'grid', gridTemplateColumns: colGrid, padding: '9px 14px', background: isEven ? '#ffffff' : '#f8faf5', borderBottom: '1px solid #e7e9e4', alignItems: 'center' }}>
                         <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: isPodio ? 700 : 500, color: isPodio ? '#00361a' : '#717971', textAlign: 'center' }}>{j.posicao}</span>
-                        <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: isPodio ? 700 : 500, fontSize: 12, color: '#191c19', lineHeight: 1.3 }}>{j.nome}</span>
+                        <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: isPodio ? 700 : 500, fontSize: 12, color: '#191c19', lineHeight: 1.3 }}>{j.nome}</span>
                         <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: '#414942', textAlign: 'center' }}>{j.jogos}</span>
                         <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: 500, textAlign: 'center', color: pvColor }}>{j.percentual_vitorias}%</span>
                         <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: 500, textAlign: 'center', color: sgColor }}>{j.saldo_games > 0 ? '+' : ''}{j.saldo_games}</span>
@@ -404,7 +404,7 @@ export default function RankingPage() {
               <path d="M100 10 L185 45 L185 130 Q185 185 100 220 Q15 185 15 130 L15 45 Z" fill="none" stroke="#3d7a54" strokeWidth="10"/>
               <text x="100" y="140" textAnchor="middle" fontFamily="'Barlow Condensed',sans-serif" fontWeight="900" fontSize="80" fill="#3d7a54">SV</text>
             </svg>
-            <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(232,232,216,0.6)' }}>
+            <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(232,232,216,0.6)' }}>
               Squadra Verde
             </span>
           </div>

@@ -71,7 +71,7 @@ export default function PatrocinadoresPage() {
             <div>
               <p
                 style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'DM Mono', monospace",
                   fontSize: 11,
                   fontWeight: 700,
                   letterSpacing: '0.2em',
@@ -84,7 +84,7 @@ export default function PatrocinadoresPage() {
               </p>
               <h1
                 style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
+                  fontFamily: "'Unbounded', sans-serif",
                   fontWeight: 700,
                   fontSize: 'clamp(32px, 5vw, 56px)',
                   color: '#ffffff',
@@ -97,7 +97,7 @@ export default function PatrocinadoresPage() {
               </h1>
               <p
                 style={{
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'DM Mono', monospace",
                   fontSize: 15,
                   color: 'rgba(240,241,236,0.65)',
                   maxWidth: 480,
@@ -132,7 +132,7 @@ export default function PatrocinadoresPage() {
             </div>
             <div
               style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: 10,
                 fontWeight: 700,
                 letterSpacing: '0.12em',
@@ -164,7 +164,7 @@ export default function PatrocinadoresPage() {
           <div style={{ width: 4, height: 32, background: '#00361a' }} />
           <h2
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
+              fontFamily: "'Unbounded', sans-serif",
               fontWeight: 700,
               fontSize: 28,
               color: '#191c19',
@@ -237,7 +237,7 @@ export default function PatrocinadoresPage() {
                   position: 'absolute',
                   right: -8,
                   bottom: -16,
-                  fontFamily: "'Space Grotesk', sans-serif",
+                  fontFamily: "'Unbounded', sans-serif",
                   fontWeight: 700,
                   fontSize: 80,
                   color: 'rgba(0,54,26,0.04)',
@@ -258,7 +258,7 @@ export default function PatrocinadoresPage() {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontFamily: "'Space Grotesk', sans-serif",
+                  fontFamily: "'Unbounded', sans-serif",
                   fontWeight: 700,
                   fontSize: 18,
                   color: '#9dd3aa',
@@ -273,7 +273,7 @@ export default function PatrocinadoresPage() {
               <div style={{ flex: 1, minWidth: 0 }}>
                 <h3
                   style={{
-                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontFamily: "'Unbounded', sans-serif",
                     fontWeight: 700,
                     fontSize: 17,
                     color: '#191c19',
@@ -285,7 +285,7 @@ export default function PatrocinadoresPage() {
                 </h3>
                 <p
                   style={{
-                    fontFamily: "'Inter', sans-serif",
+                    fontFamily: "'DM Mono', monospace",
                     fontSize: 11,
                     fontWeight: 600,
                     letterSpacing: '0.1em',
@@ -337,7 +337,7 @@ export default function PatrocinadoresPage() {
           >
             <p
               style={{
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: 12,
                 fontWeight: 700,
                 letterSpacing: '0.2em',
@@ -350,7 +350,7 @@ export default function PatrocinadoresPage() {
             </p>
             <h2
               style={{
-                fontFamily: "'Space Grotesk', sans-serif",
+                fontFamily: "'Unbounded', sans-serif",
                 fontWeight: 700,
                 fontSize: 'clamp(24px, 4vw, 40px)',
                 color: '#ffffff',
@@ -380,7 +380,7 @@ export default function PatrocinadoresPage() {
           <div>
             <p
               style={{
-                fontFamily: "'Space Grotesk', sans-serif",
+                fontFamily: "'Unbounded', sans-serif",
                 fontWeight: 700,
                 fontSize: 20,
                 color: '#191c19',
@@ -389,7 +389,7 @@ export default function PatrocinadoresPage() {
             >
               Quer ser patrocinador?
             </p>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#717971' }}>
+            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 14, color: '#717971' }}>
               Entre em contato para apoiar o Masculino Squadra Verde na próxima temporada.
             </p>
           </div>

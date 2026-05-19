@@ -18,17 +18,27 @@ type AtletaPrata = (typeof rankingPrata.atletas)[number];
 // ── Theme ──────────────────────────────────────────────────────────────────────
 
 const BRONZE = {
-  primary: '#6b2c4a', dark: '#3d1a2c', mid: '#8b3a5e', accent: '#f2b8d0',
-  accentLight: '#fcd6e5', rowOdd: '#fdf5f8', rowHover: '#f9ecf2',
-  top3: { 1: { bg: '#6b2c4a', color: '#f2b8d0' }, 2: { bg: '#8b3a5e', color: '#f7c8db' }, 3: { bg: '#a34d72', color: '#fcd6e5' } },
-  exportBg: '#fdf5f8',
+  headerBg: '#f4f0eb',
+  primary: '#7a6a5a', dark: '#2a1f14', mid: '#7a6a5a', accent: '#e8ddd0',
+  accentLight: '#f4f0eb', rowOdd: '#faf7f2', rowHover: 'rgba(122,106,90,0.06)',
+  top3: { 1: { bg: '#2a1f14', color: '#e8ddd0' }, 2: { bg: '#4a3828', color: '#d4c8b8' }, 3: { bg: '#7a6a5a', color: '#f4f0eb' } },
+  exportBg: '#f4f0eb',
+  labelColor: '#7a6a5a',
+  h1Color: '#2a1f14',
+  metaColor: 'rgba(42,31,20,0.45)',
+  borderColor: 'rgba(42,31,20,0.12)',
 };
 
 const PRATA = {
-  primary: '#1a3050', dark: '#0f1e35', mid: '#2a4570', accent: '#b8cff2',
-  accentLight: '#d6e4fc', rowOdd: '#f5f7fd', rowHover: '#eceff8',
-  top3: { 1: { bg: '#1a3050', color: '#b8cff2' }, 2: { bg: '#2a4570', color: '#c8d8f7' }, 3: { bg: '#3a5a90', color: '#d6e4fc' } },
-  exportBg: '#f5f7fd',
+  headerBg: '#d8eaf2',
+  primary: '#3d7a9a', dark: '#1a3055', mid: '#3d7a9a', accent: '#a8c8d8',
+  accentLight: '#d8eaf2', rowOdd: '#f0f6f9', rowHover: 'rgba(61,122,154,0.08)',
+  top3: { 1: { bg: '#1a3055', color: '#a8c8d8' }, 2: { bg: '#1f4a6e', color: '#c4dde8' }, 3: { bg: '#3d7a9a', color: '#d8eaf2' } },
+  exportBg: '#d8eaf2',
+  labelColor: '#3d7a9a',
+  h1Color: '#1a3055',
+  metaColor: 'rgba(26,48,85,0.45)',
+  borderColor: 'rgba(61,122,154,0.2)',
 };
 
 const allJogos = jogosDataF.rodadas.flatMap(r => r.jogos);
@@ -139,17 +149,17 @@ export default function FemininoPage() {
     <div>
       <SectionTabs tabs={RANKING_TABS} section="Classificação" />
       {/* ── PAGE HEADER ── */}
-      <div style={{ background: 'var(--branco)', borderBottom: '1px solid rgba(26,58,26,0.12)' }}>
+      <div style={{ background: theme.headerBg, borderBottom: `1px solid ${theme.borderColor}` }}>
         <div className="page-header-inner">
-          <p className="section-label" style={{ marginBottom: 10, color: theme.primary }}>Temporada 2025 · Feminino</p>
+          <p className="section-label" style={{ marginBottom: 10, color: theme.labelColor }}>Temporada 2026 · Feminino</p>
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
             <div>
-              <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 'clamp(32px, 5vw, 56px)', color: '#191c19', letterSpacing: '-0.02em', marginBottom: 16 }}>
+              <h1 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 'clamp(32px, 5vw, 56px)', color: theme.h1Color, letterSpacing: '-0.02em', marginBottom: 16 }}>
                 Classificação Feminino
               </h1>
 
               {/* Tabs */}
-              <div style={{ display: 'flex', gap: 4 }}>
+              <div className="fem-tabs" style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
                 {(['bronze', 'prata'] as Tab[]).map(t => (
                   <button
                     key={t}
@@ -157,16 +167,17 @@ export default function FemininoPage() {
                     style={{
                       padding: '10px 24px',
                       border: '1px solid',
-                      borderColor: tab === t ? '#191c19' : '#c1c9bf',
-                      background: tab === t ? (t === 'bronze' ? BRONZE.dark : PRATA.dark) : '#ffffff',
-                      color: tab === t ? (t === 'bronze' ? BRONZE.accent : PRATA.accent) : '#717971',
-                      fontFamily: "'Space Grotesk', sans-serif",
+                      borderColor: tab === t ? (t === 'bronze' ? BRONZE.dark : PRATA.primary) : 'rgba(26,58,26,0.25)',
+                      background: tab === t ? (t === 'bronze' ? BRONZE.dark : PRATA.primary) : 'transparent',
+                      color: tab === t ? (t === 'bronze' ? BRONZE.accent : PRATA.accentLight) : theme.h1Color,
+                      fontFamily: "'Unbounded', sans-serif",
                       fontWeight: 700,
                       fontSize: 13,
                       letterSpacing: '0.08em',
                       textTransform: 'uppercase',
                       cursor: 'pointer',
                       transition: 'all 0.15s',
+                      opacity: tab === t ? 1 : 0.5,
                     }}
                   >
                     {t === 'bronze' ? 'Bronze' : 'Prata'}
@@ -181,11 +192,11 @@ export default function FemininoPage() {
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: 8,
                 padding: '10px 18px',
-                background: (exporting || (tab === 'bronze' && !resultados)) ? '#e7e9e4' : theme.primary,
-                color: (exporting || (tab === 'bronze' && !resultados)) ? '#717971' : theme.accentLight,
-                border: '1px solid #191c19',
-                boxShadow: (exporting || (tab === 'bronze' && !resultados)) ? 'none' : '3px 3px 0 #191c19',
-                fontFamily: "'Inter', sans-serif", fontSize: 13, fontWeight: 700,
+                background: (exporting || (tab === 'bronze' && !resultados)) ? 'rgba(26,58,26,0.08)' : theme.dark,
+                color: (exporting || (tab === 'bronze' && !resultados)) ? theme.metaColor : theme.accent,
+                border: `1px solid ${theme.borderColor}`,
+                boxShadow: 'none',
+                fontFamily: "'DM Mono', monospace", fontSize: 13, fontWeight: 700,
                 letterSpacing: '0.04em',
                 cursor: (exporting || (tab === 'bronze' && !resultados)) ? 'not-allowed' : 'pointer',
                 transition: 'all 0.15s', whiteSpace: 'nowrap',
@@ -220,7 +231,7 @@ export default function FemininoPage() {
           ) : (
             <>
               {/* Meta */}
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: '#717971', marginBottom: 24, display: 'flex', alignItems: 'center', gap: 8 }}>
+              <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: BRONZE.metaColor, marginBottom: 24, display: 'flex', alignItems: 'center', gap: 8 }}>
                 <span style={{ width: 8, height: 8, background: BRONZE.mid, display: 'inline-block' }} />
                 Atualizado em {hoje} · {jogadoresBronze.length} atletas · {jogosComPlacar} jogos com placar
               </p>
@@ -229,19 +240,19 @@ export default function FemininoPage() {
               <div className="top3-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, marginBottom: 40 }}>
                 {jogadoresBronze.slice(0, 3).map(j => (
                   <div key={j.posicao} style={{ background: BRONZE.top3[j.posicao as 1|2|3]?.bg || BRONZE.primary, border: '1px solid #191c19', boxShadow: '4px 4px 0 #191c19', padding: '20px', position: 'relative', overflow: 'hidden' }}>
-                    <div style={{ position: 'absolute', right: -8, top: -16, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 100, color: 'rgba(255,255,255,0.05)', lineHeight: 1, userSelect: 'none' }}>{j.posicao}</div>
+                    <div style={{ position: 'absolute', right: -8, top: -16, fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 100, color: 'rgba(255,255,255,0.05)', lineHeight: 1, userSelect: 'none' }}>{j.posicao}</div>
                     <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: BRONZE.top3[j.posicao as 1|2|3]?.color || BRONZE.accent, marginBottom: 8, letterSpacing: '0.1em' }}>
                       #{j.posicao} {j.posicao === 1 ? '🥇' : j.posicao === 2 ? '🥈' : '🥉'}
                     </div>
-                    <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 15, color: '#ffffff', marginBottom: 12, lineHeight: 1.3 }}>{j.nome}</div>
+                    <div style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 15, color: '#ffffff', marginBottom: 12, lineHeight: 1.3 }}>{j.nome}</div>
                     <div style={{ display: 'flex', gap: 16 }}>
                       <div>
                         <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 20, color: BRONZE.top3[j.posicao as 1|2|3]?.color || BRONZE.accent, fontWeight: 500 }}>{j.percentual_vitorias}%</div>
-                        <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginTop: 2 }}>Vitórias</div>
+                        <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginTop: 2 }}>Vitórias</div>
                       </div>
                       <div>
                         <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 20, color: j.saldo_games >= 0 ? BRONZE.accent : '#ffdad6', fontWeight: 500 }}>{j.saldo_games > 0 ? '+' : ''}{j.saldo_games}</div>
-                        <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginTop: 2 }}>Saldo</div>
+                        <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginTop: 2 }}>Saldo</div>
                       </div>
                     </div>
                   </div>
@@ -251,7 +262,7 @@ export default function FemininoPage() {
               {/* Busca */}
               <div style={{ marginBottom: 24 }}>
                 <input type="text" placeholder="Buscar atleta..." value={buscaBronze} onChange={e => setBuscaBronze(e.target.value)}
-                  style={{ width: '100%', maxWidth: 400, padding: '12px 16px', border: '1px solid #191c19', background: '#ffffff', fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#191c19', outline: 'none' }} />
+                  style={{ width: '100%', maxWidth: 400, padding: '12px 16px', border: '1px solid #191c19', background: '#ffffff', fontFamily: "'DM Mono', monospace", fontSize: 14, color: '#191c19', outline: 'none' }} />
               </div>
 
               {/* Tabela */}
@@ -270,7 +281,7 @@ export default function FemininoPage() {
                         { key: 'posicao' as SortKeyBronze,             label: 'BARRA',  noSort: true  },
                       ] satisfies { key: SortKeyBronze; label: string; noSort: boolean }[]).map((col, i) => (
                         <th key={i} onClick={() => !col.noSort && handleSortBronze(col.key)}
-                          style={{ padding: '14px 16px', fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: BRONZE.accent, textAlign: i === 1 ? 'left' : 'center', cursor: col.noSort ? 'default' : 'pointer', whiteSpace: 'nowrap', borderRight: i < 7 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
+                          style={{ padding: '14px 16px', fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: BRONZE.accent, textAlign: i === 1 ? 'left' : 'center', cursor: col.noSort ? 'default' : 'pointer', whiteSpace: 'nowrap', borderRight: i < 7 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
                           {col.label}{!col.noSort && <SortIconBronze col={col.key} />}
                         </th>
                       ))}
@@ -290,7 +301,7 @@ export default function FemininoPage() {
                               : <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 14, fontWeight: 500, color: '#717971' }}>{j.posicao}</span>}
                           </td>
                           <td style={{ padding: '14px 16px', borderRight: '1px solid #e7e9e4' }}>
-                            <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: isPodio ? 700 : 500, fontSize: 14, color: '#191c19' }}>{j.nome}</span>
+                            <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: isPodio ? 700 : 500, fontSize: 14, color: '#191c19' }}>{j.nome}</span>
                           </td>
                           <td style={{ padding: '14px 16px', textAlign: 'center', borderRight: '1px solid #e7e9e4' }}><span style={{ fontFamily: "'DM Mono', monospace", fontSize: 14, color: '#414942' }}>{j.jogos}</span></td>
                           <td style={{ padding: '14px 16px', textAlign: 'center', borderRight: '1px solid #e7e9e4' }}><span style={{ fontFamily: "'DM Mono', monospace", fontSize: 14, color: BRONZE.mid, fontWeight: 500 }}>{j.vitorias}</span></td>
@@ -305,7 +316,7 @@ export default function FemininoPage() {
                     })}
                   </tbody>
                 </table>
-                {filteredBronze.length === 0 && <div style={{ padding: 40, textAlign: 'center', color: '#717971', fontFamily: "'Inter', sans-serif" }}>Nenhuma atleta encontrada.</div>}
+                {filteredBronze.length === 0 && <div style={{ padding: 40, textAlign: 'center', color: '#717971', fontFamily: "'DM Mono', monospace" }}>Nenhuma atleta encontrada.</div>}
               </div>
             </>
           )
@@ -315,7 +326,7 @@ export default function FemininoPage() {
         {tab === 'prata' && (
           <>
             {/* Meta */}
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: '#717971', marginBottom: 24, display: 'flex', alignItems: 'center', gap: 8 }}>
+            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: PRATA.metaColor, marginBottom: 24, display: 'flex', alignItems: 'center', gap: 8 }}>
               <span style={{ width: 8, height: 8, background: PRATA.mid, display: 'inline-block' }} />
               {rankingPrata.nome} · {atletasPrata.filter(a => a.jogos > 0).length} atletas com jogos
             </p>
@@ -324,23 +335,23 @@ export default function FemininoPage() {
             <div className="top3-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, marginBottom: 40 }}>
               {atletasPrata.slice(0, 3).map(a => (
                 <div key={a.posicao} style={{ background: PRATA.top3[a.posicao as 1|2|3]?.bg || PRATA.primary, border: '1px solid #191c19', boxShadow: '4px 4px 0 #191c19', padding: '20px', position: 'relative', overflow: 'hidden' }}>
-                  <div style={{ position: 'absolute', right: -8, top: -16, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 100, color: 'rgba(255,255,255,0.05)', lineHeight: 1, userSelect: 'none' }}>{a.posicao}</div>
+                  <div style={{ position: 'absolute', right: -8, top: -16, fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 100, color: 'rgba(255,255,255,0.05)', lineHeight: 1, userSelect: 'none' }}>{a.posicao}</div>
                   <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: PRATA.top3[a.posicao as 1|2|3]?.color || PRATA.accent, marginBottom: 8, letterSpacing: '0.1em' }}>
                     #{a.posicao} {a.posicao === 1 ? '🥇' : a.posicao === 2 ? '🥈' : '🥉'}
                   </div>
-                  <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 15, color: '#ffffff', marginBottom: 12, lineHeight: 1.3 }}>{a.nome}</div>
+                  <div style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 15, color: '#ffffff', marginBottom: 12, lineHeight: 1.3 }}>{a.nome}</div>
                   <div style={{ display: 'flex', gap: 16 }}>
                     <div>
                       <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 20, color: PRATA.top3[a.posicao as 1|2|3]?.color || PRATA.accent, fontWeight: 500 }}>{a.pontos}</div>
-                      <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginTop: 2 }}>Pontos</div>
+                      <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginTop: 2 }}>Pontos</div>
                     </div>
                     <div>
                       <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 20, color: a.saldo_sets >= 0 ? PRATA.accent : '#ffdad6', fontWeight: 500 }}>{a.saldo_sets > 0 ? '+' : ''}{a.saldo_sets}</div>
-                      <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginTop: 2 }}>Saldo Sets</div>
+                      <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginTop: 2 }}>Saldo Sets</div>
                     </div>
                     <div>
                       <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 20, color: '#f0f0e0', fontWeight: 500 }}>{a.percentual.toFixed(0)}%</div>
-                      <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginTop: 2 }}>%Vitórias</div>
+                      <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 9, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginTop: 2 }}>%Vitórias</div>
                     </div>
                   </div>
                 </div>
@@ -350,7 +361,7 @@ export default function FemininoPage() {
             {/* Busca */}
             <div style={{ marginBottom: 24 }}>
               <input type="text" placeholder="Buscar atleta..." value={buscaPrata} onChange={e => setBuscaPrata(e.target.value)}
-                style={{ width: '100%', maxWidth: 400, padding: '12px 16px', border: '1px solid #191c19', background: '#ffffff', fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#191c19', outline: 'none' }} />
+                style={{ width: '100%', maxWidth: 400, padding: '12px 16px', border: '1px solid #191c19', background: '#ffffff', fontFamily: "'DM Mono', monospace", fontSize: 14, color: '#191c19', outline: 'none' }} />
             </div>
 
             {/* Tabela */}
@@ -370,7 +381,7 @@ export default function FemininoPage() {
                       { key: 'percentual' as SortKeyPrata,  label: '%V',       noSort: false },
                     ] satisfies { key: SortKeyPrata; label: string; noSort: boolean }[]).map((col, i) => (
                       <th key={i} onClick={() => !col.noSort && handleSortPrata(col.key)}
-                        style={{ padding: '14px 12px', fontFamily: "'Inter', sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: PRATA.accent, textAlign: i === 1 ? 'left' : 'center', cursor: col.noSort ? 'default' : 'pointer', whiteSpace: 'nowrap', borderRight: i < 8 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
+                        style={{ padding: '14px 12px', fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: PRATA.accent, textAlign: i === 1 ? 'left' : 'center', cursor: col.noSort ? 'default' : 'pointer', whiteSpace: 'nowrap', borderRight: i < 8 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
                         {col.label}{!col.noSort && <SortIconPrata col={col.key} />}
                       </th>
                     ))}
@@ -389,7 +400,7 @@ export default function FemininoPage() {
                           {isPodio ? <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 32, height: 32, background: PRATA.top3[a.posicao as 1|2|3]?.bg || PRATA.primary, fontFamily: "'DM Mono', monospace", fontSize: 14, fontWeight: 700, color: '#ffffff' }}>{a.posicao}</span>
                             : <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 14, fontWeight: 500, color: '#717971' }}>{a.posicao}</span>}
                         </td>
-                        <td style={{ padding: '14px 12px', borderRight: '1px solid #e7e9e4' }}><span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: isPodio ? 700 : 500, fontSize: 14, color: '#191c19' }}>{a.nome}</span></td>
+                        <td style={{ padding: '14px 12px', borderRight: '1px solid #e7e9e4' }}><span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: isPodio ? 700 : 500, fontSize: 14, color: '#191c19' }}>{a.nome}</span></td>
                         <td style={{ padding: '14px 12px', textAlign: 'center', borderRight: '1px solid #e7e9e4' }}><span style={{ fontFamily: "'DM Mono', monospace", fontSize: 14, color: '#414942' }}>{a.jogos}</span></td>
                         <td style={{ padding: '14px 12px', textAlign: 'center', borderRight: '1px solid #e7e9e4' }}><span style={{ fontFamily: "'DM Mono', monospace", fontSize: 14, fontWeight: 700, color: PRATA.primary }}>{a.pontos}</span></td>
                         <td style={{ padding: '14px 12px', textAlign: 'center', borderRight: '1px solid #e7e9e4' }}>
@@ -419,7 +430,7 @@ export default function FemininoPage() {
                   })}
                 </tbody>
               </table>
-              {filteredPrata.length === 0 && <div style={{ padding: 40, textAlign: 'center', color: '#717971', fontFamily: "'Inter', sans-serif" }}>Nenhuma atleta encontrada.</div>}
+              {filteredPrata.length === 0 && <div style={{ padding: 40, textAlign: 'center', color: '#717971', fontFamily: "'DM Mono', monospace" }}>Nenhuma atleta encontrada.</div>}
             </div>
 
             {/* Legenda */}
@@ -427,7 +438,7 @@ export default function FemininoPage() {
               {[{ label: 'PTS', desc: 'Pontos no ranking' }, { label: 'J', desc: 'Partidas disputadas' }, { label: 'SS', desc: 'Saldo de sets' }, { label: 'SG', desc: 'Saldo de games' }, { label: '%V', desc: 'Percentual de vitórias em sets' }].map(({ label, desc }) => (
                 <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                   <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 700, color: PRATA.mid, letterSpacing: '0.08em' }}>{label}</span>
-                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, color: '#717971' }}>— {desc}</span>
+                  <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: '#717971' }}>— {desc}</span>
                 </div>
               ))}
             </div>
@@ -436,40 +447,40 @@ export default function FemininoPage() {
       </div>
 
       {/* ── EXPORT DIVS (hidden) ── */}
-      <div ref={exportRefBronze} style={{ position: 'fixed', left: '-9999px', top: 0, width: 800, background: BRONZE.exportBg, fontFamily: "'Inter', sans-serif" }}>
+      <div ref={exportRefBronze} style={{ position: 'fixed', left: '-9999px', top: 0, width: 800, background: BRONZE.exportBg, fontFamily: "'DM Mono', monospace" }}>
         <div style={{ background: BRONZE.dark, padding: '28px 32px 22px' }}>
           <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, letterSpacing: '0.28em', color: `${BRONZE.accent}70`, textTransform: 'uppercase', marginBottom: 8 }}>SQUADRA VERDE · TEMPORADA 2026</p>
-          <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 42, color: BRONZE.accentLight, letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: 6 }}>Classificação Bronze</h2>
+          <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 42, color: BRONZE.accentLight, letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: 6 }}>Classificação Bronze</h2>
           <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: `${BRONZE.accent}60`, letterSpacing: '0.1em' }}>Atualizado em {hoje}</p>
         </div>
         {(() => {
           const mid = Math.ceil(jogadoresBronze.length / 2);
           const cols = [jogadoresBronze.slice(0, mid), jogadoresBronze.slice(mid)] as const;
           const cg = '34px 1fr 26px 40px 36px'; const ch = ['POS','ATLETA','J','%V','SG'];
-          const CH = () => <div style={{ display: 'grid', gridTemplateColumns: cg, background: BRONZE.primary, padding: '10px 14px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>{ch.map((h,i) => <span key={h} style={{ fontFamily: "'Inter', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: BRONZE.accent, textAlign: i===1?'left':'center' }}>{h}</span>)}</div>;
-          return <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', borderTop: `2px solid ${BRONZE.dark}` }}>{cols.map((col,ci) => <div key={ci} style={{ borderRight: ci===0?`2px solid ${BRONZE.dark}`:'none' }}><CH />{col.map((j,idx) => <div key={j.posicao} style={{ display: 'grid', gridTemplateColumns: cg, padding: '9px 14px', background: idx%2===0?'#ffffff':BRONZE.rowOdd, borderBottom: '1px solid #e7e9e4', alignItems: 'center' }}><span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: j.posicao<=3?700:500, color: j.posicao<=3?BRONZE.primary:'#717971', textAlign: 'center' }}>{j.posicao}</span><span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: j.posicao<=3?700:500, fontSize: 12, color: '#191c19', lineHeight: 1.3 }}>{j.nome}</span><span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: '#414942', textAlign: 'center' }}>{j.jogos}</span><span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: 500, textAlign: 'center', color: j.percentual_vitorias>=67?BRONZE.primary:j.percentual_vitorias>=33?'#414942':'#ba1a1a' }}>{j.percentual_vitorias}%</span><span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: 500, textAlign: 'center', color: j.saldo_games>0?BRONZE.primary:j.saldo_games<0?'#ba1a1a':'#717971' }}>{j.saldo_games>0?'+':''}{j.saldo_games}</span></div>)}</div>)}</div>;
+          const CH = () => <div style={{ display: 'grid', gridTemplateColumns: cg, background: BRONZE.primary, padding: '10px 14px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>{ch.map((h,i) => <span key={h} style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: BRONZE.accent, textAlign: i===1?'left':'center' }}>{h}</span>)}</div>;
+          return <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', borderTop: `2px solid ${BRONZE.dark}` }}>{cols.map((col,ci) => <div key={ci} style={{ borderRight: ci===0?`2px solid ${BRONZE.dark}`:'none' }}><CH />{col.map((j,idx) => <div key={j.posicao} style={{ display: 'grid', gridTemplateColumns: cg, padding: '9px 14px', background: idx%2===0?'#ffffff':BRONZE.rowOdd, borderBottom: '1px solid #e7e9e4', alignItems: 'center' }}><span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: j.posicao<=3?700:500, color: j.posicao<=3?BRONZE.primary:'#717971', textAlign: 'center' }}>{j.posicao}</span><span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: j.posicao<=3?700:500, fontSize: 12, color: '#191c19', lineHeight: 1.3 }}>{j.nome}</span><span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: '#414942', textAlign: 'center' }}>{j.jogos}</span><span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: 500, textAlign: 'center', color: j.percentual_vitorias>=67?BRONZE.primary:j.percentual_vitorias>=33?'#414942':'#ba1a1a' }}>{j.percentual_vitorias}%</span><span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: 500, textAlign: 'center', color: j.saldo_games>0?BRONZE.primary:j.saldo_games<0?'#ba1a1a':'#717971' }}>{j.saldo_games>0?'+':''}{j.saldo_games}</span></div>)}</div>)}</div>;
         })()}
         <div style={{ background: BRONZE.dark, padding: '14px 20px', display: 'flex', justifyContent: 'space-between' }}>
-          <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: '0.08em', textTransform: 'uppercase', color: `${BRONZE.accent}90` }}>Squadra Verde</span>
+          <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: '0.08em', textTransform: 'uppercase', color: `${BRONZE.accent}90` }}>Squadra Verde</span>
           <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: `${BRONZE.accent}50`, letterSpacing: '0.1em' }}>Temporada 2026</span>
         </div>
       </div>
 
-      <div ref={exportRefPrata} style={{ position: 'fixed', left: '-9999px', top: 0, width: 800, background: PRATA.exportBg, fontFamily: "'Inter', sans-serif" }}>
+      <div ref={exportRefPrata} style={{ position: 'fixed', left: '-9999px', top: 0, width: 800, background: PRATA.exportBg, fontFamily: "'DM Mono', monospace" }}>
         <div style={{ background: PRATA.dark, padding: '28px 32px 22px' }}>
           <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, letterSpacing: '0.28em', color: `${PRATA.accent}70`, textTransform: 'uppercase', marginBottom: 8 }}>SQUADRA VERDE · TEMPORADA 2026</p>
-          <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 42, color: PRATA.accentLight, letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: 6 }}>Classificação Prata</h2>
+          <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 42, color: PRATA.accentLight, letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: 6 }}>Classificação Prata</h2>
           <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: `${PRATA.accent}60`, letterSpacing: '0.1em' }}>{rankingPrata.nome} · Atualizado em {hoje}</p>
         </div>
         {(() => {
           const mid = Math.ceil(atletasPrata.length / 2);
           const cols = [atletasPrata.slice(0, mid), atletasPrata.slice(mid)] as const;
           const cg = '34px 1fr 26px 40px 36px 36px'; const ch = ['POS','ATLETA','J','PTS','SS','%V'];
-          const CH = () => <div style={{ display: 'grid', gridTemplateColumns: cg, background: PRATA.primary, padding: '10px 14px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>{ch.map((h,i) => <span key={h} style={{ fontFamily: "'Inter', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: PRATA.accent, textAlign: i===1?'left':'center' }}>{h}</span>)}</div>;
-          return <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', borderTop: `2px solid ${PRATA.dark}` }}>{cols.map((col,ci) => <div key={ci} style={{ borderRight: ci===0?`2px solid ${PRATA.dark}`:'none' }}><CH />{col.map((a,idx) => <div key={a.posicao} style={{ display: 'grid', gridTemplateColumns: cg, padding: '9px 14px', background: idx%2===0?'#ffffff':PRATA.rowOdd, borderBottom: '1px solid #e7e9e4', alignItems: 'center' }}><span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: a.posicao<=3?700:500, color: a.posicao<=3?PRATA.primary:'#717971', textAlign: 'center' }}>{a.posicao}</span><span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: a.posicao<=3?700:500, fontSize: 11, color: '#191c19', lineHeight: 1.3 }}>{a.nome}</span><span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: '#414942', textAlign: 'center' }}>{a.jogos}</span><span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: 700, textAlign: 'center', color: PRATA.primary }}>{a.pontos}</span><span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: 500, textAlign: 'center', color: a.saldo_sets>0?PRATA.primary:a.saldo_sets<0?'#ba1a1a':'#717971' }}>{a.saldo_sets>0?'+':''}{a.saldo_sets}</span><span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: 500, textAlign: 'center', color: a.percentual>=67?PRATA.primary:a.percentual>=33?'#414942':'#ba1a1a' }}>{a.percentual.toFixed(0)}%</span></div>)}</div>)}</div>;
+          const CH = () => <div style={{ display: 'grid', gridTemplateColumns: cg, background: PRATA.primary, padding: '10px 14px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>{ch.map((h,i) => <span key={h} style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: PRATA.accent, textAlign: i===1?'left':'center' }}>{h}</span>)}</div>;
+          return <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', borderTop: `2px solid ${PRATA.dark}` }}>{cols.map((col,ci) => <div key={ci} style={{ borderRight: ci===0?`2px solid ${PRATA.dark}`:'none' }}><CH />{col.map((a,idx) => <div key={a.posicao} style={{ display: 'grid', gridTemplateColumns: cg, padding: '9px 14px', background: idx%2===0?'#ffffff':PRATA.rowOdd, borderBottom: '1px solid #e7e9e4', alignItems: 'center' }}><span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: a.posicao<=3?700:500, color: a.posicao<=3?PRATA.primary:'#717971', textAlign: 'center' }}>{a.posicao}</span><span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: a.posicao<=3?700:500, fontSize: 11, color: '#191c19', lineHeight: 1.3 }}>{a.nome}</span><span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: '#414942', textAlign: 'center' }}>{a.jogos}</span><span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: 700, textAlign: 'center', color: PRATA.primary }}>{a.pontos}</span><span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: 500, textAlign: 'center', color: a.saldo_sets>0?PRATA.primary:a.saldo_sets<0?'#ba1a1a':'#717971' }}>{a.saldo_sets>0?'+':''}{a.saldo_sets}</span><span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: 500, textAlign: 'center', color: a.percentual>=67?PRATA.primary:a.percentual>=33?'#414942':'#ba1a1a' }}>{a.percentual.toFixed(0)}%</span></div>)}</div>)}</div>;
         })()}
         <div style={{ background: PRATA.dark, padding: '14px 20px', display: 'flex', justifyContent: 'space-between' }}>
-          <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: '0.08em', textTransform: 'uppercase', color: `${PRATA.accent}90` }}>Squadra Verde</span>
+          <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: '0.08em', textTransform: 'uppercase', color: `${PRATA.accent}90` }}>Squadra Verde</span>
           <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: `${PRATA.accent}50`, letterSpacing: '0.1em' }}>Temporada 2026</span>
         </div>
       </div>

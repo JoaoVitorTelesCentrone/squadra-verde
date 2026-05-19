@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import LogoSVG from './LogoSVG';
 
 const NAV = [
   { href: '/',           label: 'Home' },
@@ -29,16 +30,16 @@ export default function Header() {
 
   return (
     <header style={{ background: 'var(--verde-escuro)', borderBottom: '1px solid rgba(255,255,255,0.08)', position: 'sticky', top: 0, zIndex: 50 }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', height: 64, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      <div className="header-inner">
 
         {/* Logo */}
-        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }} onClick={() => setOpen(false)}>
-          <div style={{ width: 36, height: 36, background: 'var(--verde-campo)', border: '1.5px solid rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-            <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 900, fontSize: 13, color: 'var(--creme)', letterSpacing: '-0.04em' }}>SV</span>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-            <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 900, fontSize: 11, letterSpacing: '0.1em', color: 'var(--creme)', textTransform: 'uppercase', lineHeight: 1.1 }}>SQUADRA</span>
-            <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 900, fontSize: 11, letterSpacing: '0.1em', color: 'var(--verde-medio)', textTransform: 'uppercase', lineHeight: 1.1 }}>VERDE</span>
+        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 16, flexShrink: 0 }} onClick={() => setOpen(false)}>
+          <LogoSVG color="var(--creme)" width={30} height={48} />
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0 }}>
+            <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 900, fontSize: 'clamp(12px, 1.5vw, 16px)', letterSpacing: '0.1em', color: 'var(--creme)', textTransform: 'uppercase', lineHeight: 1.1 }}>SQUADRA</span>
+            <div style={{ width: '100%', height: 2, background: 'var(--verde-medio)', margin: '3px 0' }} />
+            <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 900, fontSize: 'clamp(12px, 1.5vw, 16px)', letterSpacing: '0.1em', color: 'var(--verde-medio)', textTransform: 'uppercase', lineHeight: 1.1 }}>VERDE</span>
+            <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 7, letterSpacing: '0.45em', color: 'rgba(245,239,230,0.35)', textTransform: 'uppercase', marginTop: 3 }}>Beach Tênis</span>
           </div>
         </Link>
 
@@ -91,8 +92,8 @@ export default function Header() {
                 display: 'block',
                 padding: '14px 24px',
                 fontFamily: "'DM Mono', monospace",
-                fontSize: 11,
-                letterSpacing: '0.2em',
+                fontSize: 14,
+                letterSpacing: '0.15em',
                 textTransform: 'uppercase',
                 color: isActive(link.href) ? 'var(--creme)' : 'rgba(245,239,230,0.45)',
                 textDecoration: 'none',
@@ -104,7 +105,7 @@ export default function Header() {
             </Link>
           ))}
           <div style={{ padding: '14px 24px 0' }}>
-            <span className="chip">Temporada 2025</span>
+            <span className="chip">Temporada 2026</span>
           </div>
         </div>
       </div>

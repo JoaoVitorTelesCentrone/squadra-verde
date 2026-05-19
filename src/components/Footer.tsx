@@ -1,3 +1,5 @@
+import LogoSVG from './LogoSVG';
+
 const patrocinadores = [
   'Gula Gula', 'Geolink', 'Croque Manie', 'TJ Sound',
   'Instituto Torus', 'Hi-Tech II', 'Arte Sacha', 'Oazi', 'SPW', 'Contra Dor',
@@ -29,21 +31,18 @@ export default function Footer() {
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '28px 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
 
         {/* Brand */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 9, letterSpacing: '0.35em', color: 'rgba(255,255,255,0.2)', textTransform: 'uppercase', marginBottom: 6 }}>Beach Tênis</span>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <div style={{ width: 28, height: 28, background: 'var(--verde-campo)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 900, fontSize: 10, color: 'var(--creme)', letterSpacing: '-0.04em' }}>SV</span>
-            </div>
-            <div>
-              <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 900, fontSize: 14, color: 'var(--creme)', textTransform: 'uppercase', letterSpacing: '-0.01em' }}>SQUADRA</span>
-              <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 900, fontSize: 14, color: 'var(--verde-campo)', textTransform: 'uppercase', letterSpacing: '-0.01em', marginLeft: 6 }}>VERDE</span>
-            </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+          <LogoSVG color="var(--creme)" width={22} height={36} />
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0 }}>
+            <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 900, fontSize: 13, letterSpacing: '0.1em', color: 'var(--creme)', textTransform: 'uppercase', lineHeight: 1.1 }}>SQUADRA</span>
+            <div style={{ width: '100%', height: 1.5, background: 'var(--verde-medio)', margin: '3px 0' }} />
+            <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 900, fontSize: 13, letterSpacing: '0.1em', color: 'var(--verde-medio)', textTransform: 'uppercase', lineHeight: 1.1 }}>VERDE</span>
+            <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 6, letterSpacing: '0.45em', color: 'rgba(245,239,230,0.25)', textTransform: 'uppercase', marginTop: 3 }}>Beach Tênis</span>
           </div>
         </div>
 
         <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: 'rgba(255,255,255,0.2)', letterSpacing: '0.1em', textAlign: 'right', lineHeight: 1.8 }}>
-          © 2025 Squadra Verde<br />Temporada 2025
+          © 2026 Squadra Verde<br />Temporada 2026
         </p>
       </div>
 

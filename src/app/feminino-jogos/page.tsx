@@ -86,7 +86,7 @@ export default function FemininoJogosPage() {
       <div style={{ background: 'var(--branco)', borderBottom: '1px solid rgba(26,58,26,0.12)' }}>
         <div className="page-header-inner">
           <p className="section-label" style={{ marginBottom: 10, color: THEME.primary }}>
-            Temporada 2025 · Feminino Bronze
+            Temporada 2026 · Feminino Bronze
           </p>
           <h1
             style={{
@@ -518,7 +518,7 @@ export default function FemininoJogosPage() {
                   {rodadaAtiva !== null ? 'Resultado da Rodada' : `Rodada ${rodada.rodada}`}
                 </h2>
                 <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: 'rgba(242,184,208,0.4)', letterSpacing: '0.1em' }}>
-                  {rodadaAtiva !== null ? `Rodada ${rodada.rodada}` : 'Temporada 2025'} · {formatData(rodada.data)}
+                  {rodadaAtiva !== null ? `Rodada ${rodada.rodada}` : 'Temporada 2026'} · {formatData(rodada.data)}
                 </p>
               </div>
 
@@ -576,7 +576,7 @@ export default function FemininoJogosPage() {
             Squadra Verde · Feminino Bronze
           </span>
           <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: 'rgba(242,184,208,0.3)', letterSpacing: '0.1em' }}>
-            Temporada 2025
+            Temporada 2026
           </span>
         </div>
       </div>

@@ -89,29 +89,29 @@ export default function JogosPage() {
     <div>
       <SectionTabs tabs={JOGOS_TABS} section="Jogos" />
       {/* Header */}
-      <div style={{ background: 'var(--branco)', borderBottom: '1px solid rgba(26,58,26,0.12)' }}>
-        <div className="page-header-inner">
-          <p className="section-label" style={{ marginBottom: 10 }}>Temporada 2025 · Masculino</p>
+      <div style={{ background: '#ffffff', borderBottom: '1px solid #e7e9e4', position: 'relative', overflow: 'hidden' }}>
+        <div className="page-header-inner" style={{ position: 'relative' }}>
+          <p className="section-label" style={{ marginBottom: 10, color: 'var(--verde-medio)' }}>Temporada 2026 · Masculino</p>
           <h1
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
+              fontFamily: "'Unbounded', sans-serif",
               fontWeight: 700,
               fontSize: 'clamp(32px, 5vw, 56px)',
-              color: '#191c19',
+              color: 'var(--verde-escuro)',
               letterSpacing: '-0.02em',
               marginBottom: 8,
             }}
           >
             Agenda de Jogos
           </h1>
-          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div className="header-actions" style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', alignItems: 'center' }}>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#717971' }}>
-                Temporada 2026 · {jogosData.periodo}
+              <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 14, color: '#717971' }}>
+                {jogosData.periodo}
               </p>
               <div style={{ display: 'flex', gap: 8 }}>
-                <span className="chip-green">✅ {totalRealizados} realizados</span>
-                <span className="chip-pending">⏳ {totalJogos - totalRealizados} pendentes</span>
+                <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--verde-campo)', border: '1px solid rgba(79,140,79,0.4)', padding: '4px 10px' }}>✅ {totalRealizados} realizados</span>
+                <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#717971', border: '1px solid #e7e9e4', padding: '4px 10px' }}>⏳ {totalJogos - totalRealizados} pendentes</span>
               </div>
             </div>
             <button
@@ -122,11 +122,11 @@ export default function JogosPage() {
                 alignItems: 'center',
                 gap: 8,
                 padding: '10px 18px',
-                background: exporting ? '#e7e9e4' : '#1a3a2a',
-                color: exporting ? '#717971' : '#e8e8d8',
+                background: exporting ? '#e7e9e4' : 'var(--verde-escuro)',
+                color: exporting ? '#717971' : 'var(--creme)',
                 border: '1px solid #191c19',
-                boxShadow: exporting ? 'none' : '3px 3px 0 #191c19',
-                fontFamily: "'Inter', sans-serif",
+                boxShadow: 'none',
+                fontFamily: "'DM Mono', monospace",
                 fontSize: 13,
                 fontWeight: 700,
                 letterSpacing: '0.04em',
@@ -134,8 +134,8 @@ export default function JogosPage() {
                 transition: 'all 0.15s',
                 whiteSpace: 'nowrap',
               }}
-              onMouseEnter={e => { if (!exporting) (e.currentTarget.style.background = '#2d5c3f'); }}
-              onMouseLeave={e => { if (!exporting) (e.currentTarget.style.background = '#1a3a2a'); }}
+              onMouseEnter={e => { if (!exporting) (e.currentTarget.style.opacity = '0.85'); }}
+              onMouseLeave={e => { if (!exporting) (e.currentTarget.style.opacity = '1'); }}
             >
               {exporting ? (
                 <>
@@ -166,7 +166,7 @@ export default function JogosPage() {
                 onClick={() => setFiltroStatus(f)}
                 style={{
                   padding: '8px 16px',
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "'DM Mono', monospace",
                   fontSize: 11,
                   fontWeight: 700,
                   letterSpacing: '0.1em',
@@ -174,8 +174,8 @@ export default function JogosPage() {
                   border: 'none',
                   borderRight: f !== 'pendentes' ? '1px solid #191c19' : 'none',
                   cursor: 'pointer',
-                  background: filtroStatus === f ? '#00361a' : '#ffffff',
-                  color: filtroStatus === f ? '#9dd3aa' : '#414942',
+                  background: filtroStatus === f ? 'var(--verde-escuro)' : '#ffffff',
+                  color: filtroStatus === f ? 'var(--verde-medio)' : '#414942',
                   transition: 'all 0.15s',
                 }}
               >
@@ -196,7 +196,7 @@ export default function JogosPage() {
               padding: '8px 14px',
               border: '1px solid #c1c9bf',
               background: '#f8faf5',
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'DM Mono', monospace",
               fontSize: 14,
               color: '#191c19',
               outline: 'none',
@@ -209,15 +209,15 @@ export default function JogosPage() {
               onClick={() => setRodadaAtiva(null)}
               style={{
                 padding: '6px 12px',
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "'DM Mono', monospace",
                 fontSize: 11,
                 fontWeight: 700,
                 letterSpacing: '0.1em',
                 textTransform: 'uppercase',
                 border: '1px solid #191c19',
                 cursor: 'pointer',
-                background: rodadaAtiva === null ? '#00361a' : '#ffffff',
-                color: rodadaAtiva === null ? '#9dd3aa' : '#414942',
+                background: rodadaAtiva === null ? 'var(--verde-escuro)' : '#ffffff',
+                color: rodadaAtiva === null ? 'var(--verde-medio)' : '#414942',
               }}
             >
               Todas
@@ -233,8 +233,8 @@ export default function JogosPage() {
                   fontWeight: 500,
                   border: '1px solid #191c19',
                   cursor: 'pointer',
-                  background: rodadaAtiva === r.rodada ? '#00361a' : '#ffffff',
-                  color: rodadaAtiva === r.rodada ? '#9dd3aa' : '#414942',
+                  background: rodadaAtiva === r.rodada ? 'var(--verde-escuro)' : '#ffffff',
+                  color: rodadaAtiva === r.rodada ? 'var(--verde-medio)' : '#414942',
                 }}
               >
                 R{r.rodada}
@@ -266,7 +266,7 @@ export default function JogosPage() {
                   >
                     <div
                       style={{
-                        background: '#2e312e',
+                        background: 'var(--verde-escuro)',
                         padding: '6px 14px',
                         display: 'inline-flex',
                         alignItems: 'center',
@@ -275,7 +275,7 @@ export default function JogosPage() {
                     >
                       <span
                         style={{
-                          fontFamily: "'Space Grotesk', sans-serif",
+                          fontFamily: "'Unbounded', sans-serif",
                           fontWeight: 700,
                           fontSize: 14,
                           color: '#ffffff',
@@ -317,8 +317,8 @@ export default function JogosPage() {
                           key={jogo.id}
                           style={{
                             background: '#ffffff',
-                            border: `1px solid ${realizado ? '#2c694e' : '#191c19'}`,
-                            boxShadow: `3px 3px 0 ${realizado ? '#2c694e' : '#191c19'}`,
+                            border: `1px solid ${realizado ? 'var(--verde-campo)' : '#191c19'}`,
+                            boxShadow: `3px 3px 0 ${realizado ? 'var(--verde-campo)' : '#191c19'}`,
                             padding: '20px 20px',
                             position: 'relative',
                           }}
@@ -331,7 +331,7 @@ export default function JogosPage() {
                               left: 0,
                               right: 0,
                               height: 3,
-                              background: realizado ? '#2c694e' : '#e7e9e4',
+                              background: realizado ? 'var(--verde-campo)' : '#e7e9e4',
                             }}
                           />
 
@@ -372,7 +372,7 @@ export default function JogosPage() {
                                 <p
                                   key={nome}
                                   style={{
-                                    fontFamily: "'Space Grotesk', sans-serif",
+                                    fontFamily: "'Unbounded', sans-serif",
                                     fontWeight: 600,
                                     fontSize: 14,
                                     color: '#191c19',
@@ -389,7 +389,7 @@ export default function JogosPage() {
                               style={{
                                 width: 36,
                                 height: 36,
-                                background: realizado ? '#1a4d2e' : '#2e312e',
+                                background: realizado ? 'var(--verde-campo)' : 'var(--verde-escuro)',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
@@ -398,10 +398,10 @@ export default function JogosPage() {
                             >
                               <span
                                 style={{
-                                  fontFamily: "'Space Grotesk', sans-serif",
+                                  fontFamily: "'Unbounded', sans-serif",
                                   fontWeight: 700,
                                   fontSize: 11,
-                                  color: '#9dd3aa',
+                                  color: 'var(--creme)',
                                   letterSpacing: '0.05em',
                                 }}
                               >
@@ -414,7 +414,7 @@ export default function JogosPage() {
                                 <p
                                   key={nome}
                                   style={{
-                                    fontFamily: "'Space Grotesk', sans-serif",
+                                    fontFamily: "'Unbounded', sans-serif",
                                     fontWeight: 600,
                                     fontSize: 14,
                                     color: '#191c19',
@@ -436,9 +436,9 @@ export default function JogosPage() {
                                 const p2Win = p.games2 > p.games1;
                                 return (
                                   <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-                                    <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: p1Win ? 700 : 400, color: p1Win ? '#00361a' : '#717971' }}>{p.games1}</span>
+                                    <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: p1Win ? 700 : 400, color: p1Win ? 'var(--verde-campo)' : '#717971' }}>{p.games1}</span>
                                     <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: '#c1c9bf' }}>×</span>
-                                    <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: p2Win ? 700 : 400, color: p2Win ? '#00361a' : '#717971' }}>{p.games2}</span>
+                                    <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: p2Win ? 700 : 400, color: p2Win ? 'var(--verde-campo)' : '#717971' }}>{p.games2}</span>
                                   </div>
                                 );
                               })}
@@ -458,7 +458,7 @@ export default function JogosPage() {
                           >
                             <span
                               style={{
-                                fontFamily: "'Inter', sans-serif",
+                                fontFamily: "'DM Mono', monospace",
                                 fontSize: 11,
                                 color: '#717971',
                               }}
@@ -492,10 +492,10 @@ export default function JogosPage() {
                 background: '#ffffff',
               }}
             >
-              <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 18, color: '#717971' }}>
+              <p style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 18, color: '#717971' }}>
                 Nenhum jogo encontrado
               </p>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#c1c9bf', marginTop: 8 }}>
+              <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 14, color: '#c1c9bf', marginTop: 8 }}>
                 Tente ajustar os filtros
               </p>
             </div>
@@ -506,7 +506,7 @@ export default function JogosPage() {
       {/* ── DIV OCULTA PARA EXPORTAÇÃO ── */}
       <div
         ref={exportRef}
-        style={{ position: 'fixed', left: '-9999px', top: 0, width: 800, background: '#f8faf5', fontFamily: "'Inter', sans-serif" }}
+        style={{ position: 'fixed', left: '-9999px', top: 0, width: 800, background: '#f8faf5', fontFamily: "'DM Mono', monospace" }}
       >
         {exportRodadas.map((rodada, ri) => {
           const jogosRealizados = rodada.jogos.filter(j => isRealizado(j.id));
@@ -522,7 +522,7 @@ export default function JogosPage() {
                     SQUADRA VERDE · TEMPORADA 2026
                   </p>
                 )}
-                <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: isFirst ? 42 : 28, color: '#e8e8d8', letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: 6 }}>
+                <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: isFirst ? 42 : 28, color: '#e8e8d8', letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: 6 }}>
                   {rodadaAtiva !== null ? 'Resultado da Rodada' : `Rodada ${rodada.rodada}`}
                 </h2>
                 <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: 'rgba(232,232,216,0.4)', letterSpacing: '0.1em' }}>
@@ -560,19 +560,19 @@ export default function JogosPage() {
                           {/* Dupla 1 */}
                           <div>
                             {jogo.dupla1.map(nome => (
-                              <p key={nome} style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: 14, color: '#191c19', lineHeight: 1.35, marginBottom: 2 }}>{nome}</p>
+                              <p key={nome} style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 600, fontSize: 14, color: '#191c19', lineHeight: 1.35, marginBottom: 2 }}>{nome}</p>
                             ))}
                           </div>
 
                           {/* VS badge */}
                           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, background: '#1a4d2e', margin: '0 auto' }}>
-                            <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 11, color: '#9dd3aa', letterSpacing: '0.04em' }}>VS</span>
+                            <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 11, color: '#9dd3aa', letterSpacing: '0.04em' }}>VS</span>
                           </div>
 
                           {/* Dupla 2 */}
                           <div style={{ textAlign: 'right' }}>
                             {jogo.dupla2.map(nome => (
-                              <p key={nome} style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: 14, color: '#191c19', lineHeight: 1.35, marginBottom: 2 }}>{nome}</p>
+                              <p key={nome} style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 600, fontSize: 14, color: '#191c19', lineHeight: 1.35, marginBottom: 2 }}>{nome}</p>
                             ))}
                           </div>
 
@@ -594,7 +594,7 @@ export default function JogosPage() {
               <path d="M100 10 L185 45 L185 130 Q185 185 100 220 Q15 185 15 130 L15 45 Z" fill="none" stroke="#3d7a54" strokeWidth="10"/>
               <text x="100" y="140" textAnchor="middle" fontFamily="'Barlow Condensed',sans-serif" fontWeight="900" fontSize="80" fill="#3d7a54">SV</text>
             </svg>
-            <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(232,232,216,0.6)' }}>
+            <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(232,232,216,0.6)' }}>
               Squadra Verde
             </span>
           </div>
@@ -624,10 +624,10 @@ export default function JogosPage() {
               { label: 'Desempate', desc: 'Saldo de games (SG)' },
             ].map(item => (
               <div key={item.label} style={{ flex: '1 1 200px' }}>
-                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: 14, color: '#191c19', marginBottom: 4 }}>
+                <p style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 600, fontSize: 14, color: '#191c19', marginBottom: 4 }}>
                   {item.label}
                 </p>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: '#717971' }}>
+                <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: '#717971' }}>
                   {item.desc}
                 </p>
               </div>
