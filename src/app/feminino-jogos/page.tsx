@@ -532,7 +532,7 @@ export default function FemininoJogosPage() {
               <div style={{ background: THEME.dark, padding: isFirst ? '28px 32px 22px' : '20px 32px 16px' }}>
                 {isFirst && (
                   <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: '0.28em', color: 'rgba(242,184,208,0.45)', textTransform: 'uppercase', marginBottom: 8 }}>
-                    SQUADRA VERDE · TEMPORADA 2025 · FEMININO BRONZE
+                    SQUADRA VERDE · TEMPORADA 2026 · FEMININO BRONZE
                   </p>
                 )}
                 <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: isFirst ? 42 : 28, color: '#fcd6e5', letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: 6 }}>

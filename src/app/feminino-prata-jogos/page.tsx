@@ -532,7 +532,7 @@ export default function FeminoPrataJogosPage() {
               <div style={{ background: THEME.dark, padding: isFirst ? '28px 32px 22px' : '20px 32px 16px' }}>
                 {isFirst && (
                   <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: '0.28em', color: 'rgba(184,212,232,0.45)', textTransform: 'uppercase', marginBottom: 8 }}>
-                    SQUADRA VERDE · TEMPORADA 2025 · FEMININO PRATA
+                    SQUADRA VERDE · TEMPORADA 2026 · FEMININO PRATA
                   </p>
                 )}
                 <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: isFirst ? 42 : 28, color: '#d6eaf5', letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: 6 }}>
