@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Squadra Verde · Beach Tênis · Temporada 2026</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-masc">
+
+<!-- ════════════════════════════════════ NAV ════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand-mark" data-go="home">
+      <!-- Marca SVG refeita do zero: bola sobre quadra com sombra -->
+      <svg class="brand-mark-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- court rect -->
+        <rect x="6" y="14" width="52" height="36" rx="1.5" stroke="currentColor" stroke-width="2" fill="none" opacity="0.95"/>
+        <!-- net -->
+        <line x1="32" y1="14" x2="32" y2="50" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" opacity="0.55"/>
+        <!-- ball -->
+        <circle cx="32" cy="32" r="6.5" fill="oklch(0.85 0.17 105)"/>
+        <path d="M 26.5 30 Q 32 34 37.5 30" stroke="oklch(0.28 0.07 158)" stroke-width="1.1" fill="none" opacity="0.7"/>
+        <path d="M 26.5 34 Q 32 30 37.5 34" stroke="oklch(0.28 0.07 158)" stroke-width="1.1" fill="none" opacity="0.7"/>
+        <!-- shadow under ball -->
+        <ellipse cx="32" cy="42" rx="6" ry="1" fill="currentColor" opacity="0.18"/>
+      </svg>
+      <div class="brand-mark-text">
+        <strong>Squadra Verde</strong>
+        <span>Beach Tênis · 2026</span>
+      </div>
+    </div>
+
+    <ul class="nav-links">
+      <li><button class="active" data-nav="home">Home</button></li>
+      <li><button data-nav="ranking">Classificação</button></li>
+      <li><button data-nav="agenda">Agenda</button></li>
+      <li><button data-nav="atletas">Atletas</button></li>
+      <li><button data-nav="sobre">Sobre</button></li>
+      <li><a href="marca.html"><button>Marca</button></a></li>
+      <li><a href="identidade.html"><button>Identidade</button></a></li>
+    </ul>
+
+    <div class="nav-right">
+      <div class="nav-clock">
+        <span class="live-dot"></span>
+        <span id="clock">--:--</span>
+        <span style="opacity:0.55;">· TEMP. 2026</span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ════════════════════════════════════ HOME ════════════════════════════════════ -->
+<main class="page active" data-page="home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-meta-row">
+        <div class="eyebrow">— Temporada 2026 · Atualizado em 19/05</div>
+        <div class="cat-toggle">
+          <button class="on" data-theme="masc">Masculino</button>
+          <button data-theme="fem">Feminino</button>
+        </div>
+      </div>
+
+      <h1 class="hero-title h-display">
+        Squadra<br>
+        <span class="accent-word">Verde</span>
+      </h1>
+
+      <div class="hero-sub">
+        <span>Beach Tênis</span>
+        <span class="dot">·</span>
+        <span>Masculino</span>
+        <span class="dot">·</span>
+        <span>Feminino Prata</span>
+        <span class="dot">·</span>
+        <span>Feminino Bronze</span>
+      </div>
+
+      <p class="hero-desc">
+        Um ranking interno de beach tênis que reúne amigos, incentiva a evolução técnica e premia os melhores da temporada — nas categorias Masculino, Feminino Prata e Feminino Bronze.
+      </p>
+
+      <div class="hero-cta">
+        <button class="btn primary" data-go="ranking">Classificação <span class="arrow">→</span></button>
+        <button class="btn" data-go="agenda">Ver jogos</button>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat"><div class="val">78</div><div class="lbl">Atletas</div></div>
+        <div class="stat"><div class="val">3</div><div class="lbl">Categorias</div></div>
+        <div class="stat"><div class="val">8</div><div class="lbl">Rodadas</div></div>
+        <div class="stat"><div class="val">199</div><div class="lbl">Jogos</div></div>
+        <div class="stat"><div class="val">26/04 → 21/06</div><div class="lbl">Período</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERS MASCULINO -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="left">
+          <span class="eyebrow">Ranking Masculino</span>
+          <h2>Líderes</h2>
+        </div>
+        <button class="link" data-go="ranking">Ver todos →</button>
+      </div>
+      <div class="leaders" id="leaders-masc"></div>
+    </div>
+  </section>
+
+  <!-- LEADERS FEMININO PRATA + diferencial -->
+  <section class="section alt theme-fem" style="position:relative; overflow:hidden;">
+    <div class="fem-sun"></div>
+    <div class="wrap" style="position:relative; z-index:1;">
+      <div class="section-head">
+        <div class="left">
+          <span class="eyebrow" style="color: oklch(0.50 0.12 25);">Ranking Feminino · ★ Prata</span>
+          <h2 style="font-family: var(--font-display);">
+            Líderes <em class="h-serif" style="color: var(--coral-deep); font-size: 0.95em;">do dia</em>
+          </h2>
+        </div>
+        <button class="link" data-go="ranking" style="border-color: var(--coral-deep); color: var(--coral-deep);">Ver todas →</button>
+      </div>
+      <div class="leaders" id="leaders-fem"></div>
+
+      <div style="margin-top:48px; display:flex; align-items:center; gap:18px; padding:18px 22px; background: color-mix(in oklch, var(--coral) 8%, var(--paper)); border:1px solid color-mix(in oklch, var(--coral) 25%, transparent); border-radius:2px;">
+        <!-- Selo feminino -->
+        <svg width="44" height="44" viewBox="0 0 64 64" fill="none">
+          <circle cx="32" cy="32" r="26" stroke="oklch(0.48 0.16 22)" stroke-width="1.5" fill="none"/>
+          <circle cx="32" cy="32" r="20" stroke="oklch(0.48 0.16 22)" stroke-width="1" fill="none" opacity="0.5"/>
+          <path d="M 32 16 L 32 48 M 16 32 L 48 32" stroke="oklch(0.48 0.16 22)" stroke-width="1" opacity="0.3"/>
+          <text x="32" y="36" text-anchor="middle" font-family="Instrument Serif, serif" font-style="italic" font-size="14" fill="oklch(0.48 0.16 22)">SV</text>
+        </svg>
+        <div>
+          <div style="font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: -0.01em; text-transform: uppercase;">Squadra <em class="h-serif" style="font-size: 1em; color: var(--coral-deep);">Sole</em></div>
+          <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: color-mix(in oklch, var(--ink) 55%, transparent); margin-top: 4px;">Sub-emblema do feminino · Prata & Bronze</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOME MATCHES (próximos jogos) -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="left">
+          <span class="eyebrow">Agenda · Rodada 8</span>
+          <h2>Próximos jogos</h2>
+        </div>
+        <button class="link" data-go="agenda">Agenda completa →</button>
+      </div>
+      <div class="matches" id="home-matches"></div>
+    </div>
+  </section>
+</main>
+
+
+<!-- ════════════════════════════════════ RANKING ════════════════════════════════════ -->
+<main class="page" data-page="ranking">
+
+  <section class="page-head">
+    <div class="page-head-inner">
+      <div class="crumb">SQUADRA VERDE · TEMPORADA 2026 · <a>CLASSIFICAÇÃO</a></div>
+      <h1 id="ranking-title">Classificação <em>Geral</em></h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+
+      <div class="rank-controls">
+        <div class="cat-pills">
+          <button class="on" data-cat="masc">Masculino</button>
+          <button data-cat="prata">★ Feminino Prata</button>
+          <button data-cat="bronze">★ Feminino Bronze</button>
+        </div>
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+          <input id="rank-search" placeholder="Buscar atleta..." />
+        </div>
+      </div>
+
+      <div id="fem-banner" class="fem-tier-banner" style="display:none;"></div>
+
+      <div class="rank-table" id="rank-table"></div>
+
+      <!-- legenda -->
+      <div style="margin-top: 40px;">
+        <div class="eyebrow" style="margin-bottom: 14px;">— Legenda do ranking</div>
+        <div class="legend">
+          <div class="legend-item"><div class="k">POS</div><div class="d">Posição</div></div>
+          <div class="legend-item"><div class="k">J</div><div class="d">Jogos disputados</div></div>
+          <div class="legend-item"><div class="k">V/D</div><div class="d">Vitórias / Derrotas</div></div>
+          <div class="legend-item"><div class="k">PTS</div><div class="d">Pontos totais</div></div>
+          <div class="legend-item"><div class="k">SG</div><div class="d">Saldo de games</div></div>
+          <div class="legend-item"><div class="k">APROV.</div><div class="d">% aproveitamento</div></div>
+          <div class="legend-item"><div class="k">FORMA</div><div class="d">Últimas 6 partidas</div></div>
+          <div class="legend-item"><div class="k">★</div><div class="d">Categoria feminina</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<!-- ════════════════════════════════════ AGENDA ════════════════════════════════════ -->
+<main class="page" data-page="agenda">
+  <section class="page-head">
+    <div class="page-head-inner">
+      <div class="crumb">SQUADRA VERDE · TEMPORADA 2026 · <a>AGENDA</a></div>
+      <h1>Agenda de Jogos</h1>
+      <div class="hero-sub" style="margin-top: 18px;">
+        <span>26/04 → 21/06</span>
+        <span class="dot">·</span>
+        <span>8 rodadas</span>
+        <span class="dot">·</span>
+        <span>199 partidas</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div id="agenda-list"></div>
+    </div>
+  </section>
+</main>
+
+
+<!-- ════════════════════════════════════ ATLETAS ════════════════════════════════════ -->
+<main class="page" data-page="atletas">
+  <section class="page-head">
+    <div class="page-head-inner">
+      <div class="crumb">SQUADRA VERDE · TEMPORADA 2026 · <a>ATLETAS</a></div>
+      <h1>Atletas em destaque</h1>
+      <p class="hero-desc">Top 8 atletas da temporada — três categorias representadas. Cards femininos trazem a marca <em class="h-serif" style="color: var(--coral); font-size: 1.2em;">Squadra Sole</em>.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="atletas-grid" id="atletas-grid"></div>
+    </div>
+  </section>
+</main>
+
+
+<!-- ════════════════════════════════════ SOBRE ════════════════════════════════════ -->
+<main class="page" data-page="sobre">
+  <section class="page-head">
+    <div class="page-head-inner">
+      <div class="crumb">SQUADRA VERDE · TEMPORADA 2026 · <a>SOBRE</a></div>
+      <h1>Sobre o ranking</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap-narrow">
+      <div class="sobre-grid">
+        <div class="sobre-text">
+          <h3>Quem somos</h3>
+          <p>Squadra Verde é um ranking interno de beach tênis criado por amigos do clube. A temporada 2026 reúne 78 atletas em três categorias — Masculino, Feminino Prata e Feminino Bronze — distribuídos em 8 rodadas, com 199 jogos no calendário.</p>
+
+          <div class="sobre-pull">
+            “Um ranking justo, rítmico e celebrativo — onde cada partida conta e cada saldo de game muda o destino da temporada.”
+          </div>
+
+          <h3>Como funciona</h3>
+          <p>Cada vitória vale 100 pontos no Masculino e até 555 pontos no Feminino, conforme a categoria. O resultado pontua tanto a dupla quanto cada atleta individualmente — o ranking é sempre individual, não por dupla.</p>
+
+          <h3>Quando jogamos</h3>
+          <p>Os jogos acontecem de quinta a domingo, em horário livre. Cada rodada dura cerca de duas semanas e os atletas se organizam entre si para marcar suas partidas.</p>
+
+          <h3>Quem pode participar</h3>
+          <p>O ranking é restrito ao grupo Squadra Verde. As pessoas inscritas são distribuídas em categorias após uma etapa de seletiva, e podem subir ou descer de categoria conforme o desempenho.</p>
+        </div>
+
+        <div>
+          <div style="border: 1px solid var(--line); padding: 32px; background: var(--paper); display:flex; flex-direction:column; gap:28px;">
+            <div>
+              <div class="eyebrow">Sistema de pontuação</div>
+              <div style="margin-top: 14px; display:flex; flex-direction:column; gap:10px;">
+                <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom: 1px solid var(--line-soft);">
+                  <span style="font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;">Masculino · vitória</span>
+                  <strong style="font-family: var(--font-display); font-weight: 700; font-size: 15px;">100 pts</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; padding:8px 0; border-bottom: 1px solid var(--line-soft);">
+                  <span style="font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;">★ F. Prata · vitória</span>
+                  <strong style="font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--coral-deep);">555 pts</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; padding:8px 0;">
+                  <span style="font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;">★ F. Bronze · vitória</span>
+                  <strong style="font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--bronze-deep);">370 pts</strong>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="eyebrow">Identidade visual</div>
+              <div style="margin-top: 14px; display:grid; grid-template-columns: repeat(5, 1fr); gap: 6px;">
+                <div style="aspect-ratio: 1; background: var(--verde-deep);" title="Verde Costa"></div>
+                <div style="aspect-ratio: 1; background: var(--verde);" title="Verde Squadra"></div>
+                <div style="aspect-ratio: 1; background: var(--citrino);" title="Citrino"></div>
+                <div style="aspect-ratio: 1; background: var(--coral);" title="Coral · Feminino"></div>
+                <div style="aspect-ratio: 1; background: var(--bronze);" title="Bronze"></div>
+              </div>
+              <div style="margin-top: 10px; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: color-mix(in oklch, var(--ink) 55%, transparent);">VERDE / CITRINO / CORAL / BRONZE</div>
+            </div>
+
+            <div>
+              <div class="eyebrow">Tipografia</div>
+              <div style="margin-top: 14px;">
+                <div style="font-family: var(--font-display); font-weight: 800; font-size: 36px; letter-spacing: -0.035em; line-height: 0.9; text-transform: uppercase;">SQUADRA</div>
+                <div style="font-family: var(--font-serif); font-style: italic; font-size: 36px; letter-spacing: -0.01em; color: var(--coral-deep); line-height: 1;">Sole</div>
+                <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; margin-top: 12px; color: color-mix(in oklch, var(--ink) 55%, transparent);">— BRICOLAGE · INSTRUMENT · JETBRAINS</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<!-- ════════════════════════════════════ FOOTER ════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="mark-big">Squadra<br><em>Verde</em></div>
+        <p>Ranking interno de beach tênis. Três categorias, 78 atletas, uma temporada inteira para descobrir quem joga mais — e quem se diverte mais.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegar</h4>
+        <ul>
+          <li data-go="home">Home</li>
+          <li data-go="ranking">Classificação</li>
+          <li data-go="agenda">Agenda</li>
+          <li data-go="atletas">Atletas</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Categorias</h4>
+        <ul>
+          <li>Masculino</li>
+          <li>★ Feminino Prata</li>
+          <li>★ Feminino Bronze</li>
+          <li>Temporada 2026</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li>Inscrições</li>
+          <li>Regulamento</li>
+          <li>Imprensa</li>
+          <li>squadra@verde.bt</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 SQUADRA VERDE · BEACH TÊNIS</div>
+      <div>FEITO PELO GRUPO · ATUALIZADO EM 19/05</div>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

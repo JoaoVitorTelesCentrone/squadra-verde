@@ -3,7 +3,7 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import jogosData from '@/data/jogos_ranking.json';
 import type { Resultado } from '@/lib/types';
-import SectionTabs, { JOGOS_TABS } from '@/components/SectionTabs';
+import Link from 'next/link';
 
 type FiltroStatus = 'todos' | 'realizados' | 'pendentes';
 
@@ -65,19 +65,17 @@ export default function JogosPage() {
       const html2canvas = (await import('html2canvas')).default;
       const el = exportRef.current;
       const canvas = await html2canvas(el, {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: '#f8faf5',
-        logging: false,
-        width: el.offsetWidth,
-        height: el.scrollHeight,
-        windowWidth: el.offsetWidth,
-        windowHeight: el.scrollHeight,
+        scale: 2, useCORS: true, backgroundColor: '#f8faf5', logging: false,
+        width: el.offsetWidth, height: el.scrollHeight,
+        windowWidth: el.offsetWidth, windowHeight: el.scrollHeight,
+        onclone: (doc: Document) => { doc.querySelectorAll('style,link[rel="stylesheet"]').forEach(s => s.remove()); },
       });
       const a = document.createElement('a');
       a.download = `sv-resultado${rodadaAtiva !== null ? `-r${rodadaAtiva}` : ''}.png`;
       a.href = canvas.toDataURL('image/png');
+      document.body.appendChild(a);
       a.click();
+      a.remove();
     } catch (err) {
       console.error(err);
     } finally {
@@ -87,31 +85,52 @@ export default function JogosPage() {
 
   return (
     <div>
-      <SectionTabs tabs={JOGOS_TABS} section="Jogos" />
       {/* Header */}
-      <div style={{ background: '#ffffff', borderBottom: '1px solid #e7e9e4', position: 'relative', overflow: 'hidden' }}>
-        <div className="page-header-inner" style={{ position: 'relative' }}>
-          <p className="section-label" style={{ marginBottom: 10, color: 'var(--verde-medio)' }}>Temporada 2026 · Masculino</p>
+      <div className="page-head">
+        <div className="page-head-inner">
+          {/* Jogos switcher */}
+          <div style={{ display: 'flex', gap: 4, marginBottom: 28, flexWrap: 'wrap' }}>
+            {([
+              { href: '/jogos',               label: 'Masculino', active: true  },
+              { href: '/feminino-jogos',      label: 'F. Bronze', active: false },
+              { href: '/feminino-prata-jogos',label: 'F. Prata',  active: false },
+            ] as const).map(tab => (
+              <Link key={tab.href} href={tab.href} style={{
+                padding: '8px 20px',
+                fontFamily: 'var(--font-mono)',
+                fontSize: 11, fontWeight: 500,
+                letterSpacing: '0.2em', textTransform: 'uppercase',
+                textDecoration: 'none', border: '1px solid',
+                borderColor: tab.active ? 'var(--paper)' : 'color-mix(in oklch, var(--paper) 28%, transparent)',
+                background: tab.active ? 'color-mix(in oklch, var(--paper) 16%, transparent)' : 'transparent',
+                color: tab.active ? 'var(--paper)' : 'color-mix(in oklch, var(--paper) 50%, transparent)',
+                borderRadius: 2, transition: 'all 0.15s',
+              }}>{tab.label}</Link>
+            ))}
+          </div>
+          <p className="section-label" style={{ marginBottom: 10, color: 'var(--verde-glow)' }}>Temporada 2026 · Masculino</p>
           <h1
             style={{
-              fontFamily: "'Unbounded', sans-serif",
-              fontWeight: 700,
-              fontSize: 'clamp(32px, 5vw, 56px)',
-              color: 'var(--verde-escuro)',
-              letterSpacing: '-0.02em',
-              marginBottom: 8,
+              fontFamily: "var(--font-display)",
+              fontWeight: 800,
+              fontSize: 'clamp(36px, 6vw, 72px)',
+              color: 'var(--paper)',
+              letterSpacing: '-0.04em',
+              textTransform: 'uppercase',
+              lineHeight: 0.95,
+              marginBottom: 14,
             }}
           >
             Agenda de Jogos
           </h1>
           <div className="header-actions" style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
-            <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', alignItems: 'center' }}>
-              <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 14, color: '#717971' }}>
+            <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', alignItems: 'center' }}>
+              <p style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: 'color-mix(in oklch, var(--paper) 50%, transparent)', letterSpacing: '0.05em' }}>
                 {jogosData.periodo}
               </p>
               <div style={{ display: 'flex', gap: 8 }}>
-                <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--verde-campo)', border: '1px solid rgba(79,140,79,0.4)', padding: '4px 10px' }}>✅ {totalRealizados} realizados</span>
-                <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#717971', border: '1px solid #e7e9e4', padding: '4px 10px' }}>⏳ {totalJogos - totalRealizados} pendentes</span>
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: 9, fontWeight: 500, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--verde-deep)', background: 'var(--verde-glow)', padding: '4px 10px', borderRadius: 100 }}>{totalRealizados} realizados</span>
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: 9, fontWeight: 500, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'color-mix(in oklch, var(--paper) 60%, transparent)', border: '1px solid color-mix(in oklch, var(--paper) 14%, transparent)', padding: '4px 10px', borderRadius: 100 }}>{totalJogos - totalRealizados} pendentes</span>
               </div>
             </div>
             <button
@@ -121,25 +140,26 @@ export default function JogosPage() {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: 8,
-                padding: '10px 18px',
-                background: exporting ? '#e7e9e4' : 'var(--verde-escuro)',
-                color: exporting ? '#717971' : 'var(--creme)',
-                border: '1px solid #191c19',
-                boxShadow: 'none',
-                fontFamily: "'DM Mono', monospace",
-                fontSize: 13,
-                fontWeight: 700,
-                letterSpacing: '0.04em',
+                padding: '11px 18px',
+                background: exporting ? 'color-mix(in oklch, var(--paper) 8%, transparent)' : 'var(--citrino)',
+                color: exporting ? 'color-mix(in oklch, var(--paper) 25%, transparent)' : 'var(--ink)',
+                border: '1px solid color-mix(in oklch, var(--paper) 15%, transparent)',
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                fontWeight: 500,
+                letterSpacing: '0.22em',
+                textTransform: 'uppercase',
                 cursor: exporting ? 'not-allowed' : 'pointer',
                 transition: 'all 0.15s',
                 whiteSpace: 'nowrap',
+                borderRadius: 2,
               }}
               onMouseEnter={e => { if (!exporting) (e.currentTarget.style.opacity = '0.85'); }}
               onMouseLeave={e => { if (!exporting) (e.currentTarget.style.opacity = '1'); }}
             >
               {exporting ? (
                 <>
-                  <span style={{ display: 'inline-block', width: 14, height: 14, border: '2px solid #717971', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.7s linear infinite' }} />
+                  <span style={{ display: 'inline-block', width: 14, height: 14, border: '2px solid color-mix(in oklch, var(--ink) 30%, transparent)', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.7s linear infinite' }} />
                   Gerando...
                 </>
               ) : (
@@ -159,24 +179,24 @@ export default function JogosPage() {
         {/* Filtros */}
         <div className="filter-bar">
           {/* Status */}
-          <div style={{ display: 'flex', gap: 0, border: '1px solid #191c19' }}>
+          <div style={{ display: 'flex', gap: 4, padding: '3px', background: 'var(--sand-2)', border: '1px solid var(--line)', borderRadius: 100 }}>
             {(['todos', 'realizados', 'pendentes'] as FiltroStatus[]).map(f => (
               <button
                 key={f}
                 onClick={() => setFiltroStatus(f)}
                 style={{
-                  padding: '8px 16px',
-                  fontFamily: "'DM Mono', monospace",
-                  fontSize: 11,
-                  fontWeight: 700,
-                  letterSpacing: '0.1em',
+                  padding: '7px 14px',
+                  fontFamily: "var(--font-mono)",
+                  fontSize: 10,
+                  fontWeight: 500,
+                  letterSpacing: '0.2em',
                   textTransform: 'uppercase',
                   border: 'none',
-                  borderRight: f !== 'pendentes' ? '1px solid #191c19' : 'none',
                   cursor: 'pointer',
-                  background: filtroStatus === f ? 'var(--verde-escuro)' : '#ffffff',
-                  color: filtroStatus === f ? 'var(--verde-medio)' : '#414942',
+                  background: filtroStatus === f ? 'var(--ink)' : 'transparent',
+                  color: filtroStatus === f ? 'var(--paper)' : 'color-mix(in oklch, var(--ink) 50%, transparent)',
                   transition: 'all 0.15s',
+                  borderRadius: 100,
                 }}
               >
                 {f === 'todos' ? 'Todos' : f === 'realizados' ? 'Realizados' : 'Pendentes'}
@@ -193,13 +213,14 @@ export default function JogosPage() {
             style={{
               flex: 1,
               minWidth: 200,
-              padding: '8px 14px',
-              border: '1px solid #c1c9bf',
-              background: '#f8faf5',
-              fontFamily: "'DM Mono', monospace",
-              fontSize: 14,
-              color: '#191c19',
+              padding: '10px 14px',
+              border: '1px solid var(--line)',
+              background: 'var(--paper)',
+              fontFamily: "var(--font-mono)",
+              fontSize: 13,
+              color: 'var(--ink)',
               outline: 'none',
+              borderRadius: 2,
             }}
           />
 
@@ -208,16 +229,18 @@ export default function JogosPage() {
             <button
               onClick={() => setRodadaAtiva(null)}
               style={{
-                padding: '6px 12px',
-                fontFamily: "'DM Mono', monospace",
-                fontSize: 11,
-                fontWeight: 700,
-                letterSpacing: '0.1em',
+                padding: '7px 12px',
+                fontFamily: "var(--font-mono)",
+                fontSize: 10,
+                fontWeight: 500,
+                letterSpacing: '0.15em',
                 textTransform: 'uppercase',
-                border: '1px solid #191c19',
+                border: '1px solid var(--line)',
                 cursor: 'pointer',
-                background: rodadaAtiva === null ? 'var(--verde-escuro)' : '#ffffff',
-                color: rodadaAtiva === null ? 'var(--verde-medio)' : '#414942',
+                background: rodadaAtiva === null ? 'var(--ink)' : 'var(--paper)',
+                color: rodadaAtiva === null ? 'var(--paper)' : 'color-mix(in oklch, var(--ink) 55%, transparent)',
+                borderRadius: 2,
+                transition: 'all 0.15s',
               }}
             >
               Todas
@@ -227,14 +250,17 @@ export default function JogosPage() {
                 key={r.rodada}
                 onClick={() => setRodadaAtiva(rodadaAtiva === r.rodada ? null : r.rodada)}
                 style={{
-                  padding: '6px 12px',
-                  fontFamily: "'DM Mono', monospace",
-                  fontSize: 11,
+                  padding: '7px 12px',
+                  fontFamily: "var(--font-mono)",
+                  fontSize: 10,
                   fontWeight: 500,
-                  border: '1px solid #191c19',
+                  letterSpacing: '0.1em',
+                  border: '1px solid var(--line)',
                   cursor: 'pointer',
-                  background: rodadaAtiva === r.rodada ? 'var(--verde-escuro)' : '#ffffff',
-                  color: rodadaAtiva === r.rodada ? 'var(--verde-medio)' : '#414942',
+                  background: rodadaAtiva === r.rodada ? 'var(--ink)' : 'var(--paper)',
+                  color: rodadaAtiva === r.rodada ? 'var(--paper)' : 'color-mix(in oklch, var(--ink) 55%, transparent)',
+                  borderRadius: 2,
+                  transition: 'all 0.15s',
                 }}
               >
                 R{r.rodada}
@@ -261,43 +287,45 @@ export default function JogosPage() {
                       gap: 16,
                       marginBottom: 16,
                       paddingBottom: 12,
-                      borderBottom: '2px solid #191c19',
+                      borderBottom: '1px solid var(--line)',
                     }}
                   >
                     <div
                       style={{
-                        background: 'var(--verde-escuro)',
+                        background: 'var(--ink)',
                         padding: '6px 14px',
                         display: 'inline-flex',
                         alignItems: 'center',
-                        gap: 8,
+                        gap: 10,
+                        borderRadius: 2,
                       }}
                     >
                       <span
                         style={{
-                          fontFamily: "'Unbounded', sans-serif",
-                          fontWeight: 700,
-                          fontSize: 14,
-                          color: '#ffffff',
-                          letterSpacing: '0.05em',
+                          fontFamily: "var(--font-display)",
+                          fontWeight: 800,
+                          fontSize: 12,
+                          color: 'var(--paper)',
+                          letterSpacing: '0.12em',
+                          textTransform: 'uppercase',
                         }}
                       >
                         RODADA {rodada.rodada}
                       </span>
                       <span
                         style={{
-                          fontFamily: "'DM Mono', monospace",
-                          fontSize: 12,
-                          color: '#9dd3aa',
+                          fontFamily: "var(--font-mono)",
+                          fontSize: 10,
+                          color: 'var(--verde-glow)',
                         }}
                       >
                         {rodada.data}
                       </span>
                     </div>
                     {completo ? (
-                      <span className="chip-green">✅ Concluída</span>
+                      <span style={{ fontFamily: "var(--font-mono)", fontSize: 9, fontWeight: 500, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--verde-deep)', background: 'var(--verde-pale)', padding: '3px 10px', borderRadius: 100 }}>Concluída</span>
                     ) : (
-                      <span className="chip-pending">{jogosRealizados}/{rodada.jogos.length} realizados</span>
+                      <span style={{ fontFamily: "var(--font-mono)", fontSize: 9, fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'color-mix(in oklch, var(--ink) 50%, transparent)', border: '1px solid var(--line)', padding: '3px 10px', borderRadius: 100 }}>{jogosRealizados}/{rodada.jogos.length} realizados</span>
                     )}
                   </div>
 
@@ -316,11 +344,11 @@ export default function JogosPage() {
                         <div
                           key={jogo.id}
                           style={{
-                            background: '#ffffff',
-                            border: `1px solid ${realizado ? 'var(--verde-campo)' : '#191c19'}`,
-                            boxShadow: `3px 3px 0 ${realizado ? 'var(--verde-campo)' : '#191c19'}`,
+                            background: realizado ? 'color-mix(in oklch, var(--verde) 4%, var(--paper))' : 'var(--paper)',
+                            border: `1px solid ${realizado ? 'var(--verde)' : 'var(--line)'}`,
                             padding: '20px 20px',
                             position: 'relative',
+                            borderRadius: 2,
                           }}
                         >
                           {/* Status indicator */}
@@ -331,7 +359,7 @@ export default function JogosPage() {
                               left: 0,
                               right: 0,
                               height: 3,
-                              background: realizado ? 'var(--verde-campo)' : '#e7e9e4',
+                              background: realizado ? 'var(--verde)' : 'var(--line-soft)',
                             }}
                           />
 
@@ -343,15 +371,15 @@ export default function JogosPage() {
                               justifyContent: 'space-between',
                               marginBottom: 16,
                               paddingBottom: 12,
-                              borderBottom: '1px solid #e7e9e4',
+                              borderBottom: '1px solid var(--line-soft)',
                             }}
                           >
                             <span
                               style={{
-                                fontFamily: "'DM Mono', monospace",
+                                fontFamily: "var(--font-mono)",
                                 fontSize: 18,
                                 fontWeight: 500,
-                                color: '#191c19',
+                                color: 'var(--ink)',
                                 letterSpacing: '0.05em',
                               }}
                             >
@@ -372,10 +400,10 @@ export default function JogosPage() {
                                 <p
                                   key={nome}
                                   style={{
-                                    fontFamily: "'Unbounded', sans-serif",
+                                    fontFamily: "var(--font-display)",
                                     fontWeight: 600,
                                     fontSize: 14,
-                                    color: '#191c19',
+                                    color: 'var(--ink)',
                                     marginBottom: 4,
                                     lineHeight: 1.2,
                                   }}
@@ -398,7 +426,7 @@ export default function JogosPage() {
                             >
                               <span
                                 style={{
-                                  fontFamily: "'Unbounded', sans-serif",
+                                  fontFamily: "var(--font-display)",
                                   fontWeight: 700,
                                   fontSize: 11,
                                   color: 'var(--creme)',
@@ -414,10 +442,10 @@ export default function JogosPage() {
                                 <p
                                   key={nome}
                                   style={{
-                                    fontFamily: "'Unbounded', sans-serif",
+                                    fontFamily: "var(--font-display)",
                                     fontWeight: 600,
                                     fontSize: 14,
-                                    color: '#191c19',
+                                    color: 'var(--ink)',
                                     marginBottom: 4,
                                     lineHeight: 1.2,
                                   }}
@@ -436,9 +464,9 @@ export default function JogosPage() {
                                 const p2Win = p.games2 > p.games1;
                                 return (
                                   <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-                                    <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: p1Win ? 700 : 400, color: p1Win ? 'var(--verde-campo)' : '#717971' }}>{p.games1}</span>
-                                    <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: '#c1c9bf' }}>×</span>
-                                    <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: p2Win ? 700 : 400, color: p2Win ? 'var(--verde-campo)' : '#717971' }}>{p.games2}</span>
+                                    <span style={{ fontFamily: "var(--font-mono)", fontSize: 12, fontWeight: p1Win ? 700 : 400, color: p1Win ? 'var(--verde-campo)' : '#717971' }}>{p.games1}</span>
+                                    <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: 'var(--line)' }}>×</span>
+                                    <span style={{ fontFamily: "var(--font-mono)", fontSize: 12, fontWeight: p2Win ? 700 : 400, color: p2Win ? 'var(--verde-campo)' : '#717971' }}>{p.games2}</span>
                                   </div>
                                 );
                               })}
@@ -458,18 +486,18 @@ export default function JogosPage() {
                           >
                             <span
                               style={{
-                                fontFamily: "'DM Mono', monospace",
+                                fontFamily: "var(--font-mono)",
                                 fontSize: 11,
-                                color: '#717971',
+                                color: 'color-mix(in oklch, var(--ink) 45%, transparent)',
                               }}
                             >
                               {jogo.dupla1.length + jogo.dupla2.length} jogadores · 3 partidas
                             </span>
                             <span
                               style={{
-                                fontFamily: "'DM Mono', monospace",
+                                fontFamily: "var(--font-mono)",
                                 fontSize: 11,
-                                color: '#717971',
+                                color: 'color-mix(in oklch, var(--ink) 45%, transparent)',
                               }}
                             >
                               #R{rodada.rodada}.{jogo.id}
@@ -488,14 +516,14 @@ export default function JogosPage() {
               style={{
                 padding: 60,
                 textAlign: 'center',
-                border: '1px solid #e7e9e4',
-                background: '#ffffff',
+                border: '1px solid var(--line)',
+                background: 'var(--paper)',
               }}
             >
-              <p style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 18, color: '#717971' }}>
+              <p style={{ fontFamily: "var(--font-display)", fontSize: 18, color: 'color-mix(in oklch, var(--ink) 45%, transparent)' }}>
                 Nenhum jogo encontrado
               </p>
-              <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 14, color: '#c1c9bf', marginTop: 8 }}>
+              <p style={{ fontFamily: "var(--font-mono)", fontSize: 14, color: 'var(--line)', marginTop: 8 }}>
                 Tente ajustar os filtros
               </p>
             </div>
@@ -506,7 +534,7 @@ export default function JogosPage() {
       {/* ── DIV OCULTA PARA EXPORTAÇÃO ── */}
       <div
         ref={exportRef}
-        style={{ position: 'fixed', left: '-9999px', top: 0, width: 800, background: '#f8faf5', fontFamily: "'DM Mono', monospace" }}
+        style={{ position: 'fixed', left: '-9999px', top: 0, width: 800, background: 'var(--sand)', fontFamily: "var(--font-mono)" }}
       >
         {exportRodadas.map((rodada, ri) => {
           const jogosRealizados = rodada.jogos.filter(j => isRealizado(j.id));
@@ -518,14 +546,14 @@ export default function JogosPage() {
               {/* Header por rodada */}
               <div style={{ background: '#1a3a2a', padding: isFirst ? '28px 32px 22px' : '20px 32px 16px' }}>
                 {isFirst && (
-                  <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, letterSpacing: '0.28em', color: 'rgba(232,232,216,0.45)', textTransform: 'uppercase', marginBottom: 8 }}>
+                  <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: '0.28em', color: 'rgba(232,232,216,0.45)', textTransform: 'uppercase', marginBottom: 8 }}>
                     SQUADRA VERDE · TEMPORADA 2026
                   </p>
                 )}
-                <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: isFirst ? 42 : 28, color: '#e8e8d8', letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: 6 }}>
+                <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: isFirst ? 42 : 28, color: '#e8e8d8', letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: 6 }}>
                   {rodadaAtiva !== null ? 'Resultado da Rodada' : `Rodada ${rodada.rodada}`}
                 </h2>
-                <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: 'rgba(232,232,216,0.4)', letterSpacing: '0.1em' }}>
+                <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: 'rgba(232,232,216,0.4)', letterSpacing: '0.1em' }}>
                   {rodadaAtiva !== null ? `Rodada ${rodada.rodada}` : 'Temporada 2026'} · {rodada.data}
                 </p>
               </div>
@@ -537,7 +565,7 @@ export default function JogosPage() {
                   <div key={horario}>
                     {/* Horário label */}
                     <div style={{ background: '#2e312e', padding: '8px 32px', display: 'flex', alignItems: 'center', gap: 12 }}>
-                      <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, fontWeight: 500, color: '#9dd3aa', letterSpacing: '0.08em' }}>{horario}</span>
+                      <span style={{ fontFamily: "var(--font-mono)", fontSize: 13, fontWeight: 500, color: '#9dd3aa', letterSpacing: '0.08em' }}>{horario}</span>
                       <div style={{ flex: 1, height: 1, background: 'rgba(255,255,255,0.06)' }} />
                     </div>
 
@@ -553,26 +581,26 @@ export default function JogosPage() {
                             alignItems: 'center',
                             padding: '16px 32px',
                             background: isEven ? '#ffffff' : '#f8faf5',
-                            borderBottom: '1px solid #e7e9e4',
+                            borderBottom: '1px solid var(--line-soft)',
                             gap: 16,
                           }}
                         >
                           {/* Dupla 1 */}
                           <div>
                             {jogo.dupla1.map(nome => (
-                              <p key={nome} style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 600, fontSize: 14, color: '#191c19', lineHeight: 1.35, marginBottom: 2 }}>{nome}</p>
+                              <p key={nome} style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 14, color: 'var(--ink)', lineHeight: 1.35, marginBottom: 2 }}>{nome}</p>
                             ))}
                           </div>
 
                           {/* VS badge */}
                           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, background: '#1a4d2e', margin: '0 auto' }}>
-                            <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 11, color: '#9dd3aa', letterSpacing: '0.04em' }}>VS</span>
+                            <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 11, color: '#9dd3aa', letterSpacing: '0.04em' }}>VS</span>
                           </div>
 
                           {/* Dupla 2 */}
                           <div style={{ textAlign: 'right' }}>
                             {jogo.dupla2.map(nome => (
-                              <p key={nome} style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 600, fontSize: 14, color: '#191c19', lineHeight: 1.35, marginBottom: 2 }}>{nome}</p>
+                              <p key={nome} style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 14, color: 'var(--ink)', lineHeight: 1.35, marginBottom: 2 }}>{nome}</p>
                             ))}
                           </div>
 
@@ -594,11 +622,11 @@ export default function JogosPage() {
               <path d="M100 10 L185 45 L185 130 Q185 185 100 220 Q15 185 15 130 L15 45 Z" fill="none" stroke="#3d7a54" strokeWidth="10"/>
               <text x="100" y="140" textAnchor="middle" fontFamily="'Barlow Condensed',sans-serif" fontWeight="900" fontSize="80" fill="#3d7a54">SV</text>
             </svg>
-            <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(232,232,216,0.6)' }}>
+            <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(232,232,216,0.6)' }}>
               Squadra Verde
             </span>
           </div>
-          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: 'rgba(232,232,216,0.3)', letterSpacing: '0.1em' }}>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: 'rgba(232,232,216,0.3)', letterSpacing: '0.1em' }}>
             Temporada 2026
           </span>
         </div>
@@ -624,10 +652,10 @@ export default function JogosPage() {
               { label: 'Desempate', desc: 'Saldo de games (SG)' },
             ].map(item => (
               <div key={item.label} style={{ flex: '1 1 200px' }}>
-                <p style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 600, fontSize: 14, color: '#191c19', marginBottom: 4 }}>
+                <p style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 14, color: 'var(--ink)', marginBottom: 4 }}>
                   {item.label}
                 </p>
-                <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: '#717971' }}>
+                <p style={{ fontFamily: "var(--font-mono)", fontSize: 13, color: 'color-mix(in oklch, var(--ink) 45%, transparent)' }}>
                   {item.desc}
                 </p>
               </div>

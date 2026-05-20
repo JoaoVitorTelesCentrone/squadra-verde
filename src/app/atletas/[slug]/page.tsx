@@ -1,16 +1,15 @@
-import { notFound } from 'next/navigation';
+﻿import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import classificacaoM from '@/data/classificacao_ranking.json';
 import jogosDataM from '@/data/jogos_ranking.json';
 import resultadosMRaw from '@/data/resultados.json';
 import rankingBronzeF from '@/data/ranking_feminino.json';
-import jogosDataF from '@/data/jogos_ranking_feminino.json';
-import resultadosFRaw from '@/data/resultados_feminino.json';
+import jogosDataBronzeF from '@/data/jogos_bronze_feminino.json';
 import rankingPrataF from '@/data/ranking_prata_feminino.json';
+import jogosDataPrataF from '@/data/jogos_prata_feminino.json';
 import type { Resultado } from '@/lib/types';
 
 const resultadosM = resultadosMRaw as { resultados: Resultado[] };
-const resultadosF = resultadosFRaw as { resultados: Resultado[] };
 
 function slugify(nome: string) {
   return nome
@@ -50,6 +49,8 @@ function AtletaMasculino({ atleta }: { atleta: (typeof classificacaoM.ranking)[0
     resultadosM.resultados.filter(r => r.realizado).map(r => r.jogo_id)
   );
 
+  const resultadoMap = new Map(resultadosM.resultados.map(r => [r.jogo_id, r]));
+
   const jogos = jogosDataM.rodadas.flatMap(rodada =>
     rodada.jogos
       .filter(jogo => jogo.dupla1.includes(atleta.nome) || jogo.dupla2.includes(atleta.nome))
@@ -59,13 +60,23 @@ function AtletaMasculino({ atleta }: { atleta: (typeof classificacaoM.ranking)[0
           ? jogo.dupla1.find(n => n !== atleta.nome)!
           : jogo.dupla2.find(n => n !== atleta.nome)!;
         const adversarios = emDupla1 ? jogo.dupla2 : jogo.dupla1;
-        return { id: jogo.id, horario: jogo.horario, rodada: rodada.rodada, data: rodada.data, parceiro, adversarios, realizado: realizadosIds.has(jogo.id) };
+        const resultado = resultadoMap.get(jogo.id);
+        const realizado = !!resultado?.realizado;
+        let placar: string | undefined;
+        let vencedores: string[] | undefined;
+        if (realizado && resultado?.partidas?.length) {
+          const g1 = resultado.partidas.reduce((s, p) => s + p.games1, 0);
+          const g2 = resultado.partidas.reduce((s, p) => s + p.games2, 0);
+          placar = emDupla1 ? `${g1}/${g2}` : `${g2}/${g1}`;
+          vencedores = g1 > g2 ? jogo.dupla1 : jogo.dupla2;
+        }
+        return { id: jogo.id, horario: jogo.horario, rodada: rodada.rodada, data: rodada.data, parceiro, adversarios, realizado, placar, vencedores };
       })
   );
 
   const ativo = atleta.jogos > 0;
-  const heroBg = ativo ? '#00361a' : '#2e312e';
-  const accent = '#9dd3aa';
+  const heroBg = ativo ? 'var(--verde-deep)' : 'color-mix(in oklch, var(--ink) 60%, transparent)';
+  const accent = 'var(--verde-glow)';
 
   const stats = [
     { label: 'Jogos',          value: atleta.jogos },
@@ -103,7 +114,7 @@ function AtletaFeminino({ atleta, categoriaLabel, heroBg, accent, accentDim, acc
   accent: string;
   accentDim: string;
   accentBar: string;
-  agenda: { id: number; horario: string; rodada: number; data: string; parceiro: string; adversarios: string[]; realizado: boolean }[];
+  agenda: { id: number; horario: string; rodada: number; data: string; parceiro: string; adversarios: string[]; realizado: boolean; placar?: string; vencedores?: string[] }[];
 }) {
   const ativo = atleta.jogos > 0;
 
@@ -148,13 +159,13 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
   ativo: boolean;
   jogosCount: number;
   stats: { label: string; value: string | number; highlight?: string }[];
-  agenda: { id: number; horario: string; rodada: number; data: string; parceiro: string; adversarios: string[]; realizado: boolean }[];
+  agenda: { id: number; horario: string; rodada: number; data: string; parceiro: string; adversarios: string[]; realizado: boolean; placar?: string; vencedores?: string[] }[];
   accentBar: string;
 }) {
   return (
     <div>
       {/* ── HERO ── */}
-      <section style={{ background: heroBg, position: 'relative', overflow: 'hidden' }}>
+      <section style={{ background: heroBg, position: 'relative', overflow: 'hidden', padding: '72px 0 52px' }}>
         <div
           style={{
             position: 'absolute',
@@ -163,14 +174,14 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
             backgroundSize: '22px 22px',
           }}
         />
-        <div className="page-header-inner" style={{ position: 'relative' }}>
+        <div className="page-head-inner" style={{ position: 'relative' }}>
           <Link
             href="/atletas"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: 6,
-              fontFamily: "'DM Mono', monospace",
+              fontFamily: "var(--font-mono)",
               fontSize: 12,
               fontWeight: 700,
               letterSpacing: '0.08em',
@@ -193,7 +204,7 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                fontFamily: "'Unbounded', sans-serif",
+                fontFamily: "var(--font-display)",
                 fontWeight: 700,
                 fontSize: 32,
                 color: accent,
@@ -206,7 +217,7 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
             <div>
               <div
                 style={{
-                  fontFamily: "'DM Mono', monospace",
+                  fontFamily: "var(--font-mono)",
                   fontSize: 12,
                   fontWeight: 500,
                   color: accentDim,
@@ -218,10 +229,10 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
               </div>
               <h1
                 style={{
-                  fontFamily: "'Unbounded', sans-serif",
+                  fontFamily: "var(--font-display)",
                   fontWeight: 700,
                   fontSize: 'clamp(28px, 4vw, 48px)',
-                  color: '#ffffff',
+                  color: 'var(--paper)',
                   letterSpacing: '-0.02em',
                   lineHeight: 1.1,
                   marginBottom: 10,
@@ -233,7 +244,7 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
                 <span
                   style={{
                     display: 'inline-block',
-                    fontFamily: "'DM Mono', monospace",
+                    fontFamily: "var(--font-mono)",
                     fontSize: 11,
                     fontWeight: 700,
                     letterSpacing: '0.12em',
@@ -250,7 +261,7 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
                 <span
                   style={{
                     display: 'inline-block',
-                    fontFamily: "'DM Mono', monospace",
+                    fontFamily: "var(--font-mono)",
                     fontSize: 11,
                     fontWeight: 700,
                     letterSpacing: '0.12em',
@@ -276,7 +287,7 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
           <div style={{ marginBottom: 48 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20 }}>
               <div style={{ width: 3, height: 24, background: accentBar }} />
-              <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 18, color: '#191c19', letterSpacing: '-0.01em' }}>
+              <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 18, color: 'var(--ink)', letterSpacing: '-0.01em' }}>
                 Estatísticas
               </h2>
             </div>
@@ -285,21 +296,21 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
               {stats.map(s => (
                 <div
                   key={s.label}
-                  style={{ background: '#ffffff', border: '1px solid #e7e9e4', padding: '16px 14px', textAlign: 'center' }}
+                  style={{ background: 'var(--paper)', border: '1px solid var(--line)', padding: '16px 14px', textAlign: 'center' }}
                 >
                   <div
                     style={{
-                      fontFamily: "'DM Mono', monospace",
+                      fontFamily: "var(--font-mono)",
                       fontWeight: 500,
                       fontSize: 22,
                       lineHeight: 1,
                       marginBottom: 6,
-                      color: s.highlight === 'pos' ? accentBar : s.highlight === 'neg' ? '#ba1a1a' : '#191c19',
+                      color: s.highlight === 'pos' ? accentBar : s.highlight === 'neg' ? '#ba1a1a' : 'var(--ink)',
                     }}
                   >
                     {s.value}
                   </div>
-                  <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#717971' }}>
+                  <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#717971' }}>
                     {s.label}
                   </div>
                 </div>
@@ -313,10 +324,10 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20 }}>
               <div style={{ width: 3, height: 24, background: accentBar }} />
-              <h2 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 18, color: '#191c19', letterSpacing: '-0.01em' }}>
+              <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 18, color: 'var(--ink)', letterSpacing: '-0.01em' }}>
                 Agenda de Jogos
               </h2>
-              <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: '#717971' }}>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: '#717971' }}>
                 {agenda.length} partida{agenda.length !== 1 ? 's' : ''}
               </span>
             </div>
@@ -326,8 +337,8 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
                 <div
                   key={jogo.id}
                   style={{
-                    background: '#ffffff',
-                    border: `1px solid ${jogo.realizado ? '#c8e6c9' : '#e7e9e4'}`,
+                    background: 'var(--paper)',
+                    border: `1px solid ${jogo.realizado ? '#c8e6c9' : 'var(--line)'}`,
                     borderLeft: `3px solid ${jogo.realizado ? accentBar : '#c1c9bf'}`,
                     padding: '16px 20px',
                     display: 'flex',
@@ -337,36 +348,51 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
                   }}
                 >
                   <div style={{ flexShrink: 0, minWidth: 60 }}>
-                    <div style={{ fontFamily: "'DM Mono', monospace", fontWeight: 500, fontSize: 13, color: '#191c19', lineHeight: 1 }}>
+                    <div style={{ fontFamily: "var(--font-mono)", fontWeight: 500, fontSize: 13, color: 'var(--ink)', lineHeight: 1 }}>
                       R{jogo.rodada}
                     </div>
-                    <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: '#717971', marginTop: 3 }}>{jogo.data}</div>
-                    <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: '#717971' }}>{jogo.horario}</div>
+                    <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: '#717971', marginTop: 3 }}>{jogo.data}</div>
+                    <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: '#717971' }}>{jogo.horario}</div>
                   </div>
 
-                  <div style={{ width: 1, height: 44, background: '#e7e9e4', flexShrink: 0 }} />
+                  <div style={{ width: 1, height: 44, background: 'var(--line)', flexShrink: 0 }} />
 
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <p style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 14, color: accentBar, lineHeight: 1.2 }}>
-                      {nome}
-                    </p>
+                    {[nome, jogo.parceiro].map(n => (
+                      <p key={n} style={{ fontFamily: "var(--font-display)", fontWeight: n === nome ? 700 : 600, fontSize: n === nome ? 14 : 13, color: jogo.vencedores?.includes(n) ? accentBar : 'color-mix(in oklch, var(--ink) 60%, transparent)', lineHeight: 1.3, marginBottom: 2 }}>
+                        {n}
+                      </p>
+                    ))}
                   </div>
 
-                  <div
-                    style={{
-                      width: 36, height: 36,
-                      background: jogo.realizado ? heroBg : '#2e312e',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-                    }}
-                  >
-                    <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 11, color: accent, letterSpacing: '0.05em' }}>
-                      VS
-                    </span>
+                  <div style={{ flexShrink: 0, textAlign: 'center', minWidth: 48 }}>
+                    {jogo.placar ? (
+                      <div>
+                        <div style={{ fontFamily: "var(--font-mono)", fontWeight: 700, fontSize: 18, color: accentBar, lineHeight: 1 }}>
+                          {jogo.placar}
+                        </div>
+                        <div style={{ fontFamily: "var(--font-mono)", fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#717971', marginTop: 4 }}>
+                          placar
+                        </div>
+                      </div>
+                    ) : (
+                      <div
+                        style={{
+                          width: 36, height: 36, margin: '0 auto',
+                          background: jogo.realizado ? heroBg : 'color-mix(in oklch, var(--ink) 60%, transparent)',
+                          display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        }}
+                      >
+                        <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 11, color: accent, letterSpacing: '0.05em' }}>
+                          VS
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   <div style={{ flex: 2, minWidth: 0, textAlign: 'right' }}>
-                    {[jogo.parceiro, ...jogo.adversarios].map(n => (
-                      <p key={n} style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 600, fontSize: 13, color: '#191c19', marginBottom: 3, lineHeight: 1.2 }}>
+                    {jogo.adversarios.map(n => (
+                      <p key={n} style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 13, color: jogo.vencedores?.includes(n) ? accentBar : 'color-mix(in oklch, var(--ink) 60%, transparent)', marginBottom: 3, lineHeight: 1.2 }}>
                         {n}
                       </p>
                     ))}
@@ -374,7 +400,7 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
 
                   <div style={{ flexShrink: 0 }}>
                     {jogo.realizado
-                      ? <span className="chip-green" style={{ fontSize: 10 }}>Realizado</span>
+                      ? <span className="chip-green" style={{ fontSize: 10 }}>✓</span>
                       : <span className="chip-pending" style={{ fontSize: 10 }}>Pendente</span>
                     }
                   </div>
@@ -385,8 +411,8 @@ function AtletaLayout({ heroBg, accent, accentDim, nome, posicao, categoriaLabel
         )}
 
         {agenda.length === 0 && !ativo && (
-          <div style={{ padding: 40, textAlign: 'center', border: '1px solid #e7e9e4', background: '#ffffff' }}>
-            <p style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 16, color: '#717971' }}>
+          <div style={{ padding: 40, textAlign: 'center', border: '1px solid var(--line)', background: 'var(--paper)' }}>
+            <p style={{ fontFamily: "var(--font-display)", fontSize: 16, color: '#717971' }}>
               Nenhum jogo registrado ainda
             </p>
           </div>
@@ -408,10 +434,7 @@ export default async function AtletaPage({ params }: { params: Promise<{ slug: s
   // Feminine Bronze
   const atletaBF = rankingBronzeF.atletas.find(j => slugify(j.nome) === slug);
   if (atletaBF) {
-    const realizadosIds = new Set(
-      resultadosF.resultados.filter(r => r.realizado).map(r => r.jogo_id)
-    );
-    const agenda = jogosDataF.rodadas.flatMap(rodada =>
+    const agenda = jogosDataBronzeF.rodadas.flatMap(rodada =>
       rodada.jogos
         .filter(jogo => jogo.dupla1.includes(atletaBF.nome) || jogo.dupla2.includes(atletaBF.nome))
         .map(jogo => {
@@ -420,39 +443,71 @@ export default async function AtletaPage({ params }: { params: Promise<{ slug: s
             ? jogo.dupla1.find(n => n !== atletaBF.nome)!
             : jogo.dupla2.find(n => n !== atletaBF.nome)!;
           return {
-            id: jogo.id,
-            horario: jogo.horario,
+            id: jogo.jogo,
+            horario: '',
             rodada: rodada.rodada,
             data: rodada.data,
             parceiro,
             adversarios: emDupla1 ? jogo.dupla2 : jogo.dupla1,
-            realizado: realizadosIds.has(jogo.id),
+            realizado: jogo.status === 'Finalizado',
           };
         })
     );
-    return <AtletaFeminino
-      atleta={atletaBF}
-      categoriaLabel="Ranking Feminino Bronze 2026"
-      heroBg="#3d1a2c"
-      accent="#e8b4c8"
-      accentDim="rgba(232,180,200,0.6)"
-      accentBar="#6b2c4a"
-      agenda={agenda}
-    />;
+    return (
+      <div className="theme-fem">
+        <AtletaFeminino
+          atleta={atletaBF}
+          categoriaLabel="Ranking Feminino Bronze 2026"
+          heroBg="var(--bronze-deep)"
+          accent="var(--bronze-light)"
+          accentDim="color-mix(in oklch, var(--bronze-light) 55%, transparent)"
+          accentBar="var(--bronze)"
+          agenda={agenda}
+        />
+      </div>
+    );
   }
 
   // Feminine Prata
   const atletaPF = rankingPrataF.atletas.find(j => slugify(j.nome) === slug);
   if (atletaPF) {
-    return <AtletaFeminino
-      atleta={atletaPF}
-      categoriaLabel="Ranking Feminino Prata 2026"
-      heroBg="#0f1e35"
-      accent="#b8cff2"
-      accentDim="rgba(184,207,242,0.6)"
-      accentBar="#1a3050"
-      agenda={[]}
-    />;
+    const agendaPrata = jogosDataPrataF.rodadas.flatMap(rodada =>
+      rodada.jogos
+        .filter(jogo => jogo.dupla1.includes(atletaPF.nome) || jogo.dupla2.includes(atletaPF.nome))
+        .map(jogo => {
+          const emDupla1 = jogo.dupla1.includes(atletaPF.nome);
+          const parceiro = emDupla1
+            ? jogo.dupla1.find(n => n !== atletaPF.nome)!
+            : jogo.dupla2.find(n => n !== atletaPF.nome)!;
+          const realizado = jogo.status === 'Finalizado';
+          const placar = realizado && 'placar' in jogo ? (jogo as { placar?: string }).placar : undefined;
+          const vencedores = realizado && 'vencedoras' in jogo ? (jogo as { vencedoras?: string[] }).vencedoras : undefined;
+          return {
+            id: jogo.id,
+            horario: '',
+            rodada: rodada.rodada,
+            data: rodada.data,
+            parceiro,
+            adversarios: emDupla1 ? jogo.dupla2 : jogo.dupla1,
+            realizado,
+            placar,
+            vencedores,
+          };
+        })
+    );
+    return (
+      <div className="theme-fem">
+        <AtletaFeminino
+          atleta={atletaPF}
+          categoriaLabel="Ranking Feminino Prata 2026"
+          heroBg="oklch(0.26 0.014 232)"
+          accent="var(--prata-light)"
+          accentDim="color-mix(in oklch, var(--prata-light) 55%, transparent)"
+          accentBar="var(--prata-deep)"
+          agenda={agendaPrata}
+        />
+      </div>
+    );
   }
 
   notFound();

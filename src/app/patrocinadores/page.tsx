@@ -20,14 +20,7 @@ export default function PatrocinadoresPage() {
   return (
     <div>
       {/* ── HERO ── */}
-      <section
-        style={{
-          background: '#00361a',
-          position: 'relative',
-          overflow: 'hidden',
-          padding: 'clamp(32px, 6vw, 72px) clamp(16px, 4vw, 32px)',
-        }}
-      >
+      <section className="page-head" style={{ position: 'relative', overflow: 'hidden', padding: 'clamp(32px, 6vw, 72px) clamp(16px, 4vw, 32px)' }}>
         <div
           style={{
             position: 'absolute',
@@ -53,9 +46,9 @@ export default function PatrocinadoresPage() {
               style={{
                 width: 120,
                 height: 120,
-                background: '#f8faf5',
-                border: '2px solid #9dd3aa',
-                boxShadow: '6px 6px 0 #191c19',
+                background: 'var(--sand)',
+                border: '2px solid var(--verde-glow)',
+                boxShadow: '6px 6px 0 var(--ink)',
                 flexShrink: 0,
                 overflow: 'hidden',
               }}
@@ -71,12 +64,12 @@ export default function PatrocinadoresPage() {
             <div>
               <p
                 style={{
-                  fontFamily: "'DM Mono', monospace",
+                  fontFamily: "var(--font-mono)",
                   fontSize: 11,
                   fontWeight: 700,
                   letterSpacing: '0.2em',
                   textTransform: 'uppercase',
-                  color: '#9dd3aa',
+                  color: 'var(--verde-glow)',
                   marginBottom: 10,
                 }}
               >
@@ -84,10 +77,10 @@ export default function PatrocinadoresPage() {
               </p>
               <h1
                 style={{
-                  fontFamily: "'Unbounded', sans-serif",
+                  fontFamily: "var(--font-display)",
                   fontWeight: 700,
                   fontSize: 'clamp(32px, 5vw, 56px)',
-                  color: '#ffffff',
+                  color: 'var(--paper)',
                   letterSpacing: '-0.02em',
                   lineHeight: 1.05,
                   marginBottom: 12,
@@ -97,7 +90,7 @@ export default function PatrocinadoresPage() {
               </h1>
               <p
                 style={{
-                  fontFamily: "'DM Mono', monospace",
+                  fontFamily: "var(--font-mono)",
                   fontSize: 15,
                   color: 'rgba(240,241,236,0.65)',
                   maxWidth: 480,
@@ -120,10 +113,10 @@ export default function PatrocinadoresPage() {
           >
             <div
               style={{
-                fontFamily: "'DM Mono', monospace",
+                fontFamily: "var(--font-mono)",
                 fontWeight: 500,
                 fontSize: 26,
-                color: '#ffffff',
+                color: 'var(--paper)',
                 lineHeight: 1,
                 marginRight: 8,
               }}
@@ -132,7 +125,7 @@ export default function PatrocinadoresPage() {
             </div>
             <div
               style={{
-                fontFamily: "'DM Mono', monospace",
+                fontFamily: "var(--font-mono)",
                 fontSize: 10,
                 fontWeight: 700,
                 letterSpacing: '0.12em',
@@ -158,27 +151,27 @@ export default function PatrocinadoresPage() {
             gap: 16,
             marginBottom: 32,
             paddingBottom: 20,
-            borderBottom: '2px solid #191c19',
+            borderBottom: '2px solid var(--ink)',
           }}
         >
-          <div style={{ width: 4, height: 32, background: '#00361a' }} />
+          <div style={{ width: 4, height: 32, background: 'var(--verde-deep)' }} />
           <h2
             style={{
-              fontFamily: "'Unbounded', sans-serif",
+              fontFamily: "var(--font-display)",
               fontWeight: 700,
               fontSize: 28,
-              color: '#191c19',
+              color: 'var(--ink)',
               letterSpacing: '-0.01em',
             }}
           >
             Parceiros Oficiais
           </h2>
-          <div style={{ flex: 1, height: 1, background: '#e7e9e4' }} />
+          <div style={{ flex: 1, height: 1, background: 'var(--line)' }} />
           <span
             style={{
-              fontFamily: "'DM Mono', monospace",
+              fontFamily: "var(--font-mono)",
               fontSize: 12,
-              color: '#717971',
+              color: 'color-mix(in oklch, var(--ink) 45%, transparent)',
             }}
           >
             {patrocinadores.length} empresas
@@ -198,9 +191,9 @@ export default function PatrocinadoresPage() {
             <div
               key={p.nome}
               style={{
-                background: '#ffffff',
-                border: '1px solid #191c19',
-                boxShadow: '4px 4px 0 #191c19',
+                background: 'var(--paper)',
+                border: '1px solid var(--ink)',
+                boxShadow: '4px 4px 0 var(--ink)',
                 padding: '28px 24px',
                 display: 'flex',
                 alignItems: 'center',
@@ -212,11 +205,11 @@ export default function PatrocinadoresPage() {
               }}
               onMouseEnter={e => {
                 (e.currentTarget as HTMLDivElement).style.transform = 'translate(-2px,-2px)';
-                (e.currentTarget as HTMLDivElement).style.boxShadow = '6px 6px 0 #191c19';
+                (e.currentTarget as HTMLDivElement).style.boxShadow = '6px 6px 0 var(--ink)';
               }}
               onMouseLeave={e => {
                 (e.currentTarget as HTMLDivElement).style.transform = 'none';
-                (e.currentTarget as HTMLDivElement).style.boxShadow = '4px 4px 0 #191c19';
+                (e.currentTarget as HTMLDivElement).style.boxShadow = '4px 4px 0 var(--ink)';
               }}
             >
               {/* Accent line esquerda */}
@@ -227,7 +220,7 @@ export default function PatrocinadoresPage() {
                   left: 0,
                   width: 4,
                   bottom: 0,
-                  background: '#00361a',
+                  background: 'var(--verde-deep)',
                 }}
               />
 
@@ -237,7 +230,7 @@ export default function PatrocinadoresPage() {
                   position: 'absolute',
                   right: -8,
                   bottom: -16,
-                  fontFamily: "'Unbounded', sans-serif",
+                  fontFamily: "var(--font-display)",
                   fontWeight: 700,
                   fontSize: 80,
                   color: 'rgba(0,54,26,0.04)',
@@ -253,15 +246,15 @@ export default function PatrocinadoresPage() {
                 style={{
                   width: 56,
                   height: 56,
-                  background: '#1a4d2e',
-                  border: '1px solid #191c19',
+                  background: 'var(--verde)',
+                  border: '1px solid var(--ink)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontFamily: "'Unbounded', sans-serif",
+                  fontFamily: "var(--font-display)",
                   fontWeight: 700,
                   fontSize: 18,
-                  color: '#9dd3aa',
+                  color: 'var(--verde-glow)',
                   flexShrink: 0,
                   marginLeft: 8,
                 }}
@@ -273,10 +266,10 @@ export default function PatrocinadoresPage() {
               <div style={{ flex: 1, minWidth: 0 }}>
                 <h3
                   style={{
-                    fontFamily: "'Unbounded', sans-serif",
+                    fontFamily: "var(--font-display)",
                     fontWeight: 700,
                     fontSize: 17,
-                    color: '#191c19',
+                    color: 'var(--ink)',
                     letterSpacing: '-0.01em',
                     lineHeight: 1.2,
                   }}
@@ -285,12 +278,12 @@ export default function PatrocinadoresPage() {
                 </h3>
                 <p
                   style={{
-                    fontFamily: "'DM Mono', monospace",
+                    fontFamily: "var(--font-mono)",
                     fontSize: 11,
                     fontWeight: 600,
                     letterSpacing: '0.1em',
                     textTransform: 'uppercase',
-                    color: '#717971',
+                    color: 'color-mix(in oklch, var(--ink) 45%, transparent)',
                     marginTop: 4,
                   }}
                 >
@@ -304,8 +297,8 @@ export default function PatrocinadoresPage() {
         {/* ── FOTO DO GRUPO ── */}
         <div
           style={{
-            border: '1px solid #191c19',
-            boxShadow: '6px 6px 0 #191c19',
+            border: '1px solid var(--ink)',
+            boxShadow: '6px 6px 0 var(--ink)',
             overflow: 'hidden',
             position: 'relative',
             marginBottom: 32,
@@ -337,12 +330,12 @@ export default function PatrocinadoresPage() {
           >
             <p
               style={{
-                fontFamily: "'DM Mono', monospace",
+                fontFamily: "var(--font-mono)",
                 fontSize: 12,
                 fontWeight: 700,
                 letterSpacing: '0.2em',
                 textTransform: 'uppercase',
-                color: '#9dd3aa',
+                color: 'var(--verde-glow)',
                 marginBottom: 12,
               }}
             >
@@ -350,10 +343,10 @@ export default function PatrocinadoresPage() {
             </p>
             <h2
               style={{
-                fontFamily: "'Unbounded', sans-serif",
+                fontFamily: "var(--font-display)",
                 fontWeight: 700,
                 fontSize: 'clamp(24px, 4vw, 40px)',
-                color: '#ffffff',
+                color: 'var(--paper)',
                 letterSpacing: '-0.02em',
                 lineHeight: 1.15,
                 maxWidth: 600,
@@ -367,8 +360,8 @@ export default function PatrocinadoresPage() {
         {/* ── CTA ── */}
         <div
           style={{
-            background: '#f3f4ef',
-            border: '1px solid #c1c9bf',
+            background: 'var(--sand-2)',
+            border: '1px solid var(--line)',
             padding: '32px 32px',
             display: 'flex',
             alignItems: 'center',
@@ -380,16 +373,16 @@ export default function PatrocinadoresPage() {
           <div>
             <p
               style={{
-                fontFamily: "'Unbounded', sans-serif",
+                fontFamily: "var(--font-display)",
                 fontWeight: 700,
                 fontSize: 20,
-                color: '#191c19',
+                color: 'var(--ink)',
                 marginBottom: 6,
               }}
             >
               Quer ser patrocinador?
             </p>
-            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 14, color: '#717971' }}>
+            <p style={{ fontFamily: "var(--font-mono)", fontSize: 14, color: 'color-mix(in oklch, var(--ink) 45%, transparent)' }}>
               Entre em contato para apoiar o Masculino Squadra Verde na próxima temporada.
             </p>
           </div>

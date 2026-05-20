@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useCallback } from 'react';
 import jogosData from '@/data/jogos_ranking.json';
@@ -108,15 +108,15 @@ export default function AdminPage() {
   const totalRealizados = Object.values(form).filter(s => s.realizado).length;
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f8faf5' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--sand)' }}>
       {/* Header */}
-      <div style={{ background: '#1a3a2a', borderBottom: '2px solid #191c19' }}>
-        <div className="page-header-inner">
-          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, letterSpacing: '0.2em', color: 'rgba(157,211,170,0.6)', textTransform: 'uppercase', marginBottom: 8 }}>
+      <div style={{ background: 'var(--verde-deep)', borderBottom: '2px solid var(--ink)' }}>
+        <div className="page-head-inner">
+          <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: '0.2em', color: 'rgba(157,211,170,0.6)', textTransform: 'uppercase', marginBottom: 8 }}>
             Administração
           </p>
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
-            <h1 style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 'clamp(28px, 4vw, 48px)', color: '#e8e8d8', letterSpacing: '-0.02em' }}>
+            <h1 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 'clamp(28px, 4vw, 48px)', color: '#e8e8d8', letterSpacing: '-0.02em' }}>
               Inserir Resultados
             </h1>
             {!loading && (
@@ -132,7 +132,7 @@ export default function AdminPage() {
       <div className="page-body-inner">
         {loading ? (
           <div style={{ padding: 80, textAlign: 'center' }}>
-            <span style={{ display: 'inline-block', width: 32, height: 32, border: '3px solid #e7e9e4', borderTopColor: '#2c694e', borderRadius: '50%', animation: 'spin 0.7s linear infinite' }} />
+            <span style={{ display: 'inline-block', width: 32, height: 32, border: '3px solid var(--line)', borderTopColor: '#2c694e', borderRadius: '50%', animation: 'spin 0.7s linear infinite' }} />
           </div>
         ) : (
           <>
@@ -160,12 +160,12 @@ export default function AdminPage() {
               {rodadasVisiveis.map(rodada => (
                 <div key={rodada.rodada}>
                   {/* Rodada header */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 20, paddingBottom: 12, borderBottom: '2px solid #191c19' }}>
-                    <div style={{ background: '#2e312e', padding: '6px 14px', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                      <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 14, color: '#ffffff', letterSpacing: '0.05em' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 20, paddingBottom: 12, borderBottom: '2px solid var(--ink)' }}>
+                    <div style={{ background: 'color-mix(in oklch, var(--ink) 60%, transparent)', padding: '6px 14px', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                      <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 14, color: 'var(--paper)', letterSpacing: '0.05em' }}>
                         RODADA {rodada.rodada}
                       </span>
-                      <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: '#9dd3aa' }}>
+                      <span style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: 'var(--verde-glow)' }}>
                         {rodada.data}
                       </span>
                     </div>
@@ -183,43 +183,43 @@ export default function AdminPage() {
                         <div
                           key={jogo.id}
                           style={{
-                            background: '#ffffff',
+                            background: 'var(--paper)',
                             border: `1px solid ${state.realizado ? '#2c694e' : '#c1c9bf'}`,
                             boxShadow: `3px 3px 0 ${state.realizado ? '#2c694e' : '#c1c9bf'}`,
                           }}
                         >
                           {/* Card header */}
-                          <div style={{ background: state.realizado ? '#1a3a2a' : '#2e312e', padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                          <div style={{ background: state.realizado ? 'var(--verde-deep)' : 'color-mix(in oklch, var(--ink) 60%, transparent)', padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                              <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: '#9dd3aa' }}>{jogo.horario}</span>
-                              <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: 'rgba(157,211,170,0.5)' }}>#R{rodada.rodada}.{jogo.id}</span>
+                              <span style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: 'var(--verde-glow)' }}>{jogo.horario}</span>
+                              <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: 'rgba(157,211,170,0.5)' }}>#R{rodada.rodada}.{jogo.id}</span>
                             </div>
                             <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer' }}>
                               <input
                                 type="checkbox"
                                 checked={state.realizado}
                                 onChange={() => toggleRealizado(jogo.id)}
-                                style={{ width: 16, height: 16, cursor: 'pointer', accentColor: '#9dd3aa' }}
+                                style={{ width: 16, height: 16, cursor: 'pointer', accentColor: 'var(--verde-glow)' }}
                               />
-                              <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', color: state.realizado ? '#9dd3aa' : 'rgba(157,211,170,0.5)', textTransform: 'uppercase' }}>
+                              <span style={{ fontFamily: "var(--font-mono)", fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', color: state.realizado ? 'var(--verde-glow)' : 'rgba(157,211,170,0.5)', textTransform: 'uppercase' }}>
                                 Realizado
                               </span>
                             </label>
                           </div>
 
                           {/* Duplas summary */}
-                          <div style={{ padding: '12px 16px 8px', display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid #e7e9e4' }}>
+                          <div style={{ padding: '12px 16px 8px', display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid var(--line)' }}>
                             <div style={{ flex: 1 }}>
                               {jogo.dupla1.map(n => (
-                                <p key={n} style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 600, fontSize: 13, color: '#191c19', lineHeight: 1.3 }}>{n}</p>
+                                <p key={n} style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 13, color: 'var(--ink)', lineHeight: 1.3 }}>{n}</p>
                               ))}
                             </div>
-                            <div style={{ width: 28, height: 28, background: '#1a4d2e', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                              <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 700, fontSize: 10, color: '#9dd3aa' }}>VS</span>
+                            <div style={{ width: 28, height: 28, background: 'var(--verde)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                              <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 10, color: 'var(--verde-glow)' }}>VS</span>
                             </div>
                             <div style={{ flex: 1, textAlign: 'right' }}>
                               {jogo.dupla2.map(n => (
-                                <p key={n} style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 600, fontSize: 13, color: '#191c19', lineHeight: 1.3 }}>{n}</p>
+                                <p key={n} style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 13, color: 'var(--ink)', lineHeight: 1.3 }}>{n}</p>
                               ))}
                             </div>
                           </div>
@@ -227,13 +227,13 @@ export default function AdminPage() {
                           {/* Partidas */}
                           {state.realizado && (
                             <div style={{ padding: '12px 16px' }}>
-                              <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#717971', marginBottom: 10 }}>
+                              <p style={{ fontFamily: "var(--font-mono)", fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'color-mix(in oklch, var(--ink) 45%, transparent)', marginBottom: 10 }}>
                                 Placar das partidas
                               </p>
                               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                                 {pairings.map((p, i) => (
-                                  <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr auto auto auto 1fr', alignItems: 'center', gap: 8, background: '#f8faf5', padding: '8px 10px', border: '1px solid #e7e9e4' }}>
-                                    <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: '#414942', lineHeight: 1.3 }}>{p.pair1}</span>
+                                  <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr auto auto auto 1fr', alignItems: 'center', gap: 8, background: 'var(--sand)', padding: '8px 10px', border: '1px solid var(--line)' }}>
+                                    <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: '#414942', lineHeight: 1.3 }}>{p.pair1}</span>
                                     <input
                                       type="number"
                                       min="0"
@@ -243,7 +243,7 @@ export default function AdminPage() {
                                       placeholder="0"
                                       style={scoreInputStyle}
                                     />
-                                    <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: '#c1c9bf', textAlign: 'center' }}>×</span>
+                                    <span style={{ fontFamily: "var(--font-mono)", fontSize: 13, color: '#c1c9bf', textAlign: 'center' }}>×</span>
                                     <input
                                       type="number"
                                       min="0"
@@ -253,7 +253,7 @@ export default function AdminPage() {
                                       placeholder="0"
                                       style={scoreInputStyle}
                                     />
-                                    <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: '#414942', textAlign: 'right', lineHeight: 1.3 }}>{p.pair2}</span>
+                                    <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: '#414942', textAlign: 'right', lineHeight: 1.3 }}>{p.pair2}</span>
                                   </div>
                                 ))}
                               </div>
@@ -261,8 +261,8 @@ export default function AdminPage() {
                           )}
 
                           {/* Footer */}
-                          <div style={{ padding: '10px 16px 12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: state.realizado ? '1px solid #e7e9e4' : 'none' }}>
-                            <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: state.realizado && temPlacar ? '#2c694e' : '#c1c9bf' }}>
+                          <div style={{ padding: '10px 16px 12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: state.realizado ? '1px solid var(--line)' : 'none' }}>
+                            <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: state.realizado && temPlacar ? '#2c694e' : '#c1c9bf' }}>
                               {!state.realizado ? 'Jogo pendente' : temPlacar ? '✓ Placar completo' : '⚠ Placar não preenchido'}
                             </span>
                             <button
@@ -270,11 +270,11 @@ export default function AdminPage() {
                               disabled={state.saving}
                               style={{
                                 padding: '8px 16px',
-                                background: state.saved ? '#2c694e' : state.saving ? '#e7e9e4' : '#00361a',
-                                color: state.saved || state.saving ? '#717971' : '#9dd3aa',
-                                border: '1px solid #191c19',
-                                boxShadow: state.saving ? 'none' : '2px 2px 0 #191c19',
-                                fontFamily: "'DM Mono', monospace",
+                                background: state.saved ? '#2c694e' : state.saving ? 'var(--line)' : '#00361a',
+                                color: state.saved || state.saving ? 'color-mix(in oklch, var(--ink) 45%, transparent)' : 'var(--verde-glow)',
+                                border: '1px solid var(--ink)',
+                                boxShadow: state.saving ? 'none' : '2px 2px 0 var(--ink)',
+                                fontFamily: "var(--font-mono)",
                                 fontSize: 12,
                                 fontWeight: 700,
                                 letterSpacing: '0.08em',
@@ -308,15 +308,15 @@ export default function AdminPage() {
 
 const tabStyle = (active: boolean): React.CSSProperties => ({
   padding: '7px 14px',
-  fontFamily: "'DM Mono', monospace",
+  fontFamily: "var(--font-mono)",
   fontSize: 11,
   fontWeight: 700,
   letterSpacing: '0.1em',
   textTransform: 'uppercase',
-  border: '1px solid #191c19',
+  border: '1px solid var(--ink)',
   cursor: 'pointer',
-  background: active ? '#00361a' : '#ffffff',
-  color: active ? '#9dd3aa' : '#414942',
+  background: active ? '#00361a' : 'var(--paper)',
+  color: active ? 'var(--verde-glow)' : '#414942',
 });
 
 const scoreInputStyle: React.CSSProperties = {
@@ -324,10 +324,10 @@ const scoreInputStyle: React.CSSProperties = {
   padding: '6px 8px',
   textAlign: 'center',
   border: '1px solid #c1c9bf',
-  background: '#ffffff',
-  fontFamily: "'DM Mono', monospace",
+  background: 'var(--paper)',
+  fontFamily: "var(--font-mono)",
   fontSize: 16,
   fontWeight: 700,
-  color: '#191c19',
+  color: 'var(--ink)',
   outline: 'none',
 };

@@ -2,16 +2,16 @@
 
 import { useState, useMemo, useRef } from 'react';
 import jogosData from '@/data/jogos_prata_feminino.json';
-import SectionTabs, { JOGOS_TABS } from '@/components/SectionTabs';
+import Link from 'next/link';
 
 type FiltroStatus = 'todos' | 'realizados' | 'pendentes';
 
 const THEME = {
-  primary: '#4a5c6b',
-  dark: '#1e3a4a',
-  mid: '#5a7a8e',
-  accent: '#b8d4e8',
-  accentLight: '#d6eaf5',
+  primary:     'var(--prata)',
+  dark:        'var(--prata-deep)',
+  mid:         'var(--prata)',
+  accent:      'var(--prata-light)',
+  accentLight: 'color-mix(in oklch, var(--prata-light) 40%, var(--paper))',
 };
 
 export default function FeminoPrataJogosPage() {
@@ -54,19 +54,17 @@ export default function FeminoPrataJogosPage() {
       const html2canvas = (await import('html2canvas')).default;
       const el = exportRef.current;
       const canvas = await html2canvas(el, {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: '#f0f6fb',
-        logging: false,
-        width: el.offsetWidth,
-        height: el.scrollHeight,
-        windowWidth: el.offsetWidth,
-        windowHeight: el.scrollHeight,
+        scale: 2, useCORS: true, backgroundColor: '#f0f6fb', logging: false,
+        width: el.offsetWidth, height: el.scrollHeight,
+        windowWidth: el.offsetWidth, windowHeight: el.scrollHeight,
+        onclone: (doc: Document) => { doc.querySelectorAll('style,link[rel="stylesheet"]').forEach(s => s.remove()); },
       });
       const a = document.createElement('a');
       a.download = `sv-prata-f${rodadaAtiva !== null ? `-r${rodadaAtiva}` : ''}.png`;
       a.href = canvas.toDataURL('image/png');
+      document.body.appendChild(a);
       a.click();
+      a.remove();
     } catch (err) {
       console.error(err);
     } finally {
@@ -81,28 +79,49 @@ export default function FeminoPrataJogosPage() {
 
   return (
     <div>
-      <SectionTabs tabs={JOGOS_TABS} section="Jogos" />
       {/* Header */}
-      <div style={{ background: 'var(--branco)', borderBottom: '1px solid rgba(26,58,26,0.12)' }}>
-        <div className="page-header-inner">
-          <p className="section-label" style={{ marginBottom: 10, color: THEME.primary }}>
+      <div className="page-head" style={{ background: 'oklch(0.26 0.014 232)' }}>
+        <div className="page-head-inner">
+          {/* Jogos switcher */}
+          <div style={{ display: 'flex', gap: 4, marginBottom: 28, flexWrap: 'wrap' }}>
+            {([
+              { href: '/jogos',               label: 'Masculino', active: false },
+              { href: '/feminino-jogos',      label: 'F. Bronze', active: false },
+              { href: '/feminino-prata-jogos',label: 'F. Prata',  active: true  },
+            ] as const).map(tab => (
+              <Link key={tab.href} href={tab.href} style={{
+                padding: '8px 20px',
+                fontFamily: 'var(--font-mono)',
+                fontSize: 11, fontWeight: 500,
+                letterSpacing: '0.2em', textTransform: 'uppercase',
+                textDecoration: 'none', border: '1px solid',
+                borderColor: tab.active ? 'var(--paper)' : 'color-mix(in oklch, var(--paper) 28%, transparent)',
+                background: tab.active ? 'color-mix(in oklch, var(--paper) 16%, transparent)' : 'transparent',
+                color: tab.active ? 'var(--paper)' : 'color-mix(in oklch, var(--paper) 50%, transparent)',
+                borderRadius: 2, transition: 'all 0.15s',
+              }}>{tab.label}</Link>
+            ))}
+          </div>
+          <p className="section-label" style={{ marginBottom: 10, color: 'var(--prata-light)' }}>
             Temporada 2026 · Feminino Prata
           </p>
           <h1
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontWeight: 700,
-              fontSize: 'clamp(32px, 5vw, 56px)',
-              color: '#191c19',
-              letterSpacing: '-0.02em',
-              marginBottom: 8,
+              fontFamily: "var(--font-display)",
+              fontWeight: 800,
+              fontSize: 'clamp(36px, 6vw, 72px)',
+              color: 'var(--paper)',
+              letterSpacing: '-0.04em',
+              textTransform: 'uppercase',
+              lineHeight: 0.95,
+              marginBottom: 16,
             }}
           >
-            Jogos Prata Feminino
+            Jogos Prata<br />Feminino
           </h1>
           <div className="header-actions" style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', alignItems: 'center' }}>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#717971' }}>
+              <p style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: 'color-mix(in oklch, var(--paper) 55%, transparent)' }}>
                 {jogosData.torneio} · {jogosData.rodadas.length} rodadas
               </p>
               <div style={{ display: 'flex', gap: 8 }}>
@@ -118,14 +137,16 @@ export default function FeminoPrataJogosPage() {
                 alignItems: 'center',
                 gap: 8,
                 padding: '10px 18px',
-                background: exporting ? '#e7e9e4' : THEME.dark,
-                color: exporting ? '#717971' : THEME.accentLight,
-                border: '1px solid #191c19',
-                boxShadow: exporting ? 'none' : '3px 3px 0 #191c19',
-                fontFamily: "'Inter', sans-serif",
-                fontSize: 13,
-                fontWeight: 700,
-                letterSpacing: '0.04em',
+                background: exporting ? 'color-mix(in oklch, var(--paper) 10%, transparent)' : 'var(--prata-light)',
+                color: exporting ? 'color-mix(in oklch, var(--paper) 35%, transparent)' : 'oklch(0.26 0.014 232)',
+                border: '1px solid color-mix(in oklch, var(--paper) 22%, transparent)',
+                boxShadow: 'none',
+                fontFamily: "var(--font-mono)",
+                fontSize: 11,
+                fontWeight: 500,
+                letterSpacing: '0.22em',
+                textTransform: 'uppercase' as const,
+                borderRadius: 2,
                 cursor: exporting ? 'not-allowed' : 'pointer',
                 transition: 'all 0.15s',
                 whiteSpace: 'nowrap',
@@ -153,23 +174,23 @@ export default function FeminoPrataJogosPage() {
         {/* Filtros */}
         <div className="filter-bar">
           {/* Status */}
-          <div style={{ display: 'flex', gap: 0, border: '1px solid #191c19' }}>
+          <div style={{ display: 'flex', gap: 0, border: '1px solid var(--ink)' }}>
             {(['todos', 'realizados', 'pendentes'] as FiltroStatus[]).map(f => (
               <button
                 key={f}
                 onClick={() => setFiltroStatus(f)}
                 style={{
                   padding: '8px 16px',
-                  fontFamily: "'Inter', sans-serif",
+                  fontFamily: "var(--font-mono)",
                   fontSize: 11,
                   fontWeight: 700,
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
                   border: 'none',
-                  borderRight: f !== 'pendentes' ? '1px solid #191c19' : 'none',
+                  borderRight: f !== 'pendentes' ? '1px solid var(--ink)' : 'none',
                   cursor: 'pointer',
-                  background: filtroStatus === f ? THEME.dark : '#ffffff',
-                  color: filtroStatus === f ? THEME.accent : '#414942',
+                  background: filtroStatus === f ? THEME.dark : 'var(--paper)',
+                  color: filtroStatus === f ? THEME.accent : 'color-mix(in oklch, var(--ink) 65%, transparent)',
                   transition: 'all 0.15s',
                 }}
               >
@@ -189,10 +210,10 @@ export default function FeminoPrataJogosPage() {
               minWidth: 200,
               padding: '8px 14px',
               border: '1px solid #c1c9bf',
-              background: '#f8faf5',
-              fontFamily: "'Inter', sans-serif",
+              background: 'var(--sand)',
+              fontFamily: "var(--font-mono)",
               fontSize: 14,
-              color: '#191c19',
+              color: 'var(--ink)',
               outline: 'none',
             }}
           />
@@ -203,32 +224,32 @@ export default function FeminoPrataJogosPage() {
               onClick={() => setRodadaAtiva(null)}
               style={{
                 padding: '6px 12px',
-                fontFamily: "'Inter', sans-serif",
+                fontFamily: "var(--font-mono)",
                 fontSize: 11,
                 fontWeight: 700,
                 letterSpacing: '0.1em',
                 textTransform: 'uppercase',
-                border: '1px solid #191c19',
+                border: '1px solid var(--ink)',
                 cursor: 'pointer',
-                background: rodadaAtiva === null ? THEME.dark : '#ffffff',
-                color: rodadaAtiva === null ? THEME.accent : '#414942',
+                background: rodadaAtiva === null ? THEME.dark : 'var(--paper)',
+                color: rodadaAtiva === null ? THEME.accent : 'color-mix(in oklch, var(--ink) 65%, transparent)',
               }}
             >
               Todas
             </button>
-            {jogosData.rodadas.map(r => (
+            {[...jogosData.rodadas].sort((a, b) => a.rodada - b.rodada).map(r => (
               <button
                 key={r.rodada}
                 onClick={() => setRodadaAtiva(rodadaAtiva === r.rodada ? null : r.rodada)}
                 style={{
                   padding: '6px 12px',
-                  fontFamily: "'DM Mono', monospace",
+                  fontFamily: "var(--font-mono)",
                   fontSize: 11,
                   fontWeight: 500,
-                  border: '1px solid #191c19',
+                  border: '1px solid var(--ink)',
                   cursor: 'pointer',
-                  background: rodadaAtiva === r.rodada ? THEME.dark : '#ffffff',
-                  color: rodadaAtiva === r.rodada ? THEME.accent : '#414942',
+                  background: rodadaAtiva === r.rodada ? THEME.dark : 'var(--paper)',
+                  color: rodadaAtiva === r.rodada ? THEME.accent : 'color-mix(in oklch, var(--ink) 65%, transparent)',
                 }}
               >
                 R{r.rodada}
@@ -255,7 +276,7 @@ export default function FeminoPrataJogosPage() {
                       gap: 16,
                       marginBottom: 16,
                       paddingBottom: 12,
-                      borderBottom: '2px solid #191c19',
+                      borderBottom: '2px solid var(--ink)',
                     }}
                   >
                     <div
@@ -269,10 +290,10 @@ export default function FeminoPrataJogosPage() {
                     >
                       <span
                         style={{
-                          fontFamily: "'Space Grotesk', sans-serif",
+                          fontFamily: "var(--font-display)",
                           fontWeight: 700,
                           fontSize: 14,
-                          color: '#ffffff',
+                          color: 'var(--paper)',
                           letterSpacing: '0.05em',
                         }}
                       >
@@ -280,7 +301,7 @@ export default function FeminoPrataJogosPage() {
                       </span>
                       <span
                         style={{
-                          fontFamily: "'DM Mono', monospace",
+                          fontFamily: "var(--font-mono)",
                           fontSize: 12,
                           color: THEME.accent,
                         }}
@@ -312,9 +333,9 @@ export default function FeminoPrataJogosPage() {
                         <div
                           key={jogo.id}
                           style={{
-                            background: '#ffffff',
-                            border: `1px solid ${realizado ? THEME.mid : '#191c19'}`,
-                            boxShadow: `3px 3px 0 ${realizado ? THEME.mid : '#191c19'}`,
+                            background: 'var(--paper)',
+                            border: `1px solid ${realizado ? THEME.mid : 'var(--ink)'}`,
+                            boxShadow: `3px 3px 0 ${realizado ? THEME.mid : 'var(--ink)'}`,
                             padding: '20px',
                             position: 'relative',
                           }}
@@ -327,7 +348,7 @@ export default function FeminoPrataJogosPage() {
                               left: 0,
                               right: 0,
                               height: 3,
-                              background: realizado ? THEME.mid : '#e7e9e4',
+                              background: realizado ? THEME.mid : 'var(--line)',
                             }}
                           />
 
@@ -339,15 +360,15 @@ export default function FeminoPrataJogosPage() {
                               justifyContent: 'space-between',
                               marginBottom: 16,
                               paddingBottom: 12,
-                              borderBottom: '1px solid #e7e9e4',
+                              borderBottom: '1px solid var(--line)',
                             }}
                           >
                             <span
                               style={{
-                                fontFamily: "'DM Mono', monospace",
+                                fontFamily: "var(--font-mono)",
                                 fontSize: 13,
                                 fontWeight: 500,
-                                color: '#717971',
+                                color: 'color-mix(in oklch, var(--ink) 45%, transparent)',
                               }}
                             >
                               #{jogo.id}
@@ -366,10 +387,10 @@ export default function FeminoPrataJogosPage() {
                                 <p
                                   key={nome}
                                   style={{
-                                    fontFamily: "'Space Grotesk', sans-serif",
+                                    fontFamily: "var(--font-display)",
                                     fontWeight: vencedoras?.includes(nome) ? 700 : 600,
                                     fontSize: 13,
-                                    color: vencedoras?.includes(nome) ? THEME.dark : '#191c19',
+                                    color: vencedoras?.includes(nome) ? THEME.dark : 'var(--ink)',
                                     marginBottom: 4,
                                     lineHeight: 1.2,
                                   }}
@@ -384,7 +405,7 @@ export default function FeminoPrataJogosPage() {
                               style={{
                                 width: 36,
                                 height: 36,
-                                background: realizado ? THEME.primary : '#2e312e',
+                                background: realizado ? THEME.primary : 'color-mix(in oklch, var(--ink) 60%, transparent)',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
@@ -393,7 +414,7 @@ export default function FeminoPrataJogosPage() {
                             >
                               <span
                                 style={{
-                                  fontFamily: "'Space Grotesk', sans-serif",
+                                  fontFamily: "var(--font-display)",
                                   fontWeight: 700,
                                   fontSize: 11,
                                   color: THEME.accent,
@@ -409,10 +430,10 @@ export default function FeminoPrataJogosPage() {
                                 <p
                                   key={nome}
                                   style={{
-                                    fontFamily: "'Space Grotesk', sans-serif",
+                                    fontFamily: "var(--font-display)",
                                     fontWeight: vencedoras?.includes(nome) ? 700 : 600,
                                     fontSize: 13,
-                                    color: vencedoras?.includes(nome) ? THEME.dark : '#191c19',
+                                    color: vencedoras?.includes(nome) ? THEME.dark : 'var(--ink)',
                                     marginBottom: 4,
                                     lineHeight: 1.2,
                                   }}
@@ -437,7 +458,7 @@ export default function FeminoPrataJogosPage() {
                             >
                               <span
                                 style={{
-                                  fontFamily: "'DM Mono', monospace",
+                                  fontFamily: "var(--font-mono)",
                                   fontSize: 14,
                                   fontWeight: 700,
                                   color: THEME.dark,
@@ -454,16 +475,16 @@ export default function FeminoPrataJogosPage() {
                             style={{
                               marginTop: 14,
                               paddingTop: 12,
-                              borderTop: '1px solid #e7e9e4',
+                              borderTop: '1px solid var(--line)',
                               display: 'flex',
                               justifyContent: 'flex-end',
                             }}
                           >
                             <span
                               style={{
-                                fontFamily: "'DM Mono', monospace",
+                                fontFamily: "var(--font-mono)",
                                 fontSize: 11,
-                                color: '#717971',
+                                color: 'color-mix(in oklch, var(--ink) 45%, transparent)',
                               }}
                             >
                               #R{rodada.rodada}.{jogo.id}
@@ -482,14 +503,14 @@ export default function FeminoPrataJogosPage() {
               style={{
                 padding: 60,
                 textAlign: 'center',
-                border: '1px solid #e7e9e4',
-                background: '#ffffff',
+                border: '1px solid var(--line)',
+                background: 'var(--paper)',
               }}
             >
-              <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: 18, color: '#717971' }}>
+              <p style={{ fontFamily: "var(--font-display)", fontSize: 18, color: 'color-mix(in oklch, var(--ink) 45%, transparent)' }}>
                 Nenhum jogo encontrado
               </p>
-              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 14, color: '#c1c9bf', marginTop: 8 }}>
+              <p style={{ fontFamily: "var(--font-mono)", fontSize: 14, color: '#c1c9bf', marginTop: 8 }}>
                 Tente ajustar os filtros
               </p>
             </div>
@@ -500,7 +521,7 @@ export default function FeminoPrataJogosPage() {
       {/* Div oculta para exportação */}
       <div
         ref={exportRef}
-        style={{ position: 'fixed', left: '-9999px', top: 0, width: 800, background: '#f0f6fb', fontFamily: "'Inter', sans-serif" }}
+        style={{ position: 'fixed', left: '-9999px', top: 0, width: 800, background: '#f0f6fb', fontFamily: "var(--font-mono)" }}
       >
         {exportRodadas.map((rodada, ri) => {
           const jogosRealizados = rodada.jogos.filter(j => j.status === 'Finalizado');
@@ -510,14 +531,14 @@ export default function FeminoPrataJogosPage() {
             <div key={rodada.rodada}>
               <div style={{ background: THEME.dark, padding: isFirst ? '28px 32px 22px' : '20px 32px 16px' }}>
                 {isFirst && (
-                  <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, letterSpacing: '0.28em', color: 'rgba(184,212,232,0.45)', textTransform: 'uppercase', marginBottom: 8 }}>
+                  <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: '0.28em', color: 'rgba(184,212,232,0.45)', textTransform: 'uppercase', marginBottom: 8 }}>
                     SQUADRA VERDE · TEMPORADA 2025 · FEMININO PRATA
                   </p>
                 )}
-                <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: isFirst ? 42 : 28, color: '#d6eaf5', letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: 6 }}>
+                <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: isFirst ? 42 : 28, color: '#d6eaf5', letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: 6 }}>
                   {rodadaAtiva !== null ? 'Resultado da Rodada' : `Rodada ${rodada.rodada}`}
                 </h2>
-                <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: 'rgba(184,212,232,0.4)', letterSpacing: '0.1em' }}>
+                <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: 'rgba(184,212,232,0.4)', letterSpacing: '0.1em' }}>
                   {rodadaAtiva !== null ? `Rodada ${rodada.rodada}` : 'Temporada 2026'} · {formatData(rodada.data)}
                 </p>
               </div>
@@ -534,14 +555,14 @@ export default function FeminoPrataJogosPage() {
                       gridTemplateColumns: '1fr 80px 1fr',
                       alignItems: 'center',
                       padding: '14px 32px',
-                      background: isEven ? '#ffffff' : '#f0f6fb',
+                      background: isEven ? 'var(--paper)' : '#f0f6fb',
                       borderBottom: '1px solid #d6eaf5',
                       gap: 16,
                     }}
                   >
                     <div>
                       {jogo.dupla1.map(nome => (
-                        <p key={nome} style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: vencedoras?.includes(nome) ? 700 : 600, fontSize: 13, color: vencedoras?.includes(nome) ? THEME.dark : '#191c19', lineHeight: 1.35, marginBottom: 2 }}>
+                        <p key={nome} style={{ fontFamily: "var(--font-display)", fontWeight: vencedoras?.includes(nome) ? 700 : 600, fontSize: 13, color: vencedoras?.includes(nome) ? THEME.dark : 'var(--ink)', lineHeight: 1.35, marginBottom: 2 }}>
                           {vencedoras?.includes(nome) ? `★ ${nome}` : nome}
                         </p>
                       ))}
@@ -549,17 +570,17 @@ export default function FeminoPrataJogosPage() {
 
                     <div style={{ textAlign: 'center' }}>
                       {placar ? (
-                        <span style={{ fontFamily: "'DM Mono', monospace", fontWeight: 700, fontSize: 13, color: THEME.dark }}>{placar}</span>
+                        <span style={{ fontFamily: "var(--font-mono)", fontWeight: 700, fontSize: 13, color: THEME.dark }}>{placar}</span>
                       ) : (
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, background: THEME.primary, margin: '0 auto' }}>
-                          <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 11, color: THEME.accent }}>VS</span>
+                          <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 11, color: THEME.accent }}>VS</span>
                         </div>
                       )}
                     </div>
 
                     <div style={{ textAlign: 'right' }}>
                       {jogo.dupla2.map(nome => (
-                        <p key={nome} style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: vencedoras?.includes(nome) ? 700 : 600, fontSize: 13, color: vencedoras?.includes(nome) ? THEME.dark : '#191c19', lineHeight: 1.35, marginBottom: 2 }}>
+                        <p key={nome} style={{ fontFamily: "var(--font-display)", fontWeight: vencedoras?.includes(nome) ? 700 : 600, fontSize: 13, color: vencedoras?.includes(nome) ? THEME.dark : 'var(--ink)', lineHeight: 1.35, marginBottom: 2 }}>
                           {vencedoras?.includes(nome) ? `${nome} ★` : nome}
                         </p>
                       ))}
@@ -572,10 +593,10 @@ export default function FeminoPrataJogosPage() {
         })}
 
         <div style={{ background: THEME.dark, padding: '14px 32px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 13, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(184,212,232,0.6)' }}>
+          <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 13, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'color-mix(in oklch, var(--accent) 60%, transparent)' }}>
             Squadra Verde · Feminino Prata
           </span>
-          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: 'rgba(184,212,232,0.3)', letterSpacing: '0.1em' }}>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: 'rgba(184,212,232,0.3)', letterSpacing: '0.1em' }}>
             Temporada 2026
           </span>
         </div>
@@ -584,7 +605,7 @@ export default function FeminoPrataJogosPage() {
       <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
 
       {/* Formato info */}
-      <div style={{ background: '#f3f4ef', borderTop: '1px solid #e7e9e4', marginTop: 48 }}>
+      <div style={{ background: '#f3f4ef', borderTop: '1px solid var(--line)', marginTop: 48 }}>
         <div className="footer-inner">
           <p className="section-label" style={{ marginBottom: 16 }}>Formato Rei da Quadra</p>
           <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
@@ -595,8 +616,8 @@ export default function FeminoPrataJogosPage() {
               { label: 'Desempate', desc: 'Saldo de games (SG)' },
             ].map(item => (
               <div key={item.label} style={{ flex: '1 1 200px' }}>
-                <p style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: 14, color: '#191c19', marginBottom: 4 }}>{item.label}</p>
-                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: '#717971' }}>{item.desc}</p>
+                <p style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 14, color: 'var(--ink)', marginBottom: 4 }}>{item.label}</p>
+                <p style={{ fontFamily: "var(--font-mono)", fontSize: 13, color: 'color-mix(in oklch, var(--ink) 45%, transparent)' }}>{item.desc}</p>
               </div>
             ))}
           </div>

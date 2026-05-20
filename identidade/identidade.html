@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Squadra Verde · Identidade Visual</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ── Identidade-specific helpers ── */
+  .id-hero {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 96px 0 88px;
+    position: relative;
+    overflow: hidden;
+  }
+  .id-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 14% 80%, color-mix(in oklch, var(--verde-glow) 12%, transparent), transparent 45%),
+      radial-gradient(circle at 86% 20%, color-mix(in oklch, var(--coral) 14%, transparent), transparent 45%),
+      radial-gradient(circle at 70% 80%, color-mix(in oklch, var(--azul) 18%, transparent), transparent 50%);
+    pointer-events: none;
+  }
+  .id-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(0deg, transparent 0 79px, color-mix(in oklch, var(--paper) 4%, transparent) 79px 80px);
+    pointer-events: none;
+  }
+  .id-hero-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+  }
+  .id-hero h1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(60px, 11vw, 168px);
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    text-transform: uppercase;
+    color: var(--paper);
+    margin-top: 28px;
+  }
+  .id-hero h1 em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--coral);
+    text-transform: none;
+    letter-spacing: -0.01em;
+  }
+  .id-hero .lede {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.7;
+    color: color-mix(in oklch, var(--paper) 70%, transparent);
+    max-width: 600px;
+    margin-top: 28px;
+  }
+
+  /* TOC + content layout */
+  .id-shell {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 64px;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 80px 32px;
+  }
+  .id-toc {
+    position: sticky;
+    top: 80px;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+  }
+  .id-toc .toc-h {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: color-mix(in oklch, var(--ink) 50%, transparent);
+    margin-bottom: 8px;
+  }
+  .id-toc a {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    padding: 6px 0;
+    color: color-mix(in oklch, var(--ink) 70%, transparent);
+    border-left: 1px solid var(--line);
+    padding-left: 14px;
+    transition: all 0.15s;
+  }
+  .id-toc a:hover { color: var(--ink); border-color: var(--ink);}
+  .id-toc a .num {
+    font-variant-numeric: tabular-nums;
+    margin-right: 8px;
+    color: color-mix(in oklch, var(--ink) 45%, transparent);
+  }
+
+  .id-main { min-width: 0; }
+  .id-sec { margin-bottom: 96px; scroll-margin-top: 80px; }
+  .id-sec .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+  .id-sec .sec-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: color-mix(in oklch, var(--ink) 50%, transparent);
+  }
+  .id-sec h2 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 44px;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .id-sec h2 em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--coral);
+    letter-spacing: -0.01em;
+    text-transform: none;
+  }
+  .id-sec .sec-desc {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.7;
+    color: color-mix(in oklch, var(--ink) 70%, transparent);
+    max-width: 640px;
+    margin-bottom: 32px;
+  }
+
+  .id-sub {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: color-mix(in oklch, var(--ink) 50%, transparent);
+    margin: 32px 0 14px;
+  }
+
+  /* Logo cards */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .logo-card {
+    aspect-ratio: 4/3;
+    padding: 32px;
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .logo-card .lc-label {
+    position: absolute;
+    bottom: 12px; left: 16px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: color-mix(in oklch, currentColor 55%, transparent);
+  }
+  .lc-paper { background: var(--paper); color: var(--ink);}
+  .lc-sand  { background: var(--sand-2); color: var(--ink);}
+  .lc-ink   { background: var(--ink); color: var(--paper);}
+  .lc-verde { background: var(--verde-deep); color: var(--paper);}
+  .lc-azul  { background: var(--azul-night); color: var(--paper);}
+  .lc-citrino { background: var(--citrino); color: var(--ink);}
+
+  /* Brand mark big — composable */
+  .mark-big {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .mark-big .squadra {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 36px;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: currentColor;
+  }
+  .mark-big .verde {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 36px;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .mark-big.fem .verde {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: -0.005em;
+    text-transform: none;
+    color: var(--coral);
+  }
+  .mark-big .bt-line {
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.5;
+    margin: 6px 0;
+    position: relative;
+  }
+  .mark-big .bt-line::after {
+    content: '';
+    position: absolute;
+    width: 8px; height: 8px;
+    background: var(--citrino);
+    border-radius: 50%;
+    top: -4px; left: 50%; transform: translateX(-50%);
+  }
+  .mark-big.fem .bt-line::after { background: var(--coral); }
+  .mark-big .tag-line {
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-top: 6px;
+  }
+
+  /* Stacked emblem */
+  .emblem {
+    width: 132px; height: 132px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--paper);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    position: relative;
+    border: 2px solid color-mix(in oklch, currentColor 18%, transparent);
+  }
+  .emblem .top-arc, .emblem .bot-arc {
+    position: absolute;
+    font-family: var(--font-mono);
+    font-size: 8px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .emblem .top-arc { top: 18px; }
+  .emblem .bot-arc { bottom: 20px; }
+  .emblem .mono {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 36px;
+    letter-spacing: -0.04em;
+  }
+  .emblem.fem {
+    background: var(--azul-night);
+    border-color: color-mix(in oklch, var(--coral) 40%, transparent);
+  }
+  .emblem.fem .mono {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--coral);
+    letter-spacing: -0.02em;
+  }
+  .emblem.fem .top-arc, .emblem.fem .bot-arc { color: var(--coral); opacity: 0.85; }
+
+  /* Color cards */
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .swatch {
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+  }
+  .swatch .chip {
+    aspect-ratio: 4/3;
+    position: relative;
+  }
+  .swatch .chip::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 60%, color-mix(in oklch, currentColor 10%, transparent));
+    pointer-events: none;
+  }
+  .swatch .meta {
+    padding: 14px 16px;
+    background: var(--paper);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .swatch .name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: -0.005em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .swatch .hex {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    color: color-mix(in oklch, var(--ink) 60%, transparent);
+  }
+  .swatch .oklch {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.04em;
+    color: color-mix(in oklch, var(--ink) 45%, transparent);
+  }
+  .swatch .use {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: color-mix(in oklch, var(--ink) 55%, transparent);
+    margin-top: 4px;
+  }
+
+  /* Type specimen */
+  .type-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 28px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .type-row:last-child { border-bottom: none; }
+  .type-row .meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: color-mix(in oklch, var(--ink) 70%, transparent);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .type-row .meta strong {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .specimen-display {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(60px, 8vw, 96px);
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .specimen-serif {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(48px, 6vw, 76px);
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: var(--coral);
+  }
+  .specimen-mono {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    line-height: 2;
+    color: color-mix(in oklch, var(--ink) 70%, transparent);
+  }
+  .scale-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    margin-top: 12px;
+  }
+  .scale-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 60px;
+    align-items: baseline;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--line-soft);
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .scale-row .tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: color-mix(in oklch, var(--ink) 55%, transparent);
+    font-weight: 500;
+  }
+  .scale-row .size {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    color: color-mix(in oklch, var(--ink) 55%, transparent);
+    text-align: right;
+    font-weight: 500;
+  }
+
+  /* Elements grid (icons + motifs) */
+  .elements {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .el-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 24px;
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    position: relative;
+  }
+  .el-card .el-label {
+    position: absolute;
+    bottom: 12px; left: 16px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: color-mix(in oklch, var(--ink) 55%, transparent);
+  }
+
+  /* Component grid (buttons / inputs / etc.) */
+  .demo-board {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .demo-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+  .demo-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  /* Code chip */
+  code, .code {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    background: color-mix(in oklch, var(--ink) 5%, transparent);
+    padding: 2px 6px;
+    border-radius: 2px;
+    color: var(--accent-deep);
+  }
+
+  @media (max-width: 980px) {
+    .id-shell { grid-template-columns: 1fr; gap: 32px;}
+    .id-toc { position: relative; top: 0; max-height: none; flex-direction: row; flex-wrap: wrap; gap: 6px;}
+    .id-toc .toc-h { width: 100%;}
+    .id-toc a { border-left: none; border-bottom: 1px solid var(--line); padding: 6px 12px; }
+    .logo-grid { grid-template-columns: repeat(2, 1fr);}
+    .palette-grid { grid-template-columns: repeat(3, 1fr);}
+    .elements { grid-template-columns: repeat(2, 1fr);}
+    .demo-grid-2 { grid-template-columns: 1fr;}
+    .scale-grid { grid-template-columns: 1fr;}
+    .type-row { grid-template-columns: 1fr; gap: 14px;}
+  }
+</style>
+</head>
+<body class="theme-masc">
+
+<!-- ════════════════════════════════════ NAV ════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand-mark" href="index.html" style="text-decoration:none;">
+      <svg class="brand-mark-svg" viewBox="0 0 64 64" fill="none">
+        <rect x="6" y="14" width="52" height="36" rx="1.5" stroke="currentColor" stroke-width="2" fill="none"/>
+        <line x1="32" y1="14" x2="32" y2="50" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" opacity="0.55"/>
+        <circle cx="32" cy="32" r="6.5" fill="oklch(0.85 0.17 105)"/>
+        <path d="M 26.5 30 Q 32 34 37.5 30" stroke="oklch(0.28 0.07 158)" stroke-width="1.1" fill="none" opacity="0.7"/>
+        <path d="M 26.5 34 Q 32 30 37.5 34" stroke="oklch(0.28 0.07 158)" stroke-width="1.1" fill="none" opacity="0.7"/>
+        <ellipse cx="32" cy="42" rx="6" ry="1" fill="currentColor" opacity="0.18"/>
+      </svg>
+      <div class="brand-mark-text">
+        <strong>Squadra Verde</strong>
+        <span>Beach Tênis · 2026</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html#home"><button>Home</button></a></li>
+      <li><a href="index.html#ranking"><button>Classificação</button></a></li>
+      <li><a href="index.html#agenda"><button>Agenda</button></a></li>
+      <li><a href="index.html#atletas"><button>Atletas</button></a></li>
+      <li><a href="index.html#sobre"><button>Sobre</button></a></li>
+      <li><a href="marca.html"><button>Marca</button></a></li>
+      <li><button class="active">Identidade</button></li>
+    </ul>
+
+    <div class="nav-right">
+      <div class="nav-clock">
+        <span class="live-dot"></span>
+        <span>v1.0</span>
+        <span style="opacity:0.55;">· BRAND BOOK</span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ════════════════════════════════════ HERO ════════════════════════════════════ -->
+<section class="id-hero">
+  <div class="id-hero-inner">
+    <div class="eyebrow" style="color: color-mix(in oklch, var(--paper) 70%, transparent);">— Brand Book · v1.0 · Maio 2026</div>
+    <h1>Squadra <em>Verde</em></h1>
+    <p class="lede">
+      A identidade visual completa do ranking interno de beach tênis. Verde-Costa para o masculino, azul-oceano para o feminino e medalhas metálicas para os tiers Prata e Bronze. Tipografia editorial-esportiva. Dados como personagem principal.
+    </p>
+
+    <div style="display:flex; gap: 12px; flex-wrap: wrap; margin-top: 36px;">
+      <span class="badge ink" style="background: color-mix(in oklch, var(--paper) 15%, transparent); color: var(--paper);">11 SEÇÕES</span>
+      <span class="badge ink" style="background: color-mix(in oklch, var(--paper) 15%, transparent); color: var(--paper);">9 CORES PRIMÁRIAS</span>
+      <span class="badge ink" style="background: color-mix(in oklch, var(--paper) 15%, transparent); color: var(--paper);">3 FAMÍLIAS TIPOGRÁFICAS</span>
+      <span class="badge ink" style="background: color-mix(in oklch, var(--paper) 15%, transparent); color: var(--paper);">2 TEMAS (M / F)</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════ SHELL ════════════════════════════════════ -->
+<div class="id-shell">
+
+  <!-- TOC -->
+  <aside class="id-toc">
+    <div class="toc-h">Sumário</div>
+    <a href="#manifesto"><span class="num">00</span>Manifesto</a>
+    <a href="#logo"><span class="num">01</span>Logo</a>
+    <a href="#cores"><span class="num">02</span>Cores</a>
+    <a href="#tipografia"><span class="num">03</span>Tipografia</a>
+    <a href="#elementos"><span class="num">04</span>Elementos</a>
+    <a href="#botoes"><span class="num">05</span>Botões</a>
+    <a href="#inputs"><span class="num">06</span>Inputs</a>
+    <a href="#badges"><span class="num">07</span>Badges</a>
+    <a href="#tabelas"><span class="num">08</span>Tabelas</a>
+    <a href="#cards"><span class="num">09</span>Cards</a>
+    <a href="#modais"><span class="num">10</span>Modais</a>
+    <a href="#aplicacoes"><span class="num">11</span>Aplicações</a>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="id-main">
+
+    <!-- 00 · Manifesto -->
+    <section class="id-sec" id="manifesto">
+      <div class="sec-head">
+        <span class="sec-num">— 00 / Manifesto</span>
+      </div>
+      <h2 style="font-size: 56px;">
+        Um ranking <em>com gosto</em> — feito por amigos para amigos.
+      </h2>
+      <p class="sec-desc" style="margin-top: 24px; font-size: 15px; max-width: 720px;">
+        A marca Squadra Verde nasceu de um grupo de jogadores que joga, registra e se diverte por temporadas inteiras. Visualmente isso significa: dados densos sem virar planilha, esportivo sem virar genérico, e — para o feminino — um tom próprio que celebra a categoria sem caricaturar.
+      </p>
+
+      <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px;">
+        <div>
+          <div class="eyebrow" style="margin-bottom: 12px;">Princípio · 01</div>
+          <h3 style="font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: -0.01em; text-transform: uppercase; margin-bottom: 10px;">Dados primeiro</h3>
+          <p style="font-family: var(--font-mono); font-size: 12px; line-height: 1.7; color: color-mix(in oklch, var(--ink) 70%, transparent);">Toda decoração existe a serviço da legibilidade. Tabular numerals, hierarquia clara, sem ornamento gratuito.</p>
+        </div>
+        <div>
+          <div class="eyebrow" style="margin-bottom: 12px;">Princípio · 02</div>
+          <h3 style="font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: -0.01em; text-transform: uppercase; margin-bottom: 10px;">Dois temas</h3>
+          <p style="font-family: var(--font-mono); font-size: 12px; line-height: 1.7; color: color-mix(in oklch, var(--ink) 70%, transparent);">Masculino = Verde-Costa sobre areia. Feminino = Azul-Oceano com pôr-do-sol coral. Cada um tem voz própria.</p>
+        </div>
+        <div>
+          <div class="eyebrow" style="margin-bottom: 12px;">Princípio · 03</div>
+          <h3 style="font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: -0.01em; text-transform: uppercase; margin-bottom: 10px;">Metal nos tiers</h3>
+          <p style="font-family: var(--font-mono); font-size: 12px; line-height: 1.7; color: color-mix(in oklch, var(--ink) 70%, transparent);">Prata e Bronze não são só rótulos — viram texturas reais nos cards, banners e medalhas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 · Logo -->
+    <section class="id-sec" id="logo">
+      <div class="sec-head">
+        <span class="sec-num">— 01 / Logo</span>
+      </div>
+      <h2>Sistema de marca</h2>
+      <p class="sec-desc">
+        A marca tem três expressões complementares: <strong>símbolo</strong> (quadra + bola), <strong>logotipo</strong> (Squadra Verde) e <strong>emblema</strong> (selo circular). No feminino, o segundo termo migra para serif itálica em coral — assinatura <em class="h-serif" style="color: var(--coral-deep);">Squadra Sole</em>.
+      </p>
+
+      <div class="id-sub">— Símbolo + logotipo</div>
+      <div class="logo-grid">
+        <div class="logo-card lc-paper">
+          <div style="display:flex; align-items:center; gap: 20px;">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+              <rect x="6" y="14" width="52" height="36" rx="1.5" stroke="oklch(0.18 0.025 158)" stroke-width="2" fill="none"/>
+              <line x1="32" y1="14" x2="32" y2="50" stroke="oklch(0.18 0.025 158)" stroke-width="1.5" stroke-dasharray="2 2" opacity="0.55"/>
+              <circle cx="32" cy="32" r="6.5" fill="oklch(0.85 0.17 105)"/>
+              <path d="M 26.5 30 Q 32 34 37.5 30" stroke="oklch(0.28 0.07 158)" stroke-width="1.1" fill="none" opacity="0.7"/>
+              <path d="M 26.5 34 Q 32 30 37.5 34" stroke="oklch(0.28 0.07 158)" stroke-width="1.1" fill="none" opacity="0.7"/>
+              <ellipse cx="32" cy="42" rx="6" ry="1" fill="oklch(0.18 0.025 158)" opacity="0.18"/>
+            </svg>
+            <div class="mark-big">
+              <div class="squadra">Squadra</div>
+              <div class="bt-line"></div>
+              <div class="verde" style="color: var(--verde);">Verde</div>
+              <div class="tag-line">Beach Tênis</div>
+            </div>
+          </div>
+          <span class="lc-label">PRINCIPAL · MASCULINO</span>
+        </div>
+
+        <div class="logo-card lc-verde">
+          <div style="display:flex; align-items:center; gap: 20px; color: var(--paper);">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+              <rect x="6" y="14" width="52" height="36" rx="1.5" stroke="currentColor" stroke-width="2" fill="none"/>
+              <line x1="32" y1="14" x2="32" y2="50" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" opacity="0.55"/>
+              <circle cx="32" cy="32" r="6.5" fill="oklch(0.85 0.17 105)"/>
+              <path d="M 26.5 30 Q 32 34 37.5 30" stroke="oklch(0.28 0.07 158)" stroke-width="1.1" fill="none" opacity="0.7"/>
+              <path d="M 26.5 34 Q 32 30 37.5 34" stroke="oklch(0.28 0.07 158)" stroke-width="1.1" fill="none" opacity="0.7"/>
+            </svg>
+            <div class="mark-big">
+              <div class="squadra">Squadra</div>
+              <div class="bt-line"></div>
+              <div class="verde" style="color: var(--citrino);">Verde</div>
+              <div class="tag-line">Beach Tênis</div>
+            </div>
+          </div>
+          <span class="lc-label">FUNDO ESCURO · MASCULINO</span>
+        </div>
+
+        <div class="logo-card lc-azul">
+          <div style="display:flex; align-items:center; gap: 20px; color: var(--paper);">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+              <rect x="6" y="14" width="52" height="36" rx="1.5" stroke="currentColor" stroke-width="2" fill="none"/>
+              <line x1="32" y1="14" x2="32" y2="50" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" opacity="0.55"/>
+              <circle cx="32" cy="32" r="6.5" fill="oklch(0.72 0.16 28)"/>
+            </svg>
+            <div class="mark-big fem">
+              <div class="squadra">Squadra</div>
+              <div class="bt-line"></div>
+              <div class="verde">Sole</div>
+              <div class="tag-line">Beach Tênis · ★ Feminino</div>
+            </div>
+          </div>
+          <span class="lc-label" style="color: color-mix(in oklch, var(--paper) 55%, transparent);">FEMININO · "SQUADRA SOLE"</span>
+        </div>
+      </div>
+
+      <div class="id-sub">— Emblemas circulares</div>
+      <div class="logo-grid">
+        <div class="logo-card lc-sand">
+          <div class="emblem">
+            <span class="top-arc">· SQUADRA ·</span>
+            <span class="mono">SV</span>
+            <span class="bot-arc">2026</span>
+          </div>
+          <span class="lc-label">EMBLEMA · MASCULINO</span>
+        </div>
+        <div class="logo-card lc-sand">
+          <div class="emblem fem">
+            <span class="top-arc">· SQUADRA ·</span>
+            <span class="mono">Sv</span>
+            <span class="bot-arc">SOLE</span>
+          </div>
+          <span class="lc-label">EMBLEMA · FEMININO</span>
+        </div>
+        <div class="logo-card lc-citrino">
+          <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+            <div style="width:84px; height:84px; border-radius:50%; background: oklch(0.18 0.025 158); display:flex; align-items:center; justify-content:center; font-family: var(--font-display); font-weight: 800; font-size: 32px; color: var(--citrino); letter-spacing: -0.04em;">SV</div>
+            <div style="font-family: var(--font-mono); font-size:9px; letter-spacing: 0.32em; text-transform:uppercase; color: var(--ink); margin-top: 6px;">SQUADRA VERDE</div>
+          </div>
+          <span class="lc-label">MERCH · COMPACTO</span>
+        </div>
+      </div>
+
+      <div class="id-sub">— Área de proteção & tamanhos mínimos</div>
+      <div class="demo-board">
+        <div class="demo-row" style="justify-content: space-between; align-items: flex-end;">
+          <div style="text-align:center;">
+            <div style="padding: 32px; border: 1px dashed var(--line); position: relative; display:inline-block;">
+              <span style="position:absolute; top: -8px; left: 50%; transform: translateX(-50%); background: var(--paper); padding: 0 6px; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; color: color-mix(in oklch, var(--ink) 50%, transparent);">1× X</span>
+              <span style="position:absolute; bottom: -8px; left: 50%; transform: translateX(-50%); background: var(--paper); padding: 0 6px; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; color: color-mix(in oklch, var(--ink) 50%, transparent);">1× X</span>
+              <span style="position:absolute; left: -8px; top: 50%; transform: translateY(-50%); background: var(--paper); padding: 6px 0; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; color: color-mix(in oklch, var(--ink) 50%, transparent); writing-mode: vertical-rl;">1×X</span>
+              <span style="position:absolute; right: -8px; top: 50%; transform: translateY(-50%); background: var(--paper); padding: 6px 0; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.2em; color: color-mix(in oklch, var(--ink) 50%, transparent); writing-mode: vertical-rl;">1×X</span>
+              <div class="mark-big">
+                <div class="squadra">Squadra</div>
+                <div class="bt-line"></div>
+                <div class="verde" style="color: var(--verde);">Verde</div>
+              </div>
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: color-mix(in oklch, var(--ink) 55%, transparent); margin-top: 14px;">PROTEÇÃO MÍNIMA</div>
+          </div>
+          <div style="display:flex; gap: 28px; align-items: flex-end;">
+            <div style="text-align:center;">
+              <div style="font-family: var(--font-display); font-weight: 800; font-size: 14px; letter-spacing: -0.01em; color: var(--ink); text-transform: uppercase;">SQUADRA<br>VERDE</div>
+              <div class="field-hint" style="margin-top: 8px;">14px · mínimo digital</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; color: var(--ink); text-transform: uppercase;">SQUADRA<br>VERDE</div>
+              <div class="field-hint" style="margin-top: 8px;">20px · recomendado</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-family: var(--font-display); font-weight: 800; font-size: 32px; letter-spacing: -0.025em; color: var(--ink); text-transform: uppercase;">SQUADRA<br>VERDE</div>
+              <div class="field-hint" style="margin-top: 8px;">32px+ · ideal</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 · Cores -->
+    <section class="id-sec" id="cores">
+      <div class="sec-head">
+        <span class="sec-num">— 02 / Cores</span>
+      </div>
+      <h2>Paleta</h2>
+      <p class="sec-desc">
+        Quatro famílias: <strong>Verdes</strong> (Squadra Masculino), <strong>Azuis & Coral</strong> (Squadra Feminino — pôr-do-sol sobre o mar), <strong>Metálicos</strong> (Prata e Bronze para tiers), <strong>Neutros</strong> (areia, papel, tinta). Tokens definidos em <code>oklch()</code> para consistência perceptual.
+      </p>
+
+      <div class="id-sub">— Família verde · Masculino</div>
+      <div class="palette-grid" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="swatch">
+          <div class="chip" style="background: oklch(0.26 0.075 160);"></div>
+          <div class="meta"><div class="name">Verde Costa</div><div class="hex">#1F3C2A</div><div class="oklch">oklch(0.26 0.075 160)</div><div class="use">PRIMÁRIO · FUNDOS</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: oklch(0.40 0.10 162);"></div>
+          <div class="meta"><div class="name">Verde Squadra</div><div class="hex">#3F6B4F</div><div class="oklch">oklch(0.40 0.10 162)</div><div class="use">SECUNDÁRIO · ACENTO</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: oklch(0.72 0.16 150);"></div>
+          <div class="meta"><div class="name">Verde Glow</div><div class="hex">#69B560</div><div class="oklch">oklch(0.72 0.16 150)</div><div class="use">DESTAQUE · BRILHO</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: oklch(0.85 0.17 105);"></div>
+          <div class="meta"><div class="name">Citrino · Bola</div><div class="hex">#D5D24E</div><div class="oklch">oklch(0.85 0.17 105)</div><div class="use">BOLA · ALERTA</div></div>
+        </div>
+      </div>
+
+      <div class="id-sub">— Família azul + coral · Feminino</div>
+      <div class="palette-grid" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="swatch">
+          <div class="chip" style="background: oklch(0.22 0.055 242);"></div>
+          <div class="meta"><div class="name">Azul Noite</div><div class="hex">#1B2748</div><div class="oklch">oklch(0.22 0.055 242)</div><div class="use">FUNDO · FEMININO</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: oklch(0.52 0.13 232);"></div>
+          <div class="meta"><div class="name">Azul Oceano</div><div class="hex">#3B79B6</div><div class="oklch">oklch(0.52 0.13 232)</div><div class="use">PRIMÁRIO · FEMININO</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: oklch(0.72 0.16 28);"></div>
+          <div class="meta"><div class="name">Coral Sol</div><div class="hex">#EA8B6A</div><div class="oklch">oklch(0.72 0.16 28)</div><div class="use">ITÁLICO · "SOLE"</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: oklch(0.48 0.16 22);"></div>
+          <div class="meta"><div class="name">Coral Terra</div><div class="hex">#9A4530</div><div class="oklch">oklch(0.48 0.16 22)</div><div class="use">ACENTO PROFUNDO</div></div>
+        </div>
+      </div>
+
+      <div class="id-sub">— Metálicos · Tiers Feminino</div>
+      <div class="palette-grid" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="swatch">
+          <div class="chip" style="background: linear-gradient(135deg, oklch(0.62 0.014 232), oklch(0.92 0.008 230));"></div>
+          <div class="meta"><div class="name">Prata · Tier</div><div class="hex">Gradient</div><div class="oklch">oklch(.62/.92 cool)</div><div class="use">FEMININO PRATA</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: linear-gradient(135deg, oklch(0.44 0.07 48), oklch(0.82 0.05 70));"></div>
+          <div class="meta"><div class="name">Bronze · Tier</div><div class="hex">Gradient</div><div class="oklch">oklch(.44/.82 warm)</div><div class="use">FEMININO BRONZE</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: oklch(0.82 0.012 230); border-right: 1px solid var(--line);"></div>
+          <div class="meta"><div class="name">Prata Plano</div><div class="hex">#C5C9CE</div><div class="oklch">oklch(0.82 0.012 230)</div><div class="use">CHIPS · TEXTOS</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: oklch(0.62 0.085 55);"></div>
+          <div class="meta"><div class="name">Bronze Plano</div><div class="hex">#A07748</div><div class="oklch">oklch(0.62 0.085 55)</div><div class="use">CHIPS · TEXTOS</div></div>
+        </div>
+      </div>
+
+      <div class="id-sub">— Neutros</div>
+      <div class="palette-grid" style="grid-template-columns: repeat(5, 1fr);">
+        <div class="swatch">
+          <div class="chip" style="background: oklch(0.18 0.025 158);"></div>
+          <div class="meta"><div class="name">Tinta</div><div class="hex">#1B2A21</div><div class="oklch">oklch(0.18 0.025 158)</div><div class="use">TEXTOS · UI</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: oklch(0.985 0.008 85); border-right: 1px solid var(--line);"></div>
+          <div class="meta"><div class="name">Papel</div><div class="hex">#FBF9F4</div><div class="oklch">oklch(0.985 0.008 85)</div><div class="use">FUNDO · CARDS</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: oklch(0.955 0.014 82);"></div>
+          <div class="meta"><div class="name">Areia</div><div class="hex">#F4EFE3</div><div class="oklch">oklch(0.955 0.014 82)</div><div class="use">FUNDO PRINCIPAL</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: oklch(0.915 0.020 80);"></div>
+          <div class="meta"><div class="name">Areia Funda</div><div class="hex">#E8DEC9</div><div class="oklch">oklch(0.915 0.020 80)</div><div class="use">SECTIONS ALT.</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background: oklch(0.85 0.022 75);"></div>
+          <div class="meta"><div class="name">Areia Ocre</div><div class="hex">#D3C2A2</div><div class="oklch">oklch(0.85 0.022 75)</div><div class="use">AVATARES · BORDA</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 · Tipografia -->
+    <section class="id-sec" id="tipografia">
+      <div class="sec-head">
+        <span class="sec-num">— 03 / Tipografia</span>
+      </div>
+      <h2>Sistema tipográfico</h2>
+      <p class="sec-desc">
+        Três famílias com papéis claros: <strong>Bricolage Grotesque</strong> para títulos (esportiva, variável, geométrica); <strong>Instrument Serif</strong> em itálico para acentos editoriais e feminino; <strong>JetBrains Mono</strong> para dados, labels e UI.
+      </p>
+
+      <div class="type-row">
+        <div class="meta">
+          <strong>Bricolage Grotesque</strong>
+          <span>800 · Display</span>
+          <span>letter-spacing −3.5%</span>
+          <span>Caixa alta nos títulos</span>
+          <span>Tabular num. ligado</span>
+        </div>
+        <div>
+          <div class="specimen-display">SQUADRA<br>VERDE.</div>
+          <div style="font-family: var(--font-display); font-weight: 700; font-size: 28px; letter-spacing: -0.02em; line-height: 1.1; text-transform: uppercase; margin-top: 20px;">12 RODADAS · 199 PARTIDAS</div>
+          <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.04em; color: color-mix(in oklch, var(--ink) 55%, transparent); margin-top: 8px;">AaBbCcDd 0123456789 — &amp;%@!?</div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="meta">
+          <strong>Instrument Serif</strong>
+          <span>400 Italic · Accent</span>
+          <span>Sempre em itálico</span>
+          <span>Marca do feminino ("Sole")</span>
+          <span>Pull-quotes editoriais</span>
+        </div>
+        <div>
+          <div class="specimen-serif">"Sunset sobre <br>o oceano."</div>
+          <div style="font-family: var(--font-serif); font-style: italic; font-size: 24px; line-height: 1.4; color: color-mix(in oklch, var(--ink) 65%, transparent); margin-top: 20px;">Squadra Sole — assinatura editorial do feminino, usada como contraponto suave às maiúsculas display.</div>
+        </div>
+      </div>
+
+      <div class="type-row">
+        <div class="meta">
+          <strong>JetBrains Mono</strong>
+          <span>400/500/600 · UI</span>
+          <span>Tracking generoso (0.2-0.32em)</span>
+          <span>Labels, dados, código</span>
+          <span>Sempre em caixa alta para labels</span>
+        </div>
+        <div>
+          <div class="specimen-mono">TEMPORADA 2026 · MASCULINO<br>★ FEMININO PRATA · BRONZE</div>
+          <div style="font-family: var(--font-mono); font-size: 13px; line-height: 1.6; color: color-mix(in oklch, var(--ink) 70%, transparent); margin-top: 20px;">26/04/2026 — 21/06/2026 · 8 rodadas · saldo +12G · aproveitamento 83.3%</div>
+        </div>
+      </div>
+
+      <div class="id-sub">— Escala</div>
+      <div class="scale-grid">
+        <div>
+          <div class="scale-row"><span class="tag">D1 · Display</span><span style="font-size: 56px; letter-spacing: -0.04em;">SQUADRA</span><span class="size">96px</span></div>
+          <div class="scale-row"><span class="tag">D2 · Display</span><span style="font-size: 40px; letter-spacing: -0.03em;">SQUADRA</span><span class="size">56px</span></div>
+          <div class="scale-row"><span class="tag">H1 · Heading</span><span style="font-size: 30px; letter-spacing: -0.025em;">Squadra Verde</span><span class="size">36px</span></div>
+          <div class="scale-row"><span class="tag">H2 · Heading</span><span style="font-size: 24px; letter-spacing: -0.02em;">Squadra Verde</span><span class="size">28px</span></div>
+        </div>
+        <div>
+          <div class="scale-row"><span class="tag">H3 · Subhead</span><span style="font-size: 18px; letter-spacing: -0.015em;">SUBTÍTULO</span><span class="size">20px</span></div>
+          <div class="scale-row"><span class="tag">BODY · Mono</span><span style="font-family: var(--font-mono); font-size: 13px; letter-spacing: 0;">Texto corrido em mono.</span><span class="size">13px</span></div>
+          <div class="scale-row"><span class="tag">LBL · Eyebrow</span><span style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;">EYEBROW</span><span class="size">11px</span></div>
+          <div class="scale-row"><span class="tag">CAPS · Fine</span><span style="font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase;">METADATA</span><span class="size">9.5px</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 · Elementos -->
+    <section class="id-sec" id="elementos">
+      <div class="sec-head">
+        <span class="sec-num">— 04 / Elementos gráficos</span>
+      </div>
+      <h2>Iconografia & motivos</h2>
+      <p class="sec-desc">
+        Quatro motivos recorrentes constroem o "vocabulário visual" da marca: <strong>quadra</strong> (retângulo com rede tracejada), <strong>bola citrina</strong>, <strong>arco-sol</strong> (feminino) e <strong>brackets [ ]</strong> (envolvendo dados).
+      </p>
+
+      <div class="elements">
+        <div class="el-card">
+          <svg width="80" height="80" viewBox="0 0 64 64" fill="none">
+            <rect x="6" y="14" width="52" height="36" rx="1.5" stroke="oklch(0.18 0.025 158)" stroke-width="2" fill="none"/>
+            <line x1="32" y1="14" x2="32" y2="50" stroke="oklch(0.18 0.025 158)" stroke-width="1.5" stroke-dasharray="2 2"/>
+            <circle cx="32" cy="32" r="6.5" fill="oklch(0.85 0.17 105)"/>
+            <path d="M 26.5 30 Q 32 34 37.5 30" stroke="oklch(0.28 0.07 158)" stroke-width="1.1" fill="none" opacity="0.7"/>
+            <path d="M 26.5 34 Q 32 30 37.5 34" stroke="oklch(0.28 0.07 158)" stroke-width="1.1" fill="none" opacity="0.7"/>
+          </svg>
+          <span class="el-label">QUADRA + BOLA</span>
+        </div>
+
+        <div class="el-card" style="background: var(--azul-night);">
+          <svg width="100" height="80" viewBox="0 0 120 100" fill="none">
+            <circle cx="100" cy="20" r="40" stroke="oklch(0.72 0.16 28)" stroke-width="1" fill="none"/>
+            <circle cx="100" cy="20" r="28" stroke="oklch(0.72 0.16 28)" stroke-width="1" fill="none" opacity="0.5"/>
+            <circle cx="100" cy="20" r="18" stroke="oklch(0.72 0.16 28)" stroke-width="1" fill="none" opacity="0.3"/>
+            <path d="M 0 70 Q 30 60 60 65 T 120 60" stroke="oklch(0.52 0.13 232)" stroke-width="1.5" fill="none" opacity="0.6"/>
+            <path d="M 0 80 Q 30 73 60 76 T 120 73" stroke="oklch(0.52 0.13 232)" stroke-width="1" fill="none" opacity="0.4"/>
+          </svg>
+          <span class="el-label" style="color: color-mix(in oklch, var(--paper) 55%, transparent);">ARCO-SOL · FEMININO</span>
+        </div>
+
+        <div class="el-card">
+          <div style="display:flex; align-items: center; gap: 8px; font-family: var(--font-display); font-weight: 800; font-size: 38px; letter-spacing: -0.02em; color: var(--ink);">
+            <span style="color: color-mix(in oklch, var(--ink) 35%, transparent);">[</span>
+            <span>199</span>
+            <span style="color: color-mix(in oklch, var(--ink) 35%, transparent);">]</span>
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: color-mix(in oklch, var(--ink) 55%, transparent);">JOGOS</div>
+          <span class="el-label">BRACKETS DE DADOS</span>
+        </div>
+
+        <div class="el-card">
+          <div style="display:flex; gap: 4px;">
+            <div style="width: 12px; height: 24px; background: var(--verde); border-radius: 2px;"></div>
+            <div style="width: 12px; height: 24px; background: var(--verde); border-radius: 2px;"></div>
+            <div style="width: 12px; height: 24px; background: color-mix(in oklch, oklch(0.55 0.16 25) 50%, var(--sand)); border-radius: 2px;"></div>
+            <div style="width: 12px; height: 24px; background: var(--verde); border-radius: 2px;"></div>
+            <div style="width: 12px; height: 24px; background: var(--verde); border-radius: 2px;"></div>
+            <div style="width: 12px; height: 24px; background: color-mix(in oklch, oklch(0.55 0.16 25) 50%, var(--sand)); border-radius: 2px;"></div>
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: color-mix(in oklch, var(--ink) 55%, transparent);">W W L W W L</div>
+          <span class="el-label">FORMA · ÚLT. 6 JOGOS</span>
+        </div>
+
+        <div class="el-card lc-paper">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--prata-deep), var(--prata-light)); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; font-size: 22px; color: oklch(0.18 0 0); box-shadow: inset 0 -2px 6px color-mix(in oklch, var(--ink) 25%, transparent), inset 0 2px 6px color-mix(in oklch, var(--paper) 70%, transparent);">P</div>
+          <span class="el-label">MEDALHA · PRATA</span>
+        </div>
+
+        <div class="el-card">
+          <div style="width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--bronze-deep), var(--bronze-light)); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--paper); box-shadow: inset 0 -2px 6px color-mix(in oklch, var(--bronze-deep) 60%, transparent), inset 0 2px 6px color-mix(in oklch, var(--bronze-light) 80%, transparent);">B</div>
+          <span class="el-label">MEDALHA · BRONZE</span>
+        </div>
+
+        <div class="el-card">
+          <div style="display: flex; flex-direction: column; gap: 6px; width: 100%;">
+            <div style="height: 1px; background: var(--line);"></div>
+            <div style="height: 1px; background: var(--line);"></div>
+            <div style="height: 1px; background: var(--line);"></div>
+            <div style="height: 1px; background: var(--line);"></div>
+          </div>
+          <span class="el-label">LINHAS · GRID DE QUADRA</span>
+        </div>
+
+        <div class="el-card">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <div style="width: 8px; height: 8px; background: var(--coral); border-radius: 50%; animation: pulse 1.6s ease infinite;"></div>
+            <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--coral-deep);">AO VIVO</div>
+          </div>
+          <span class="el-label">INDICADOR LIVE</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 · Botões -->
+    <section class="id-sec" id="botoes">
+      <div class="sec-head">
+        <span class="sec-num">— 05 / Botões</span>
+      </div>
+      <h2>Botões</h2>
+      <p class="sec-desc">
+        Estilo monoespaçado, caixa alta, tracking 0.24em. Borda fina, raio 2px. Variações por hierarquia e por tema (M/F).
+      </p>
+
+      <div class="demo-grid-2">
+        <div class="demo-board">
+          <div class="id-sub" style="margin-top:0;">— Tema Masculino · padrão</div>
+          <div class="demo-row">
+            <button class="btn-ds primary">Classificação <span>→</span></button>
+            <button class="btn-ds">Ver jogos</button>
+            <button class="btn-ds ghost">Cancelar</button>
+            <button class="btn-ds accent">Inscrever</button>
+            <button class="btn-ds danger">Excluir</button>
+          </div>
+          <div class="demo-row">
+            <button class="btn-ds primary sm">Salvar</button>
+            <button class="btn-ds sm">Editar</button>
+            <button class="btn-ds ghost sm">Voltar</button>
+          </div>
+          <div class="demo-row">
+            <button class="btn-ds primary lg">Iniciar temporada</button>
+            <button class="btn-ds lg">Histórico completo</button>
+          </div>
+          <div class="demo-row">
+            <button class="btn-ds primary" disabled>Disabled</button>
+            <button class="btn-ds icon-only" aria-label="Buscar">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+            </button>
+            <button class="btn-ds icon-only" aria-label="Filtrar">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M6 12h12M10 18h4"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="demo-board theme-fem" style="position: relative; overflow: hidden;">
+          <div class="id-sub" style="margin-top:0;">— Tema Feminino · azul + coral</div>
+          <div class="demo-row">
+            <button class="btn-ds primary">Classificação <span>→</span></button>
+            <button class="btn-ds">Ver jogos</button>
+            <button class="btn-ds ghost">Cancelar</button>
+            <button class="btn-ds accent">Inscrever</button>
+            <button class="btn-ds coral">Sole only</button>
+          </div>
+          <div class="demo-row">
+            <button class="btn-ds primary sm">Salvar</button>
+            <button class="btn-ds sm">Editar</button>
+            <button class="btn-ds ghost sm">Voltar</button>
+          </div>
+          <div class="demo-row">
+            <button style="font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; padding: 14px 22px; background: linear-gradient(135deg, var(--prata-deep), var(--prata-light)); color: oklch(0.18 0 0); border: none; border-radius: 2px; cursor: pointer; box-shadow: inset 0 -2px 6px color-mix(in oklch, var(--ink) 18%, transparent), inset 0 2px 6px color-mix(in oklch, var(--paper) 70%, transparent);">★ Prata</button>
+            <button style="font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; padding: 14px 22px; background: linear-gradient(135deg, var(--bronze-deep), var(--bronze-light)); color: var(--paper); border: none; border-radius: 2px; cursor: pointer; box-shadow: inset 0 -2px 6px color-mix(in oklch, var(--bronze-deep) 60%, transparent), inset 0 2px 6px color-mix(in oklch, var(--bronze-light) 70%, transparent);">★ Bronze</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 · Inputs -->
+    <section class="id-sec" id="inputs">
+      <div class="sec-head">
+        <span class="sec-num">— 06 / Inputs</span>
+      </div>
+      <h2>Campos de formulário</h2>
+      <p class="sec-desc">
+        Inputs, selects, textareas, switches, checkboxes e radios. Padrão papel + borda fina. Focus ring colorido pelo tema vigente.
+      </p>
+
+      <div class="demo-grid-2">
+        <div class="demo-board">
+          <div class="id-sub" style="margin-top:0;">— Texto, busca, select</div>
+          <div class="field">
+            <label class="field-label">Nome do atleta</label>
+            <input class="input" placeholder="Ex: José Resende" value="Riccardo Voso">
+            <span class="field-hint">Como aparece no ranking.</span>
+          </div>
+          <div class="field">
+            <label class="field-label">Buscar</label>
+            <div class="search-box" style="max-width: none; margin: 0;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+              <input class="input" style="padding-left: 38px;" placeholder="Buscar atleta, dupla ou data...">
+            </div>
+          </div>
+          <div class="field">
+            <label class="field-label">Categoria</label>
+            <select class="select">
+              <option>Masculino</option>
+              <option>★ Feminino Prata</option>
+              <option>★ Feminino Bronze</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="field-label">Comentário do jogo</label>
+            <textarea class="textarea" placeholder="Como foi a partida?">Tie-break apertado no terceiro set.</textarea>
+          </div>
+          <div class="field">
+            <label class="field-label">Erro de validação</label>
+            <input class="input error" value="data inválida — usar dd/mm">
+            <span class="field-hint" style="color: oklch(0.55 0.18 25);">⚠ Formato esperado: dd/mm/aaaa</span>
+          </div>
+        </div>
+
+        <div class="demo-board">
+          <div class="id-sub" style="margin-top:0;">— Switches, checks, radios</div>
+
+          <div class="field-row">
+            <div class="switch on" data-toggle></div>
+            <span>Notificações de jogo</span>
+          </div>
+          <div class="field-row">
+            <div class="switch" data-toggle></div>
+            <span>Modo claro/escuro automático</span>
+          </div>
+          <div class="field-row">
+            <div class="switch on" data-toggle></div>
+            <span>Mostrar saldo de games detalhado</span>
+          </div>
+
+          <div style="height: 1px; background: var(--line);"></div>
+
+          <div class="field-row">
+            <div class="check on" data-check></div>
+            <span>Aceito as regras do ranking 2026</span>
+          </div>
+          <div class="field-row">
+            <div class="check on" data-check></div>
+            <span>Quero receber convocação de duplas</span>
+          </div>
+          <div class="field-row">
+            <div class="check" data-check></div>
+            <span>Disponível em finais de semana</span>
+          </div>
+
+          <div style="height: 1px; background: var(--line);"></div>
+
+          <div class="id-sub" style="margin-top: 0;">— Escolha de categoria</div>
+          <div class="field-row" data-radio-group>
+            <div class="radio on" data-radio="masc"></div>
+            <span>Masculino</span>
+          </div>
+          <div class="field-row" data-radio-group>
+            <div class="radio" data-radio="prata"></div>
+            <span>★ Feminino Prata</span>
+          </div>
+          <div class="field-row" data-radio-group>
+            <div class="radio" data-radio="bronze"></div>
+            <span>★ Feminino Bronze</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 · Badges -->
+    <section class="id-sec" id="badges">
+      <div class="sec-head">
+        <span class="sec-num">— 07 / Badges & chips</span>
+      </div>
+      <h2>Etiquetas</h2>
+      <p class="sec-desc">Identificadores curtos para categoria, status e tier. Sempre em caixa alta, tracking 0.22em.</p>
+
+      <div class="demo-board">
+        <div class="demo-row">
+          <span class="badge verde">MASCULINO</span>
+          <span class="badge azul">FEMININO</span>
+          <span class="badge prata">★ PRATA</span>
+          <span class="badge bronze">★ BRONZE</span>
+          <span class="badge citrino">BOLA AMARELA</span>
+          <span class="badge coral">SOLE</span>
+          <span class="badge ink">TEMPORADA 2026</span>
+          <span class="badge outline">RODADA 08</span>
+        </div>
+        <div class="demo-row">
+          <span class="badge ink live" style="background: var(--coral); color: var(--paper);">AO VIVO</span>
+          <span class="badge verde">CONCLUÍDO</span>
+          <span class="badge outline">AGENDADO</span>
+          <span class="badge outline" style="border-color: oklch(0.55 0.18 25); color: oklch(0.55 0.18 25);">ADIADO</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 · Tabelas -->
+    <section class="id-sec" id="tabelas">
+      <div class="sec-head">
+        <span class="sec-num">— 08 / Tabelas</span>
+      </div>
+      <h2>Tabelas de ranking</h2>
+      <p class="sec-desc">Estilo "newspaper sport": linhas finas, tipografia display nos nomes, dados em mono tabular, dot-bar como "forma".</p>
+
+      <div class="rank-table">
+        <div class="rank-row head">
+          <div>POS</div>
+          <div>ATLETA · DUPLA</div>
+          <div class="rank-hide-mobile" style="text-align:right;">J</div>
+          <div class="rank-hide-mobile" style="text-align:right;">V</div>
+          <div class="rank-hide-mobile" style="text-align:right;">D</div>
+          <div style="text-align:right;">PTS</div>
+          <div class="rank-hide-mobile" style="text-align:right;">FORMA</div>
+        </div>
+        <div class="rank-row body" data-pos="1">
+          <div class="rank-pos tier-1">1</div>
+          <div class="athlete-cell">
+            <div class="athlete-avatar">JR</div>
+            <div class="athlete-info">
+              <div class="athlete-name">José Resende</div>
+              <div class="athlete-meta">com R. Voso · 100% · +11 G</div>
+            </div>
+          </div>
+          <div class="rank-cell muted">8</div>
+          <div class="rank-cell">8</div>
+          <div class="rank-cell muted">0</div>
+          <div class="rank-cell pct">800</div>
+          <div class="form-cell">
+            <div class="form-dot w"></div><div class="form-dot w"></div><div class="form-dot w"></div>
+            <div class="form-dot w"></div><div class="form-dot w"></div><div class="form-dot w"></div>
+          </div>
+        </div>
+        <div class="rank-row body" data-pos="2">
+          <div class="rank-pos">2</div>
+          <div class="athlete-cell">
+            <div class="athlete-avatar">RV</div>
+            <div class="athlete-info">
+              <div class="athlete-name">Riccardo Voso</div>
+              <div class="athlete-meta">com J. Resende · 100% · +11 G</div>
+            </div>
+          </div>
+          <div class="rank-cell muted">8</div>
+          <div class="rank-cell">8</div>
+          <div class="rank-cell muted">0</div>
+          <div class="rank-cell pct">800</div>
+          <div class="form-cell">
+            <div class="form-dot w"></div><div class="form-dot w"></div><div class="form-dot w"></div>
+            <div class="form-dot w"></div><div class="form-dot w"></div><div class="form-dot w"></div>
+          </div>
+        </div>
+        <div class="rank-row body" data-pos="3">
+          <div class="rank-pos">3</div>
+          <div class="athlete-cell">
+            <div class="athlete-avatar">JF</div>
+            <div class="athlete-info">
+              <div class="athlete-name">João Paulo Fiacadori</div>
+              <div class="athlete-meta">com M. Centrone · 100% · +10 G</div>
+            </div>
+          </div>
+          <div class="rank-cell muted">7</div>
+          <div class="rank-cell">7</div>
+          <div class="rank-cell muted">0</div>
+          <div class="rank-cell pct">700</div>
+          <div class="form-cell">
+            <div class="form-dot w"></div><div class="form-dot w"></div><div class="form-dot w"></div>
+            <div class="form-dot w"></div><div class="form-dot w"></div><div class="form-dot w"></div>
+          </div>
+        </div>
+        <div class="rank-row body" data-pos="4">
+          <div class="rank-pos">4</div>
+          <div class="athlete-cell">
+            <div class="athlete-avatar">MC</div>
+            <div class="athlete-info">
+              <div class="athlete-name">Miguel Centrone</div>
+              <div class="athlete-meta">com J. P. Fiacadori · 85.7% · +8 G</div>
+            </div>
+          </div>
+          <div class="rank-cell muted">7</div>
+          <div class="rank-cell">6</div>
+          <div class="rank-cell muted">1</div>
+          <div class="rank-cell pct">600</div>
+          <div class="form-cell">
+            <div class="form-dot w"></div><div class="form-dot w"></div><div class="form-dot w"></div>
+            <div class="form-dot l"></div><div class="form-dot w"></div><div class="form-dot w"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="id-sub">— Versão feminino · prata</div>
+      <div class="theme-fem">
+        <div class="fem-tier-banner prata">
+          <div class="medal">P</div>
+          <div class="info">
+            <div class="t">Categoria Prata</div>
+            <div class="s">9 atletas · líder: Mariana Centrone</div>
+          </div>
+          <div class="meta" style="display:flex; gap:24px;">
+            <div><div class="v">9</div><div class="l">Atletas</div></div>
+            <div><div class="v">53</div><div class="l">Jogos</div></div>
+            <div><div class="v">1.665</div><div class="l">Pts líder</div></div>
+          </div>
+        </div>
+        <div class="rank-table">
+          <div class="rank-row head">
+            <div>POS</div>
+            <div>ATLETA · DUPLA</div>
+            <div class="rank-hide-mobile" style="text-align:right;">J</div>
+            <div class="rank-hide-mobile" style="text-align:right;">V</div>
+            <div class="rank-hide-mobile" style="text-align:right;">D</div>
+            <div style="text-align:right;">PTS</div>
+            <div class="rank-hide-mobile" style="text-align:right;">FORMA</div>
+          </div>
+          <div class="rank-row body" data-pos="1">
+            <div class="rank-pos tier-1">1</div>
+            <div class="athlete-cell">
+              <div class="athlete-avatar">MC</div>
+              <div class="athlete-info">
+                <div class="athlete-name">Mariana Centrone</div>
+                <div class="athlete-meta">com L. Müsch · 83.3% · +12 G</div>
+              </div>
+            </div>
+            <div class="rank-cell muted">6</div>
+            <div class="rank-cell">5</div>
+            <div class="rank-cell muted">1</div>
+            <div class="rank-cell pct">1.665</div>
+            <div class="form-cell">
+              <div class="form-dot w"></div><div class="form-dot w"></div><div class="form-dot l"></div>
+              <div class="form-dot w"></div><div class="form-dot w"></div><div class="form-dot w"></div>
+            </div>
+          </div>
+          <div class="rank-row body" data-pos="2">
+            <div class="rank-pos">2</div>
+            <div class="athlete-cell">
+              <div class="athlete-avatar">LM</div>
+              <div class="athlete-info">
+                <div class="athlete-name">Larissa Müsch Niell</div>
+                <div class="athlete-meta">com M. Centrone · 83.3% · +7 G</div>
+              </div>
+            </div>
+            <div class="rank-cell muted">6</div>
+            <div class="rank-cell">5</div>
+            <div class="rank-cell muted">1</div>
+            <div class="rank-cell pct">1.665</div>
+            <div class="form-cell">
+              <div class="form-dot w"></div><div class="form-dot w"></div><div class="form-dot w"></div>
+              <div class="form-dot l"></div><div class="form-dot w"></div><div class="form-dot w"></div>
+            </div>
+          </div>
+          <div class="rank-row body" data-pos="3">
+            <div class="rank-pos">3</div>
+            <div class="athlete-cell">
+              <div class="athlete-avatar">AS</div>
+              <div class="athlete-info">
+                <div class="athlete-name">Alessandra Sandrini</div>
+                <div class="athlete-meta">com K. Schiavetti · 66.7% · +5 G</div>
+              </div>
+            </div>
+            <div class="rank-cell muted">6</div>
+            <div class="rank-cell">4</div>
+            <div class="rank-cell muted">2</div>
+            <div class="rank-cell pct">1.110</div>
+            <div class="form-cell">
+              <div class="form-dot w"></div><div class="form-dot l"></div><div class="form-dot w"></div>
+              <div class="form-dot w"></div><div class="form-dot l"></div><div class="form-dot w"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 · Cards -->
+    <section class="id-sec" id="cards">
+      <div class="sec-head">
+        <span class="sec-num">— 09 / Cards</span>
+      </div>
+      <h2>Cards de atleta &amp; jogo</h2>
+      <p class="sec-desc">Cards são contidos por uma borda fina (1px). Cor de fundo distingue hierarquia. Tier metálico recebe gradiente.</p>
+
+      <div class="demo-grid-2" style="grid-template-columns: 1fr 1fr; gap: 14px;">
+        <div class="leader rank-1" data-rank="1" style="min-height: 220px;">
+          <div class="leader-tag"><span class="badge">1</span>LÍDER</div>
+          <div class="leader-name">José Resende</div>
+          <div class="leader-stats">
+            <div class="leader-stat"><div class="v">100%</div><div class="l">Aprov.</div></div>
+            <div class="leader-stat"><div class="v">+11</div><div class="l">Saldo</div></div>
+            <div class="leader-stat"><div class="v">8/8</div><div class="l">V/J</div></div>
+          </div>
+        </div>
+
+        <div class="theme-fem">
+          <div class="leader rank-1" data-rank="1" style="min-height: 220px;">
+            <div class="leader-tag"><span class="badge">1</span>LÍDER · ★ PRATA</div>
+            <div class="leader-name">Mariana Centrone</div>
+            <div class="leader-stats">
+              <div class="leader-stat"><div class="v">83%</div><div class="l">Aprov.</div></div>
+              <div class="leader-stat"><div class="v">+12</div><div class="l">Saldo</div></div>
+              <div class="leader-stat"><div class="v">5/6</div><div class="l">V/J</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="id-sub">— Card de partida</div>
+      <div class="matches" style="grid-template-columns: 1fr 1fr 1fr;">
+        <div class="match live">
+          <div class="match-meta">
+            <div class="match-time">AO VIVO</div>
+            <div class="match-cat masc">M</div>
+          </div>
+          <div class="match-pair">
+            <div class="team">
+              <div class="team-line">Miguel Centrone</div>
+              <div class="team-line dim">João P. Fiacadori</div>
+            </div>
+            <div class="match-vs">VS</div>
+            <div class="team right">
+              <div class="team-line">Wagner Ruche</div>
+              <div class="team-line dim">William Klein</div>
+            </div>
+          </div>
+          <div class="match-score">
+            <div class="set win">6-3 / 4-4</div>
+          </div>
+        </div>
+        <div class="match">
+          <div class="match-meta">
+            <div class="match-time">19:30</div>
+            <div class="match-cat prata">PRATA</div>
+          </div>
+          <div class="match-pair">
+            <div class="team">
+              <div class="team-line">Mariana Centrone</div>
+              <div class="team-line dim">Larissa Müsch</div>
+            </div>
+            <div class="match-vs">VS</div>
+            <div class="team right">
+              <div class="team-line">Alessandra Sandrini</div>
+              <div class="team-line dim">Katia Schiavetti</div>
+            </div>
+          </div>
+        </div>
+        <div class="match played">
+          <div class="match-meta">
+            <div class="match-time">17:00</div>
+            <div class="match-cat masc">M</div>
+          </div>
+          <div class="match-pair">
+            <div class="team win">
+              <div class="team-line">José Resende</div>
+              <div class="team-line dim">Riccardo Voso</div>
+            </div>
+            <div class="match-vs">VS</div>
+            <div class="team right lose">
+              <div class="team-line">Felipe Cardoso</div>
+              <div class="team-line dim">Lucas Machado</div>
+            </div>
+          </div>
+          <div class="match-score">
+            <div class="set win">6–3</div>
+            <div class="set win">6–2</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 · Modais -->
+    <section class="id-sec" id="modais">
+      <div class="sec-head">
+        <span class="sec-num">— 10 / Modais</span>
+      </div>
+      <h2>Modais</h2>
+      <p class="sec-desc">Sobreposição em ink translúcido + blur. Modal sólido em papel, bordas finas, header com eyebrow + título display. Footer com ações alinhadas à direita.</p>
+
+      <div class="demo-row">
+        <button class="btn-ds primary" data-modal-open="modal-1">Abrir confirmação</button>
+        <button class="btn-ds" data-modal-open="modal-2">Inscrever atleta</button>
+        <button class="btn-ds ghost" data-modal-open="modal-3">Detalhes do jogo</button>
+      </div>
+
+      <div class="id-sub">— Pré-visualização inline</div>
+      <div class="demo-grid-2">
+        <!-- preview 1 -->
+        <div style="border: 1px solid var(--line); background: color-mix(in oklch, var(--ink) 4%, var(--paper)); padding: 32px; border-radius: 2px;">
+          <div class="modal" style="transform: none; box-shadow: 0 24px 60px -20px color-mix(in oklch, var(--ink) 35%, transparent);">
+            <div class="modal-header">
+              <div>
+                <div class="modal-eyebrow">— CONFIRMAR</div>
+                <div class="modal-title">Excluir partida?</div>
+              </div>
+              <button class="modal-close">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              </button>
+            </div>
+            <div class="modal-body">
+              A partida Resende/Voso × Cardoso/Machado da Rodada 07 será removida. Os pontos serão recalculados imediatamente para a categoria masculino.
+            </div>
+            <div class="modal-footer">
+              <button class="btn-ds ghost sm">Cancelar</button>
+              <button class="btn-ds danger sm">Excluir partida</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- preview 2 -->
+        <div class="theme-fem" style="border: 1px solid var(--line); background: color-mix(in oklch, var(--azul-night) 8%, var(--paper)); padding: 32px; border-radius: 2px;">
+          <div class="modal" style="transform: none; box-shadow: 0 24px 60px -20px color-mix(in oklch, var(--azul-night) 35%, transparent);">
+            <div class="modal-header">
+              <div>
+                <div class="modal-eyebrow">— INSCRIÇÃO · ★ FEMININO</div>
+                <div class="modal-title">Nova dupla</div>
+              </div>
+              <button class="modal-close">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="field">
+                <label class="field-label">Atleta 1</label>
+                <input class="input" placeholder="Buscar atleta..." value="Mariana Centrone">
+              </div>
+              <div class="field">
+                <label class="field-label">Atleta 2</label>
+                <input class="input" placeholder="Buscar atleta...">
+              </div>
+              <div class="field">
+                <label class="field-label">Categoria</label>
+                <select class="select">
+                  <option>★ Feminino Prata</option>
+                  <option>★ Feminino Bronze</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn-ds ghost sm">Cancelar</button>
+              <button class="btn-ds primary sm">Confirmar dupla</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 · Aplicações -->
+    <section class="id-sec" id="aplicacoes">
+      <div class="sec-head">
+        <span class="sec-num">— 11 / Aplicações</span>
+      </div>
+      <h2>Aplicações reais</h2>
+      <p class="sec-desc">Como os tokens se combinam em cenários do produto.</p>
+
+      <div class="demo-grid-2">
+        <a href="index.html#home" style="text-decoration:none;">
+          <div style="aspect-ratio: 16/10; background: var(--verde-deep); border: 1px solid var(--line); border-radius: 2px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden;">
+            <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: color-mix(in oklch, var(--paper) 60%, transparent);">— TEMPORADA 2026</div>
+            <div>
+              <div style="font-family: var(--font-display); font-weight: 800; font-size: 48px; letter-spacing: -0.035em; line-height: 0.95; text-transform: uppercase; color: var(--paper);">SQUADRA</div>
+              <div style="font-family: var(--font-display); font-weight: 800; font-size: 48px; letter-spacing: -0.035em; line-height: 0.95; text-transform: uppercase; color: var(--verde-glow);">VERDE</div>
+            </div>
+            <div style="display: flex; gap: 28px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: color-mix(in oklch, var(--paper) 70%, transparent);">
+              <span>78 ATLETAS</span>
+              <span>199 JOGOS</span>
+              <span>8 RODADAS</span>
+            </div>
+            <div style="position: absolute; right: -80px; bottom: -80px; width: 280px; height: 280px; border-radius: 50%; border: 1px solid color-mix(in oklch, var(--verde-glow) 25%, transparent);"></div>
+          </div>
+          <div class="field-hint" style="margin-top: 10px; text-align: center;">→ HERO MASCULINO</div>
+        </a>
+
+        <a href="index.html#ranking" style="text-decoration:none;">
+          <div class="theme-fem" style="aspect-ratio: 16/10; background: var(--azul-night); border: 1px solid var(--line); border-radius: 2px; padding: 32px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden;">
+            <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: color-mix(in oklch, var(--paper) 60%, transparent);">— ★ FEMININO · 2026</div>
+            <div>
+              <div style="font-family: var(--font-display); font-weight: 800; font-size: 48px; letter-spacing: -0.035em; line-height: 0.95; text-transform: uppercase; color: var(--paper);">SQUADRA</div>
+              <div style="font-family: var(--font-serif); font-style: italic; font-weight: 400; font-size: 56px; letter-spacing: -0.01em; line-height: 0.95; color: var(--coral);">Sole</div>
+            </div>
+            <div style="display: flex; gap: 28px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: color-mix(in oklch, var(--paper) 70%, transparent);">
+              <span>★ PRATA</span>
+              <span>★ BRONZE</span>
+              <span>21 ATLETAS</span>
+            </div>
+            <div style="position: absolute; right: -60px; top: -60px; width: 280px; height: 280px; border-radius: 50%; border: 1px solid color-mix(in oklch, var(--coral) 32%, transparent);"></div>
+            <div style="position: absolute; right: -40px; top: -40px; width: 240px; height: 240px; border-radius: 50%; border: 1px solid color-mix(in oklch, var(--coral) 18%, transparent);"></div>
+          </div>
+          <div class="field-hint" style="margin-top: 10px; text-align: center;">→ HERO FEMININO ("SQUADRA SOLE")</div>
+        </a>
+      </div>
+
+      <div class="id-sub">— Próximos passos</div>
+      <div style="background: var(--paper); border: 1px solid var(--line); padding: 28px; border-radius: 2px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;">
+        <div>
+          <div class="eyebrow" style="margin-bottom: 6px;">EXPORTAÇÃO</div>
+          <div style="font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: -0.01em; text-transform: uppercase;">Tudo isto também vira PNG, PDF e tokens CSS.</div>
+        </div>
+        <div style="display:flex; gap: 10px;">
+          <a href="index.html"><button class="btn-ds">Ver no site</button></a>
+          <button class="btn-ds primary">Baixar kit</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+
+<!-- ════════════════════════════════════ MODAIS ════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-1">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-eyebrow">— CONFIRMAR</div>
+        <div class="modal-title">Excluir partida?</div>
+      </div>
+      <button class="modal-close" data-modal-close>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      A partida Resende/Voso × Cardoso/Machado da Rodada 07 será removida. Os pontos serão recalculados imediatamente para a categoria masculino.
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ds ghost sm" data-modal-close>Cancelar</button>
+      <button class="btn-ds danger sm" data-modal-close>Excluir partida</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay theme-fem" id="modal-2">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-eyebrow">— INSCRIÇÃO · ★ FEMININO</div>
+        <div class="modal-title">Nova dupla</div>
+      </div>
+      <button class="modal-close" data-modal-close>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="field">
+        <label class="field-label">Atleta 1</label>
+        <input class="input" placeholder="Buscar atleta..." value="Mariana Centrone">
+      </div>
+      <div class="field">
+        <label class="field-label">Atleta 2</label>
+        <input class="input" placeholder="Buscar atleta...">
+      </div>
+      <div class="field">
+        <label class="field-label">Categoria</label>
+        <select class="select">
+          <option>★ Feminino Prata</option>
+          <option>★ Feminino Bronze</option>
+        </select>
+      </div>
+      <div class="field-row">
+        <div class="check on" data-check></div>
+        <span>Aceitar regulamento da temporada 2026</span>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ds ghost sm" data-modal-close>Cancelar</button>
+      <button class="btn-ds primary sm" data-modal-close>Confirmar dupla</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-3">
+  <div class="modal" style="max-width: 540px;">
+    <div class="modal-header">
+      <div>
+        <div class="modal-eyebrow">— RODADA 07 · MASCULINO</div>
+        <div class="modal-title">Resende/Voso × Cardoso/Machado</div>
+      </div>
+      <button class="modal-close" data-modal-close>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div>
+          <div class="eyebrow" style="margin-bottom: 6px;">DUPLA 1</div>
+          <div style="font-family: var(--font-display); font-weight: 700; font-size: 18px; text-transform: uppercase;">Resende / Voso</div>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: color-mix(in oklch, var(--ink) 60%, transparent); margin-top: 4px;">1ª e 2ª colocação</div>
+        </div>
+        <div style="text-align:right;">
+          <div class="eyebrow" style="margin-bottom: 6px;">DUPLA 2</div>
+          <div style="font-family: var(--font-display); font-weight: 700; font-size: 18px; text-transform: uppercase;">Cardoso / Machado</div>
+          <div style="font-family: var(--font-mono); font-size: 11px; color: color-mix(in oklch, var(--ink) 60%, transparent); margin-top: 4px;">5ª colocação</div>
+        </div>
+      </div>
+      <div style="border: 1px solid var(--line); padding: 18px; display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: center;">
+        <div style="display:flex; gap: 14px; justify-content: center;">
+          <span style="font-family: var(--font-display); font-weight: 800; font-size: 28px; color: var(--ink); position: relative;">6<span style="position:absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--verde);"></span></span>
+          <span style="font-family: var(--font-display); font-weight: 800; font-size: 28px; color: var(--ink); position: relative;">6<span style="position:absolute; top: -6px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--verde);"></span></span>
+        </div>
+        <div style="font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: color-mix(in oklch, var(--ink) 50%, transparent);">SETS</div>
+        <div style="display:flex; gap: 14px; justify-content: center;">
+          <span style="font-family: var(--font-display); font-weight: 800; font-size: 28px; color: color-mix(in oklch, var(--ink) 35%, transparent);">3</span>
+          <span style="font-family: var(--font-display); font-weight: 800; font-size: 28px; color: color-mix(in oklch, var(--ink) 35%, transparent);">2</span>
+        </div>
+      </div>
+      <div class="field-hint">Local: Quadra 3 · Duração: 1h 12min · Saldo de games: +7 para Resende/Voso</div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ds ghost sm" data-modal-close>Fechar</button>
+      <button class="btn-ds primary sm">Ver histórico completo</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════ FOOTER ════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="mark-big">Squadra<br><em>Verde</em></div>
+        <p>Brand book v1.0 · maio 2026. Atualizado conforme a temporada evolui — feedback do grupo é sempre bem-vindo.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegar</h4>
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#ranking">Classificação</a></li>
+          <li><a href="index.html#agenda">Agenda</a></li>
+          <li><a href="index.html#atletas">Atletas</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Brand book</h4>
+        <ul>
+          <li><a href="#logo">Logo</a></li>
+          <li><a href="#cores">Cores</a></li>
+          <li><a href="#tipografia">Tipografia</a></li>
+          <li><a href="#botoes">Componentes</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Sobre</h4>
+        <ul>
+          <li>Versão 1.0 · Mai/26</li>
+          <li>78 atletas inscritos</li>
+          <li>3 categorias</li>
+          <li>squadra@verde.bt</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 SQUADRA VERDE · BEACH TÊNIS</div>
+      <div>BRAND BOOK v1.0 · ATUALIZADO 19/05</div>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+// ── Demo interactions ────────────────────────────
+// Toggle switches
+document.querySelectorAll('[data-toggle]').forEach(t => {
+  t.addEventListener('click', () => t.classList.toggle('on'));
+});
+// Checks
+document.querySelectorAll('[data-check]').forEach(c => {
+  c.addEventListener('click', () => c.classList.toggle('on'));
+});
+// Radio group (single selection within group container)
+document.querySelectorAll('[data-radio]').forEach(r => {
+  r.addEventListener('click', () => {
+    document.querySelectorAll('[data-radio]').forEach(o => o.classList.remove('on'));
+    r.classList.add('on');
+  });
+});
+
+// Modals
+document.querySelectorAll('[data-modal-open]').forEach(b => {
+  b.addEventListener('click', () => {
+    const id = b.dataset.modalOpen;
+    document.getElementById(id).classList.add('show');
+  });
+});
+document.querySelectorAll('[data-modal-close]').forEach(b => {
+  b.addEventListener('click', () => {
+    b.closest('.modal-overlay').classList.remove('show');
+  });
+});
+document.querySelectorAll('.modal-overlay').forEach(o => {
+  o.addEventListener('click', (e) => {
+    if (e.target === o) o.classList.remove('show');
+  });
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.show').forEach(o => o.classList.remove('show'));
+  }
+});
+
+// Smooth scroll for TOC
+document.querySelectorAll('.id-toc a').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el) {
+      e.preventDefault();
+      window.scrollTo({ top: el.offsetTop - 60, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>

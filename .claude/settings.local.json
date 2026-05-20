@@ -9,7 +9,21 @@
       "Bash(copy *)",
       "Bash(node *)",
       "PowerShell(Set-Content *)",
-      "Bash(git checkout *)"
+      "Bash(git checkout *)",
+      "Bash(powershell *)",
+      "Bash(cat tailwind.config.js)",
+      "Bash(cat tailwind.config.ts)",
+      "Bash(cat postcss.config.js)",
+      "Bash(cat postcss.config.mjs)",
+      "Bash(curl -s \"http://localhost:3000/\")",
+      "Bash(curl -s \"http://localhost:3000/_next/static/chunks/src_app_globals_0p2ml0n.css\")",
+      "PowerShell(Stop-Process *)",
+      "Bash(curl -s \"http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__01m68y9._.css\")",
+      "Bash(curl -s \"http://localhost:3000/feminino\")",
+      "Bash(curl *)",
+      "Bash(Get-Content *)",
+      "Bash(python3 -c \"import sys; data=sys.stdin.read\\(\\); idx=data.find\\('@font-face'\\); print\\(data[idx:idx+400] if idx>=0 else 'not found'\\)\")",
+      "Bash(awk '/Bricolage/{found=1} found && /font-weight/{w=$0} found && /src.*woff2/{print w\" -> \"$0} found && /JetBrains/{exit}')"
     ]
   }
 }

@@ -10,8 +10,9 @@ const NAV = [
   { href: '/ranking',    label: 'Classificação' },
   { href: '/jogos',      label: 'Jogos' },
   { href: '/lances',     label: 'Lances' },
-  { href: '/atletas',    label: 'Atletas' },
-  { href: '/sobre',      label: 'Sobre' },
+  { href: '/atletas',        label: 'Atletas' },
+  { href: '/patrocinadores', label: 'Patrocinadores' },
+  { href: '/sobre',          label: 'Sobre' },
 ];
 
 const RANKING_PATHS = ['/ranking', '/feminino', '/feminino-prata'];
@@ -29,59 +30,73 @@ export default function Header() {
   }
 
   return (
-    <header style={{ background: 'var(--verde-escuro)', borderBottom: '1px solid rgba(255,255,255,0.08)', position: 'sticky', top: 0, zIndex: 50 }}>
-      <div className="header-inner">
+    <header className="nav">
+      <div className="nav-inner">
 
-        {/* Logo */}
-        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 16, flexShrink: 0 }} onClick={() => setOpen(false)}>
-          <LogoSVG color="var(--creme)" width={30} height={48} />
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 0 }}>
-            <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 900, fontSize: 'clamp(12px, 1.5vw, 16px)', letterSpacing: '0.1em', color: 'var(--creme)', textTransform: 'uppercase', lineHeight: 1.1 }}>SQUADRA</span>
-            <div style={{ width: '100%', height: 2, background: 'var(--verde-medio)', margin: '3px 0' }} />
-            <span style={{ fontFamily: "'Unbounded', sans-serif", fontWeight: 900, fontSize: 'clamp(12px, 1.5vw, 16px)', letterSpacing: '0.1em', color: 'var(--verde-medio)', textTransform: 'uppercase', lineHeight: 1.1 }}>VERDE</span>
-            <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 7, letterSpacing: '0.45em', color: 'rgba(245,239,230,0.35)', textTransform: 'uppercase', marginTop: 3 }}>Beach Tênis</span>
+        {/* Brand */}
+        <Link href="/" className="brand-mark" onClick={() => setOpen(false)}>
+          <LogoSVG color="var(--verde-deep)" width={26} height={42} />
+          <div className="brand-mark-text">
+            <strong>Squadra Verde</strong>
+            <span>Beach Tênis · T2026</span>
           </div>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="nav-desktop">
-          {NAV.map(link => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`nav-link${isActive(link.href) ? ' active' : ''}`}
-            >
-              {link.label}
-            </Link>
-          ))}
+        <nav>
+          <ul className="nav-links">
+            {NAV.map(link => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={isActive(link.href) ? 'active' : ''}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </nav>
 
-        {/* Mobile hamburger */}
-        <button
-          className="nav-mobile-btn"
-          onClick={() => setOpen(v => !v)}
-          aria-label="Menu"
-          style={{ flexShrink: 0 }}
-        >
-          {[0, 1, 2].map(i => (
-            <span
-              key={i}
-              style={{
-                display: 'block',
-                height: 2,
-                background: 'var(--creme)',
-                transition: 'all 0.2s',
-                width: i === 0 ? (open ? 24 : 24) : i === 1 ? (open ? 0 : 20) : (open ? 24 : 16),
-                opacity: i === 1 && open ? 0 : 1,
-                transform: i === 0 && open ? 'rotate(45deg) translate(5px, 5px)' : i === 2 && open ? 'rotate(-45deg) translate(4px, -4px)' : 'none',
-              }}
-            />
-          ))}
-        </button>
+        <div className="nav-right">
+          <div className="nav-season">
+            <span className="live-dot" />
+            T2026
+          </div>
+
+          {/* Mobile hamburger */}
+          <button
+            className="nav-mobile-btn"
+            onClick={() => setOpen(v => !v)}
+            aria-label="Menu"
+          >
+            {[0, 1, 2].map(i => (
+              <span
+                key={i}
+                style={{
+                  display: 'block',
+                  height: 2,
+                  background: 'var(--ink)',
+                  transition: 'all 0.2s',
+                  width: i === 0 ? 24 : i === 1 ? (open ? 0 : 20) : (open ? 24 : 16),
+                  opacity: i === 1 && open ? 0 : 1,
+                  transform: i === 0 && open ? 'rotate(45deg) translate(5px, 5px)' : i === 2 && open ? 'rotate(-45deg) translate(4px, -4px)' : 'none',
+                  borderRadius: 1,
+                }}
+              />
+            ))}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
-      <div style={{ background: 'var(--preto)', borderTop: open ? '1px solid rgba(255,255,255,0.06)' : 'none', maxHeight: open ? 500 : 0, overflow: 'hidden', transition: 'max-height 0.28s ease' }}>
+      <div style={{
+        background: 'var(--paper)',
+        borderTop: open ? '1px solid var(--line)' : 'none',
+        maxHeight: open ? 500 : 0,
+        overflow: 'hidden',
+        transition: 'max-height 0.28s ease',
+      }}>
         <div style={{ padding: '8px 0 20px' }}>
           {NAV.map(link => (
             <Link
@@ -90,22 +105,31 @@ export default function Header() {
               onClick={() => setOpen(false)}
               style={{
                 display: 'block',
-                padding: '14px 24px',
-                fontFamily: "'DM Mono', monospace",
-                fontSize: 14,
-                letterSpacing: '0.15em',
+                padding: '13px 24px',
+                fontFamily: 'var(--font-mono)',
+                fontSize: 12,
+                letterSpacing: '0.18em',
                 textTransform: 'uppercase',
-                color: isActive(link.href) ? 'var(--creme)' : 'rgba(245,239,230,0.45)',
+                color: isActive(link.href) ? 'var(--ink)' : 'color-mix(in oklch, var(--ink) 45%, transparent)',
                 textDecoration: 'none',
-                borderBottom: '1px solid rgba(255,255,255,0.05)',
-                borderLeft: isActive(link.href) ? '2px solid var(--amarelo)' : '2px solid transparent',
+                borderBottom: '1px solid var(--line-soft)',
+                borderLeft: isActive(link.href) ? '2px solid var(--citrino-deep)' : '2px solid transparent',
+                background: isActive(link.href) ? 'color-mix(in oklch, var(--ink) 4%, transparent)' : 'transparent',
               }}
             >
               {link.label}
             </Link>
           ))}
           <div style={{ padding: '14px 24px 0' }}>
-            <span className="chip">Temporada 2026</span>
+            <span style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: 9,
+              letterSpacing: '0.32em',
+              textTransform: 'uppercase',
+              color: 'color-mix(in oklch, var(--ink) 40%, transparent)',
+            }}>
+              Temporada 2026
+            </span>
           </div>
         </div>
       </div>

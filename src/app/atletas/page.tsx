@@ -1,19 +1,9 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import Link from 'next/link';
 import classificacaoM from '@/data/classificacao_ranking.json';
 import rankingBronzeF from '@/data/ranking_feminino.json';
 import rankingPrataF from '@/data/ranking_prata_feminino.json';
-
-function slugify(nome: string) {
-  return nome
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/[^a-z0-9-]/g, '');
-}
 
 const INITIALS = (nome: string) =>
   nome.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase();
@@ -22,8 +12,8 @@ type Categoria = 'todos' | 'masculino' | 'bronze-f' | 'prata-f';
 
 const AVATAR_BG: Record<string, string[]> = {
   masculino: ['#00361a', '#1a4d2e', '#2c694e', '#1b5e35', '#0d4a24', '#3a7a54'],
-  'bronze-f': ['#6b2c4a', '#8b3a5e', '#7a2040', '#5a1f38', '#a04870', '#4d1a30'],
-  'prata-f':  ['#0f1e35', '#1a3050', '#233d60', '#162842', '#2a4870', '#0d2240'],
+  'bronze-f': ['#5c3a1e', '#7a4e2d', '#3d2510', '#6b4530', '#4a2e15', '#8a5c35'],
+  'prata-f':  ['#1c2830', '#2a3540', '#3a4f60', '#253040', '#354555', '#1a2e3a'],
 };
 
 const CATEGORIA_LABEL: Record<string, string> = {
@@ -34,8 +24,8 @@ const CATEGORIA_LABEL: Record<string, string> = {
 
 const CATEGORIA_ACCENT: Record<string, string> = {
   masculino: '#9dd3aa',
-  'bronze-f': '#e8b4c8',
-  'prata-f':  '#b8cff2',
+  'bronze-f': '#c8a878',
+  'prata-f':  '#b8c5cf',
 };
 
 const TABS: { key: Categoria; label: string }[] = [
@@ -84,22 +74,24 @@ export default function AtletasPage() {
   return (
     <div>
       {/* ── PAGE HEADER ── */}
-      <div style={{ background: '#ffffff', borderBottom: '1px solid #e7e9e4' }}>
-        <div className="page-header-inner">
-          <p className="section-label" style={{ marginBottom: 10 }}>Beach Tennis · Temporada 2026</p>
+      <div className="page-head">
+        <div className="page-head-inner">
+          <p className="section-label" style={{ marginBottom: 10, color: 'var(--verde-glow)' }}>Beach Tennis · Temporada 2026</p>
           <h1
             style={{
-              fontFamily: "'Unbounded', sans-serif",
-              fontWeight: 700,
-              fontSize: 'clamp(32px, 5vw, 56px)',
-              color: '#191c19',
-              letterSpacing: '-0.02em',
-              marginBottom: 8,
+              fontFamily: "var(--font-display)",
+              fontWeight: 800,
+              fontSize: 'clamp(36px, 6vw, 72px)',
+              color: 'var(--paper)',
+              letterSpacing: '-0.04em',
+              textTransform: 'uppercase',
+              lineHeight: 0.95,
+              marginBottom: 14,
             }}
           >
             Atletas
           </h1>
-          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 14, color: '#717971' }}>
+          <p style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: 'color-mix(in oklch, var(--paper) 50%, transparent)', letterSpacing: '0.05em' }}>
             {todos.length} atletas inscritos · Masculino, Feminino Bronze e Feminino Prata
           </p>
         </div>
@@ -108,24 +100,24 @@ export default function AtletasPage() {
       <div className="page-body-inner">
 
         {/* ── TABS ── */}
-        <div style={{ display: 'flex', gap: 4, marginBottom: 20, flexWrap: 'wrap', alignItems: 'stretch' }}>
+        <div style={{ display: 'flex', gap: 4, marginBottom: 20, padding: '3px', background: 'var(--sand-2)', border: '1px solid var(--line)', borderRadius: 100, width: 'fit-content' }}>
           {TABS.map(t => (
             <button
               key={t.key}
               onClick={() => setTab(t.key)}
               style={{
                 padding: '8px 16px',
-                border: '1px solid',
-                borderColor: tab === t.key ? '#191c19' : '#c1c9bf',
-                background: tab === t.key ? '#191c19' : '#ffffff',
-                color: tab === t.key ? '#ffffff' : '#414942',
-                fontFamily: "'DM Mono', monospace",
-                fontWeight: 700,
-                fontSize: 11,
-                letterSpacing: '0.1em',
+                border: 'none',
+                background: tab === t.key ? 'var(--ink)' : 'transparent',
+                color: tab === t.key ? 'var(--paper)' : 'color-mix(in oklch, var(--ink) 50%, transparent)',
+                fontFamily: "var(--font-mono)",
+                fontWeight: 500,
+                fontSize: 10,
+                letterSpacing: '0.22em',
                 textTransform: 'uppercase',
                 cursor: 'pointer',
                 transition: 'all 0.15s',
+                borderRadius: 100,
               }}
             >
               {t.label}
@@ -144,15 +136,15 @@ export default function AtletasPage() {
               flex: '1 1 200px',
               width: 'min(100%, 400px)',
               padding: '10px 16px',
-              border: '1px solid #c1c9bf',
-              background: '#f8faf5',
-              fontFamily: "'DM Mono', monospace",
+              border: '1px solid var(--line)',
+              background: 'var(--sand)',
+              fontFamily: "var(--font-mono)",
               fontSize: 14,
-              color: '#191c19',
+              color: 'var(--ink)',
               outline: 'none',
             }}
           />
-          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 12, color: '#717971', whiteSpace: 'nowrap' }}>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: 'color-mix(in oklch, var(--ink) 45%, transparent)', whiteSpace: 'nowrap' }}>
             {filtrados.length} de {total}
           </span>
         </div>
@@ -167,36 +159,20 @@ export default function AtletasPage() {
           }}
         >
           {filtrados.map(j => (
-            <Link
+            <div
               key={`${j.categoria}-${j.nome}`}
-              href={`/atletas/${slugify(j.nome)}`}
-              style={{ textDecoration: 'none' }}
+              style={{
+                background: 'var(--paper)',
+                border: '1px solid var(--line)',
+                padding: '24px 20px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 12,
+                textAlign: 'center',
+                height: '100%',
+              }}
             >
-              <div
-                style={{
-                  background: '#ffffff',
-                  border: '1px solid #e7e9e4',
-                  padding: '24px 20px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: 12,
-                  cursor: 'pointer',
-                  transition: 'all 0.15s',
-                  textAlign: 'center',
-                  height: '100%',
-                }}
-                onMouseEnter={e => {
-                  (e.currentTarget as HTMLDivElement).style.borderColor = j.avatarBg;
-                  (e.currentTarget as HTMLDivElement).style.boxShadow = `3px 3px 0 ${j.avatarBg}`;
-                  (e.currentTarget as HTMLDivElement).style.transform = 'translate(-1px,-1px)';
-                }}
-                onMouseLeave={e => {
-                  (e.currentTarget as HTMLDivElement).style.borderColor = '#e7e9e4';
-                  (e.currentTarget as HTMLDivElement).style.boxShadow = 'none';
-                  (e.currentTarget as HTMLDivElement).style.transform = 'none';
-                }}
-              >
                 {/* Avatar */}
                 <div
                   style={{
@@ -207,7 +183,7 @@ export default function AtletasPage() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontFamily: "'Unbounded', sans-serif",
+                    fontFamily: "var(--font-display)",
                     fontWeight: 700,
                     fontSize: 18,
                     color: CATEGORIA_ACCENT[j.categoria],
@@ -220,10 +196,10 @@ export default function AtletasPage() {
                 {/* Nome */}
                 <p
                   style={{
-                    fontFamily: "'Unbounded', sans-serif",
+                    fontFamily: "var(--font-display)",
                     fontWeight: 700,
                     fontSize: 14,
-                    color: '#191c19',
+                    color: 'var(--ink)',
                     lineHeight: 1.3,
                   }}
                 >
@@ -238,7 +214,7 @@ export default function AtletasPage() {
                     background: j.avatarBg + '18',
                     border: `1px solid ${j.avatarBg}55`,
                     color: j.avatarBg,
-                    fontFamily: "'DM Mono', monospace",
+                    fontFamily: "var(--font-mono)",
                     fontWeight: 700,
                     fontSize: 9,
                     letterSpacing: '0.1em',
@@ -247,14 +223,13 @@ export default function AtletasPage() {
                 >
                   {CATEGORIA_LABEL[j.categoria]}
                 </span>
-              </div>
-            </Link>
+            </div>
           ))}
         </div>
 
         {filtrados.length === 0 && (
-          <div style={{ padding: 60, textAlign: 'center', border: '1px solid #e7e9e4', background: '#ffffff' }}>
-            <p style={{ fontFamily: "'Unbounded', sans-serif", fontSize: 18, color: '#717971' }}>
+          <div style={{ padding: 60, textAlign: 'center', border: '1px solid var(--line)', background: 'var(--paper)' }}>
+            <p style={{ fontFamily: "var(--font-display)", fontSize: 18, color: 'color-mix(in oklch, var(--ink) 45%, transparent)' }}>
               Nenhum atleta encontrado
             </p>
           </div>
