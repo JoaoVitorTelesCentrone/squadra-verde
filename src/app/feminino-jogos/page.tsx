@@ -28,7 +28,7 @@ export default function FemininoJogosPage() {
   );
 
   const rodadasFiltradas = useMemo(() => {
-    return jogosData.rodadas.map(rodada => {
+    return [...jogosData.rodadas].sort((a, b) => a.rodada - b.rodada).map(rodada => {
       const jogosFiltrados = rodada.jogos.filter(jogo => {
         const realizado = jogo.status === 'Concluído';
         if (filtroStatus === 'realizados' && !realizado) return false;

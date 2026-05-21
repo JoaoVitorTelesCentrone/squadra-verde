@@ -201,22 +201,22 @@ export default function RankingPage() {
                   <div style={{ position: 'absolute', right: -8, top: -16, fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 100, color: 'rgba(255,255,255,0.06)', lineHeight: 1, userSelect: 'none', letterSpacing: '-0.04em' }}>
                     {j.posicao}
                   </div>
-                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--citrino)', marginBottom: 10, letterSpacing: '0.22em', textTransform: 'uppercase' }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 700, color: 'var(--citrino)', marginBottom: 10, letterSpacing: '0.2em', textTransform: 'uppercase' }}>
                     #{j.posicao} {j.posicao === 1 ? '· Líder' : j.posicao === 2 ? '· 2º lugar' : '· 3º lugar'}
                   </div>
-                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 18, color: podiumColors[idx], marginBottom: 14, letterSpacing: '-0.02em', textTransform: 'uppercase' }}>
+                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 26, color: 'var(--paper)', marginBottom: 14, letterSpacing: '-0.03em', textTransform: 'uppercase', lineHeight: 1.05 }}>
                     {j.nome}
                   </div>
-                  <div style={{ display: 'flex', gap: 20, paddingTop: 14, borderTop: '1px solid color-mix(in oklch, currentColor 14%, transparent)' }}>
+                  <div style={{ display: 'flex', gap: 20, paddingTop: 14, borderTop: '1px solid rgba(255,255,255,0.12)' }}>
                     <div>
-                      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 22, color: podiumColors[idx], fontVariantNumeric: 'tabular-nums', lineHeight: 1 }}>{j.percentual_vitorias}%</div>
-                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, fontWeight: 500, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'color-mix(in oklch, currentColor 50%, transparent)', marginTop: 6 }}>Vitórias</div>
+                      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 26, color: 'var(--paper)', fontVariantNumeric: 'tabular-nums', lineHeight: 1 }}>{j.percentual_vitorias}%</div>
+                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.65)', marginTop: 8 }}>Vitórias</div>
                     </div>
                     <div>
-                      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 22, color: j.saldo_games >= 0 ? 'var(--verde-glow)' : 'var(--coral)', lineHeight: 1 }}>
+                      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 26, color: j.saldo_games >= 0 ? 'var(--verde-glow)' : 'var(--coral)', lineHeight: 1 }}>
                         {j.saldo_games > 0 ? '+' : ''}{j.saldo_games}
                       </div>
-                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, fontWeight: 500, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'color-mix(in oklch, currentColor 50%, transparent)', marginTop: 6 }}>Saldo</div>
+                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.65)', marginTop: 8 }}>Saldo</div>
                     </div>
                   </div>
                 </div>
@@ -235,7 +235,7 @@ export default function RankingPage() {
                   display: 'block',
                   width: 'min(100%, 380px)',
                   padding: '12px 16px',
-                  border: '1px solid var(--line)',
+                  border: '2px solid var(--ink)',
                   background: 'var(--paper)',
                   fontFamily: 'var(--font-mono)',
                   fontSize: 13,
@@ -417,6 +417,7 @@ export default function RankingPage() {
       <style>{`
         @keyframes spin { to { transform: rotate(360deg); } }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .search-box::placeholder { color: var(--verde-deep); opacity: 1; }
         .top3-grid { grid-template-columns: repeat(3, 1fr); }
         .rank-table .col-hide-mobile { display: table-cell; }
         @media (max-width: 640px) {

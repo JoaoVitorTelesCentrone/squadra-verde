@@ -300,7 +300,8 @@ export default function FemininoPage() {
               {/* Busca */}
               <div style={{ marginBottom: 24 }}>
                 <input type="text" placeholder="Buscar atleta..." value={buscaBronze} onChange={e => setBuscaBronze(e.target.value)}
-                  style={{ width: '100%', maxWidth: 400, padding: '12px 16px', border: '1px solid var(--ink)', background: 'var(--paper)', fontFamily: "var(--font-mono)", fontSize: 14, color: 'var(--ink)', outline: 'none' }} />
+                  className="search-bronze"
+                  style={{ width: '100%', maxWidth: 400, padding: '12px 16px', border: '2px solid var(--ink)', background: 'var(--paper)', fontFamily: "var(--font-mono)", fontSize: 14, color: 'var(--ink)', outline: 'none' }} />
               </div>
 
               {/* Tabela */}
@@ -399,7 +400,8 @@ export default function FemininoPage() {
             {/* Busca */}
             <div style={{ marginBottom: 24 }}>
               <input type="text" placeholder="Buscar atleta..." value={buscaPrata} onChange={e => setBuscaPrata(e.target.value)}
-                style={{ width: '100%', maxWidth: 400, padding: '12px 16px', border: '1px solid var(--ink)', background: 'var(--paper)', fontFamily: "var(--font-mono)", fontSize: 14, color: 'var(--ink)', outline: 'none' }} />
+                className="search-prata"
+                style={{ width: '100%', maxWidth: 400, padding: '12px 16px', border: '2px solid var(--ink)', background: 'var(--paper)', fontFamily: "var(--font-mono)", fontSize: 14, color: 'var(--ink)', outline: 'none' }} />
             </div>
 
             {/* Tabela */}
@@ -523,7 +525,11 @@ export default function FemininoPage() {
         </div>
       </div>
 
-      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      <style>{`
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .search-bronze::placeholder { color: #2a1f14; opacity: 0.75; }
+        .search-prata::placeholder  { color: #1c2830; opacity: 0.75; }
+      `}</style>
     </div>
   );
 }

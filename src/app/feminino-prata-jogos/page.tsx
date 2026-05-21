@@ -28,7 +28,7 @@ export default function FeminoPrataJogosPage() {
   );
 
   const rodadasFiltradas = useMemo(() => {
-    return jogosData.rodadas.map(rodada => {
+    return [...jogosData.rodadas].sort((a, b) => a.rodada - b.rodada).map(rodada => {
       const jogosFiltrados = rodada.jogos.filter(jogo => {
         const realizado = jogo.status === 'Finalizado';
         if (filtroStatus === 'realizados' && !realizado) return false;
@@ -417,7 +417,7 @@ export default function FeminoPrataJogosPage() {
                                   fontFamily: "var(--font-display)",
                                   fontWeight: 700,
                                   fontSize: 11,
-                                  color: THEME.accent,
+                                  color: realizado ? 'var(--ink)' : THEME.accent,
                                   letterSpacing: '0.05em',
                                 }}
                               >

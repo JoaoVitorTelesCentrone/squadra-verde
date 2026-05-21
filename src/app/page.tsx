@@ -29,7 +29,8 @@ function getProximoJogoM() {
 
 function getProximoJogoBronze() {
   const realizados = new Set(resultadosF.resultados.filter(r => r.realizado).map(r => r.jogo_id));
-  for (const rodada of jogosBronzeF.rodadas) {
+  const sorted = [...jogosBronzeF.rodadas].sort((a, b) => a.rodada - b.rodada);
+  for (const rodada of sorted) {
     for (const jogo of rodada.jogos) {
       if (!realizados.has(jogo.jogo)) return { dupla1: jogo.dupla1, dupla2: jogo.dupla2, rodada: rodada.rodada, data: rodada.data };
     }
@@ -38,7 +39,8 @@ function getProximoJogoBronze() {
 }
 
 function getProximoJogoPrata() {
-  for (const rodada of jogosPrataF.rodadas) {
+  const sorted = [...jogosPrataF.rodadas].sort((a, b) => a.rodada - b.rodada);
+  for (const rodada of sorted) {
     for (const jogo of rodada.jogos) {
       if (jogo.status === 'Pendente') return { dupla1: jogo.dupla1, dupla2: jogo.dupla2, rodada: rodada.rodada, data: rodada.data };
     }
@@ -137,23 +139,23 @@ export default function HomePage() {
               <div key={j.posicao} style={{ background: bgs[idx] ?? 'var(--verde)', padding: '28px 24px', position: 'relative', overflow: 'hidden', borderRadius: 2 }}>
                 <div style={{ position: 'absolute', right: -8, top: -16, fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 110, color: 'rgba(255,255,255,0.06)', lineHeight: 1, userSelect: 'none', pointerEvents: 'none', letterSpacing: '-0.04em' }}>{j.posicao}</div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
-                  <div style={{ background: 'color-mix(in oklch, currentColor 15%, transparent)', border: '1px solid color-mix(in oklch, currentColor 25%, transparent)', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 2 }}>
-                    <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 13, color: colors[idx] }}>{j.posicao}</span>
+                  <div style={{ background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.25)', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 2 }}>
+                    <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 13, color: 'var(--paper)' }}>{j.posicao}</span>
                   </div>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.3em', color: 'var(--citrino)', textTransform: 'uppercase', opacity: 0.9 }}>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.2em', color: 'var(--citrino)', textTransform: 'uppercase', fontWeight: 700 }}>
                     {j.posicao === 1 ? 'Líder' : `${j.posicao}º lugar`}
                   </span>
                 </div>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 20, color: colors[idx], textTransform: 'uppercase', letterSpacing: '-0.02em', marginBottom: 20, lineHeight: 1.1 }}>{j.nome}</h3>
-                <div style={{ display: 'flex', gap: 20, paddingTop: 16, borderTop: '1px solid color-mix(in oklch, currentColor 15%, transparent)' }}>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 26, color: 'var(--paper)', textTransform: 'uppercase', letterSpacing: '-0.03em', marginBottom: 20, lineHeight: 1.05 }}>{j.nome}</h3>
+                <div style={{ display: 'flex', gap: 20, paddingTop: 16, borderTop: '1px solid rgba(255,255,255,0.12)' }}>
                   {[
                     { v: `${j.percentual_vitorias}%`, l: 'Vitórias' },
                     { v: j.saldo_games > 0 ? `+${j.saldo_games}` : String(j.saldo_games), l: 'Saldo' },
                     { v: `${j.vitorias}/${j.jogos}`, l: 'V/J' },
                   ].map(s => (
                     <div key={s.l}>
-                      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 20, color: colors[idx], lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>{s.v}</div>
-                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'color-mix(in oklch, currentColor 50%, transparent)', marginTop: 6 }}>{s.l}</div>
+                      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 26, color: 'var(--paper)', lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>{s.v}</div>
+                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.65)', marginTop: 8 }}>{s.l}</div>
                     </div>
                   ))}
                 </div>
@@ -183,11 +185,11 @@ export default function HomePage() {
                   <div style={{ background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.2)', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 2 }}>
                     <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 13, color: 'var(--bronze-light)' }}>{a.posicao}</span>
                   </div>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.3em', color: 'var(--bronze-light)', textTransform: 'uppercase' }}>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.2em', color: 'var(--bronze-light)', textTransform: 'uppercase', fontWeight: 700 }}>
                     {a.posicao === 1 ? 'Líder' : `${a.posicao}ª lugar`}
                   </span>
                 </div>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 20, color: textColor, textTransform: 'uppercase', letterSpacing: '-0.02em', marginBottom: 20, lineHeight: 1.1 }}>{a.nome}</h3>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 26, color: 'var(--paper)', textTransform: 'uppercase', letterSpacing: '-0.03em', marginBottom: 20, lineHeight: 1.05 }}>{a.nome}</h3>
                 <div style={{ display: 'flex', gap: 20, paddingTop: 16, borderTop: '1px solid rgba(255,255,255,0.12)' }}>
                   {[
                     { v: `${a.percentual_vitorias}%`, l: 'Vitórias' },
@@ -195,8 +197,8 @@ export default function HomePage() {
                     { v: `${a.vitorias}/${a.jogos}`, l: 'V/J' },
                   ].map(s => (
                     <div key={s.l}>
-                      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 20, color: textColor, lineHeight: 1 }}>{s.v}</div>
-                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginTop: 6 }}>{s.l}</div>
+                      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 26, color: 'var(--paper)', lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>{s.v}</div>
+                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.65)', marginTop: 8 }}>{s.l}</div>
                     </div>
                   ))}
                 </div>
@@ -225,11 +227,11 @@ export default function HomePage() {
                   <div style={{ background: 'rgba(255,255,255,0.12)', border: '1px solid rgba(255,255,255,0.2)', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 2 }}>
                     <span style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 13, color: 'var(--prata-light)' }}>{a.posicao}</span>
                   </div>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.3em', color: 'var(--prata-light)', textTransform: 'uppercase' }}>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.2em', color: 'var(--prata-light)', textTransform: 'uppercase', fontWeight: 700 }}>
                     {a.posicao === 1 ? 'Líder' : `${a.posicao}ª lugar`}
                   </span>
                 </div>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 20, color: 'var(--paper)', textTransform: 'uppercase', letterSpacing: '-0.02em', marginBottom: 20, lineHeight: 1.1 }}>{a.nome}</h3>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 26, color: 'var(--paper)', textTransform: 'uppercase', letterSpacing: '-0.03em', marginBottom: 20, lineHeight: 1.05 }}>{a.nome}</h3>
                 <div style={{ display: 'flex', gap: 20, paddingTop: 16, borderTop: '1px solid rgba(255,255,255,0.12)' }}>
                   {[
                     { v: `${a.pontos}`, l: 'Pontos' },
@@ -237,8 +239,8 @@ export default function HomePage() {
                     { v: a.saldo_games > 0 ? `+${a.saldo_games}` : String(a.saldo_games), l: 'Saldo G' },
                   ].map(s => (
                     <div key={s.l}>
-                      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 20, color: 'var(--paper)', lineHeight: 1 }}>{s.v}</div>
-                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: 8, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginTop: 6 }}>{s.l}</div>
+                      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 26, color: 'var(--paper)', lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>{s.v}</div>
+                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.65)', marginTop: 8 }}>{s.l}</div>
                     </div>
                   ))}
                 </div>
@@ -261,9 +263,9 @@ export default function HomePage() {
             {proximoM ? (
               <div style={{ background: 'var(--verde-deep)', padding: 24, borderRadius: 2, position: 'relative', overflow: 'hidden' }}>
                 <div style={{ position: 'absolute', right: -8, top: -12, fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 90, color: 'rgba(255,255,255,0.04)', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>M</div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, paddingBottom: 14, borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--verde-deep)', background: 'var(--verde-glow)', padding: '5px 12px', borderRadius: 2 }}>Masculino · Rd {proximoM.rodada}</span>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'rgba(255,255,255,0.75)', letterSpacing: '0.05em' }}>{proximoM.data} · {proximoM.horario}</span>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 8, marginBottom: 16, paddingBottom: 14, borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--verde-deep)', background: 'var(--verde-glow)', padding: '5px 12px', borderRadius: 2, flexShrink: 0 }}>Masculino · Rd {proximoM.rodada}</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'rgba(255,255,255,0.75)', letterSpacing: '0.05em', whiteSpace: 'nowrap' }}>{proximoM.data} · {proximoM.horario}</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                   <div style={{ flex: 1 }}>

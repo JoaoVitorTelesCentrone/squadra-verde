@@ -24,9 +24,9 @@ export default function Header() {
 
   function isActive(href: string) {
     if (href === '/') return pathname === '/';
-    if (href === '/ranking') return RANKING_PATHS.some(p => pathname.startsWith(p));
-    if (href === '/jogos')   return JOGOS_PATHS.some(p => pathname.startsWith(p));
-    return pathname.startsWith(href);
+    if (href === '/ranking') return RANKING_PATHS.some(p => pathname === p || pathname.startsWith(p + '/'));
+    if (href === '/jogos')   return JOGOS_PATHS.some(p => pathname === p || pathname.startsWith(p + '/'));
+    return pathname === href || pathname.startsWith(href + '/');
   }
 
   return (
