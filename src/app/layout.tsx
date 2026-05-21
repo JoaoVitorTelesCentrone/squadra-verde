@@ -13,7 +13,7 @@ const fontDisplay = Bricolage_Grotesque({
 
 const fontMono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
   variable: "--font-mono",
 });

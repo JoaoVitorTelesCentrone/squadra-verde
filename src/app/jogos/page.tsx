@@ -225,7 +225,7 @@ export default function JogosPage() {
           />
 
           {/* Rodada tabs */}
-          <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 4, overflowX: 'auto', width: '100%', paddingBottom: 2 }}>
             <button
               onClick={() => setRodadaAtiva(null)}
               style={{

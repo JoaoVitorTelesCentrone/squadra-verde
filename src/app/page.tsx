@@ -97,7 +97,7 @@ export default function HomePage() {
 
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }} className="animate-fade-up anim-delay-4">
             <Link href="/ranking" className="btn-accent">Classificação</Link>
-            <Link href="/jogos" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '13px 22px', fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'color-mix(in oklch, var(--paper) 80%, transparent)', border: '1px solid color-mix(in oklch, var(--paper) 20%, transparent)', borderRadius: 2, textDecoration: 'none', transition: 'all 0.15s' }}>Ver Jogos</Link>
+            <Link href="/jogos" className="btn-hero">Ver Jogos</Link>
           </div>
 
           {/* Stat strip */}
@@ -262,8 +262,8 @@ export default function HomePage() {
               <div style={{ background: 'var(--verde-deep)', padding: 24, borderRadius: 2, position: 'relative', overflow: 'hidden' }}>
                 <div style={{ position: 'absolute', right: -8, top: -12, fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 90, color: 'rgba(255,255,255,0.04)', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>M</div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, paddingBottom: 14, borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, fontWeight: 600, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--verde-deep)', background: 'var(--verde-glow)', padding: '4px 10px', borderRadius: 2 }}>Masculino · Rd {proximoM.rodada}</span>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'rgba(255,255,255,0.45)', letterSpacing: '0.05em' }}>{proximoM.data} · {proximoM.horario}</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--verde-deep)', background: 'var(--verde-glow)', padding: '5px 12px', borderRadius: 2 }}>Masculino · Rd {proximoM.rodada}</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'rgba(255,255,255,0.75)', letterSpacing: '0.05em' }}>{proximoM.data} · {proximoM.horario}</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                   <div style={{ flex: 1 }}>
@@ -277,7 +277,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div style={{ marginTop: 16, paddingTop: 14, borderTop: '1px solid rgba(255,255,255,0.1)', display: 'flex', justifyContent: 'flex-end' }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', border: '1px solid rgba(255,255,255,0.15)', padding: '4px 10px', borderRadius: 2 }}>Aguardando</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.70)', border: '1px solid rgba(255,255,255,0.35)', padding: '5px 12px', borderRadius: 2 }}>Aguardando</span>
                 </div>
               </div>
             ) : (
@@ -291,8 +291,8 @@ export default function HomePage() {
               <div style={{ background: 'var(--bronze-deep)', padding: 24, borderRadius: 2, position: 'relative', overflow: 'hidden' }}>
                 <div style={{ position: 'absolute', right: -8, top: -12, fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 90, color: 'rgba(255,255,255,0.04)', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>B</div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, paddingBottom: 14, borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, fontWeight: 600, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--bronze-deep)', background: 'var(--bronze-light)', padding: '4px 10px', borderRadius: 2 }}>F Bronze · Rd {proximoBronze.rodada}</span>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'rgba(255,255,255,0.45)', letterSpacing: '0.05em' }}>{formatData(proximoBronze.data)}</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--bronze-deep)', background: 'var(--bronze-light)', padding: '5px 12px', borderRadius: 2 }}>F Bronze · Rd {proximoBronze.rodada}</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'rgba(255,255,255,0.75)', letterSpacing: '0.05em' }}>{formatData(proximoBronze.data)}</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                   <div style={{ flex: 1 }}>
@@ -306,7 +306,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div style={{ marginTop: 16, paddingTop: 14, borderTop: '1px solid rgba(255,255,255,0.1)', display: 'flex', justifyContent: 'flex-end' }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', border: '1px solid rgba(255,255,255,0.15)', padding: '4px 10px', borderRadius: 2 }}>Aguardando</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.70)', border: '1px solid rgba(255,255,255,0.35)', padding: '5px 12px', borderRadius: 2 }}>Aguardando</span>
                 </div>
               </div>
             ) : (
@@ -320,8 +320,8 @@ export default function HomePage() {
               <div style={{ background: 'oklch(0.26 0.014 232)', padding: 24, borderRadius: 2, position: 'relative', overflow: 'hidden' }}>
                 <div style={{ position: 'absolute', right: -8, top: -12, fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 90, color: 'rgba(255,255,255,0.04)', lineHeight: 1, userSelect: 'none', pointerEvents: 'none' }}>P</div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, paddingBottom: 14, borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, fontWeight: 600, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'oklch(0.26 0.014 232)', background: 'var(--prata-light)', padding: '4px 10px', borderRadius: 2 }}>F Prata · Rd {proximoPrata.rodada}</span>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'rgba(255,255,255,0.45)', letterSpacing: '0.05em' }}>{formatData(proximoPrata.data)}</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'oklch(0.26 0.014 232)', background: 'var(--prata-light)', padding: '5px 12px', borderRadius: 2 }}>F Prata · Rd {proximoPrata.rodada}</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'rgba(255,255,255,0.75)', letterSpacing: '0.05em' }}>{formatData(proximoPrata.data)}</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                   <div style={{ flex: 1 }}>
@@ -335,7 +335,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div style={{ marginTop: 16, paddingTop: 14, borderTop: '1px solid rgba(255,255,255,0.1)', display: 'flex', justifyContent: 'flex-end' }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', border: '1px solid rgba(255,255,255,0.15)', padding: '4px 10px', borderRadius: 2 }}>Aguardando</span>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.70)', border: '1px solid rgba(255,255,255,0.35)', padding: '5px 12px', borderRadius: 2 }}>Aguardando</span>
                 </div>
               </div>
             ) : (
@@ -345,7 +345,7 @@ export default function HomePage() {
             )}
           </div>
 
-          <Link href="/jogos" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '13px 24px', fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--paper)', border: '1px solid rgba(255,255,255,0.35)', borderRadius: 2, textDecoration: 'none', transition: 'all 0.15s' }}>Ver Agenda Completa →</Link>
+          <Link href="/jogos" className="btn-hero">Ver Agenda Completa →</Link>
         </div>
       </section>
 
@@ -359,7 +359,7 @@ export default function HomePage() {
           </div>
           <div style={{ display: 'flex', gap: 10, position: 'relative', flexWrap: 'wrap' }}>
             <Link href="/ranking" className="btn-accent">Masculino</Link>
-            <Link href="/feminino" style={{ display: 'inline-flex', alignItems: 'center', padding: '13px 22px', fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.25em', textTransform: 'uppercase', color: 'color-mix(in oklch, var(--paper) 75%, transparent)', border: '1px solid color-mix(in oklch, var(--paper) 18%, transparent)', borderRadius: 2, textDecoration: 'none' }}>Feminino</Link>
+            <Link href="/feminino" className="btn-hero">Feminino</Link>
           </div>
         </div>
       </section>

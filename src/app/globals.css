@@ -194,7 +194,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-links a, .nav-links button {
   font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 800;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   padding: 8px 14px;
@@ -704,7 +704,7 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid var(--ink);
   padding: 13px 22px;
   font-family: var(--font-mono);
-  font-weight: 500;
+  font-weight: 800;
   font-size: 11px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
@@ -721,10 +721,10 @@ h1, h2, h3, h4, h5, h6 {
   gap: 10px;
   background: transparent;
   color: var(--ink);
-  border: 1px solid var(--line);
+  border: 1px solid color-mix(in oklch, var(--ink) 35%, transparent);
   padding: 13px 22px;
   font-family: var(--font-mono);
-  font-weight: 500;
+  font-weight: 800;
   font-size: 11px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
@@ -735,6 +735,28 @@ h1, h2, h3, h4, h5, h6 {
 }
 .btn-ghost:hover { background: color-mix(in oklch, var(--ink) 6%, transparent); }
 
+.btn-hero {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 22px;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: color-mix(in oklch, var(--paper) 80%, transparent);
+  border: 1px solid color-mix(in oklch, var(--paper) 20%, transparent);
+  border-radius: 2px;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.btn-hero:hover {
+  color: var(--paper);
+  border-color: color-mix(in oklch, var(--paper) 60%, transparent);
+  background: color-mix(in oklch, var(--paper) 8%, transparent);
+}
+
 .btn-accent {
   display: inline-flex;
   align-items: center;
@@ -744,7 +766,7 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid var(--citrino);
   padding: 13px 22px;
   font-family: var(--font-mono);
-  font-weight: 500;
+  font-weight: 800;
   font-size: 11px;
   letter-spacing: 0.25em;
   text-transform: uppercase;

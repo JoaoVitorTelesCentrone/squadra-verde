@@ -95,7 +95,7 @@ export default function RankingPage() {
       <div className="page-head">
         <div className="page-head-inner">
           {/* Masculino / Feminino switcher */}
-          <div style={{ display: 'flex', gap: 4, marginBottom: 28 }}>
+          <div style={{ display: 'flex', gap: 4, marginBottom: 28, flexWrap: 'wrap' }}>
             {([
               { href: '/ranking',  label: 'Masculino', active: true  },
               { href: '/feminino', label: 'Feminino',  active: false },
