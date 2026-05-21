@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useMemo, useRef, useEffect } from 'react';
 import Link from 'next/link';
@@ -152,9 +152,11 @@ export default function FemininoPage() {
       <style>{`
         .top3-grid { grid-template-columns: repeat(3, 1fr); }
         .rank-table .col-hide-mobile { display: table-cell; }
+        .rank-mobile-cards { display: none; }
         @media (max-width: 640px) {
           .top3-grid { grid-template-columns: 1fr !important; }
-          .rank-table .col-hide-mobile { display: none !important; }
+          .rank-table-wrap { display: none !important; }
+          .rank-mobile-cards { display: block !important; }
         }
       `}</style>
       {/* ── PAGE HEADER ── */}
@@ -192,8 +194,8 @@ export default function FemininoPage() {
           <p className="section-label" style={{ marginBottom: 10, color: 'var(--accent-2)' }}>Temporada 2026 · Feminino</p>
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
             <div>
-              <h1 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 'clamp(36px, 6vw, 72px)', color: 'var(--paper)', letterSpacing: '-0.04em', marginBottom: 16, textTransform: 'uppercase', lineHeight: 0.95 }}>
-                Classificação Feminino
+              <h1 style={{ fontFamily: "var(--font-display)", fontWeight: 800, fontSize: 'clamp(54px, 12vw, 72px)', color: 'var(--paper)', letterSpacing: '-0.04em', marginBottom: 16, textTransform: 'uppercase', lineHeight: 0.95 }}>
+                Classificação<br />Feminino
               </h1>
 
               {/* Tabs */}
@@ -305,7 +307,7 @@ export default function FemininoPage() {
               </div>
 
               {/* Tabela */}
-              <div style={{ border: '1px solid var(--ink)', overflowX: 'auto' }}>
+              <div className="rank-table-wrap" style={{ border: '1px solid var(--ink)', overflowX: 'auto' }}>
                 <table className="rank-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
                   <thead>
                     <tr style={{ background: BRONZE.dark }}>
@@ -357,6 +359,47 @@ export default function FemininoPage() {
                 </table>
                 {filteredBronze.length === 0 && <div style={{ padding: 40, textAlign: 'center', color: 'color-mix(in oklch, var(--ink) 45%, transparent)', fontFamily: "var(--font-mono)" }}>Nenhuma atleta encontrada.</div>}
               </div>
+
+              {/* Mobile Cards Bronze */}
+              <div className="rank-mobile-cards" style={{ border: `1px solid ${BRONZE.dark}`, borderRadius: 2, overflow: 'hidden' }}>
+                {filteredBronze.length === 0 ? (
+                  <div style={{ padding: 40, textAlign: 'center', color: BRONZE.metaColor, fontFamily: "var(--font-mono)" }}>Nenhuma atleta encontrada.</div>
+                ) : filteredBronze.map((j, idx) => {
+                  const isPodio = j.posicao <= 3;
+                  const isEven = idx % 2 === 0;
+                  const stats = [
+                    { label: 'J',  value: String(j.jogos),    color: '#414942' },
+                    { label: 'V',  value: String(j.vitorias), color: BRONZE.mid },
+                    { label: 'D',  value: String(j.derrotas), color: 'color-mix(in oklch, var(--ink) 45%, transparent)' },
+                    { label: '%V', value: `${j.percentual_vitorias}%`, color: j.percentual_vitorias >= 67 ? BRONZE.primary : j.percentual_vitorias >= 33 ? '#414942' : '#ba1a1a' },
+                    { label: 'SG', value: `${j.saldo_games > 0 ? '+' : ''}${j.saldo_games}`, color: j.saldo_games > 0 ? BRONZE.primary : j.saldo_games < 0 ? '#ba1a1a' : '#717971' },
+                  ];
+                  return (
+                    <div key={j.posicao} style={{ background: isEven ? '#ffffff' : BRONZE.rowOdd, borderBottom: `1px solid ${BRONZE.borderColor}`, padding: '14px 16px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
+                        {isPodio ? (
+                          <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 28, height: 28, background: BRONZE.top3[j.posicao as 1|2|3]?.bg || BRONZE.primary, fontFamily: "var(--font-display)", fontSize: 13, fontWeight: 700, color: '#ffffff', borderRadius: 4, flexShrink: 0 }}>
+                            {j.posicao}
+                          </span>
+                        ) : (
+                          <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 28, height: 28, fontFamily: "var(--font-mono)", fontSize: 13, fontWeight: 500, color: BRONZE.metaColor, flexShrink: 0 }}>
+                            {j.posicao}
+                          </span>
+                        )}
+                        <span style={{ fontFamily: "var(--font-display)", fontWeight: isPodio ? 700 : 600, fontSize: 15, color: BRONZE.dark, letterSpacing: '-0.01em', lineHeight: 1.2 }}>{j.nome}</span>
+                      </div>
+                      <div style={{ display: 'flex', gap: 6, paddingLeft: 40, flexWrap: 'wrap' }}>
+                        {stats.map(({ label, value, color }) => (
+                          <div key={label} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', background: `${BRONZE.borderColor}`, borderRadius: 4, padding: '5px 10px', minWidth: 46 }}>
+                            <span style={{ fontFamily: "var(--font-mono)", fontSize: 9, letterSpacing: '0.15em', textTransform: 'uppercase', color: BRONZE.metaColor, marginBottom: 3 }}>{label}</span>
+                            <span style={{ fontFamily: "var(--font-mono)", fontSize: 13, fontWeight: 500, color }}>{value}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </>
           )
         )}
@@ -405,7 +448,7 @@ export default function FemininoPage() {
             </div>
 
             {/* Tabela */}
-            <div style={{ border: '1px solid var(--ink)', overflowX: 'auto' }}>
+            <div className="rank-table-wrap" style={{ border: '1px solid var(--ink)', overflowX: 'auto' }}>
               <table className="rank-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
                   <tr style={{ background: PRATA.dark }}>
@@ -473,6 +516,47 @@ export default function FemininoPage() {
               {filteredPrata.length === 0 && <div style={{ padding: 40, textAlign: 'center', color: 'color-mix(in oklch, var(--ink) 45%, transparent)', fontFamily: "var(--font-mono)" }}>Nenhuma atleta encontrada.</div>}
             </div>
 
+            {/* Mobile Cards Prata */}
+            <div className="rank-mobile-cards" style={{ border: `1px solid ${PRATA.dark}`, borderRadius: 2, overflow: 'hidden' }}>
+              {filteredPrata.length === 0 ? (
+                <div style={{ padding: 40, textAlign: 'center', color: PRATA.metaColor, fontFamily: "var(--font-mono)" }}>Nenhuma atleta encontrada.</div>
+              ) : filteredPrata.map((a, idx) => {
+                const isPodio = a.posicao <= 3;
+                const isEven = idx % 2 === 0;
+                const stats = [
+                  { label: 'J',   value: String(a.jogos),   color: '#414942' },
+                  { label: 'PTS', value: String(a.pontos),  color: PRATA.primary },
+                  { label: 'SS',  value: `${a.saldo_sets > 0 ? '+' : ''}${a.saldo_sets}`, color: a.saldo_sets > 0 ? PRATA.primary : a.saldo_sets < 0 ? '#ba1a1a' : '#717971' },
+                  { label: 'SG',  value: `${a.saldo_games > 0 ? '+' : ''}${a.saldo_games}`, color: a.saldo_games > 0 ? PRATA.primary : a.saldo_games < 0 ? '#ba1a1a' : '#717971' },
+                  { label: '%V',  value: `${a.percentual.toFixed(0)}%`, color: a.percentual >= 67 ? PRATA.primary : a.percentual >= 33 ? '#414942' : '#ba1a1a' },
+                ];
+                return (
+                  <div key={a.posicao} style={{ background: isEven ? '#ffffff' : PRATA.rowOdd, borderBottom: `1px solid ${PRATA.borderColor}`, padding: '14px 16px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
+                      {isPodio ? (
+                        <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 28, height: 28, background: PRATA.top3[a.posicao as 1|2|3]?.bg || PRATA.primary, fontFamily: "var(--font-display)", fontSize: 13, fontWeight: 700, color: '#ffffff', borderRadius: 4, flexShrink: 0 }}>
+                          {a.posicao}
+                        </span>
+                      ) : (
+                        <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 28, height: 28, fontFamily: "var(--font-mono)", fontSize: 13, fontWeight: 500, color: PRATA.metaColor, flexShrink: 0 }}>
+                          {a.posicao}
+                        </span>
+                      )}
+                      <span style={{ fontFamily: "var(--font-display)", fontWeight: isPodio ? 700 : 600, fontSize: 15, color: PRATA.dark, letterSpacing: '-0.01em', lineHeight: 1.2 }}>{a.nome}</span>
+                    </div>
+                    <div style={{ display: 'flex', gap: 6, paddingLeft: 40, flexWrap: 'wrap' }}>
+                      {stats.map(({ label, value, color }) => (
+                        <div key={label} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', background: PRATA.borderColor, borderRadius: 4, padding: '5px 10px', minWidth: 46 }}>
+                          <span style={{ fontFamily: "var(--font-mono)", fontSize: 9, letterSpacing: '0.15em', textTransform: 'uppercase', color: PRATA.metaColor, marginBottom: 3 }}>{label}</span>
+                          <span style={{ fontFamily: "var(--font-mono)", fontSize: 13, fontWeight: 500, color }}>{value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
             {/* Legenda */}
             <div style={{ marginTop: 16, display: 'flex', gap: 20, flexWrap: 'wrap' }}>
               {[{ label: 'PTS', desc: 'Pontos no ranking' }, { label: 'J', desc: 'Partidas disputadas' }, { label: 'SS', desc: 'Saldo de sets' }, { label: 'SG', desc: 'Saldo de games' }, { label: '%V', desc: 'Percentual de vitórias em sets' }].map(({ label, desc }) => (
@@ -533,3 +617,5 @@ export default function FemininoPage() {
     </div>
   );
 }
+
+

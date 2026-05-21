@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useMemo, useRef } from 'react';
 import jogosData from '@/data/jogos_prata_feminino.json';
@@ -109,7 +109,7 @@ export default function FeminoPrataJogosPage() {
             style={{
               fontFamily: "var(--font-display)",
               fontWeight: 800,
-              fontSize: 'clamp(36px, 6vw, 72px)',
+              fontSize: 'clamp(54px, 12vw, 72px)',
               color: 'var(--paper)',
               letterSpacing: '-0.04em',
               textTransform: 'uppercase',
@@ -626,3 +626,4 @@ export default function FeminoPrataJogosPage() {
     </div>
   );
 }
+

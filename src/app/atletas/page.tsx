@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useMemo } from 'react';
 import classificacaoM from '@/data/classificacao_ranking.json';
@@ -81,7 +81,7 @@ export default function AtletasPage() {
             style={{
               fontFamily: "var(--font-display)",
               fontWeight: 800,
-              fontSize: 'clamp(36px, 6vw, 72px)',
+              fontSize: 'clamp(54px, 12vw, 72px)',
               color: 'var(--paper)',
               letterSpacing: '-0.04em',
               textTransform: 'uppercase',
@@ -238,3 +238,4 @@ export default function AtletasPage() {
     </div>
   );
 }
+

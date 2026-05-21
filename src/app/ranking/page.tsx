@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useMemo, useRef, useEffect } from 'react';
 import Link from 'next/link';
@@ -126,7 +126,7 @@ export default function RankingPage() {
           <p className="section-label" style={{ marginBottom: 12, color: 'var(--verde-glow)' }}>Temporada 2026</p>
           <div className="header-actions" style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
             <div>
-              <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(36px, 6vw, 72px)', color: 'var(--paper)', letterSpacing: '-0.04em', textTransform: 'uppercase', marginBottom: 12, lineHeight: 0.95 }}>
+              <h1 style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 'clamp(54px, 12vw, 72px)', color: 'var(--paper)', letterSpacing: '-0.04em', textTransform: 'uppercase', marginBottom: 12, lineHeight: 0.95 }}>
                 Classificação<br />Geral
               </h1>
               <p style={{ fontFamily: 'var(--font-mono)', fontSize: 12, color: 'color-mix(in oklch, var(--paper) 50%, transparent)', display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -247,7 +247,7 @@ export default function RankingPage() {
             </div>
 
             {/* Table */}
-            <div className="rank-table-wrap">
+            <div className="rank-table-wrap" style={{ border: '1px solid var(--line-soft)', borderRadius: 2, overflow: 'hidden' }}>
               <table className="rank-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
                   <tr style={{ background: 'var(--ink)' }}>
@@ -343,6 +343,49 @@ export default function RankingPage() {
                 </div>
               )}
             </div>
+
+            {/* Mobile Cards */}
+            <div className="rank-mobile-cards" style={{ border: '1px solid var(--line-soft)', borderRadius: 2, overflow: 'hidden' }}>
+              {filtered.length === 0 ? (
+                <div style={{ padding: 40, textAlign: 'center', color: 'color-mix(in oklch, var(--ink) 40%, transparent)', fontFamily: 'var(--font-mono)', fontSize: 12, letterSpacing: '0.1em' }}>
+                  Nenhum jogador encontrado.
+                </div>
+              ) : filtered.map((j, idx) => {
+                const isPodio = j.posicao <= 3;
+                const isEven = idx % 2 === 0;
+                const stats = [
+                  { label: 'J',  value: String(j.jogos),   color: 'color-mix(in oklch, var(--ink) 65%, transparent)' },
+                  { label: 'V',  value: String(j.vitorias), color: 'var(--verde)' },
+                  { label: 'D',  value: String(j.derrotas), color: 'color-mix(in oklch, var(--ink) 45%, transparent)' },
+                  { label: '%V', value: `${j.percentual_vitorias}%`, color: j.percentual_vitorias >= 67 ? 'var(--verde)' : j.percentual_vitorias >= 33 ? 'color-mix(in oklch, var(--ink) 70%, transparent)' : 'var(--coral)' },
+                  { label: 'SG', value: `${j.saldo_games > 0 ? '+' : ''}${j.saldo_games}`, color: j.saldo_games > 0 ? 'var(--verde)' : j.saldo_games < 0 ? 'var(--coral)' : 'color-mix(in oklch, var(--ink) 45%, transparent)' },
+                ];
+                return (
+                  <div key={j.posicao} style={{ background: isEven ? 'var(--paper)' : 'var(--sand)', borderBottom: '1px solid var(--line-soft)', padding: '14px 16px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
+                      {isPodio ? (
+                        <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 28, height: 28, background: podiumBgs[j.posicao - 1] ?? 'var(--ink)', fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, color: 'var(--paper)', borderRadius: 4, flexShrink: 0 }}>
+                          {j.posicao}
+                        </span>
+                      ) : (
+                        <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 28, height: 28, fontFamily: 'var(--font-mono)', fontSize: 13, fontWeight: 500, color: 'color-mix(in oklch, var(--ink) 40%, transparent)', flexShrink: 0 }}>
+                          {j.posicao}
+                        </span>
+                      )}
+                      <span style={{ fontFamily: 'var(--font-display)', fontWeight: isPodio ? 700 : 600, fontSize: 15, color: 'var(--ink)', letterSpacing: '-0.01em', lineHeight: 1.2 }}>{j.nome}</span>
+                    </div>
+                    <div style={{ display: 'flex', gap: 6, paddingLeft: 40, flexWrap: 'wrap' }}>
+                      {stats.map(({ label, value, color }) => (
+                        <div key={label} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', background: 'color-mix(in oklch, var(--ink) 5%, transparent)', borderRadius: 4, padding: '5px 10px', minWidth: 46 }}>
+                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'color-mix(in oklch, var(--ink) 35%, transparent)', marginBottom: 3 }}>{label}</span>
+                          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13, fontWeight: 500, color }}>{value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </>
         )}
       </div>
@@ -420,12 +463,14 @@ export default function RankingPage() {
         .search-box::placeholder { color: var(--verde-deep); opacity: 1; }
         .top3-grid { grid-template-columns: repeat(3, 1fr); }
         .rank-table .col-hide-mobile { display: table-cell; }
+        .rank-mobile-cards { display: none; }
         @media (max-width: 640px) {
           .top3-grid { grid-template-columns: 1fr; }
-          .rank-table .col-hide-mobile { display: none; }
-          .rank-table th, .rank-table td { padding: 10px 8px; font-size: 12px; }
+          .rank-table-wrap { display: none; }
+          .rank-mobile-cards { display: block; }
         }
       `}</style>
     </div>
   );
 }
+

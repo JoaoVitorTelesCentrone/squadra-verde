@@ -59,11 +59,6 @@ export default function Header() {
         </nav>
 
         <div className="nav-right">
-          <div className="nav-season">
-            <span className="live-dot" />
-            T2026
-          </div>
-
           {/* Mobile hamburger */}
           <button
             className="nav-mobile-btn"

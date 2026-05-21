@@ -76,7 +76,7 @@ export default function HomePage() {
             style={{
               fontFamily: 'var(--font-display)',
               fontWeight: 800,
-              fontSize: 'clamp(56px, 11vw, 160px)',
+              fontSize: 'clamp(80px, 19vw, 160px)',
               lineHeight: 0.9,
               color: 'var(--paper)',
               letterSpacing: '-0.04em',
@@ -92,7 +92,7 @@ export default function HomePage() {
 
           <p
             style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.3em', color: 'color-mix(in oklch, var(--paper) 50%, transparent)', textTransform: 'uppercase', marginBottom: 40, lineHeight: 2 }}
-            className="animate-fade-up anim-delay-3"
+            className="animate-fade-up anim-delay-3 hero-subtitle"
           >
             Beach Tênis · Masculino · Feminino Bronze · Feminino Prata
           </p>

@@ -915,9 +915,13 @@ h1, h2, h3, h4, h5, h6 {
   .foto-grupo-img { height: 260px; transform: none; }
   .sponsors-grid { grid-template-columns: repeat(2, 1fr) !important; }
   .footer-top { grid-template-columns: 1fr; }
-  .stats-bar { flex-direction: column; gap: 16px !important; }
+  .stats-bar { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 20px 28px !important; }
   .stats-bar > div { border-right: none !important; padding-right: 0 !important; }
   .header-actions { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
+}
+@media (max-width: 640px) {
+  .page-head { padding: 36px 0 24px !important; }
+  .hero-subtitle { letter-spacing: 0.08em !important; line-height: 1.6 !important; font-size: 10px !important; }
 }
 @media (max-width: 600px) {
   .rank-table th:nth-child(n+5),

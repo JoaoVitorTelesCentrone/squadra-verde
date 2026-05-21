@@ -23,7 +23,11 @@
       "Bash(curl *)",
       "Bash(Get-Content *)",
       "Bash(python3 -c \"import sys; data=sys.stdin.read\\(\\); idx=data.find\\('@font-face'\\); print\\(data[idx:idx+400] if idx>=0 else 'not found'\\)\")",
-      "Bash(awk '/Bricolage/{found=1} found && /font-weight/{w=$0} found && /src.*woff2/{print w\" -> \"$0} found && /JetBrains/{exit}')"
+      "Bash(awk '/Bricolage/{found=1} found && /font-weight/{w=$0} found && /src.*woff2/{print w\" -> \"$0} found && /JetBrains/{exit}')",
+      "Bash(sed -n '118,122p' src/app/feminino-jogos/page.tsx)",
+      "Bash(sed -n '118,122p' src/app/feminino-prata-jogos/page.tsx)",
+      "Bash(sed -n '90,95p' src/app/atletas/page.tsx)",
+      "Bash(sed -n '357,362p' src/app/lances/page.tsx)"
     ]
   }
 }

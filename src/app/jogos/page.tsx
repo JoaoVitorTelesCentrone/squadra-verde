@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useMemo, useRef, useEffect } from 'react';
 import jogosData from '@/data/jogos_ranking.json';
@@ -113,7 +113,7 @@ export default function JogosPage() {
             style={{
               fontFamily: "var(--font-display)",
               fontWeight: 800,
-              fontSize: 'clamp(36px, 6vw, 72px)',
+              fontSize: 'clamp(54px, 12vw, 72px)',
               color: 'var(--paper)',
               letterSpacing: '-0.04em',
               textTransform: 'uppercase',
@@ -121,7 +121,7 @@ export default function JogosPage() {
               marginBottom: 14,
             }}
           >
-            Agenda de Jogos
+            Agenda de<br />Jogos
           </h1>
           <div className="header-actions" style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', alignItems: 'center' }}>
@@ -666,3 +666,5 @@ export default function JogosPage() {
     </div>
   );
 }
+
+
