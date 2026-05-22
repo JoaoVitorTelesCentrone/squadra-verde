@@ -37,7 +37,7 @@ export default function Header() {
         <Link href="/" className="brand-mark" onClick={() => setOpen(false)}>
           <LogoSVG color="var(--verde-deep)" width={26} height={42} />
           <div className="brand-mark-text">
-            <strong style={{ color: 'var(--verde-glow)' }}>Squadra Verde</strong>
+            <strong style={{ color: 'var(--verde-deep)' }}>Squadra Verde</strong>
             <span>Beach Tênis</span>
           </div>
         </Link>
