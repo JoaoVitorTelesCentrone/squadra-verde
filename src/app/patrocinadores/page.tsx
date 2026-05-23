@@ -1,16 +1,18 @@
 'use client';
 
+import React from 'react';
+
 const patrocinadores = [
-  { nome: 'Instituto Torus' },
-  { nome: 'Gula Gula' },
-  { nome: 'Geolink' },
-  { nome: 'Croque Manie' },
-  { nome: 'TJ Sound' },
-  { nome: 'Hi-Tech II' },
-  { nome: 'Arte Sacha Renovação' },
-  { nome: 'Oazi' },
-  { nome: 'SPW' },
-  { nome: 'Contra Dor' },
+  { nome: 'Instituto Torus',      href: 'https://institutotorus.com.br/' },
+  { nome: 'Gula Gula',            href: 'https://gulagula.com.br/' },
+  { nome: 'Geolink',              href: null },
+  { nome: 'Croque Manie',         href: null },
+  { nome: 'TJ Sound',             href: 'https://tjsound.com.br/' },
+  { nome: 'Hi-Tech II',           href: 'https://hitechcelulares.com.br/' },
+  { nome: 'Arte Sacha Renovação', href: null },
+  { nome: 'Oazi',                 href: null },
+  { nome: 'SPW',                  href: 'https://www.spwjoias.com.br/' },
+  { nome: 'Contra Dor',           href: null },
 ];
 
 const INITIALS = (nome: string) =>
@@ -187,9 +189,13 @@ export default function PatrocinadoresPage() {
             marginBottom: 64,
           }}
         >
-          {patrocinadores.map((p, i) => (
-            <div
+          {patrocinadores.map((p, i) => {
+            const Tag = p.href ? 'a' : 'div';
+            const linkProps = p.href ? { href: p.href, target: '_blank', rel: 'noopener noreferrer' } : {};
+            return (
+            <Tag
               key={p.nome}
+              {...(linkProps as object)}
               style={{
                 background: 'var(--paper)',
                 border: '1px solid var(--ink)',
@@ -201,15 +207,16 @@ export default function PatrocinadoresPage() {
                 position: 'relative',
                 overflow: 'hidden',
                 transition: 'all 0.15s ease',
-                cursor: 'default',
+                cursor: p.href ? 'pointer' : 'default',
+                textDecoration: 'none',
               }}
-              onMouseEnter={e => {
-                (e.currentTarget as HTMLDivElement).style.transform = 'translate(-2px,-2px)';
-                (e.currentTarget as HTMLDivElement).style.boxShadow = '6px 6px 0 var(--ink)';
+              onMouseEnter={(e: React.MouseEvent<HTMLElement>) => {
+                e.currentTarget.style.transform = 'translate(-2px,-2px)';
+                e.currentTarget.style.boxShadow = '6px 6px 0 var(--ink)';
               }}
-              onMouseLeave={e => {
-                (e.currentTarget as HTMLDivElement).style.transform = 'none';
-                (e.currentTarget as HTMLDivElement).style.boxShadow = '4px 4px 0 var(--ink)';
+              onMouseLeave={(e: React.MouseEvent<HTMLElement>) => {
+                e.currentTarget.style.transform = 'none';
+                e.currentTarget.style.boxShadow = '4px 4px 0 var(--ink)';
               }}
             >
               {/* Accent line esquerda */}
@@ -290,8 +297,9 @@ export default function PatrocinadoresPage() {
                   Parceiro Oficial
                 </p>
               </div>
-            </div>
-          ))}
+            </Tag>
+            );
+          })}
         </div>
 
         {/* ── FOTO DO GRUPO ── */}

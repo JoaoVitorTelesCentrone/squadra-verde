@@ -27,7 +27,12 @@
       "Bash(sed -n '118,122p' src/app/feminino-jogos/page.tsx)",
       "Bash(sed -n '118,122p' src/app/feminino-prata-jogos/page.tsx)",
       "Bash(sed -n '90,95p' src/app/atletas/page.tsx)",
-      "Bash(sed -n '357,362p' src/app/lances/page.tsx)"
+      "Bash(sed -n '357,362p' src/app/lances/page.tsx)",
+      "Bash(npm run *)",
+      "WebFetch(domain:localhost)",
+      "Bash(kill %1)",
+      "Bash(taskkill *)",
+      "WebFetch(domain:letzplay.me)"
     ]
   }
 }
